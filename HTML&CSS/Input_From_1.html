@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+    <html lang="ja">
+        <head>
+            <meta charset="UTF-8">
+            <link rel="stylesheet" href="style.css">
+            <title>入力画面</title>
+        </head>
+        <body>
+            <div class="return">
+                <img src="images/innu.jpeg">
+            </div>
+            <div id="main_title"> 
+                <h1>就職活動報告</h1>
+                <h2>ステップ１</h2>
+            </div>
+            <div class="input_body">   
+                <form action="#">
+                    <div class="input_aria">
+                        <div class="warpper-1">
+                            <div class="container">   
+                                <p><label>科名：<input type="text" name="department_name"></label></p>
+                                <p><label> 応募件数：<input type="number" name="number_of_applications"></label></p>
+                            </div>
+                        </div>
+                        <div class="warpper-2">
+                             <div class="container">   
+                                <p><label>応募先企業名：<input type="text" name="company_name"></label></p>
+                            </div>
+                        </div>
+                        <div class="warpper-3">
+                             <div class="container">   
+                                <p><label>応募先所在地：<input type="text" name="business_address"></label></p>
+                            </div>
+                        </div>
+                        <div class="warpper-4">
+                            <div class="container">   
+                                <p>応募方法：<input type="text" name="application_method"></p>
+                                <p>書類選考：
+                                    <input type="radio" name="document_screening" value="0">有
+                                     <input type="radio" name="document_screening" value="1">無
+                                </p>
+                            </div>
+                        </div>
+                        <div class="warpper-5">
+                            <div class="container">   
+                                <p><label>職種：<input type="text" name="occupation"></label></p>
+                            </div>
+                        </div>
+                        <div class="warpper-6">
+                            <div class="container">   
+                                <p>提出書類：
+                                    <input type="checkbox" name="resume" value="resume">履歴書
+                                    <input type="checkbox" name="curriculum_vitae" value="curriculum_vitae">職務経歴書
+                                    <input type="checkbox" name="certificate_expected_completion" value="certificate_expected_completion">終了見込証明書
+                                    <input type="checkbox" name="transcript" value="transcript">成績証明書
+                                    <input type="checkbox" name="health_certificate" value="health_certificate">健康診断書
+                                    <input type="checkbox" name="portfolio" value="portfolio">作品<br>
+                                    <input type="checkbox" name="other_area" value="other_area">その他：
+                                    <input type="text" name="other_area">
+                                </p>
+                            </div>
+                        </div>    
+                    </div>
+                    <div class="btn_area">
+                       <input type="reset"  class="btn_item" value="キャンセル" alt="キャンセル">
+                        <input type="button" class="btn_item" value="保存" alt="保存">
+                        <input type="button" class="btn_item" value="一次→" alt="一次→">
+                    </div>
+                </form>
+            </div>
+            
+
+        </body>
+    
+    </html>
+
+
+</html>

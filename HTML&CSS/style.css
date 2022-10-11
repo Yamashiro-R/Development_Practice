@@ -1,0 +1,447 @@
+/*リセットCSS ここから↓*/
+@charset "UTF-8";
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+margin: 0;
+padding: 0;
+border: none;
+font-style: normal;
+text-align: left;
+zoom: 1;
+}
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+display: block;
+}
+table {
+border-collapse: collapse;
+font-family: inherit;
+}
+h1,h2,h3,h4,h5 {
+font-size: 100%;
+font-weight: normal;
+line-height: 1;
+}
+input,textarea,select {
+font-family: inherit;
+font-size: 16px;
+}
+input[type="button"],input[type="text"],input[type="submit"] {
+-webkit-appearance: none;
+border-radius: 0;
+}
+textarea {
+resize: none;
+-webkit-appearance: none;
+border-radius: 0;
+}
+th,td {
+border-collapse: collapse;
+}
+table th,table td {
+white-space: nowrap;
+}
+ul,ol {
+list-style-type: none;
+}
+img {
+vertical-align: text-bottom;
+vertical-align: -webkit-baseline-middle;
+max-width: 100%;
+height: auto;
+width /***/:auto;
+}
+
+/*リセットCSS ここまで↑*/
+
+/*共通部分ここから↓*/
+#main_title {
+    width: auto;
+    height: 120px;
+    padding-top: 70px;
+}
+
+h1{
+    font-size: 400%;
+    text-align: center;
+    margin-bottom: 10px;
+}
+h2{
+    font-size: 250%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+h3{
+    font-size: 200%;
+}
+
+p {
+    font-size: 150%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.return {
+    width: 61px;
+    height: 52px;
+    margin-top:10px;
+    margin-left: 10px;
+    position: fixed;
+}
+
+/*共通部分ここから↑*/
+
+/*home,houkoku.html↓*/
+.homebtnEturan,.newmake{
+    width: 700px;
+    font-size: 50px;
+    display: block;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 30px;
+}
+
+.homebtnHoukoku,.savedata{
+    width: 700px;
+    font-size: 50px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+@media screen and (min-width: 768px){
+        .br-sp {display: none; }
+    }    
+
+@media screen and (max-width: 768px){        
+    .homebtnEturan,.newmake,.homebtnHoukoku,.savedata {
+        width: 300px;
+        font-size: 40px;
+    }
+
+
+}
+
+/*home,houkoku.htmlここまで↑*/
+/* ヒガさん */
+
+/*dataView.html↓*/
+.dvtable {
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+}
+
+.dvtable tbody td {
+    border: solid 1px black;
+}
+
+.dvtable h3 {
+    text-align: center;
+}
+
+.dvtable th,td {
+    text-align: center;
+    width: 250px;
+    height: 80px;
+}
+
+.dvtable tbody tr:nth-of-type(2n+1) {
+    background-color: #D9D9D9;
+}
+
+.dvfooter p {
+    display: flex;
+    justify-content: space-around;
+}
+
+.dvfooter button {
+    border: none;
+    background-color: white;
+    font-size: large;
+    font-weight: bold;
+}
+
+.dvfooter span {
+    font-size: 80%;
+}
+
+/*dataView.htmlここまで↑*/
+
+/*dvSearch.html↓*/
+/* ひがさん */
+.dvsform {
+    display: flex;
+    flex-direction: column;
+}
+
+.dvsform div {
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+
+.dsvcheck p{
+    display: inline;
+}
+
+/*dvSearch.html↑*/
+
+/*Input_From_1 ここから↓*/
+/* 山城さん */
+
+.input_aria{
+    max-width: 1600px;
+    min-width: 850px;
+    width: 850px;
+    height: auto;
+    margin-left: 10px;
+    margin-right: 10px;
+    background-color: red;
+}
+
+.warpper-1 .container, .warpper-4 .container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.warpper-1, .warpper-2, .warpper-3, .warpper-4, .warpper-5, .warpper-6{  
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+
+.warpper-2 input,.warpper-3 input{  /* 応募先企業名と応募先所在地の入力欄 */
+    width: 20em;   
+}
+
+.warpper-1 p:last-child input{     /* 応募件数の入力欄 */
+    width: 5em;
+}
+
+.btn_area {
+    display: flex;
+    justify-content: right;
+    background-color: aliceblue;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+.btn_item { /*ボタン全体*/
+    margin-right: 10px;
+}
+.btn_area input:last-child{ /* 一次→ボタン用 */
+    margin-right: 0;
+}
+
+
+/*Input_From ここまで↑*/
+
+
+
+/*rogin画面*/
+/* ゆうとさん */
+.roginFrom {
+    max-width: 550px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 70px;
+    display: flex;
+}
+
+.password {
+    max-width: 550px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 70px;
+    display: flex;
+}
+
+.rogin-button {
+    max-width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+}
+/*
+h1 {
+    margin-top: 50px;
+    font-size: 50px;
+    text-align: center;
+}*/
+
+.ID-Pass {
+    margin-bottom: 10px;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+input.id {
+    width: 150%;
+    margin-left: 67px;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #000;
+    padding: 5px 5px;
+}
+
+input.pass {
+    width: 160%;
+    margin-left: 33px;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #000;
+    padding: 5px 10px;
+}
+
+.rogin-button {
+    margin-top: 60px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn-border {
+    width: 525px;
+    padding: 5px;
+    font-size: 25px;
+    font-weight: bold;
+    margin-top: 5px;
+    margin-left: -10px;
+    letter-spacing: 0.5em;
+}
+/* New_Person */
+/* ゆうとさん */
+/*IDここから*/
+.ID-From {
+    max-width: 530px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 60px;
+    display: flex;
+}
+
+input.id {
+    width: 140%;
+    margin-left: 70px;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #000;
+    padding: 5px 10px;
+}
+
+/*ここまで↑*/
+
+/*パスワードここから*/
+.password {
+    max-width: 530px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    display: flex;
+}
+
+.re-password {
+    max-width: 530px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 60px;
+    display: flex;
+}
+
+input.pass {
+    width: 159%;
+    margin-left: 35px;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #000;
+    padding: 5px 10px;
+}
+
+input.re-pass {
+    width: 159%;
+    margin-left: 35px;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #000;
+    padding: 5px 10px;
+}
+/*ここまで↑*/
+
+/*科名ここから*/
+.class-name {
+    max-width: 530px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 60px;
+    display: flex;
+}
+
+input.class_name {
+    width: 155%;
+    margin-left: 43px;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #000;
+    padding: 5px 10px;
+}
+/*ここまで↑*/
+/*
+p {
+    padding-top: 5px;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+}*/
+
+.info {
+    margin-top: 20px;
+    font-size: small;
+    color: #F00;
+}
+
+.re-pw {
+    font-size: 30px;
+    margin-left: -90px;/*-48px*/
+    font-weight: bold;
+}
+/*
+h1 {
+    margin-top: 50px;
+    font-size: 50px;
+    text-align: center;
+}*/
+
+/*ボタン*/
+.register-button {
+    margin-top: 60px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn-border {
+    width: 565px;
+    padding: 5px;
+    font-size: 25px;
+    font-weight: bold;
+    letter-spacing: 0.5em;
+}
+
