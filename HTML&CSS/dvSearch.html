@@ -16,20 +16,22 @@
 
                 <div>
                     <form class="dvsform" action="">
-                        <div>
-                            <p>
-                                <label for="names">会社名：</label>
-                                <input type="text" id="names">
-                            </p>
-                        </div>
-                        <div>
-                            <p><label for="fjForm">面接形式：</label>
-                                <select>
-                                    <option>個別面接</option>
-                                    <option>集団面接</option>
-                                    <option>ディスカッション等</option>
-                                </select>
-                            </p>
+                        <div class="dvStop">
+                            <div class="dvSname">
+                                <p>
+                                    <label for="names">会社名：</label>
+                                    <input type="text" id="names">
+                                </p>
+                            </div>
+                            <div class="dvSivf">
+                                <p>面接形式:
+                                    <select name="ivformat">
+                                        <option>個別面接</option>
+                                        <option>集団面接</option>
+                                        <option>ディスカッション等</option>
+                                    </select>
+                                </p>
+                            </div>
                         </div>
                         <div class="dsvcheck">
                             <p>選考方法：</p>
@@ -37,12 +39,13 @@
                                 <label><input type="checkbox" id="slctmth" value="筆記">筆記</label>
                                 <label><input type="checkbox" id="slctmth" value="適性検査">適性検査</label>
                                 <label><input type="checkbox" id="slctmth" value="作文（論文）">作文（論文）</label>
-                                <br>
+                                <br class="br-sp">
                                 <label><input type="checkbox" id="slctmth" value="実技">実技</label>
+                                <br class="br-spr"> 
                                 <label><input type="checkbox" id="slctmth" value="面接">面接</label>
                                 <label><input type="checkbox" id="slctmth" value="その他">その他</label>
                             </p>
-                            <p class="dvssubm"><input type="submit" value="🔍検索"></p>
+                            <div><input type="submit" value="🔍検索"></div> 
                         </div>
                     </form>
                 </div>

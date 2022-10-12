@@ -103,7 +103,9 @@ p {
 
 /*共通部分ここから↑*/
 
+
 /*home,houkoku.html↓*/
+
 .homebtnEturan,.newmake{
     width: 700px;
     font-size: 50px;
@@ -123,21 +125,10 @@ p {
 }
 
 
-@media screen and (min-width: 768px){
-        .br-sp {display: none; }
-    }    
-
-@media screen and (max-width: 768px){        
-    .homebtnEturan,.newmake,.homebtnHoukoku,.savedata {
-        width: 300px;
-        font-size: 40px;
-    }
-
-
-}
-
 /*home,houkoku.htmlここまで↑*/
-/* ヒガさん */
+
+
+
 
 /*dataView.html↓*/
 .dvtable {
@@ -184,28 +175,67 @@ p {
 /*dataView.htmlここまで↑*/
 
 /*dvSearch.html↓*/
-/* ひがさん */
-.dvsform {
-    display: flex;
-    flex-direction: column;
-}
 
-.dvsform div {
-    width: 400px;
+
+.dvsform {
+    width: 700px;
     margin-left: auto;
     margin-right: auto;
-
 }
 
+.dsvcheck p {
+    display: inline-block;
+    vertical-align: top;
+}
 
-.dsvcheck p{
-    display: inline;
+.dsvcheck div {
+    vertical-align: bottom;
+    text-align: right;
 }
 
 /*dvSearch.html↑*/
 
+
+
+/*フレキシブルの設定↓*/
+
+@media screen and (min-width: 710px){
+        .br-sp {display: none; }
+
+        .dvStop {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+    }    
+
+@media screen and (max-width: 710px){        
+    .homebtnEturan,.newmake,.homebtnHoukoku,.savedata {
+        width: 300px;
+        font-size: 40px;
+    }
+
+    .dvsform {
+        padding-top: 20px;
+        width: 400px;
+    }
+           
+    .br-spr {display: none;}
+
+    .roginform div {
+        width: 400px !important; 
+    }
+}
+
+/*フレキシブルの設定↑*/
+
+
 /*Input_From_1 ここから↓*/
 /* 山城さん */
+.Input_Form{
+    max-width: 1600px;
+    min-width: 850px;
+}
 
 .input_aria{
     max-width: 1600px;
@@ -215,7 +245,7 @@ p {
     margin-right: 10px;
 }
 
-.input_body_1 .warpper-1 .container, .input_body_1 .warpper-4 .container {
+.input_body_1 .warpper-1 .container , .input_body_1 .warpper-4 .container {
     display: flex;
     justify-content: space-between;
 }
@@ -268,192 +298,91 @@ p {
 /* Input_From_2用 再設定ここまで↑ */
 
 
-/*rogin画面*/
-/* ゆうとさん */
-.roginFrom {
-    max-width: 550px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 70px;
-    display: flex;
-}
-
-.password {
-    max-width: 550px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 70px;
-    display: flex;
-}
-
-.rogin-button {
-    max-width: 200px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 30px;
-}
-/*
-h1 {
-    margin-top: 50px;
-    font-size: 50px;
-    text-align: center;
-}*/
-
-.ID-Pass {
-    margin-bottom: 10px;
-    font-size: 30px;
-    font-weight: bold;
-}
-
-input.id {
-    width: 150%;
-    margin-left: 67px;
-    border: none;
-    outline: none;
-    border-bottom: 2px solid #000;
-    padding: 5px 5px;
-}
-
-input.pass {
-    width: 160%;
-    margin-left: 33px;
-    border: none;
-    outline: none;
-    border-bottom: 2px solid #000;
-    padding: 5px 10px;
-}
-
-.rogin-button {
-    margin-top: 60px;
-    max-width: 500px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.btn-border {
-    width: 525px;
-    padding: 5px;
-    font-size: 25px;
-    font-weight: bold;
-    margin-top: 5px;
-    margin-left: -10px;
-    letter-spacing: 0.5em;
-}
-/* New_Person */
-/* ゆうとさん */
 /*IDここから*/
 .ID-From {
-    max-width: 530px;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 60px;
     display: flex;
 }
 
-input.id {
-    width: 140%;
-    margin-left: 70px;
+.roginform div {
+    width: 565px;
+    margin-top: 25px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+}
+
+.rogin-input {
+    margin-left: 50px;
+    width: 70%;
     border: none;
     outline: none;
+    text-align: center;
     border-bottom: 2px solid #000;
-    padding: 5px 10px;
 }
 
 /*ここまで↑*/
 
 /*パスワードここから*/
 .password {
-    max-width: 530px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 30px;
-    display: flex;
+    margin-top: 10px !important;
 }
 
-.re-password {
-    max-width: 530px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 60px;
-    display: flex;
-}
 
-input.pass {
-    width: 159%;
-    margin-left: 35px;
-    border: none;
-    outline: none;
-    border-bottom: 2px solid #000;
-    padding: 5px 10px;
-}
-
-input.re-pass {
-    width: 159%;
-    margin-left: 35px;
-    border: none;
-    outline: none;
-    border-bottom: 2px solid #000;
-    padding: 5px 10px;
-}
 /*ここまで↑*/
 
 /*科名ここから*/
-.class-name {
-    max-width: 530px;
+
+/*ここまで↑*/
+
+.p-title {
+    width: 30%;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 60px;
-    display: flex;
+    font-size: 25px;
+    font-weight: bold;
 }
 
-input.class_name {
-    width: 155%;
-    margin-left: 43px;
+.info {
+    font-size: small;
+    color: #F00;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0;
+    padding-left: 40%;
+    text-align: center; 
+}
+
+/*プルダウンメニュー*/
+.rogselect {
+    margin-left: 50px;
+    width: 350px;
     border: none;
     outline: none;
     border-bottom: 2px solid #000;
-    padding: 5px 10px;
-}
-/*ここまで↑*/
-/*
-p {
-    padding-top: 5px;
-    font-size: 30px;
-    font-weight: bold;
     text-align: center;
-}*/
-
-.info {
-    margin-top: 20px;
-    font-size: small;
-    color: #F00;
 }
 
-.re-pw {
-    font-size: 30px;
-    margin-left: -90px;/*-48px*/
-    font-weight: bold;
-}
-/*
-h1 {
-    margin-top: 50px;
-    font-size: 50px;
-    text-align: center;
-}*/
 
 /*ボタン*/
-.register-button {
-    margin-top: 60px;
-    max-width: 500px;
+
+.btn-border {
+    width: 250px;
+    font-size: 25px;
+    font-weight: bold;
+    margin-top: 80px;
+    letter-spacing: 0.5em;
+    display: block;
     margin-left: auto;
     margin-right: auto;
 }
 
-.btn-border {
-    width: 565px;
-    padding: 5px;
-    font-size: 25px;
-    font-weight: bold;
-    letter-spacing: 0.5em;
-}
+
+
+
+
+
 
