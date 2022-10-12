@@ -210,14 +210,12 @@ p {
 .input_aria{
     max-width: 1600px;
     min-width: 850px;
-    width: 850px;
     height: auto;
     margin-left: 10px;
     margin-right: 10px;
-    background-color: red;
 }
 
-.warpper-1 .container, .warpper-4 .container {
+.input_body_1 .warpper-1 .container, .input_body_1 .warpper-4 .container {
     display: flex;
     justify-content: space-between;
 }
@@ -239,7 +237,6 @@ p {
 .btn_area {
     display: flex;
     justify-content: right;
-    background-color: aliceblue;
     margin-left: 15%;
     margin-right: 15%;
 }
@@ -252,8 +249,23 @@ p {
 }
 
 
-/*Input_From ここまで↑*/
+/*Input_From_1用 ここまで↑*/
 
+/* Input_From_2用 再設定ここから↓ */
+
+.input_body_2 .input_aria{
+    display: flex;
+    justify-content: center;
+}
+
+.input_body_2 .warpper-1 textarea {
+    resize: vertical;       /*横幅変更*/
+    width: 700px;
+    height: 100px;   
+}
+
+
+/* Input_From_2用 再設定ここまで↑ */
 
 
 /*rogin画面*/
