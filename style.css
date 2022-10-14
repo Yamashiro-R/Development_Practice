@@ -98,7 +98,7 @@ p {
     height: 52px;
     margin-top:10px;
     margin-left: 10px;
-    position: fixed;
+    position: absolute;
 }
 
 /*共通部分ここから↑*/
@@ -230,75 +230,6 @@ p {
 /*フレキシブルの設定↑*/
 
 
-/*Input_From_1 ここから↓*/
-/* 山城さん */
-.Input_Form{
-    max-width: 1600px;
-    min-width: 850px;
-}
-
-.input_aria{
-    max-width: 1600px;
-    min-width: 850px;
-    height: auto;
-    margin-left: 10px;
-    margin-right: 10px;
-}
-
-.input_body_1 .warpper-1 .container , .input_body_1 .warpper-4 .container {
-    display: flex;
-    justify-content: space-between;
-}
-
-.warpper-1, .warpper-2, .warpper-3, .warpper-4, .warpper-5, .warpper-6{  
-    margin-left: 15%;
-    margin-right: 15%;
-}
-
-
-.warpper-2 input,.warpper-3 input{  /* 応募先企業名と応募先所在地の入力欄 */
-    width: 20em;   
-}
-
-.warpper-1 p:last-child input{     /* 応募件数の入力欄 */
-    width: 5em;
-}
-
-.btn_area {
-    display: flex;
-    justify-content: right;
-    margin-left: 15%;
-    margin-right: 15%;
-}
-
-.btn_item { /*ボタン全体*/
-    margin-right: 10px;
-}
-.btn_area input:last-child{ /* 一次→ボタン用 */
-    margin-right: 0;
-}
-
-
-/*Input_From_1用 ここまで↑*/
-
-/* Input_From_2用 再設定ここから↓ */
-
-.input_body_2 .input_aria{
-    display: flex;
-    justify-content: center;
-}
-
-.input_body_2 .warpper-1 textarea {
-    resize: vertical;       /*横幅変更*/
-    width: 700px;
-    height: 100px;   
-}
-
-
-
-/* Input_From_2用 再設定ここまで↑ */
-
-
 /*IDここから*/
 .ID-From {
     margin-left: auto;
@@ -380,6 +311,175 @@ p {
     margin-left: auto;
     margin-right: auto;
 }
+
+
+/*pastdata.html↓*/
+
+.big-div {
+    width: 750px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.div-info {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: space-between;
+}
+
+.divdiv {
+    display: flex;
+    width: 50%;
+}
+
+.divdiv p {
+    margin-top: 0;
+}
+
+.p-info {
+    width: 45%;
+}
+
+.p-view {
+    width: 50%;
+    background-color: #D9D9D9;
+}
+
+.div-detail {
+    width: 100%;
+}
+.div-detail .p-info {
+    width: 30%;
+}
+
+.div-detail .p-view {
+    width: 68%;
+}
+
+.test {
+    background-color: #cfffff;
+}
+
+.test div {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.test div:first-child p {
+    margin-right: 20px;
+}
+
+.div-detail div:nth-last-of-type(2) div p, .div-detail div:nth-last-of-type(1) div p {
+    margin-right: 0;
+}
+.change {
+    text-align: center;
+}
+
+.change button {
+    width: 70px;
+    height: 30px;
+    margin-top: 40px;
+    font-weight: bold;
+}
+
+.change button:first-child {
+    margin-right: 100px;
+}
+
+.page-top {
+    width: 70px;
+    margin-bottom: 100px;
+}
+
+/*pastdata.html↑*/
+
+
+/*フレキシブル設定↓*/
+
+@media screen and (min-width: 760px){
+    .br-sp {display: none; }
+}
+
+
+
+@media screen and (max-width: 760px){
+
+    .div-info{
+        display: block;
+        margin-top: 50px;
+        margin-left: 10%;
+    }
+
+    .divdiv {
+        margin-right: auto;
+        margin-left: auto;
+        width: 100%;
+    }
+
+    .big-div {
+        width: 430px;
+    }
+
+    .div-detail div {
+        display: block;
+    }
+
+    .div-detail div .p-info {
+        width: auto;
+    }
+
+    .div-detail div .p-view {
+        width: 100%;
+    }S
+
+}    
+
+/*フレキシブル設定↑*/
+
+
+
+
+/*Input_From_1 ここから↓*/
+/*
+ .p-info {
+    width: 45%;
+    margin-right: 55%;
+}*/
+
+/*Input_From_1 ここまで↑*/
+/*
+.Input_Form_row_2 {
+    width: 40%;
+}*/
+
+.input-view {
+    box-sizing: content-box;
+    width: 50%;
+    height: 25px;
+}
+
+.divdiv_col_1 {
+    margin-right: 50%;
+}
+
+.p-info_col_1 {
+    box-sizing: content-box;
+    width: 45%;
+}
+
+.radio_view_0, .radio_view_1{
+    display: inline-block;
+    width: 25%;
+    margin-right: 23%;
+    
+}
+
+
+
+/* Input_From_2用 再設定ここまで↑ */
 
 
 
