@@ -478,7 +478,37 @@ p {
 }
 
 
+.divdiv_width_all {
+    width: 100%;
+}
 
+.divdiv_width_all p {
+    width: 23%;
+    display: inline-block;
+}
+.divdiv_width_all div:not(:last-child) {
+    box-sizing: content-box;
+    width: 23%;
+    height: 25px;
+    display: inline-block;
+}
+.div_oder_area {
+    box-sizing: content-box;
+    width: 46%;
+    height: 25px;
+    display: inline-block;
+}
+
+
+
+.divdiv_width_all div:nth-child(5), .divdiv_width_all div:last-child {
+    margin-left: 23.7%;
+}
+
+
+.div_oder_area input:last-child {
+    width: 52%;
+}
 /* Input_From_2用 再設定ここまで↑ */
 
 
