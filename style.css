@@ -67,7 +67,7 @@ width /***/:auto;
 
 /*共通部分ここから↓*/
 #main_title {
-    width: auto;
+    width: 100%;
     height: 120px;
     padding-top: 70px;
 }
@@ -397,48 +397,6 @@ p {
 /*pastdata.html↑*/
 
 
-/*フレキシブル設定↓*/
-
-@media screen and (min-width: 760px){
-    .br-sp {display: none; }
-}
-
-
-
-@media screen and (max-width: 760px){
-
-    .div-info{
-        display: block;
-        margin-top: 50px;
-        margin-left: 10%;
-    }
-
-    .divdiv {
-        margin-right: auto;
-        margin-left: auto;
-        width: 100%;
-    }
-
-    .big-div {
-        width: 430px;
-    }
-
-    .div-detail div {
-        display: block;
-    }
-
-    .div-detail div .p-info {
-        width: auto;
-    }
-
-    .div-detail div .p-view {
-        width: 100%;
-    }S
-
-}    
-
-/*フレキシブル設定↑*/
-
 
 
 
@@ -470,46 +428,110 @@ p {
     width: 45%;
 }
 
-.radio_view_0, .radio_view_1{
-    display: inline-block;
-    width: 25%;
-    margin-right: 23%;
+.input-view_1{
+    display: flex;
+    justify-content: space-around;
+    
+    
     
 }
 
 
 .divdiv_width_all {
     width: 100%;
+    display: flex;
 }
 
 .divdiv_width_all p {
-    width: 23%;
+    width: 22%;
+}
+.docu_sele {
+    width: 78%;
+    justify-content: space-between;
+ }
+ .docu_sele div { 
+    width: 24%;
     display: inline-block;
+ }
+ .div_oder_area {
+    width: 50% !important;
+ }
+ .div_oder_area input:last-child {
+    width: 50%;
+ }
+ 
+.change input {
+    width: 100px;
+    height: 30px;
+    margin-top: 40px;
+    font-weight: bold;
 }
-.divdiv_width_all div:not(:last-child) {
-    box-sizing: content-box;
-    width: 23%;
-    height: 25px;
-    display: inline-block;
-}
-.div_oder_area {
-    box-sizing: content-box;
-    width: 46%;
-    height: 25px;
-    display: inline-block;
+
+ 
+ 
+/*フレキシブル設定↓*/
+
+ @media screen and (min-width: 760px){
+    .br-sp {display: none; }
 }
 
 
 
-.divdiv_width_all div:nth-child(5), .divdiv_width_all div:last-child {
-    margin-left: 23.7%;
-}
+@media screen and (max-width: 760px){
+
+    .div-info{
+        display: block;
+        margin-top: 50px;
+        margin-left: 10%;
+    }
+
+    .divdiv {
+        margin-right: auto;
+        margin-left: auto;
+        width: 100%;
+    }
+
+    .big-div {
+        width: 430px;
+    }
+
+    .div-detail div {
+        display: block;
+    }
+
+    .div-detail div .p-info {
+        width: auto;
+    }
+    .divdiv_width_all {
+        display: block;
+    }
 
 
-.div_oder_area input:last-child {
-    width: 52%;
-}
-/* Input_From_2用 再設定ここまで↑ */
+    .div-detail div .p-view {
+        width: 100%;
+    }
+
+    .divdiv_width_all p {
+        width: 45%;
+    }
+    .docu_sele {
+        width: 100%;
+    }
+    .docu_sele div {
+        width: 32%;
+    }
+    .div_oder_area input:last-child {
+        width: 34%;  
+     }
+
+     .div_oder_area {
+        width: 100% !important;
+     }
+}    
+
+/*フレキシブル設定↑*/
+
+
 
 
 
