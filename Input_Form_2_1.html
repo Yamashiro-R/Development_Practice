@@ -13,32 +13,35 @@
                 <h1>就職活動報告</h1>
                 <h2>ステップ２</h2>
             </div>
-            <div class="input_body_2">   
+            <div class="big-div">   
                 <form action="#">
-                    <div class="input_aria">
-                        <div class="warpper-1">
-                            <div class="container">   
-                                <p><label>一次試験日付：<input type="date" name="once_date"></label></p>
+                    <!-- <div class="input_aria"> -->
+                        <div class="div-info Input_Form_2_1">
+                            <div class="divdiv_col_1"> 
+                                <p class="p-info_col_1">一次試験日付：</p>
+                                <input type="date" class="input-view" name="once_date">
+                            </div>0
                                 <p>一次試験内容：
-                                    <input type="checkbox" name="writing">筆記
-                                    <input type="checkbox" name="aptitude">適性検査
-                                    <input type="checkbox" name="conposition">作文(論文)
-                                    <input type="checkbox" name="practical_skill">実技
-                                    <input type="checkbox" name="interview">面接
-                                    <input type="checkbox" name="order">その他
+                                    <input type="checkbox" name="Primary_exam_content"  value="writing">筆記
+                                    <input type="checkbox" name="Primary_exam_content" value="aptitude">適性検査
+                                    <input type="checkbox" name="Primary_exam_content" value="conposition">作文
+                                    <input type="checkbox" name="Primary_exam_content" value="practical_skill">実技
+                                    <input type="checkbox" name="Primary_exam_content" value="interview">面接
+                                    <input type="checkbox" name="Primary_exam_content" value="order">その他
                                 </p>
                                 <p><label for="once_starge_exam_detail">試験内容詳細：</label></p>
-                                <textarea name="once_starge_exam_detail"></textarea><br>
-                            </div>
+                                <textarea name="once_starge_exam_detail"></textarea><br>  
                         </div>
-                    </div>  
-                    <div class="btn_area">
-                       <input type="reset"  class="btn_item" value="キャンセル" alt="キャンセル">
+                    <!-- </div>   -->
+                    <div class="button">
+                        <input type="reset"  class="btn_item" value="キャンセル" alt="キャンセル">
                         <input type="button" class="btn_item" value="保存" alt="保存">
                         <input type="button" onclick="location.href='Input_Form_2_2.html'" class="btn_item" value="一次→" alt="一次→">
                     </div>
                 </form>
             </div>
+            
+
             
 
         </body>
