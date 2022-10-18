@@ -88,6 +88,7 @@ h3{
 }
 
 p {
+    
     font-size: 150%;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -100,6 +101,19 @@ p {
     margin-left: 10px;
     position: absolute;
 }
+.button{
+    margin-top: 50px;
+    margin-bottom: 20px;
+    padding-right: 10px;
+    text-align: right;
+}
+.button input ,.button button{
+ width: 120px;
+ height: 40px;   
+ 
+}
+
+
 
 /*共通部分ここから↑*/
 
@@ -374,20 +388,7 @@ p {
 .div-detail div:nth-last-of-type(2) div p, .div-detail div:nth-last-of-type(1) div p {
     margin-right: 0;
 }
-.change {
-    text-align: center;
-}
 
-.change button {
-    width: 70px;
-    height: 30px;
-    margin-top: 40px;
-    font-weight: bold;
-}
-
-.change button:first-child {
-    margin-right: 100px;
-}
 
 .page-top {
     width: 70px;
@@ -413,6 +414,11 @@ p {
     width: 40%;
 }*/
 
+.input-view_1 div, .docu_sele div , 
+.Input_Form_2_1_area_div div{
+    font-size: 130%;
+    margin-bottom: 10px;
+}
 .input-view {
     box-sizing: content-box;
     width: 50%;
@@ -451,7 +457,7 @@ p {
     justify-content: space-between;
  }
  .docu_sele div { 
-    width: 24%;
+    width: 32%;
     display: inline-block;
  }
  .div_oder_area {
@@ -461,12 +467,6 @@ p {
     width: 50%;
  }
  
-.change input {
-    width: 110px;
-    height: 30px;
-    margin-top: 40px;
-    font-weight: bold;
-}
 
 /* Input_Form_3用 ここから↓ */
 
@@ -492,7 +492,8 @@ p {
     height: 150px;
     margin-top: 30px;
 }
-
+/*
+ゆうとさんの
 .button {
     text-align: right;
     margin-top: 60px;
@@ -505,7 +506,7 @@ p {
     height: 50px;
     letter-spacing: 0.3em;
     font-weight: bold;
-}
+}*/
 
 /* Input_Form_3用 ここまで↑ */
 
@@ -585,7 +586,10 @@ p {
     .Input_Form_2_1_input-view {
         width: 100%;
     }
-    .docu_sele div , .Input_Form_2_1_area_div div {
+    .docu_sele div {
+        width: 43%;
+    }
+    .Input_Form_2_1_area_div div {
         width: 32%;
     }
     
