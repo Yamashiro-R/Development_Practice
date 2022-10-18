@@ -431,9 +431,10 @@ p {
 .input-view_1{
     display: flex;
     justify-content: space-around;
-    
-    
-    
+}
+.Input_Form_2_1_input-view {
+    width: 54%;
+    height: 50px;
 }
 
 
@@ -442,7 +443,7 @@ p {
     display: flex;
 }
 
-.divdiv_width_all p {
+.divdiv_width_all .p-info {
     width: 22%;
 }
 .docu_sele {
@@ -461,7 +462,7 @@ p {
  }
  
 .change input {
-    width: 100px;
+    width: 110px;
     height: 30px;
     margin-top: 40px;
     font-weight: bold;
@@ -508,6 +509,29 @@ p {
 
 /* Input_Form_3用 ここまで↑ */
 
+/* Input_Form_2_1～3用 ここから↓*/
+
+.Input_area_2_1_p_first {
+    width: 50%;
+}
+.p_Input_area_2_1_p_second{
+    width: 25%;
+}
+
+.Input_Form_2_1_input-view {
+    width: 54%;
+    height: 50%;
+}
+.Input_Form_2_1_area_div {
+    width: 75%;
+    justify-content: space-between;
+}
+.Input_Form_2_1_area_div div {
+    width: 20%;
+    display: inline-block;
+}
+
+/* Input_Form_2_1～3用 ここまで↑*/
  
 /*フレキシブル設定↓*/
 
@@ -515,8 +539,7 @@ p {
     .br-sp {display: none; }
 }
 
-
-
+ 
 @media screen and (max-width: 760px){
 
     .div-info{
@@ -545,21 +568,27 @@ p {
     .divdiv_width_all {
         display: block;
     }
+    .p_Input_area_2_1_p_second{
+        width: 50%;
+    }
+
 
 
     .div-detail div .p-view {
         width: 100%;
     }
 
-    .divdiv_width_all p {
+    .divdiv_width_all .p-info {
         width: 45%;
     }
-    .docu_sele {
+    .docu_sele , .Input_Form_2_1_area_div ,
+    .Input_Form_2_1_input-view {
         width: 100%;
     }
-    .docu_sele div {
+    .docu_sele div , .Input_Form_2_1_area_div div {
         width: 32%;
     }
+    
     .div_oder_area input:last-child {
         width: 34%;  
      }
@@ -570,6 +599,8 @@ p {
 }    
 
 /*フレキシブル設定↑*/
+
+
 
 
 
