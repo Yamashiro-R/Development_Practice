@@ -20,3 +20,21 @@
 
 
 /*home,houkoku.htmlここまで↑*/
+
+/*フレキシブルの設定↓*/
+
+
+@media screen and (min-width: 710px){
+    .br-sp {display: none; }
+}    
+
+
+@media screen and (max-width: 710px){        
+    .homebtnEturan,.newmake,.homebtnHoukoku,.savedata {
+        width: 300px;
+        height: 115px;
+        font-size: 40px;
+    }
+}
+
+/*フレキシブルの設定↑*/
