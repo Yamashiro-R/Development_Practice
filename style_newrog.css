@@ -1,0 +1,101 @@
+
+/*新規会員登録画面*/
+
+/*IDここから*/
+.ID-From {
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+}
+
+.roginform div {
+    width: 565px;
+    margin-top: 25px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+}
+
+.rogin-input {
+    margin-left: 50px;
+    width: 350px;
+    border: none;
+    outline: none;
+    text-align: center;
+    border-bottom: 2px solid #000;
+}
+
+/*ここまで↑*/
+
+/*パスワードここから*/
+.password {
+    margin-top: 10px !important;
+}
+
+
+/*ここまで↑*/
+
+/*科名ここから*/
+
+/*ここまで↑*/
+
+.p-title {
+    width: 165px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.info {
+    font-size: small;
+    color: #F00;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0;
+    padding-left: 40%;
+    text-align: center; 
+}
+
+/*プルダウンメニュー*/
+.rogselect {
+    margin-left: 50px;
+    width: 350px;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #000;
+    text-align: center;
+}
+
+
+/*ボタン*/
+
+.btn-border {
+    width: 250px;
+    font-size: 25px;
+    font-weight: bold;
+    margin-top: 50px;
+    letter-spacing: 0.5em;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/*フレキシブル設定↓*/
+
+@media screen and (min-width: 768px){
+    .br-sp {display: none; }
+}
+
+@media screen and (max-width: 768px){
+    .roginform div {
+        width: 400px;
+    }
+}    
+
+/*フレキシブル設定↑*/
+
+
+

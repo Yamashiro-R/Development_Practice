@@ -3,12 +3,14 @@
         <head>
             <meta charset="UTF-8">
             <link rel="stylesheet" href="style.css">
+            <link rel="stylesheet" href="style_dv_dvS.css">
+            <link rel="stylesheet" href="style_flexible.css">
             <title>データ一覧</title>
         </head>
         <body>
             <div>
                 <div class="return">
-                    <a href="./houkoku.html"><img  src="images/innu.jpeg"></a>
+                    <a href="./houkoku.html"><img class="return" src="images/innu.jpeg"></a>
                 </div>
                 <div id="main_title"> 
                     <h1>データ一覧</h1>
@@ -17,55 +19,51 @@
                     <table class="dvtable">
                         <thead>
                             <tr>
-                                <th scope="col"><h3>最終更新日</h3></th>
-                                <th scope="col"><h3>会社名</h3></th>
-                                <th scope="col"><h3>所在地</h3></th>
-                                <th scope="col"><h3>職種</h3></th>
+                                <th scope="col">最終更新日</th>
+                                <th scope="col">会社名</th>
+                                <th scope="col">所在地</th>
+                                <th scope="col">職種</th>
                             </tr>
                         </thead>
 
                         <tbody>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                            <tr class="row1">
+                                <td class="day">2022/5/4</td>
+                                <td class="comp-name">○○○○株式会社<button class="dvtable-view">詳細閲覧</button></td>
+                                <td class="address">那覇市</td>
+                                <td class="Occupation">SE</td>
                             </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                            <tr class="row2">
+                                <td class="day"></td>
+                                <td class="comp-name"></td>
+                                <td class="address"></td>
+                                <td class="Occupation"></td>
                             </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                            <tr class="row3">
+                                <td class="day"></td>
+                                <td class="comp-name"></td>
+                                <td class="address"></td>
+                                <td class="Occupation"></td>
                             </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                            <tr class="row4">
+                                <td class="day"></td>
+                                <td class="comp-name"></td>
+                                <td class="address"></td>
+                                <td class="Occupation"></td>
                             </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                            <tr class="row5">
+                                <td class="day"></td>
+                                <td class="comp-name"></td>
+                                <td class="address"></td>
+                                <td class="Occupation"></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
 
-                <footer>
-                    <div class="dvfooter">
-                        <p>
-                            <button onclick="location.href='#!'">&lt;</button> <span class="dvspan">1</span>  <button onclick="location.href='#!'">&gt;</button>
-                        </p>
-                    </div>
-                </footer>
+                <div class="change">
+                        <button onclick="location.href='#!'">← 前</button><!-- <span class="dvspan">1</span>-->  <button onclick="location.href='#!'">次 →</button>
+                </div>
 
             </div>
 

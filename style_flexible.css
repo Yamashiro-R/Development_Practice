@@ -1,0 +1,38 @@
+/*フレキシブルの設定↓*/
+
+@media screen and (min-width: 710px){
+    .br-sp {display: none; }
+
+    .dvStop {
+        display: flex;
+        justify-content: space-between;
+    }
+    
+}    
+
+@media screen and (max-width: 710px){        
+.homebtnEturan,.newmake,.homebtnHoukoku,.savedata {
+    width: 300px;
+    height: 115px;
+    font-size: 40px;
+}
+
+.dvSform {
+    width: 400px;
+    margin-top: 20px;
+    margin-right: auto;
+    margin-left: auto;
+}
+       
+.br-spr {display: none;}
+
+.roginform div {
+    width: 400px !important; 
+}
+
+.dvtable th {
+    font-size: 140%;
+}
+}
+
+/*フレキシブルの設定↑*/
