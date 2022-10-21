@@ -76,6 +76,14 @@
 
 .divdiv p {
     margin-top: 0;
+}               
+               
+.div-info div:nth-of-type(2) .p-view,
+.div-info div:nth-of-type(3) .p-view,
+.div-info div:nth-of-type(8) .p-view,
+.div-info div:nth-of-type(10) .p-view {    
+    height: 25px;
+    
 }
 
 .p-info {
@@ -100,11 +108,16 @@
 
 .test {
     background-color: #cfffff;
+    padding-left: 10px;
 }
 
 .test div {
     display: flex;
     margin-bottom: 10px;
+}
+.test .p-view {
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .test div:first-child p {
@@ -197,3 +210,7 @@
 }    
 
 /*フレキシブル設定↑*/
+
+.div-detail {
+    margin-top: 30px;
+}

@@ -22,6 +22,11 @@
 .divdiv p {
     margin-top: 0;
 }
+.divdiv .p-info, .p-info_col_1, .divdiv_width_all .p-info  {
+    text-align-last: justify;
+}
+
+
 
 .p-info {
     width: 45%;
