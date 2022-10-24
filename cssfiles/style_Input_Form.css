@@ -130,6 +130,10 @@
  .div_oder_area input:last-child {
     width: 50%;
  }
+
+ .select_width {
+    width: 110px;
+ } 
  
 
 /* Input_Form_3用 ここから↓ */
