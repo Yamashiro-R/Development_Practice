@@ -1,3 +1,7 @@
+<?php
+    include 'includes/login.php';
+?>
+
 <!DOCTYPE html>
     <html lang="ja">
         <head>
