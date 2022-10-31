@@ -4,6 +4,9 @@
     width: 750px;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 10px;
+    padding: 20px;
+    background-color: #f6f6f6;
 }
 
 .div-info {
@@ -25,9 +28,6 @@
 .divdiv .p-info, .p-info_col_1, .divdiv_width_all .p-info  {
     text-align-last: justify;
 }
-
-
-
 .p-info {
     width: 45%;
 }
@@ -74,6 +74,7 @@
     margin-bottom: 100px;
 }
 
+
 /*pastdata.html 流用↑*/
 
 
@@ -91,6 +92,10 @@
     width: 40%;
     height: 25px;
 }
+
+.select_box {
+    width: 42%;
+ }
 
 .divdiv_col_1 {
     margin-right: 50%;
@@ -134,9 +139,6 @@
     width: 50%;
  }
 
- .select_width {
-    width: 110px;
- } 
  
 
 /* Input_Form_3用 ここから↓ */
@@ -185,6 +187,10 @@
     display: inline-block;
 }
 
+
+.test {
+    width: 45%;
+}
 /* Input_Form_2_1～3用 ここまで↑*/
 
 
@@ -198,9 +204,16 @@
  
 @media screen and (max-width: 760px){
 
+    
+    .big-div {
+        width: 430px;
+        margin-top: 20px;
+        padding: 10px;
+    }
+
     .div-info{
         display: block;
-        margin-top: 50px;
+        margin-top: 0;
         margin-left: 10%;
     }
 
@@ -208,10 +221,6 @@
         margin-right: auto;
         margin-left: auto;
         width: 100%;
-    }
-
-    .big-div {
-        width: 430px;
     }
 
     .div-detail div {
@@ -228,8 +237,6 @@
         width: 50%;
     }
 
-
-
     .div-detail div .p-view {
         width: 100%;
     }
@@ -239,14 +246,19 @@
     }
     .docu_sele , .Input_Form_2_1_area_div ,
     .Input_Form_2_1_input-view {
-        width: 100%;
+        width: 80%;
     }
     .docu_sele div {
         width: 43%;
     }
+    .Input_Form_2_1_area_div div{
+        margin-left: 5%;
+        width: 95%;
+    }
+   /*2行ぞろえの時 7番目の要素だけ一列ぞろえにする設定
     .Input_Form_2_1_area_div div:nth-of-type(7) {
         width: 100%;
-    }
+    }*/
     
     .div_oder_area input:last-child {
         width: 34%;  
@@ -254,6 +266,9 @@
 
      .div_oder_area {
         width: 100% !important;
+     }
+     .select_box {
+        width: 41.5%;
      }
 }    
 
