@@ -10,7 +10,7 @@
         <body>
             <div>
                 <div class="return">
-                    <a href="./houkoku.html"><img class="return" src="images/innu.jpeg"></a>
+                    <a href="./houkoku.php"><img class="return" src="images/innu.jpeg"></a>
                 </div>
                 <div id="main_title"> 
                     <h1>データ一覧</h1>
@@ -29,7 +29,7 @@
                         <tbody>
                             <tr class="row1">
                                 <td class="day">2022/5/4</td>
-                                <td class="comp-name">○○○○株式会社<button onclick="location='savedata.html'"  class="dvtable-view">詳細閲覧</button></td>
+                                <td class="comp-name">○○○○株式会社<button onclick="location='savedata.php'"  class="dvtable-view">詳細閲覧</button></td>
                                 <td class="address">那覇市</td>
                                 <td class="Occupation">SE</td>
                             </tr>

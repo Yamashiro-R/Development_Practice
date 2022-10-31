@@ -8,7 +8,7 @@
         </head>
         <body>
             <div class="return">
-                <a href="Input_Form_2_1.html"><img src="images/innu.jpeg"></a>
+                <a href="Input_Form_1.php"><img src="images/innu.jpeg"></a>
             </div>
             <div id="main_title"> 
                 <h1>就職活動報告</h1>
@@ -19,7 +19,7 @@
                 <form action="#">
                     <div class="div-info">
                         <div class="divdiv_col_1 divdiv"> 
-                            <p class="p-info p-width">三次試験日付：</p>
+                            <p class="p-info p-width">一次試験日付：</p>
                             <input type="date" class="input-view" name="once_date">
                         </div>      
                         <div class="divdiv"> 
@@ -33,8 +33,8 @@
 
 
                         <div class="divdiv_width_all">
-                            <p class="p-info">三次試験内容：</p>
-
+                            <p class="p-info">一次試験内容：</p>
+                            
                             <div class="Input_Form_2_1_area_div">
                                 <div class="first-exam_test"><input type="checkbox" name="First-stage exam" value="1">筆記(専門)</div>
                                 <div class="first-exam_test"><input type="checkbox" name="First-stage exam" value="2">筆記(一般常識)</div>
@@ -47,23 +47,25 @@
                                 <div class="first-exam_test"><input type="checkbox" name="First-stage exam" value="9">実技</div>
                                 <div class="first-exam_test"><input type="checkbox" name="First-stage exam" value="10">その他</div>
                             </div>
-                            <div class="divdiv_width_all_ex" id="text_info">
-                            
-
                         </div>
-                    </div>
-                    <!-- </div>   -->
+                        <div class="divdiv_width_all_ex" id="text_info"></div>  
+                            
+                        
+                     </div>
+                    
                     <div class="button">
                         <input type="reset"  class="btn_item" value="キャンセル" alt="キャンセル">
                         <input type="button" class="btn_item" value="保存" alt="保存">
-                        <input type="button" onclick="location.href='Input_Form_3.html'" class="btn_item" value="ステップ3へ→" alt="ステップ3へ→">
+                        <input type="button" onclick="location.href='Input_Form_2_2.php'" class="btn_item" value="二次→" alt="二次→">
                     </div>
                 </form>
             </div>
+
+            
+
+
             <script type="text/javascript" src="methot.js"></script>
+
         </body>
-    
     </html>
-
-
 </html>

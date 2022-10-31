@@ -10,15 +10,15 @@
         <body>
             <div>
                 <div class="return">
-                    <a href="./home.html"><img class="return" src="images/innu.jpeg"></a>
+                    <a href="./home.php"><img class="return" src="images/innu.jpeg"></a>
                 </div>
                 <div id="main_title"> 
                     <h1>就職活動報告</h1>
                 </div>
 
                 <div>
-                    <button class="newmake" onclick="location.href='Input_Form_1.html'">新規作成</button>
-                    <button class="savedata" onclick="location.href='./dataView.html'">保存済み<br class="br-sp">データ</button>
+                    <button class="newmake" onclick="location.href='Input_Form_1.php'">新規作成</button>
+                    <button class="savedata" onclick="location.href='./dataView.php'">保存済み<br class="br-sp">データ</button>
                 </div>
 
             </div>

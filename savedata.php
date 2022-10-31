@@ -87,7 +87,7 @@
                 </div>
                 <div class="button">
                     <button onclick="location.href='#!'">削除</button>
-                    <button onclick="location.href='Input_Form_1.html'">編集</button>
+                    <button onclick="location.href='Input_Form_1.php">編集</button>
                 </div>
                 <div class="page-top">
                     <a href="#"><img src="images/pagetop 1.png" alt="page-top"></a>

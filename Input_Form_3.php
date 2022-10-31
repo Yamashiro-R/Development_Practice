@@ -8,7 +8,7 @@
         </head>
         <body>
             <div class="return">    <!-- 犬の画像用戻るボタン -->
-                <a href="Input_Form_1.html"><img src="images/innu.jpeg"></a>
+                <a href="Input_Form_1.php"><img src="images/innu.jpeg"></a>
             </div>
             <div id="main_title">   <!-- 共通のタイトル部分 -->
                 <h1>就職活動報告</h1>

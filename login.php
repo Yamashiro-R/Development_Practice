@@ -10,7 +10,7 @@
             <div id="main_title"> 
                 <h1>就職活動管理<br class="br-sp">WEBアプリ</h1>
             </div>
-            <form action="home.html" class="roginform">
+            <form action="home.php" class="roginform">
                 <div class="ID-From">
                     <p class="p-title">ID</p>
                         <input type="text" class="id rogin-input">

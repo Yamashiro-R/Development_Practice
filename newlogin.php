@@ -10,7 +10,7 @@
             <div id="main_title"> 
                 <h1>新規会員登録</h1>
             </div>
-                <form action="home.html" class="roginform">
+                <form action="home.php" class="roginform">
                     <div class="ID-From">
                         <p class="p-title">ID</p>
                             <input type="text" class="id rogin-input">

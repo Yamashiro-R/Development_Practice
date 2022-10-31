@@ -8,7 +8,7 @@
         </head>
         <body>
             <div class="return">
-                <a href="Input_Form_2_1.html"><img src="images/innu.jpeg"></a>
+                <a href="Input_Form_2_1.php"><img src="images/innu.jpeg"></a>
             </div>
             <div id="main_title"> 
                 <h1>就職活動報告</h1>
@@ -56,7 +56,7 @@
                     <div class="button">
                         <input type="reset"  class="btn_item" value="キャンセル" alt="キャンセル">
                         <input type="button" class="btn_item" value="保存" alt="保存">
-                        <input type="button" onclick="location.href='Input_Form_2_3.html'" class="btn_item" value="三次→" alt="三次→">
+                        <input type="button" onclick="location.href='Input_Form_2_3.php'" class="btn_item" value="三次→" alt="三次→">
                     </div>
                 </form>
             </div>
