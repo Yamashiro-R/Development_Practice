@@ -191,6 +191,20 @@
 .test {
     width: 45%;
 }
+.testsAll {
+    background-color: #cfffff;
+}
+.text-tests {
+    width: 80%;
+    margin-left: 5%;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+.divdiv_width_all_ex {
+    width: 100%;
+}
+
+
 /* Input_Form_2_1～3用 ここまで↑*/
 
 
@@ -215,6 +229,7 @@
         display: block;
         margin-top: 0;
         margin-left: 10%;
+        width: 90%;
     }
 
     .divdiv {
