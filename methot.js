@@ -36,7 +36,12 @@ function exam_detail(first_exam,i){
         }},false);
 }
 
+function Input_Form_1_check() {
+    let formElements = document.forms[0];
+    console.log(formElements.elements[0].value);
 
+
+}
 
 
 

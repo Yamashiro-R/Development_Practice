@@ -7,9 +7,13 @@
     }else if (isset($_POST['ID']) && isset($_POST['pass'])) {
         //ログインしていないがユーザ名とパスワードが送信されたとき
         //DB接続
-        $dsn = 'mysql:host=localhost;dbname=job_hunt_manage;charset=utf8';
-        $user = 'root';
-        $password = '';
+        //$dsn = 'mysql:host=localhost;dbname=job_hunt_manage;charset=utf8';
+        //$user = 'root';
+        //$password = '';
+        $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';  //直接DB先のIPアドレス指定。
+        $user = 'external_user';
+        
+        $password = 'test';
 
         try{
             $db = new PDO($dsn, $user, $password);

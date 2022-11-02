@@ -98,13 +98,9 @@
  }
 
 .divdiv_col_1 {
-    margin-right: 50%;
+    width: 100%;
 }
 
-.p-info_col_1 {
-    box-sizing: content-box;
-    width: 45%;
-}
 
 .input-view_1{
     display: flex;
@@ -132,12 +128,7 @@
     width: 32%;
     display: inline-block;
  }
- .div_oder_area {
-    width: 50% !important;
- }
- .div_oder_area input:last-child {
-    width: 50%;
- }
+ 
 
  
 
@@ -205,6 +196,7 @@
 }
 
 
+
 /* Input_Form_2_1～3用 ここまで↑*/
 
 
@@ -256,7 +248,7 @@
         width: 100%;
     }
 
-    .divdiv_width_all .p-info {
+    .divdiv_width_all .p-info ,.p-info_col_1{
         width: 45%;
     }
     .docu_sele , .Input_Form_2_1_area_div ,
@@ -266,6 +258,10 @@
     .docu_sele div {
         width: 43%;
     }
+    .docu_sele div:nth-of-type(3){
+        width: 100%;
+    }
+
     .Input_Form_2_1_area_div div{
         margin-left: 5%;
         width: 95%;
@@ -274,17 +270,10 @@
     .Input_Form_2_1_area_div div:nth-of-type(7) {
         width: 100%;
     }*/
-    
-    .div_oder_area input:last-child {
-        width: 34%;  
-     }
 
-     .div_oder_area {
-        width: 100% !important;
-     }
      .select_box {
         width: 41.5%;
-     }
+     } 
 }    
 
 /*フレキシブル設定↑*/
