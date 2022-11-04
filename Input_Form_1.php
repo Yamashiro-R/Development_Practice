@@ -1,6 +1,28 @@
 <?php
 //    include 'includes/login.php';
 ?>
+<?php
+    if($_POST == null){
+        ;
+    }else {
+        if(isset ($_POST['hantei']) ){
+            if(toBoolean($_POST['hantei'])){
+                echo '成功';
+                
+            }else{
+                echo '失敗';        
+            }
+    }
+}
+    
+    
+?>
+<?php 
+    function toBoolean(string $str) {
+        return ($str === 'true');
+    }
+    
+?>
 
 
 <!DOCTYPE html>
@@ -20,7 +42,7 @@
                 <h2>ステップ１</h2>
             </div>
             <div class="big-div">   
-                <form action="Input_Form_1.php" method="post">     <!--　ポストで送信 -->
+                <form action="Input_Form_1.php" method="post" onsubmit="Input_Form_1_check()">     <!--　ポストで送信 -->
                     <div class="div-info">
                          <div class="divdiv_col_1 divdiv">   
                             <p class="p-info_col_1"><label for="company_name">応募先企業名：</label></p>
@@ -77,12 +99,13 @@
                                     </label>-->
                                 </div>
                             </div>
-                        </div>                
+                        </div>    
+                        <input type="hidden" value="" name="hantei">            
                     </div>
                     <div class="button">
                        <input type="reset"  class="btn_item" value="キャンセル" alt="キャンセル">
-                        <input type="button" onclick="Input_Form_1_check()" class="btn_item" value="保存" alt="保存">
-                        <input type="button" onclick="location.href='Input_Form_2_1.php'" class="btn_item" value="一次→" alt="一次→">
+                        <input type="submit" class="btn_item" value="保存" alt="保存">
+                        <input type="submit" formaction="location.href='Input_Form_2_1.php" class="btn_item" value="一次→" alt="一次→">
                     </div>
                 </form>
             </div>
