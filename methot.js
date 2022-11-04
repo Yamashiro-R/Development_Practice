@@ -36,8 +36,64 @@ function exam_detail(first_exam,i){
         }},false);
 }
 
+function Input_Form_1_check() {
+    let formElements = document.forms[0];
+    let flag = false;
+    let arraycheck = Array(7);  /*チェックぼっくボックスのboolen値を格納する配列*/
+    let i = 0; /*チェックボックスの添え字*/
+    let checkfalg = false;
+    
+    
+    //-3は不要なボタン数    
+    for(let cnt=0; cnt < formElements.elements.length-3;cnt++){
+        switch(cnt){
+            case 0:
+            case 1:
+            case 2:
+            case 5:
+            case 6:
+                if(formElements.elements[cnt].value != ""){
+                    ;
+                }else {
+                    alert(cnt + "番目入力無し");
+                }
+                break;
+
+            case 3:     /*書類の有無チェック*/
+            case 4:
+                if(formElements.elements[cnt].checked){
+                    flag = true;   
+                }
+                if(cnt == 4){
+                    if(flag == true){
+                        console.log("ok");
+                    }else {
+                        alert("チェックが入っていません。");
+                    }
+                }
+                break;
+            
+            default:
+                /*どれか一つでもtrueならok*/
+                if(formElements.elements[cnt].checked){
+                    checkfalg = true;
+                }       
+        }
+    }
+    /*チェックボックス欄に一つでもチェックが入っているかの判定*/
+    if(checkfalg){
+        ;
+    }else{
+        alert("チェックボックス確認して");
+    }
+     
+
+}
 
 
+function parseStrToBoolean(str){
+    return (str == true) ? true : false;
+}
 
 
 
