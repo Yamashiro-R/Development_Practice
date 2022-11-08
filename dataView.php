@@ -12,7 +12,7 @@
         //プリペアドステートメントを作成
         $stmt = $db->prepare("SELECT * FROM ac_comp_data_tb join apply_status_tb
                             on ac_comp_data_tb.as_number = apply_status_tb.as_number
-                             where act_id = :ID");
+                            where act_id = :ID");
         
         //パラメータ割り当て
         $stmt->bindParam(':ID', $_SESSION['ID'], PDO::PARAM_STR);

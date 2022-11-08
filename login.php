@@ -7,9 +7,9 @@
     }else if (isset($_POST['ID']) && isset($_POST['pass'])) {
         //ログインしていないがユーザ名とパスワードが送信されたとき
         //DB接続
-        $dsn = 'mysql:host=localhost;dbname=job_hunt_manage;charset=utf8';
-        $user = 'root';
-        $password = '';
+        $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';
+        $user = 'external_user';
+        $password = 'test';
 
         try{
             $db = new PDO($dsn, $user, $password);
@@ -41,9 +41,7 @@
         }    
     }
     //ログインしていない場合は以降のログインフォームを表示する
-    
 ?>
-
 
 <!DOCTYPE html>
     <html lang="ja">
@@ -71,9 +69,6 @@
                 </div>
                 <input type="submit" class="btn btn-border" value="ログイン">
             </form>
- 
         </body> 
     </html>
 </html>
-
-<!-- <button onclick="window.open('file:///C:/Users/s2112/Desktop/%E3%82%BD%E3%83%95%E3%83%88%E3%82%A6%E3%82%A7%E3%82%A2%E9%96%8B%E7%99%BA%E5%AE%9F%E7%BF%92/code2/rogin.html')" class="btn btn-border">ログイン</button> -->
