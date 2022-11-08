@@ -92,6 +92,7 @@ function Input_Form_1_check() {
     }else{
         alert("チェックボックス確認して");       
     }
+    
     if(flag && checkfalg && firstflag ){
         formElements.elements['hantei'].value = true;
     }else{

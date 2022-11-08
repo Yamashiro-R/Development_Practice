@@ -10,9 +10,12 @@
         //$dsn = 'mysql:host=localhost;dbname=job_hunt_manage;charset=utf8';
         //$user = 'root';
         //$password = '';
-        $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';  //直接DB先のIPアドレス指定。
-        $user = 'external_user';
-        
+        //比嘉さんのデータベースアクセス用
+        // $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';  
+        // $user = 'external_user';
+        // $password = 'test';
+        $dsn = 'mysql:host=192.168.2.136;dbname=job_hunt_manage;charset=utf8';
+        $user = 'user';
         $password = 'test';
 
         try{
