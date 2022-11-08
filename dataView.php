@@ -101,7 +101,7 @@
                     </table>
                 </div>
 
-                <div class="change">
+                <div class="change_save">
                     <?php create_btn_chg($page,$records,'save') ?>   
                 </div>
 

@@ -17,17 +17,21 @@
         $page = 1;
     }
 
-    if(!isset($_POST) && isset($_SESSION['ps_val'])){
-        $_POST = $_SESSION['ps_val'];
-    }
 
-
-    if(isset($_POST['comp_name']) || isset($_POST['comp_address']) || isset($_POST['job'])){
+    if($_POST){
         $name = $_POST['comp_name'];
         $address = $_POST['comp_address'];
         $job = $_POST['job'];
 
+        $page = 1;
+        $_SESSION['page'];
         $_SESSION['ps_val'] = $_POST;
+    }else if(!$_POST && isset($_SESSION['ps_val'])){
+        $_POST = $_SESSION['ps_val'];
+        $name = $_POST['comp_name'];
+        $address = $_POST['comp_address'];
+        $job = $_POST['job'];
+
     } else{
         $name = false;
         $address = false;
@@ -144,7 +148,7 @@
                             </p>
                             <p>
                                 <label>職種で検索<br><input type="search" name="job" value="<?php echo $job ?>"> </label>
-                                <div class="button"><input type="submit" value="🔍検索"></div> 
+                                <div class="button_d"><input type="submit" value="🔍検索"></div> 
                             </p>
                         </div>
                     </form>
@@ -168,7 +172,7 @@
                 </div>
 
                 <footer>
-                    <div class="change">
+                    <div class="change_save">
                         <?php create_btn_chg($page,$records,'search'); ?>
                     </div>
                 </footer>

@@ -106,36 +106,29 @@ p {
     margin-top: 50px;
     margin-bottom: 20px;
     padding-right: 10px;
-    display: flex;
-    justify-content: flex-end;
-}
-.button form {
-    padding-left: 10px;
+    text-align: right;
 }
 
 .button input ,.button button{
     width: 120px;
     height: 40px;   
- 
 }
 
-.change  {
-    width: 250px;
+.change {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.change button {
+    width: 70px;
     height: 30px;
-    display: flex;
-    justify-content: space-between;
-    margin: 30px auto;
-    font-size: 80%;
-  }
+    margin-top: 40px;
+    font-weight: bold;
+    font-size: 1em;
+}
 
-  .change button {
-    width: 50px;
-  }
-
-  .change p {
-    vertical-align: middle;
-    margin: 0;
-  }
+.change button:first-child {
+    margin-right: 100px;
+}
 
 
 /* .change {

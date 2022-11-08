@@ -95,41 +95,45 @@ input[type="search"] {
   input[type="search"]::-webkit-search-cancel-button {
     -webkit-appearance: searchfield-cancel-button;
   }
-/* .dvSname p,
-.dvSivf p,
-.dvScheck p {
-    display: inline-block;
-} */
 
-/* .dvSname p:first-child,
-.dvSivf p:first-child,
-.dvScheck p:first-child {
-    width: 120px;
-    text-align-last: justify;
-} */
-
-/* .dvScheck p {
-    vertical-align: top;
-} */
-
-/* .dvscheck_p {
+.change_save  {
+    width: 250px;
+    height: 30px;
     display: flex;
-    font-size: 20px;
+    justify-content: space-between;
+    margin: 30px auto;
+    font-size: 80%;
 }
 
-.dvscheck_p label {
-    display: inline-block;
-    width: 32%;
+
+.change_save button {
+    width: 50px;
 }
 
-.dvScheck div {
-    vertical-align: bottom;
-    text-align: right;
+.change_save p {
+    vertical-align: middle;
+    margin: 0;
 }
 
-.dvScheck .button {
-    margin-top: 0;
-} */
+.button{
+    margin-top: 50px;
+    margin-bottom: 20px;
+    padding-right: 10px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+
+.button_d form {
+    padding-left: 10px;
+}
+
+.button_d input ,.button button{
+    width: 120px;
+    height: 40px;   
+}
+
+
 
 /*dvSearch.html↑*/
 
