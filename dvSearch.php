@@ -1,5 +1,121 @@
 <?php
     include 'includes/login.php';
+    include 'function.php';
+
+    $dsn = 'mysql:host=localhost;dbname=job_hunt_manage;charset=utf8';
+    $user = 'root';
+    $password = '';
+
+    $num = 5;
+
+    if(isset($_GET['page'])){
+        $page = $_GET['page'];
+        $_SESSION['page'] = $_GET['page']; 
+    }else if(isset($_SESSION['page'])){
+        $page = $_SESSION['page'];
+    } else{
+        $page = 1;
+    }
+
+
+    if($_POST){
+        $name = $_POST['comp_name'];
+        $address = $_POST['comp_address'];
+        $job = $_POST['job'];
+
+        $page = 1;
+        $_SESSION['page'];
+        $_SESSION['ps_val'] = $_POST;
+    }else if(!$_POST && isset($_SESSION['ps_val'])){
+        $_POST = $_SESSION['ps_val'];
+        $name = $_POST['comp_name'];
+        $address = $_POST['comp_address'];
+        $job = $_POST['job'];
+
+    } else{
+        $name = false;
+        $address = false;
+        $job = false;
+    }
+
+
+
+    $select = 'SELECT * FROM ac_comp_data_tb join apply_status_tb 
+                on ac_comp_data_tb.as_number = apply_status_tb.as_number 
+                where ac_comp_data_tb.as_number = 3 ';
+
+    if($name){
+        $select .=  "and comp_name LIKE '%". $name . "%'" ; 
+    }
+
+    if($address){
+        $select .=  "and comp_address LIKE '%". $address . "%'" ; 
+    }
+
+    if($job){
+        $select .=  "and job LIKE '%". $job . "%'" ; 
+    }
+
+
+    $select_limit = $select; 
+    $select_limit .= 'LIMIT :page , :num';
+
+
+
+    try{
+        $db = new PDO($dsn, $user, $password);
+        $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+        //プリペアドステートメントを作成
+        $stmt = $db->prepare("SELECT * FROM ac_comp_data_tb join apply_status_tb
+                            on ac_comp_data_tb.as_number = apply_status_tb.as_number
+                             where ac_comp_data_tb.as_number = 3 
+                             ORDER by modified 
+                             LIMIT :page,:num ");
+
+        if($name || $address || $job){
+            $stmt = $db->prepare($select_limit);
+        }
+        
+        
+
+       
+        //パラメータ割り当て
+        $limit = ($page - 1) * $num;
+        $stmt->bindParam(':page', $limit, PDO::PARAM_INT);
+        $stmt->bindParam(':num', $num, PDO::PARAM_INT);
+        //クエリの実行
+        $stmt->execute();
+
+        // print_r($row = $stmt->fetchAll());
+        $row = $stmt->fetchAll();
+
+
+
+    }catch (PDOException $e) {
+        exit('エラー：' . $e->getMessage());
+    }
+
+
+    try{
+         $stmt = $db->prepare("SELECT * FROM ac_comp_data_tb join apply_status_tb
+                                on ac_comp_data_tb.as_number = apply_status_tb.as_number
+                                where ac_comp_data_tb.as_number = 3 
+                                ORDER by modified ");
+        
+        if($name || $address || $job){
+            $stmt = $db->prepare($select);
+        }
+
+    
+        $stmt->execute();
+
+
+        $data = $stmt->fetchAll();
+        $records = count($data);
+
+    }catch (PDOException $e){
+        exit('エラー：' . $e->getMessage());
+    }
 ?>
 
 <!DOCTYPE html>
@@ -13,115 +129,51 @@
         <body>
             <div>
                 <div class="return">
-                    <a href="./houkoku.html"><img src="images/innu.jpeg"></a>
+                    <a href="home.php"><img src="images/innu.jpeg"></a>
                 </div>
                 <div id="main_title"> 
                     <h1>就職活動<br class="br-sp">データ検索</h1>
                 </div>
 
                 <div>
-                    <form class="dvSform" action="">
+                    <form class="dvSform" action="dvSearch.php" method="POST">
                         <!-- <div class="dvStop">
                             <div class="dvSname"> -->
                         <div>
                              <p>
-                                <label>企業名で検索<br><input type="text" name="comp_name"></label>
+                                <label>企業名で検索<br><input type="search" name="comp_name" value="<?php echo $name ?>"></label>
                             </p>
                             <p>
-                                <label>所在地<br><span class="small">※市町村で記入<br>(県外の場合は県名で記入)</span><br><input type="text" name="comp_address"> </label>
+                                <label>所在地<br><span class="small">※市町村で記入<br>(県外の場合は県名で記入)</span><br><input type="search" name="comp_address" value="<?php echo $address ?>"> </label>
                             </p>
                             <p>
-                                <label>職種で検索<br><input type="text" name="job"> </label>
-                                <div class="button"><input type="submit" value="🔍検索"></div> 
+                                <label>職種で検索<br><input type="search" name="job" value="<?php echo $job ?>"> </label>
+                                <div class="button_d"><input type="submit" value="🔍検索"></div> 
                             </p>
                         </div>
                     </form>
-                            <!-- </div>
-                            <div class="dvSivf">
-                                <p>面接形式：</p>
-                                <p>
-                                    <select name="ivformat">
-                                        <option>個別面接</option>
-                                        <option>集団面接</option>
-                                        <option>ディスカッション等</option>
-                                    </select>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="dvScheck">
-                            <p>選考方法：</p>
-                            <p class="dvscheck_p">
-                                <label><input type="checkbox" name="slctmth" value="1">筆記(専門)</label>
-                                <label><input type="checkbox" name="slctmth" value="2">筆記(一般常識)</label>
-                                <br class="br-spr"> 
-                                <label><input type="checkbox" name="slctmth" value="3">適性検査(専門)</label>
-                                <label><input type="checkbox" name="slctmth" value="4">適性検査(一般常識)</label>
-                                <br class="br-spr"> 
-                                <label><input type="checkbox" name="slctmth" value="5">面接(個別)</label>
-                                <label><input type="checkbox" name="slctmth" value="6">面接(集団)</label>
-                                <label><input type="checkbox" name="slctmth" value="7">面接(ディスカッション等)</label>
-                                <label><input type="checkbox" name="slctmth" value="8">実技</label>
-                                <label><input type="checkbox" name="slctmth" value="9">作文(論文)</label>
-                                <label><input type="checkbox" name="slctmth" value="10">その他</label>
-                                <br class="br-sp">
-                            </p> --> 
-                        <!-- </div> -->
                 </div>
                 <div>
                     <table class="dvtable">
                         <thead>
                             <tr>
-                                <th scope="col">最終更新日</th>
+                                <th scope="col">最終<br class="br-sp">更新日</th>
                                 <th scope="col">企業名</th>
                                 <th scope="col">所在地</th>
                                 <th scope="col">職種</th>
-                                <th scope="col">申請状況</th>
+                                <th scope="col">詳細<br class="br-sp">閲覧</th>
                             </tr>
                         </thead>
 
                         <tbody>
-                            <tr class="row1">
-                                <td class="day">2022/5/4</td>
-                                <td class="comp-name">○○○○株式会社<button class="dvtable-view">詳細閲覧</button></td>
-                                <td class="address">那覇市</td>
-                                <td class="job">SE</td>
-                                <td class="satus">未申請</td>
-                            </tr>
-                            <tr class="row2">
-                                <td class="day"></td>
-                                <td class="comp-name"></td>
-                                <td class="address"></td>
-                                <td class="job"></td>
-                                <td class="satus"></td>
-                            </tr>
-                            <tr class="row3">
-                                <td class="day"></td>
-                                <td class="comp-name"></td>
-                                <td class="address"></td>
-                                <td class="job"></td>
-                                <td class="satus"></td>
-                            </tr>
-                            <tr class="row4">
-                                <td class="day"></td>
-                                <td class="comp-name"></td>
-                                <td class="address"></td>
-                                <td class="job"></td>
-                                <td class="satus"></td>
-                            </tr>
-                            <tr class="row5">
-                                <td class="day"></td>
-                                <td class="comp-name"></td>
-                                <td class="address"></td>
-                                <td class="job"></td>
-                                <td class="satus"></td>
-                            </tr>
+                        <?php create_tbody($row,'past');?>
                         </tbody>
                     </table>
                 </div>
 
                 <footer>
-                    <div class="change">
-                           <button onclick="location.href='#!'">← 前</button>  <!-- <span class="dvspan">1</span>-->  <button onclick="location.href='#!'">次 →</button> 
+                    <div class="change_save">
+                        <?php create_btn_chg($page,$records,'search'); ?>
                     </div>
                 </footer>
 

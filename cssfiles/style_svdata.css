@@ -22,6 +22,7 @@
 .div-info .p-info , .div-detail .p-info {
     text-align-last: justify;
 }
+
 .div-info .p-view {
     text-align: center;
 }
@@ -80,6 +81,8 @@
 
 .div-info div:nth-of-type(2) .p-view,
 .div-info div:nth-of-type(3) .p-view,
+.div-info div:nth-of-type(5) .p-view,
+.div-info div:nth-of-type(6) .p-view,
 .div-info div:nth-of-type(8) .p-view,
 .div-info div:nth-of-type(10) .p-view {    
     height: 25px;
@@ -98,26 +101,30 @@
 .div-detail {
     width: 100%;
 }
-.div-detail .p-info {
-    width: 20%;
-}
-
-.div-detail .p-view {
-    width: 75%;
-}
 
 .test {
     background-color: #cfffff;
-    padding-left: 10px;
+    padding-bottom: 5px;
 }
 
-.test div {
-    display: flex;
-    margin-bottom: 10px;
+
+.div-detail .p-view {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 5px;
 }
-.test .p-view {
-    padding-left: 10px;
-    padding-right: 10px;
+
+
+.test div {
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.test .p-info {
+    width: auto;
+    text-align-last: left;
+
 }
 
 .test div:first-child p {
@@ -160,9 +167,14 @@
     }
 
     .divdiv {
+        justify-content: space-around;
         margin-right: auto;
         margin-left: auto;
         width: 100% !important;
+    }
+    
+    .div-info .p-view {
+        width: 55%;
     }
 
     .divdiv .p-info {
@@ -170,47 +182,29 @@
     }
 
     .divdiv .p-view {
-        width: 60% !important;
+        width: 65% !important;
     }
 
     .p-info , .test div p {
-        margin-left: 5%;
         margin-bottom: 0;
     }
 
     .test {
-        padding-bottom: 5px;
+        padding-bottom: 10px;
     }
 
-    .test div {
-        margin-bottom: 0;
-    }
-
-
-    .div-info .p-view {
-        width: 55%;
-    }
 
     .div-detail .p-info {
         text-align-last: left;
     }
 
-    .div-detail div {
-        display: block;
-    }
 
     .div-detail div .p-info {
         width: auto;
     }
 
-    .div-detail div .p-view {
-        width: 85%;
-    }
 
 }    
 
 /*フレキシブル設定↑*/
 
-.div-detail {
-    margin-top: 30px;
-}

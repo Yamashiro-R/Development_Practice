@@ -1,21 +1,42 @@
 <?php 
-    /*配列に添え字の要素があるか判定して、ある場合はその要素を出力*/ 
-    function orig_array_key_exists (int $index, array $array) {
-        if (array_key_exists($index,$array)) {
-            echo $array[$index];
+    /*値がないときの出力*/
+    function check_null($value){
+        if($value == "" || $value == null || $value == 0){
+            echo "未記入";
+        }else{
+            echo $value;
+        }
+    }
+
+    function check_null_re ($value){
+        if($value == "" || $value == null || $value == 0){
+            return "未記入";
+        }else{
+            return $value;
         }
     }
 
 
 
-    /*アドレス値から市町村だけを出力。県外の場合は県名だけ出力*/
-    function address_key_exists (int $index, array $array) {
+
+
+
+    /*配列に添え字の要素があるか判定して、ある場合はその要素を出力*/ 
+    function orig_array_key_exists (int $index, array $array) {
         if (array_key_exists($index,$array)) {
-            if(preg_match("/沖縄県/",$array[$index])){
-                create_address($array[$index]);
-            }else{
-                create_address_out($array[$index]);
-            }
+            check_null($array[$index]);
+        }
+    }
+
+
+
+
+
+
+    /*アドレス値から市町村だけを出力。県外の場合は県名だけ出力*/
+    function address_key_exists (int $index,array $array) {
+        if (array_key_exists($index,$array)) {
+            address_check($array[$index]);
         }
     }
 
@@ -26,6 +47,8 @@
                 create_address_out($address);
             }
     }
+
+
     /*県名が沖縄県のとき市町村を判定し出力*/
     function create_address ($comp_address) {
         $okinawa = array("那覇市","宜野湾市","石垣市","浦添市","名護市","糸満市","沖縄市","豊見城市","うるま市","宮古島市","南城市",
@@ -35,13 +58,13 @@
         $i = 0;
         for(;$i < count($okinawa);$i++) {
             if(preg_match("/$okinawa[$i]/",$comp_address)){
-                echo $okinawa[$i];
+                check_null($okinawa[$i]) ;
                 break;
             }
         }
 
         if($i >= count($okinawa)) {
-            echo $comp_address;
+            check_null($comp_address);
         }
     }
 
@@ -55,19 +78,19 @@
         $i = 0;
         for(;$i < count($kenn);$i++) {
             if(preg_match("/$kenn[$i]/",$comp_address)){
-                echo $kenn[$i];
+                check_null($kenn[$i]) ;
                 break;
             }
         }
 
         if($i >= count($kenn)) {
-            echo $comp_address;
+            check_null($comp_address) ;
         }
     }
 
 
     /*tableの中身を生成*/
-    function create_tbody ($row) {
+    function create_tbody ($row,$page) {
         if($row != false){
             $modified = array_column($row, 'modified');
             $comp_name = array_column($row, 'comp_name');
@@ -81,22 +104,22 @@
             while($i < 5){
             echo '<tr class="row', $i + 1 , '">
                 <td class="day">', date_only($i ,$modified) ,'</td>
-                <td class="comp-name">', orig_array_key_exists( $i ,$comp_name) , create_button($i,$row) ,'</td>
+                <td class="comp-name"><label>', orig_array_key_exists( $i ,$comp_name) , create_button($i,$row,$page)   ,'</lable></td>
                 <td class="address">', address_key_exists($i,$comp_address) , '</td>
                 <td class="job">', orig_array_key_exists($i,$job) ,'</td>
-                <td class="satus">', orig_array_key_exists($i++,$apply_status) ,'</td>
+                <td class="show">', create_button($i++,$row,$page) ,'</td>
             </tr>
             ';
             }
         }else{
             $i = 0;
-            while($i < 5){
+            while($i++ < 5){
             echo '<tr class="row">
                 <td class="day"></td>
                 <td class="comp-name"></td>
                 <td class="address"></td>
                 <td class="job"></td>
-                <td class="satus"></td>
+                <td class="show"></td>
             </tr>
             ';
 
@@ -104,14 +127,72 @@
          }
     }
 
+
+
+
+
+
+
     /*buttonの作成*/ 
-    function create_button (int $index, $row) {
+    function create_button(int $index, $row, $pass) {
         if (array_key_exists($index,$row)) {
-            echo '<form action="savedata.php" class="btn_form" method="POST"><button type="submit" class="dvtable-view" value="' , $row[$index][0] ,
-                 '" name="no">詳細閲覧</button>';
+            if($pass == 'save'){
+                echo '<form action="savedata.php" class="btn_form" method="POST"><button type="submit" class="dvtable-view" value="' , $row[$index][0] ,
+                    '" name="no">閲覧</button></form>';
+            }else if($pass == 'past'){
+            echo '<form action="pastdata.php" class="btn_form" method="POST"><button type="submit" class="dvtable-view" value="' , $row[$index][0] ,
+                 '" name="no">閲覧</button></form>';
+            }
         }
 
     }
+
+
+
+    function create_btn_chg ($page,$max,$pass){
+        $max_page = ceil($max/5);
+        if($pass == 'search'){
+            $btn = "";
+            if($page < 2){
+                $btn .= '<form action="dvSearch.php" class="btn_form"><button  class="dvtable-view" disabled>←前</button></form>';
+            }else{
+                $btn .= '<form action="dvSearch.php" class="btn_form" method="GET"><button type="submit" class="dvtable-view" value="' . ($page-1) .
+                '" name="page">←前</button></form>';
+            }
+
+            $btn .= '<p>' . $page . '</p>';
+
+            if($page >= $max_page){
+                $btn .= '<form action="dvSearch.php" class="btn_form" ><button  class="dvtable-view" disabled>次→</button></form>';
+            }else{
+                 $btn .= '<form action="dvSearch.php" class="btn_form" method="GET"><button type="submit" class="dvtable-view" value="' . ($page+1) .
+                '" name="page">次→</button></form>';
+            }
+            
+            echo $btn;
+        }else if('save'){
+            $btn = "";
+            if($page < 2){
+                $btn .= '<form action="dataView.php" class="btn_form"><button  class="dvtable-view" disabled>←前</button></form>';
+            }else{
+                $btn .= '<form action="dataView.php" class="btn_form" method="GET"><button type="submit" class="dvtable-view" value="' . ($page-1) .
+                '" name="page">←前</button></form>';
+            }
+
+            $btn .= '<p>' . $page . '</p>';
+
+            if($page >= $max_page){
+                $btn .= '<form action="dataView.php" class="btn_form" ><button  class="dvtable-view" disabled>次→</button></form>';
+            }else{
+                 $btn .= '<form action="dataView.php" class="btn_form" method="GET"><button type="submit" class="dvtable-view" value="' . ($page+1) .
+                '" name="page">次→</button></form>';
+            }
+            
+            echo $btn;
+        }
+    }
+
+
 
 
 
@@ -119,7 +200,7 @@
     function date_only($index,$date) {
         $day = "";
         if (array_key_exists($index,$date)) {
-            echo date('Y年m月d日',strtotime($date[$index]));
+           check_null(date('Y年m月d日',strtotime($date[$index]))) ;
         }
 
     }
@@ -142,72 +223,126 @@
            }
         }
 
-        echo $new_hta ;
+        return $new_hta ;
     } 
 
 
     /*一次、二次、三次及びその他の出力形式の作成*/
     function print_data($day,$data){
-        /*データの切り分け*/
-        /*$day*/
-        $youbi = array_column($day,'date_data');
-        $begin_time_data = array_column($day,'begin_time_data');
-        $end_time_data = array_column($day,'end_time_data');
 
-        /*$data*/
-        $status = 1;
-        $test_data = array_column($data,'details');
-        
+        if($day){
+            /*データの切り分け*/
+            /*$day*/
+            $youbi = array_column($day,'date_data');
+            $begin_time_data = array_column($day,'begin_time_data');
+            $end_time_data = array_column($day,'end_time_data');
+            $status = 1;
 
 
-        /*試験名を格納する配列*/
-        $datalis = "";
-        $sps= array(3);
-        $sps[0] = array(10);
-        $sps[1] = array(10);
-        $sps[2] = array(10);
-        $test_data_no = 0;
-        $sp_no = 0;
+            /*試験名を格納する配列*/
+            $datalis = "";
+            $test_data_no = 0;
+            $sp_no = 0;
+            $max = 0;
 
-        for($i=0;$i < 3;$i++){
-            $datalis .= 
-            '<div class="test">
-                <div>
-                    <p>'. $status .'次：</p><p>日付(<'.
-                    date('m月d日',strtotime($youbi[$i])) .' ' . $begin_time_data[$i] . '～' . $end_time_data[$i] .')</p>
-                    <p>試験内容＝＞';
-                    
-            for($j=0;;$j++){
-                $datalis .= $data[$sp_no]['select_process'];
-                $sps[$i][$j] =  $data[$sp_no]['select_process'];
-                if(array_key_exists($sp_no+1,$data) && $status == $data[$sp_no+1]['td_status']){
-                    $sp_no++;
-                    $datalis .= ' + ';
-                }else{
-                    $sp_no++;
-                    $datalis .= '</p></div>';
-                    break;
-                }
-            }
 
-            for($s=0;; $s++){
-                    $datalis .= '<div>
-                                    <p class="p-info">'. $sps[$i][$s] .'：</p>';
-                    
-                    $datalis .= '<p class="p-view">'.
-                                $test_data[$test_data_no]    .'</p></div>';
-                if(array_key_exists($test_data_no+1,$data) && $status == $data[$test_data_no+1]['td_status']){
-                    $test_data_no++;
-                }else{
-                    $test_data_no++;
-                    $status++;
-                    $datalis .= '</div>';
-                    break;
+
+
+            for($i=0;$i < count($day) ;$i++){
+                $datalis .= 
+                '<div class="test">
+                    <div>
+                        <p>'. $status .'次：</p><p>日付('.
+                        date('m月d日',strtotime($youbi[$i])) .' ' . $begin_time_data[$i] . '～' . $end_time_data[$i] .')</p></div>';
+                        
+                if($data){
+                    /*$data*/
+                    $test_data = array_column($data,'details');
                 }
 
+                while(true){
+                        $datalis .= '<div><p class="p-info">試験内容＝＞';
+                        if($data) {
+                            $datalis .= check_null_re($data[$sp_no]['select_process'] );
+                        }else{
+                            $datalis .= check_null_re("");
+                        } 
+                        $datalis .= '</p>';
+                        
+
+
+                        $datalis .= '<p class="p-view">';
+                        if($data) {
+                            $datalis .= check_null_re($test_data[$test_data_no]);
+                        }else{
+                            $datalis .= check_null_re("");
+                        } 
+                        $datalis .= '</p></div>';
+                    
+                    
+                 if($data && array_key_exists($test_data_no+1,$data) && $status == $data[$test_data_no+1]['td_status']){
+                        $test_data_no++;
+                        $sp_no++;
+                    }else{
+                        $test_data_no++;
+                        $sp_no++;
+                        $status++;
+                        $datalis .= '</div>';
+                        break;
+                    }
+
+                }
+                                
             }
-                            
+            echo $datalis;
         }
-        echo $datalis;
+    }
+
+
+
+    function delete_data($ref_num){
+        $dsn = 'mysql:host=localhost;dbname=job_hunt_manage;charset=utf8';
+        $user = 'root';
+        $password = '';
+
+        try{
+            $db = new PDO($dsn, $user, $password);
+            $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+            //プリペアドステートメントを作成
+            $stmt = $db->prepare("delete from test_detalis_tb where reference_number = :num;");
+            //パラメータ割り当て
+            $stmt->bindParam(':num', $ref_num, PDO::PARAM_STR);
+            //クエリの実行
+            $stmt->execute();
+
+            //プリペアドステートメントを作成
+            $stmt = $db->prepare("delete from tests_tb where reference_number = :num;");
+            //パラメータ割り当て
+            $stmt->bindParam(':num', $ref_num, PDO::PARAM_STR);
+            //クエリの実行
+            $stmt->execute();
+
+            //プリペアドステートメントを作成
+            $stmt = $db->prepare("delete from ac_comp_data_tb where reference_number = :num;");
+            //パラメータ割り当て
+            $stmt->bindParam(':num', $ref_num, PDO::PARAM_STR);
+            //クエリの実行
+            $stmt->execute();
+
+                    
+            //パラメータ割り当て
+            $stmt->bindParam(':num', $ref_num, PDO::PARAM_STR);
+            //クエリの実行
+            $stmt->execute();
+
+    
+            header('Location: dataView.php');
+            exit();
+
+        }catch (PDOException $e) {
+            exit('エラー：' . $e->getMessage());
+        }
+    
+        
     }
 ?>

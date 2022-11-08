@@ -1,5 +1,7 @@
 <?php
     include 'includes/login.php';
+
+    $_SESSION['page'] = null;
 ?>
 <!DOCTYPE html>
     <html lang="ja">
