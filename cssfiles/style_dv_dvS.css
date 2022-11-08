@@ -115,8 +115,8 @@ input[type="search"] {
     margin: 0;
 }
 
-.button{
-    margin-top: 50px;
+.button_d{
+    margin-top: 20px;
     margin-bottom: 20px;
     padding-right: 10px;
     display: flex;

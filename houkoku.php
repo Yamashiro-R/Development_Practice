@@ -23,7 +23,7 @@
 
                 <div>
                     <button class="newmake" onclick="location.href='Input_Form_1.php'">新規作成</button>
-                    <button class="savedata" onclick="location.href='./dataView.php'">保存済み<br class="br-sp">データ</button>
+                    <button class="savedata" onclick="location.href='dataView.php'">保存済み<br class="br-sp">データ</button>
                 </div>
 
             </div>
