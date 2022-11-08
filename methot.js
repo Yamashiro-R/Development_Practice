@@ -1,3 +1,12 @@
+<<<<<<< HEAD
+=======
+
+
+var s2_1 = document.getElementById('wri_test');
+var s2_2 = document.getElementById('wri_test2');
+var s2_3 = document.getElementById('apt_test');
+
+>>>>>>> yamashiro
 var l1 = document.getElementById('text_info');
 var fen = document.getElementsByClassName('first-exam_test');
 
@@ -6,6 +15,7 @@ let first_exam = document.querySelectorAll(`input[type='checkbox'][name='First-s
 for (let i = 0; i < first_exam.length;i++) {
     exam_detail(first_exam,i);
 }
+
 
 function exam_detail(first_exam,i){
 
@@ -51,13 +61,16 @@ function new_login_check() {
 function Input_Form_1_check() {
     let formElements = document.forms[0];
     let flag = false;
+    let firstflag = true;
     let arraycheck = Array(7);  /*チェックぼっくボックスのboolen値を格納する配列*/
     let i = 0; /*チェックボックスの添え字*/
+    
     let checkfalg = false;
     
     
+
     //-3は不要なボタン数    
-    for(let cnt=0; cnt < formElements.elements.length-3;cnt++){
+    for(let cnt=0; cnt < formElements.elements.length-4;cnt++){
         switch(cnt){
             case 0:
             case 1:
@@ -66,8 +79,9 @@ function Input_Form_1_check() {
             case 6:
                 if(formElements.elements[cnt].value != ""){
                     ;
-                }else {
+                }else{
                     alert(cnt + "番目入力無し");
+                    firstflag = false;
                 }
                 break;
 
@@ -76,9 +90,9 @@ function Input_Form_1_check() {
                 if(formElements.elements[cnt].checked){
                     flag = true;   
                 }
-                if(cnt == 4){
-                    if(flag == true){
-                        console.log("ok");
+                if( cnt == 4 ){
+                    if(flag){
+                        alert("ok");
                     }else {
                         alert("チェックが入っていません。");
                     }
@@ -96,12 +110,39 @@ function Input_Form_1_check() {
     if(checkfalg){
         ;
     }else{
-        alert("チェックボックス確認して");
+        alert("チェックボックス確認して");       
     }
-     
+    
+    if(flag && checkfalg && firstflag ){
+        formElements.elements['hantei'].value = true;
+    }else{
+        formElements.elements['hantei'].value = false;    
+    }
+
+
+    
 
 }
+    
+/*
+function HelloPHP(){
+    jQuery.ajax({
 
+        type: 'post',
+        url: 'Input_Form_1.php',
+        dataType: 'json',
+        data:{
+
+        }
+        .done(function(response){
+
+        })
+        .fail(function(xhr) {
+            alert("サーバーとの通信に失敗しました。");
+        })
+    }); 
+}
+*/
 
 function parseStrToBoolean(str){
     return (str == true) ? true : false;
