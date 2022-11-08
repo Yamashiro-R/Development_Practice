@@ -31,7 +31,7 @@ function exam_detail(first_exam,i){
         }},false);
 }
 
-<<<<<<< HEAD
+
 function new_login_check() {
         let formElements = document.forms[0];
         
@@ -47,7 +47,7 @@ function new_login_check() {
                 break;
             }
         }
-=======
+
 function Input_Form_1_check() {
     let formElements = document.forms[0];
     let flag = false;
@@ -135,7 +135,7 @@ s2_3.addEventListener('click',function(){
     } else {
         l3.innerHTML = '';
     }},false);
->>>>>>> 569d9c08549c5f1938dd2ab8807fc67b51b9da4a
+
     
         if (formElements.elements[1].value == formElements.elements[2].value) {
             ;
