@@ -4,24 +4,12 @@
         //セッションにユーザIDがある＝ログインしている
         //ログイン済みならトップページに遷移する
         header('Location: home.php');
+        exit();
     }else if (isset($_POST['ID']) && isset($_POST['pass'])) {
         //ログインしていないがユーザ名とパスワードが送信されたとき
-        //DB接続
-<<<<<<< HEAD
-        $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';
-        $user = 'external_user';
-
-=======
-        //$dsn = 'mysql:host=localhost;dbname=job_hunt_manage;charset=utf8';
-        //$user = 'root';
-        //$password = '';
         //比嘉さんのデータベースアクセス用
-        // $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';  
-        // $user = 'external_user';
-        // $password = 'test';
-        $dsn = 'mysql:host=192.168.2.136;dbname=job_hunt_manage;charset=utf8';
+        $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';  
         $user = 'user';
->>>>>>> yamashiro
         $password = 'test';
 
         try{

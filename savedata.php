@@ -151,7 +151,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="button">
+                <div class="button_d">
                     <form method="POST" action="savedata.php" onsubmit="delete_btn();">
                         <input type="submit" value="削除" id="delete">
                         <input type="hidden" name="CONFIRM" value="" >
@@ -177,7 +177,7 @@
 
     var  param_j = JSON.parse('<?php echo $param_p; ?>') ;
 
-    if(false){
+    if(/*param_j == 2 || param_j == 3*/false){
         var dele = document.getElementById('delete').style.display = 'none';
         document.getElementById('edit').style.display = 'none';
     }
