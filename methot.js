@@ -1,12 +1,7 @@
-<<<<<<< HEAD
-=======
-
 
 var s2_1 = document.getElementById('wri_test');
 var s2_2 = document.getElementById('wri_test2');
 var s2_3 = document.getElementById('apt_test');
-
->>>>>>> yamashiro
 var l1 = document.getElementById('text_info');
 var fen = document.getElementsByClassName('first-exam_test');
 
