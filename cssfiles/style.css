@@ -101,19 +101,37 @@ p {
     margin-left: 10px;
     position: absolute;
 }
+
 .button{
     margin-top: 50px;
     margin-bottom: 20px;
     padding-right: 10px;
     text-align: right;
 }
+
 .button input ,.button button{
     width: 120px;
     height: 40px;   
- 
 }
 
 .change {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.change button {
+    width: 70px;
+    height: 30px;
+    margin-top: 40px;
+    font-weight: bold;
+    font-size: 1em;
+}
+
+.change button:first-child {
+    margin-right: 100px;
+}
+
+
+/* .change {
     text-align: center;
     margin-bottom: 20px;
 }
@@ -128,7 +146,7 @@ p {
 
 .change button:first-child {
     margin-right: 100px;
-}
+} */
 
 
 

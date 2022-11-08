@@ -20,7 +20,7 @@
             </div>
 
             <div class="big-div">   
-                <form action="#">
+                <form action="#" name="test">
                     <div class="div-info">
                         <div class="divdiv_col_1 divdiv"> 
                             <p class="p-info p-width">一次試験日付：</p>

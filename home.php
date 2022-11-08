@@ -1,5 +1,8 @@
 <?php
     include 'includes/login.php';
+
+    $_SESSION['ps_val'] = null;
+    $_SESSION['page'] = null;
 ?>
 
 <!DOCTYPE html>

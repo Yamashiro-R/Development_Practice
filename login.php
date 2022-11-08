@@ -9,6 +9,7 @@
         //DB接続
         $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';
         $user = 'external_user';
+
         $password = 'test';
 
         try{
@@ -28,6 +29,13 @@
                 $_SESSION['ID'] = $row['act_id'];
                 $_SESSION['name'] = $row['account_name'];
                 header('Location: home.php');
+
+
+                // if(intval($_POST['pass'])  == $_POST['ID']){
+                //     header('Location: newlogin.php');
+                // }else{
+                //     header('Location: home.php');
+                // }
                 exit();
             }else {
                 //1レコードも取得できなかったとき
@@ -58,7 +66,7 @@
             <form class="roginform" action="login.php" method="POST">
                 <div class="ID-From">
                     <p class="p-title">ID</p>
-                        <input type="text" class="id rogin-input" name="ID">
+                        <input type="text" class="id rogin-input" name="ID" autocomplete="off">
                 </div>
                 <div class="infomation">
                     <p class="info">※パスワードを設定してください。</p>
