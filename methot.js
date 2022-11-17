@@ -37,46 +37,64 @@ function exam_detail(first_exam,i){
             }
         }},false);
 }*/
-/*
+
 function exam_check(cnt){
     const first_exam = document.querySelectorAll(`input[type='checkbox'][name='First-stage exam']`);
     const div_class = document.getElementsByClassName('first-exam_test');
     //消去注意文
     const result = "記入内容はすべて削除されます。よろしいですか？";
     
-    let exam_type;
-    let place;
+    let exam_type = div_class[cnt].textContent +"詳細内容";
+    let place = first_exam[cnt];
     let div = document.createElement('div');
     let para = document.createElement('p');
     let area = document.createElement('textarea');
+    
+    para.textContent = exam_type;
+    
+    div.classList.add('testsAll');
+    para.classList.add('title-tests');
+    area.classList.add('text-tests');
+    area.name = 'details';
 
-    constructor(cnt){
-        this.exam_type = let + cnt;
-        this.place = first_exam[cnt];
-    }
 
     
     place.addEventListener('input',()=>{
-        if(hikki1.checked){
-            hikki1_div.appendChild(hikki1_para);
-            hikki1_div.appendChild(hikki1_area);
-            l1.appendChild(hikki1_div); 
+        if(place.checked){
+            div.appendChild(para);
+            div.appendChild(area);
+            l1.appendChild(div); 
         }else{
-            console.log(hikki1_area.value);
+            console.log(area.value);
             //textareaに入力が無い時
-            if( hikki1_area.value == ""){
-                hikki1_div.remove();
+            if( area.value == ""){
+                div.remove();
             }else{
                 //textareaに入力が有る時
-                window.confirm(result);
-                hikki1_div.remove();
+                let judge = window.confirm(result);
+                if(judge){
+                    div.remove();
+                    area.value = "";    
+                }else{
+                    place.checked = true;
+                }
+                
+                
             }
         }
     });
-*/
 
 }
 
+function setting_detail(){
+    const first_exam = document.querySelectorAll(`input[type='checkbox'][name='First-stage exam']`);
+    
+    for(let i=0;i<first_exam.length;i++){
+        exam_check(i);
+    }
+}
+
+/*
 function exam_detail_2(){
     let div_class = document.getElementsByClassName('first-exam_test');
 
@@ -92,9 +110,6 @@ function exam_detail_2(){
     
 
 
-    for(let i=0;i<2;i++){
-        
-    }
 
 
     
@@ -158,7 +173,7 @@ function exam_detail_2(){
 
 
 
-}
+}*/
 
 
 function new_login_check() {
