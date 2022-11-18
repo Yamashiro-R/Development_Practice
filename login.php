@@ -8,8 +8,7 @@
         //ログインしていないがユーザ名とパスワードが送信されたとき
         //DB接続
         $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';
-        $user = 'external_user';
-
+        $user = 'user';
         $password = 'test';
 
         try{
