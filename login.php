@@ -4,10 +4,12 @@
         //セッションにユーザIDがある＝ログインしている
         //ログイン済みならトップページに遷移する
         header('Location: home.php');
+        exit();
     }else if (isset($_POST['ID']) && isset($_POST['pass'])) {
         //ログインしていないがユーザ名とパスワードが送信されたとき
-        //DB接続
-        $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';
+
+        //比嘉さんのデータベースアクセス用
+        $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';  
         $user = 'user';
         $password = 'test';
 

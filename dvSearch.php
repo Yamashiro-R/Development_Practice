@@ -132,7 +132,7 @@
                     <a href="home.php"><img src="images/innu.jpeg"></a>
                 </div>
                 <div id="main_title"> 
-                    <h1>就職活動<br class="br-sp">データ検索</h1>
+                    <h1>報告書📄<br class="br-sp">全データ検索</h1>
                 </div>
 
                 <div>

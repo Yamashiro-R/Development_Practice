@@ -2,11 +2,6 @@
     include 'includes/login.php';
     include 'function.php';
 
-    /*
-    $dsn = 'mysql:host=localhost;dbname=job_hunt_manage;charset=utf8';
-    $user = 'root';
-    $password = '';
-    */
     $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';
     $user = 'user';
     $password = 'test';
