@@ -24,11 +24,24 @@
 
             <div class="prot_div">
                 <div class="new_title"> 
-                    <div class="title">TOP</div>
-                    <div class="title">報告書作成</div>
+                    <div class="title" onclick="TOP()">TOP</div>
+                    <div class="title" onclick="CreateReport()">報告書作成</div>
                 </div>
-                <div class="prot_body">
-                    <div>検索</div>
+                <div class="prot_body1">
+                    <button>
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        検索
+                    </button>
+                </div>
+                <div class="prot_body2">
+                    <button>
+                        <i class="fa-solid fa-pen-to-square"></i>
+                        新規作成
+                    </button>
+                    <button>
+                        <i class="fa-solid fa-floppy-disk"></i>    
+                        保存済みデータ
+                    </button>
                 </div>
             </div>
             

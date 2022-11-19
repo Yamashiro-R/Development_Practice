@@ -1,97 +1,84 @@
 
 function setting(){
-    let title = document.querySelectorAll('.new_title > div');
-    let body = document.querySelector("prot_body");
+
+
     
-    let flag = true;
+    // let title = document.querySelectorAll('.new_title > div');
+    // let body = document.querySelector(".prot_body");
     
-    let div_search = document.createElement('div');
-    let div_createReport = document.createElement('div');
-    let div_saveData = document.createElement('div');
+    // let flag = true;
+    
+    // let div_search = document.createElement('div');
+    // let div_createReport = document.createElement('div');
+    // let div_saveData = document.createElement('div');
 
-    let search_para = document.createElement('p');
-    let create_para = document.createElement('p');
-    let save_para = document.createElement('p');
+    // let search_para = document.createElement('p');
+    // let create_para = document.createElement('p');
+    // let save_para = document.createElement('p');
 
-    let searchNode = document.createTextNode("検索");
-    let createNode = document.createTextNode("新規作成");
-    let saveNode = document.createTextNode("保存済みデータ");
+    // let searchNode = document.createTextNode("検索");
+    // let createNode = document.createTextNode("新規作成");
+    // let saveNode = document.createTextNode("保存済みデータ");
 
-    title[0].addEventListener('click',()=>{
-        console.log("テスト");
-        if(flag){
-            ;
-        }else{
-            // div_createReport.style.display = "none";
-            // div_saveData.style.display = "none";
+    // search_para.classList.add("body_p");
+    // create_para.classList.add("body_p");
+    // save_para.classList.add("body_p");
 
-            // // div_search.innerHTML = "";             //アイコン入力欄
-            // search_para.textContent = "検索";  
-            // div_search.appendChild(search_para);
-            // body.appendChild(div_search);
-            // body.style.backgroundColor = "#ffffff";
-            // flag = true;   
-        }
-    });
-
-    title[1].addEventListener('click',()=>{
-        console.log("テスト2");
-        if(flag){
-            
-            
-            // div_createReport.innerHTML = "";             //アイコン入力欄
-            // div_saveData.innerHTML = "";             //アイコン入力欄
-           
-            create_para.appendChild(createNode);
-            div_createReport.appendChild(create_para);
-
-            console.log(create_para);
-            console.log(div_createReport);
-            console.log(body);
-            
-            
-            body.appendChild(div_createReport); //nullになっている　これを解決する
-
-            /*
-            body.appendChild(div_saveData);
-            body.style.backgroundColor = "brown";
-            flag = false;
-           */
-        }else{
-            ;
-        }
-                
-    });
-    // function TOP(){
-    //     let body = document.getElementsByClassName("prot_body");
-    //     let div = document.createElement('div');
-    //     let flag = true;
-
+    // title[0].addEventListener('click',()=>{
+    //     console.log("テスト");
     //     if(flag){
-    //         console.log("ok");
+    //         ;
     //     }else{
-    //         div.innerHTML = "";             //アイコン入力欄
-    //         div.textContent = "検索";  
+    //         div_createReport.style.display = "none";
+    //         div_saveData.style.display = "none";
+
+    //         // div_search.innerHTML = "";             //アイコン入力欄
+    //         search_para.appendChild(searchNode);  
+    //         div_search.appendChild(search_para);
+    //         body.appendChild(div_search);
     //         body.style.backgroundColor = "#ffffff";
-    //         flag = true;
+    //         flag = true;   
     //     }
-            
-    // }
+    // });
 
-    // function CreateReport(){
-    //     let body = document.getElementsByClassName("prot_body");
-    //     let div_1 = document.createElement('div');  //新規作成用のdiv
-    //     let div_2 = document.createElement('div');  //保存済みデータ用のdiv
-    //     let flag = false;
+    // title[1].addEventListener('click',()=>{
+    //     console.log("テスト2");
     //     if(flag){
-    //         div_1.innerHTML = "";             //アイコン入力欄
-    //         div_1.textContent = "新規作成";
-
-    //         div_2.innerHTML = "";             //アイコン入力欄
-    //         div_2.textContent = "保存済みデータ一覧";
+    //         div_search.style.display = "none";
+    //         // div_createReport.innerHTML = "";             //アイコン入力欄
+    //         // div_saveData.innerHTML = "";             //アイコン入力欄
+           
+    //         create_para.appendChild(createNode);
+    //         save_para.append(saveNode);
+    //         div_createReport.appendChild(create_para);
+    //         div_saveData.appendChild(save_para);
+            
+    //         body.appendChild(div_createReport); 
+    //         body.appendChild(div_saveData);
     //         body.style.backgroundColor = "brown";
-    //         flag = true;
+    //         flag = false;
+           
+    //     }else{
+    //         ;
     //     }
-        
-    // }
+                
+    //});
 }
+
+    function TOP(){
+        let TOP_body = document.querySelector(".prot_body1");
+        let CreateReport_body = document.querySelector(".prot_body2");
+        TOP_body.style.display = "block";
+        CreateReport_body.style.display = "none";
+        
+            
+    }
+
+    function CreateReport(){
+        let TOP_body = document.querySelector(".prot_body1");
+        let CreateReport_body = document.querySelector(".prot_body2");
+        TOP_body.style.display = "none";
+        CreateReport_body.style.display = "block";
+        
+        
+    }
