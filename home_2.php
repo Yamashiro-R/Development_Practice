@@ -19,7 +19,8 @@
         </head>
         <body class="home">
         <div id="main_title"> 
-            <h1>報告活動管理Webアプリ</h1>
+            <!-- 後で考える -->
+            <h1>ホーム画面</h1>     
         </div>
 
             <div class="prot_div">
@@ -28,25 +29,25 @@
                     <div class="title" onclick="CreateReport()">報告書作成</div>
                 </div>
                 <div class="prot_body1">
-                    <button>
-                        <i class="fa-solid fa-magnifying-glass"></i>
+                    <button onclick="location.href='dvSearch.php'">
+                        <i class="fa-solid fa-magnifying-glass"></i><br>
                         検索
                     </button>
                 </div>
                 <div class="prot_body2">
-                    <button>
-                        <i class="fa-solid fa-pen-to-square"></i>
+                    <button onclick="location.href='Input_Form_1.php'">
+                        <i class="fa-solid fa-pen-to-square"></i><br>
                         新規作成
                     </button>
-                    <button>
-                        <i class="fa-solid fa-floppy-disk"></i>    
-                        保存済みデータ
+                    <button onclick="location.href='dataView.php'">
+                        <i class="fa-solid fa-floppy-disk"></i><br>
+                        保存済データ
                     </button>
                 </div>
             </div>
             
             <script type="text/javascript" src="home.js"></script>
-            <script type="text/javascript">setting()</script>
+            
 
         </body>
 

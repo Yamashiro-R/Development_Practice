@@ -68,8 +68,14 @@ function setting(){
     function TOP(){
         let TOP_body = document.querySelector(".prot_body1");
         let CreateReport_body = document.querySelector(".prot_body2");
+        let TOP_title = document.querySelectorAll(".title");
+        console.log(TOP_title);
+        
         TOP_body.style.display = "block";
         CreateReport_body.style.display = "none";
+
+        TOP_title[0].style.boxShadow = "2px 0 2px";
+        TOP_title[1].style.boxShadow = "none";
         
             
     }
@@ -77,8 +83,17 @@ function setting(){
     function CreateReport(){
         let TOP_body = document.querySelector(".prot_body1");
         let CreateReport_body = document.querySelector(".prot_body2");
+        let TOP_title = document.querySelectorAll(".title");
+        
+        console.log(TOP_title);
+        
         TOP_body.style.display = "none";
         CreateReport_body.style.display = "block";
+
+        
+        TOP_title[0].style.boxShadow = "none";
+        TOP_title[1].style.boxShadow = "2px 0 2px";
+        
         
         
     }
