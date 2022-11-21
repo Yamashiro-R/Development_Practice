@@ -1,44 +1,71 @@
-<<<<<<< HEAD
-=======
+
 
 
 var s2_1 = document.getElementById('wri_test');
 var s2_2 = document.getElementById('wri_test2');
 var s2_3 = document.getElementById('apt_test');
 
->>>>>>> yamashiro
+
 var l1 = document.getElementById('text_info');
 var fen = document.getElementsByClassName('first-exam_test');
 
 let first_exam = document.querySelectorAll(`input[type='checkbox'][name='First-stage exam']`);
+
+let divs = [10];
+let paras = [10];
+let textareas = [10];
 
 for (let i = 0; i < first_exam.length;i++) {
     exam_detail(first_exam,i);
 }
 
 
+
 function exam_detail(first_exam,i){
 
+
+
     first_exam[i].addEventListener('click',function(){
+
+
         if (this.checked) {
-            l1.innerHTML += '<div id="new'+ i +'" class="testsAll"><p class="title-tests">' + fen[i].textContent + '内容詳細：</p><textarea  class="text-tests" name="details"></textarea></div>';
-            check[i] = document.getElementById(ii).textContent;
+                divs[i] = document.createElement('div');
+                paras[i] = document.createElement('p');
+                textareas[i] = document.createElement('textarea');
+
+                divs[i].id = 'div_' + i;
+                divs[i].classList.add('testsAll');
+
+                paras[i].classList.add('title-tests');
+
+                textareas[i].classList.add('text-tests');
+                textareas[i].name = 'details';
+                paras[i].textContent = fen[i].textContent +"詳細内容";
+
+                divs[i].appendChild(paras[i]);
+                divs[i].appendChild(textareas[i]);      
+                l1.appendChild(divs[i]);
+        
+            /*check[i] = document.getElementById(ii).textContent;*/
 
         } else {
-            var ii = 'new' + i;
-            var c_name = document.getElementById(ii).lastElementChild.value;
+            var di = 'div_' + i;
+            var c_name = document.getElementById(di).lastElementChild.value;
             if(c_name == ""){
-                document.getElementById(ii).remove();
+                document.getElementById(di).remove();
             }else{
                 var result = window.confirm("記入内容はすべて削除されます。よろしいですか？");
 
                 if(result){
-                    document.getElementById(ii).remove();
+                    document.getElementById(di).remove();
                 }else{
                     first_exam[i].checked = true;
                 }
             }
-        }},false);
+            divs[i].getElementsByClassName('text-tests').value = "";
+
+        }
+    },false);
 }
 
 
@@ -57,6 +84,7 @@ function new_login_check() {
                 break;
             }
         }
+}
 
 function Input_Form_1_check() {
     let formElements = document.forms[0];
@@ -186,4 +214,4 @@ s2_3.addEventListener('click',function(){
             formElements.elements[2].value = null;
         }
 
-}
+}*/
