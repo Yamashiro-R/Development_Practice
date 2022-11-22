@@ -11,7 +11,7 @@
             <meta charset="UTF-8">
             <link rel="stylesheet" href="cssfiles/style.css">
             <link rel="stylesheet" href="cssfiles/style_menu.css">
-            <link rel="stylesheet" href="cssfiles/style_flexible.css">
+            <!-- <link rel="stylesheet" href="cssfiles/style_flexible.css"> -->
             <title>就職活動報告</title>
         </head>
         <body>

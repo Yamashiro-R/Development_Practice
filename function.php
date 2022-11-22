@@ -301,9 +301,9 @@
 
 
     function delete_data($ref_num){
-        $dsn = 'mysql:host=localhost;dbname=job_hunt_manage;charset=utf8';
-        $user = 'root';
-        $password = '';
+        $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';
+        $user = 'user';
+        $password = 'test';
 
         try{
             $db = new PDO($dsn, $user, $password);
@@ -345,4 +345,64 @@
     
         
     }
+
+
+    /*teach_reqの新規依頼画面データ出力*/
+    function teach_func($row) {
+        if ($row != false) {
+            $st_name = array_column($row,'account_name');
+            $st_date = array_column($row,'modified');
+            $st_comp = array_column($row,'comp_name');
+            $st_ref_number = array_column($row,'reference_number');
+             
+            echo '<form class="req_form" method="POST" action="req_data.php">';
+            for($i = 0; $i < count($row); $i++) {
+                echo '<label>
+                        <div class="test_div">
+                            <p>', date_only($i,$st_date) ,'</p>
+                            <p>', $st_name[$i] ,'</p>
+                            <p>', $st_comp[$i] ,'</p>
+                        </div>
+                        <button type="submit" value="', $st_ref_number[$i] ,'" name="no" hidden></button>
+                        </label>';
+            }
+            echo '</form>';
+        }
+    }
+
+
+
+    /*req_data.phpでの承認内容をデータベースに反映*/
+    
+    function ap_status_up($ref_num,$i){
+        $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';
+        $user = 'user';
+        $password = 'test';
+
+        try{
+            $db = new PDO($dsn, $user, $password);
+            $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+
+            if($i == 0){
+                //プリペアドステートメントを作成
+                $stmt = $db->prepare("UPDATE ac_comp_data_tb SET as_number = 3 WHERE reference_number = :num");
+            }else if($i == 1){
+                //プリペアドステートメントを作成
+                $stmt = $db->prepare("UPDATE ac_comp_data_tb SET as_number = 4 WHERE reference_number = :num");
+            }
+            //パラメータ割り当て
+            $stmt->bindParam(':num', $ref_num, PDO::PARAM_STR);
+            //クエリの実行
+            $stmt->execute();
+
+    
+            header('Location: req_data.php');
+            exit();
+
+        }catch (PDOException $e) {
+            exit('エラー：' . $e->getMessage());
+        }
+
+    }
+
 ?>
