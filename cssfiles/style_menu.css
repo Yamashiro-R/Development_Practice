@@ -1,5 +1,9 @@
 /*home,houkoku.html↓*/
-
+body{
+    /* background-image: url("../images/home.jpg");
+    background-size: 90%; */
+    background-color: #d6ddda;
+}
 .homebtnEturan,.newmake{
     width: 700px;
     font-size: 50px;

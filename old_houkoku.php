@@ -1,7 +1,9 @@
-<?php
-    include 'includes/login.php';
+<!-- 旧報告書ページ　新規作成 OR 保存済みデータのどちらかを選ばせるページ -->
 
-    $_SESSION['page'] = null;
+<?php
+    // include 'includes/login.php';
+
+    // $_SESSION['page'] = null;
 ?>
 <!DOCTYPE html>
     <html lang="ja">

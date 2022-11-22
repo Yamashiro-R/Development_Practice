@@ -1,57 +1,34 @@
 
-var s2_1 = document.getElementById('wri_test');
-var s2_2 = document.getElementById('wri_test2');
-var s2_3 = document.getElementById('apt_test');
-var l1 = document.getElementById('text_info');
-var fen = document.getElementsByClassName('first-exam_test');
+function setting_detail(){
+    const first_exam = document.querySelectorAll(`input[type='checkbox'][name='test_type']`);
+    
+    for(let i=0;i<first_exam.length;i++){
+        exam_check(i);
+    }
+}
 
-let first_exam = document.querySelectorAll(`input[type='checkbox'][name='First-stage exam']`);
-/*
-for (let i = 0; i < first_exam.length;i++) {
-    exam_detail(first_exam,i);
-}*/
-
-//Input_2_2～3のチェックボタンに応じてtextareaが出力される処理。
-/*
-function exam_detail(first_exam,i){
-
-    first_exam[i].addEventListener('click',function(){
-        if (this.checked) {
-            l1.innerHTML += '<div id="new'+ i +'" class="testsAll"><p class="title-tests">' + fen[i].textContent + '内容詳細：</p><textarea  class="text-tests" name="details"></textarea></div>';
-            
-            check[i] = document.getElementById(ii).textContent;
-
-        } else {
-            var ii = 'new' + i;
-            var c_name = document.getElementById(ii).lastElementChild.value;
-            if(c_name == ""){
-                document.getElementById(ii).remove();
-            }else{
-                var result = window.confirm("記入内容はすべて削除されます。よろしいですか？");
-
-                if(result){
-                    document.getElementById(ii).remove();
-                }else{
-                    first_exam[i].checked = true;
-                }
-            }
-        }},false);
-}*/
 
 function exam_check(cnt){
-    const first_exam = document.querySelectorAll(`input[type='checkbox'][name='First-stage exam']`);
-    const div_class = document.getElementsByClassName('first-exam_test');
+    const first_exam = document.querySelectorAll(`input[type='checkbox'][name='test_type']`);
+    const div_class = document.getElementsByClassName('exam_test');
+    //詳細欄出力場所
+    const l1 = document.getElementById('text_info');
     //消去注意文
     const result = "記入内容はすべて削除されます。よろしいですか？";
+    const exam_type = div_class[cnt].textContent +"詳細内容";
     
-    let exam_type = div_class[cnt].textContent +"詳細内容";
     let place = first_exam[cnt];
+
+    //タグをそれぞれクリエイト
     let div = document.createElement('div');
     let para = document.createElement('p');
     let area = document.createElement('textarea');
     
+
+    //選択されたチェック欄の題名を出力
     para.textContent = exam_type;
-    
+
+    //cssの為にclassをそれぞれ追加
     div.classList.add('testsAll');
     para.classList.add('title-tests');
     area.classList.add('text-tests');
@@ -61,120 +38,32 @@ function exam_check(cnt){
     
     place.addEventListener('input',()=>{
         if(place.checked){
+            //チェックが入ったら
             div.appendChild(para);
-            div.appendChild(area);
+            div.appendChild(area);            
             l1.appendChild(div); 
+            area.focus();
         }else{
-            console.log(area.value);
             //textareaに入力が無い時
             if( area.value == ""){
                 div.remove();
             }else{
                 //textareaに入力が有る時
+                //windowで　はい(true) or いいえ(false)を保持
                 let judge = window.confirm(result);
                 if(judge){
+                    //はいが押された時
                     div.remove();
                     area.value = "";    
                 }else{
+                    //いいえが押された時
                     place.checked = true;
                 }
-                
-                
             }
         }
     });
 
 }
-
-function setting_detail(){
-    const first_exam = document.querySelectorAll(`input[type='checkbox'][name='First-stage exam']`);
-    
-    for(let i=0;i<first_exam.length;i++){
-        exam_check(i);
-    }
-}
-
-/*
-function exam_detail_2(){
-    let div_class = document.getElementsByClassName('first-exam_test');
-
-    //筆記(専門)
-    let hikki1 = first_exam[0];
-    //筆記(一般)
-    let hikki2 = first_exam[1];
-    //適性(専門)
-    let tekisei1 = first_exam[2];
-    //適性(一般)
-    let tekisei2 = first_exam[3];
-
-    
-
-
-
-
-    
-    //div,p,textareaをクリエイト
-    let hikki1_div = document.createElement('div');
-    let hikki1_para = document.createElement('p');
-    let hikki1_area = document.createElement('textarea');
-    
-    let hikki2_div = document.createElement('div');
-    let hikki2_para = document.createElement('p');
-    let hikki2_area = document.createElement('textarea');
-
-
-   
-
-    hikki1_area.id = "test";
-    hikki1_para.textContent = div_class[0].textContent +"詳細内容";
-
-    //消去注意文
-    let result = "記入内容はすべて削除されます。よろしいですか？";
-
-    //筆記(専門)
-    hikki1.addEventListener('input',()=>{
-        if(hikki1.checked){
-            hikki1_div.appendChild(hikki1_para);
-            hikki1_div.appendChild(hikki1_area);
-            l1.appendChild(hikki1_div); 
-        }else{
-            console.log(hikki1_area.value);
-            //textareaに入力が無い時
-            if( hikki1_area.value == ""){
-                hikki1_div.remove();
-            }else{
-                //textareaに入力が有る時
-                window.confirm(result);
-                console.log(hikki1_div);
-                hikki1_div.remove();
-                hikki1_area.value = "";
-                
-            }
-        }
-    });
-
-    //筆記(一般)
-    hikki2.addEventListener('input',()=>{
-        if(hikki2.checked){
-            hikki2_div.appendChild(hikki2_para);
-            hikki2_div.appendChild(hikki2_area);
-            console.log(hikki2_div);
-            l1.appendChild(hikki2_div); 
-        }else{
-            console.log(hikki2_area.value);
-            if( hikki2_area.value == ""){
-                hikki2_div.remove();
-            }else{
-                window.confirm(result);
-                hikki2_div.remove();
-            }
-        }
-    });
-
-
-
-}*/
-
 
 function new_login_check() {
         let formElements = document.forms[0];
@@ -200,75 +89,6 @@ function new_login_check() {
 }
       
 
-/*
-バリデーションチェックが完成次第消す予定
-
-function Input_Form_1_check() {
-    let formElements = document.forms[0];
-    let flag = false;
-    let firstflag = true;
-    let arraycheck = Array(7);  //チェックぼっくボックスのboolen値を格納する配列
-    let i = 0; //チェックボックスの添え字
-    
-    let checkfalg = false;
-    
-    
-
-    //-3は不要なボタン数    
-    for(let cnt=0; cnt < formElements.elements.length-4;cnt++){
-        switch(cnt){
-            case 0:
-            case 1:
-            case 2:
-            case 5:
-            case 6:
-                if(formElements.elements[cnt].value != ""){
-                    ;
-                }else{
-                    alert(cnt + "番目入力無し");
-                    firstflag = false;
-                }
-                break;
-
-            case 3:     //書類の有無チェック
-            case 4:
-                if(formElements.elements[cnt].checked){
-                    flag = true;   
-                }
-                if( cnt == 4 ){
-                    if(flag){
-                        alert("ok");
-                    }else {
-                        alert("チェックが入っていません。");
-                    }
-                }
-                break;
-            
-            default:
-                //どれか一つでもtrueならok
-                if(formElements.elements[cnt].checked){
-                    checkfalg = true;
-                }       
-        }
-    }
-    //チェックボックス欄に一つでもチェックが入っているかの判定
-    if(checkfalg){
-        ;
-    }else{
-        alert("チェックボックス確認して");       
-    }
-    
-    if(flag && checkfalg && firstflag ){
-        formElements.elements['hantei'].value = true;
-    }else{
-        formElements.elements['hantei'].value = false;    
-    }
-
-
-    
-
-}
-*/
 
 //Input_Form_2_1バリデーションチェック用↓
 const Allprefecture = ["沖縄県","北海道","青森県","岩手県","宮城県","秋田県","山形県","福島県","茨城県","栃木県","群馬県","埼玉県",
@@ -286,13 +106,13 @@ function validation_check(){
     let document_radio = document.getElementById("radio");
     let job = formElements.elements[5];
     let number = formElements.elements[6]; 
-    let documents_checkbox = document.getElementById("documents_checkbox");
+    let documents_checkbox = document.querySelectorAll("input[type='checkbox']");
     let savebtn = formElements.elements[16]; 
     let submitbtn = formElements.elements[17]; 
     
     //エラー出力先を配列で取得
     let denger = formElements.getElementsByClassName('denger_field');
-    console.log(denger);
+    
     
     //其々の入力が正常化判断する為の boolean値を格納する為の変数
     let activecompany;
@@ -303,12 +123,18 @@ function validation_check(){
     let activenumber;
     let activedocuments_checkbox;
     
+    //チェックボックス用の配列とカウント
+    let array_checkbox = Array(documents_checkbox.length);
+    let checkbox_cnt = 0;
+    
     //其々のパラグラフをcreate!!この中にエラー文の文章を格納する。
     let companypara = document.createElement('p');
     let addresspara = document.createElement('p');
     let methotpara = document.createElement('p');
     let jobpara = document.createElement('p');
     let numberpara = document.createElement('p');
+    let checkboxpara = document.createElement('p');
+
 
     //探索用のカウント
     let cnt = 0;
@@ -399,14 +225,14 @@ function validation_check(){
                 }
             }
 
-            console.log("カウントの値：" + cnt);
+            
 
             if(cnt < 47) {  //都道府県名で探索成功の時
                 addresspara.textContent = "";
                 addresspara.id = "row_1_para";
                 denger[1].appendChild(addresspara);
                 activeaddress = true;
-                console.log("成功");
+                
             } 
         }else{
             addresspara.textContent = "県名/市町村の順に入力してください。"
@@ -437,7 +263,7 @@ function validation_check(){
     });
     //書類選考の有無チェック欄
     document_radio.addEventListener("change",()=>{
-        console.log("変更ok");
+        activedocument_radio = true;
     });
 
     //職種入力欄
@@ -490,12 +316,53 @@ function validation_check(){
             activenumber = true;
         }
     });
+
     //提出書類チェック欄
-    documents_checkbox.addEventListener("change",()=>{
-        let div_sele = document.getElementsByClassName('docu_sele');
-            console.log(div_sele);
+    for(let i=0;i<documents_checkbox.length;i++){
+        //for文でcheckbox文にそれぞれイベントを追加。
+        documents_checkbox[i].addEventListener("change",()=>{
+        
+        if(documents_checkbox[i].checked){
+            //どれかにチェックが入った時
+            activedocuments_checkbox = true;
+            console.log("チェックが入りました。");
+            checkboxpara.textContent = "";
+            checkboxpara.id = "row_1_para";
+            denger[6].appendChild(checkboxpara);
+            activedocuments_checkbox = true;
+        }else{
+            //配列にチェックボックスそれぞれの状態を格納
+            for(let j=0;j<documents_checkbox.length;j++){
+                array_checkbox[j] = documents_checkbox[j].checked;
+            }
+            //配列のどれかにチェックが入っていたらブレイクその位置を特定するためにcheckbox_cntでカウント
+            for(let tmp=0;tmp<array_checkbox.length;tmp++,checkbox_cnt++){
+                if(array_checkbox[tmp]){break;}
+            }
+            //最後まで到達した時 == 全てfalseの時
+            if(checkbox_cnt == documents_checkbox.length){
+                // console.log("テスト：全てのチェックボックスが空");
+                checkboxpara.textContent = "どれかにチェックを入れてください。";
+                checkboxpara.id = "row_1_para";
+                denger[6].appendChild(checkboxpara);
+                activedocuments_checkbox = false;
+                checkbox_cnt = 0;
+            }else{
+                // console.log("テスト：どれかにチェックが入っている");
+                checkboxpara.textContent = "";
+                checkboxpara.id = "row_1_para";
+                denger[6].appendChild(checkboxpara);
+                activedocuments_checkbox = true;
+                checkbox_cnt = 0;
+            }
+            
+            
+        }
     });
 
+    
+    }
+    
 
 
 
@@ -503,9 +370,6 @@ function validation_check(){
 }
 
 
-function parseStrToBoolean(str){
-    return (str == true) ? true : false;
-}
 
 
 

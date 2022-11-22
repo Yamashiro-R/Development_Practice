@@ -4,9 +4,9 @@
 
     $reference_number = $_POST['no'];
 
-    $dsn = 'mysql:host=localhost;dbname=job_hunt_manage;charset=utf8';
-    $user = 'root';
-    $password = '';
+    $dsn = 'mysql:host=192.168.2.136;dbname=job_hunt_manage;charset=utf8';
+    $user = 'user';
+    $password = 'test';
 
     try{
         $db = new PDO($dsn, $user, $password);
@@ -93,7 +93,7 @@
                         <p class="p-info">応募先企業：</p><p class="p-view"><?php check_null( $comp_name )?></p>
                     </div>
                     <div class="divdiv">
-                        <p class="p-info">応募先所在地：</p><p class="p-view"><?php address_check( $comp_address) ?></p>
+                        <p class="p-info">企業所在地：</p><p class="p-view"><?php address_check( $comp_address) ?></p>
                     </div>
                     <div class="divdiv">
                         <p class="p-info">提出書類：</p><p class="p-view"><?php check_null(change_format($docmt_submit))?></p>

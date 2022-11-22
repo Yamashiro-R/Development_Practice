@@ -126,7 +126,7 @@
             <link rel="stylesheet" href="cssfiles/style_dv_dvS.css">
             <title>就職活動データ検索</title>
         </head>
-        <body>
+        <body class="serch_back-color">
             <div>
                 <div class="return">
                     <a href="home.php"><img src="images/innu.jpeg"></a>
