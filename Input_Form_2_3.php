@@ -50,10 +50,9 @@
                                 <div class="first-exam_test"><input type="checkbox" name="First-stage exam" value="9">実技</div>
                                 <div class="first-exam_test"><input type="checkbox" name="First-stage exam" value="10">その他</div>
                             </div>
-                            <div class="divdiv_width_all_ex" id="text_info">
-                            
-
                         </div>
+                            <div class="divdiv_width_all_ex" id="text_info"></div>
+                               
                     </div>
                     <!-- </div>   -->
                     <div class="button">

@@ -2,6 +2,8 @@
 var s2_1 = document.getElementById('wri_test');
 var s2_2 = document.getElementById('wri_test2');
 var s2_3 = document.getElementById('apt_test');
+
+
 var l1 = document.getElementById('text_info');
 var fen = document.getElementsByClassName('first-exam_test');
 
@@ -12,31 +14,55 @@ for (let i = 0; i < first_exam.length;i++) {
 }*/
 
 //Input_2_2～3のチェックボタンに応じてtextareaが出力される処理。
-/*
+
+
 function exam_detail(first_exam,i){
 
+
+
     first_exam[i].addEventListener('click',function(){
+
+
         if (this.checked) {
-            l1.innerHTML += '<div id="new'+ i +'" class="testsAll"><p class="title-tests">' + fen[i].textContent + '内容詳細：</p><textarea  class="text-tests" name="details"></textarea></div>';
+                divs[i] = document.createElement('div');
+                paras[i] = document.createElement('p');
+                textareas[i] = document.createElement('textarea');
+
+                divs[i].id = 'div_' + i;
+                divs[i].classList.add('testsAll');
+
+                paras[i].classList.add('title-tests');
+
+                textareas[i].classList.add('text-tests');
+                textareas[i].name = 'details';
             
-            check[i] = document.getElementById(ii).textContent;
+                paras[i].textContent = fen[i].textContent +"詳細内容";
+
+                divs[i].appendChild(paras[i]);
+                divs[i].appendChild(textareas[i]);      
+                l1.appendChild(divs[i]);
+        
+            /*check[i] = document.getElementById(ii).textContent;*/
 
         } else {
-            var ii = 'new' + i;
-            var c_name = document.getElementById(ii).lastElementChild.value;
+            var di = 'div_' + i;
+            var c_name = document.getElementById(di).lastElementChild.value;
             if(c_name == ""){
-                document.getElementById(ii).remove();
+                document.getElementById(di).remove();
             }else{
                 var result = window.confirm("記入内容はすべて削除されます。よろしいですか？");
 
                 if(result){
-                    document.getElementById(ii).remove();
+                    document.getElementById(di).remove();
                 }else{
                     first_exam[i].checked = true;
                 }
             }
-        }},false);
-}*/
+            divs[i].getElementsByClassName('text-tests').value = "";
+
+        }
+    },false);
+}
 
 function exam_check(cnt){
     const first_exam = document.querySelectorAll(`input[type='checkbox'][name='First-stage exam']`);
@@ -199,6 +225,7 @@ function new_login_check() {
         }
 }
       
+
 
 /*
 バリデーションチェックが完成次第消す予定
@@ -511,3 +538,13 @@ function parseStrToBoolean(str){
 
 
 
+    
+        if (formElements.elements[1].value == formElements.elements[2].value) {
+            ;
+        } else {
+            alert("パスワードが間違っています。");
+            formElements.elements[1].value = null;
+            formElements.elements[2].value = null;
+        }
+
+}

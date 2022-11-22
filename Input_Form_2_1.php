@@ -1,5 +1,5 @@
 <?php
-  //  include 'includes/login.php';
+    include 'includes/login.php';
 ?>
 
 <!DOCTYPE html>
@@ -54,7 +54,7 @@
                         </div>
                         <div class="divdiv_width_all_ex" id="text_info"></div>  
                         
-                        </div>
+                    </div>
                     
                     <div class="button">
                         <input type="reset"  class="btn_item" value="キャンセル" alt="キャンセル">

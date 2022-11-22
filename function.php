@@ -2,7 +2,7 @@
     /*値がないときの出力*/
     function check_null($value){
         if($value == "" || $value == null || $value == 0){
-            echo "未記入";
+            echo "無回答";
         }else{
             echo $value;
         }
@@ -10,7 +10,7 @@
 
     function check_null_re ($value){
         if($value == "" || $value == null || $value == 0){
-            return "未記入";
+            return "無回答";
         }else{
             return $value;
         }
@@ -105,7 +105,7 @@
             echo '<tr class="row', $i + 1 , '">
                 <td class="day">', date_only($i ,$modified) ,'</td>
                 <td class="comp-name"><label>', orig_array_key_exists( $i ,$comp_name) , create_button($i,$row,$page)   ,'</lable></td>
-                <td class="address">', address_key_exists($i,$comp_address) , '</td>
+                <td class="address" title="', orig_array_key_exists($i,$comp_address) ,'">', address_key_exists($i,$comp_address) , '</td>
                 <td class="job">', orig_array_key_exists($i,$job) ,'</td>
                 <td class="show">', create_button($i++,$row,$page) ,'</td>
             </tr>
