@@ -1,8 +1,9 @@
 <?php
-    // include 'includes/login.php';
 
-    // $_SESSION['ps_val'] = null;
-    // $_SESSION['page'] = null;
+     include 'includes/login.php';
+
+     $_SESSION['ps_val'] = null;
+     $_SESSION['page'] = null;
 ?>
 
 <!DOCTYPE html>
@@ -10,22 +11,48 @@
         <head>
             <meta charset="UTF-8">
             <link rel="stylesheet" href="cssfiles/style.css">
-            <link rel="stylesheet" href="cssfiles/style_menu.css">
-            <link rel="stylesheet" href="cssfiles/style_flexible.css">
+            <link rel="stylesheet" href="cssfiles/style_prot.css">
+            <!-- アイコン用のkit -->
+            <script src="https://kit.fontawesome.com/fd6da7ad7b.js" crossorigin="anonymous"></script>
+
             <title>ホーム画面</title>
         </head>
-        <body>
-            <div>
-                <div id="main_title"> 
-                    <h1>ホームメニュー</h1>
+        <body class="home">
+        <div id="main_title"> 
+            <!-- 後で考える -->
+            <h1>ホーム画面</h1>     
+        </div>
+
+            <div class="prot_div">
+                <div class="new_title"> 
+                    <div class="title" onclick="TOP()">TOP</div>
+                    <div class="title" onclick="CreateReport()">報告書作成</div>
                 </div>
-                    <div>
-                    <button class="homebtnEturan" onclick="location.href='dvSearch.php'">閲覧検索</button>
-                    <button class="homebtnHoukoku" onclick="location.href='./houkoku.php'">就職活動報告</button>
+                <div class="prot_body1">
+                    <button onclick="location.href='dvSearch.php'">
+                        <i class="fa-solid fa-magnifying-glass"></i><br>
+                        検索
+                    </button>
+                </div>
+                <div class="prot_body2">
+                    <button onclick="location.href='Input_Form_1.php'">
+                        <i class="fa-solid fa-pen-to-square"></i><br>
+                        新規作成
+                    </button>
+                    <button onclick="location.href='dataView.php'">
+                        <i class="fa-solid fa-floppy-disk"></i><br>
+                        保存済データ
+                    </button>
                 </div>
             </div>
+            
+            <script type="text/javascript" src="home.js"></script>
+            
 
         </body>
+
+
+
     
     </html>
 

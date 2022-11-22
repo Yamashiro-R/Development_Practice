@@ -10,6 +10,7 @@
     if(isset($_GET['page'])){
         $page = $_GET['page'];
         $_SESSION['page'] = $_GET['page']; 
+        header('Location: dvSearch.php#table_erea');
     }else if(isset($_SESSION['page'])){
         $page = $_SESSION['page'];
     } else{
@@ -75,16 +76,16 @@
             <link rel="stylesheet" href="cssfiles/style_dv_dvS.css">
             <title>データ一覧</title>
         </head>
-        <body>
+        <body class="view_back-color">
             <div>
                 <div class="return">
-                    <a href="./houkoku.php"><img class="return" src="images/innu.jpeg"></a>
+                    <a href="./home.php"><img class="return" src="images/innu.jpeg"></a>
                 </div>
                 <div id="main_title"> 
                     <h1>データ一覧</h1>
                 </div>
                 <div>
-                    <table class="dvtable">
+                    <table class="dvtable" id="table_erea">
                         <thead>
                             <tr>
                                 <th scope="col">最終<br class="br-sp">更新日</th>
