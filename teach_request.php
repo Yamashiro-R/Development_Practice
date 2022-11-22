@@ -23,7 +23,6 @@
 
                 <div>
                     <button class="newreq" onclick="location.href='Input_Form_1.php'">新規依頼</button>
-                    <button class="holddata" onclick="location.href='./dataView.php'">保留中</button>
                     <button class="okdata" onclick="location.href='./dataView.php'">承認済み</button>
                 </div>
 

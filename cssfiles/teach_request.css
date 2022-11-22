@@ -1,0 +1,92 @@
+
+
+/* 
+@media (max-width: 629px) {
+    .nav__toggle {
+        display: block;
+        position: absolute;
+        right: 1rem;
+        top: 1rem; 
+    }
+} */
+
+
+/*グローバルメニュー↑*/
+
+
+/*新規依頼画面↓*/
+
+#newreq-title,#now-req{
+    text-align: center;
+}
+
+#newreq-title {
+    border-bottom: solid 2px black;
+    margin-bottom: 50px;
+}
+
+.test {
+    width: 850px;
+    height: 350px;
+    overflow: auto;
+    font-size: 90%;
+    border: #0fffff 5px solid;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.test_div {
+    display: flex;
+    justify-content: space-around;
+}
+
+.test_div:hover {
+    background-color: rgb(213, 213, 253);
+}
+
+.test_div p:nth-of-type(1),
+.test_div p:nth-of-type(2),
+.test_div p:nth-of-type(3) {
+    text-align: center;
+}
+
+
+.test_div p:nth-of-type(1) {
+    width: 175px;
+}
+
+.test_div p:nth-of-type(2) {
+    width: 175px;
+}
+
+.test_div p:nth-of-type(3) {
+    width: 420px;
+    /* white-space: nowrap; */
+}
+
+/*新規依頼画面↑*/
+
+
+/*システムについて↓*/
+
+.background,.purpose {
+    text-align: left;
+    margin-bottom: 30px;
+}
+
+.back-info,.pur-info {
+    line-height: 40px;
+    margin-bottom: 50px;
+}
+
+
+
+
+/*システムについて↑*/
+
+
+/*Page押したとき*/
+
+
+
+/**/
