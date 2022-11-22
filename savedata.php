@@ -71,6 +71,8 @@
         $impressions =$row['impressions'];
         $future_activities = $row['future_activities'];
         $status = $row['as_number'];
+        $as_name = $row['apply_status'];
+
 
         $param_p = json_encode($status);
 
@@ -96,7 +98,7 @@
         </head>
         <body>
             <div class="return">    <!-- 犬の画像用戻るボタン -->
-                <a href="dataView.php"><img src="images/innu.jpeg"></a>
+                <a href="dataView.php#table_erea"><img src="images/innu.jpeg"></a>
             </div>
             <div id="main_title">   <!-- 共通のタイトル部分 -->
                 <h1>就職活動<br class="br-sp">保存データ</h1>
@@ -125,7 +127,7 @@
                         <p class="p-info">応募先企業：</p><p class="p-view"><?php check_null( $comp_name )?></p>
                     </div>
                     <div class="divdiv">
-                        <p class="p-info">企業所在地：</p><p class="p-view"><?php address_check( $comp_address)  ?></p>
+                        <p class="p-info" title="<?php check_null($comp_address)?>">応募先所在地：</p><p class="p-view" title="<?php check_null($comp_address)?>"><?php address_check( $comp_address)  ?></p>
                     </div>
                     <div class="divdiv">
                         <p class="p-info">提出書類：</p><p class="p-view"><?php check_null(change_format($docmt_submit))?></p>
@@ -151,6 +153,9 @@
                         </div>
                     </div>
                 </div>
+
+                <p class="as_status">申請状況：<strong><span><?php check_null($as_name) ?></span></strong></p>
+
                 <div class="button_d">
                     <form method="POST" action="savedata.php" onsubmit="delete_btn();">
                         <input type="submit" value="削除" id="delete">
@@ -165,6 +170,8 @@
                     <a href="#"><img src="images/pagetop 1.png" alt="page-top"></a>
                 </div>
             </div>
+
+
 
 <script type="text/javascript">
     function delete_btn(){

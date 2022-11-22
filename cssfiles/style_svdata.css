@@ -18,6 +18,7 @@ body{
 .div-info { 
     width: 100%;
     display: flex;
+    align-items: flex-start;
     flex-wrap: wrap;
     align-content: flex-start;
     justify-content: space-between;
@@ -86,15 +87,6 @@ body{
     margin-top: 0;
 } 
 
-.div-info div:nth-of-type(2) .p-view,
-.div-info div:nth-of-type(3) .p-view,
-.div-info div:nth-of-type(5) .p-view,
-.div-info div:nth-of-type(6) .p-view,
-.div-info div:nth-of-type(8) .p-view,
-.div-info div:nth-of-type(10) .p-view {    
-    height: 25px;
-    
-}
 
 .p-info {
     width: 30%;
@@ -168,6 +160,15 @@ body{
     width: 120px;
     height: 40px;   
 }
+
+.as_status {
+    margin-left: auto;
+    text-align: center;
+    border: 3px solid red;
+    border-radius: 5%;
+    width: 180px;
+}
+
 
 /*savedata.html↑*/
 

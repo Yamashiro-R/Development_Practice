@@ -53,8 +53,9 @@
         $docmt_submit = $row['docmt_submit']; //提出書類
         $job = $row['job']; //職種
         $person_charge_name = $row['person_charge_name']; //担当者名
-        $impressions =$row['impressions'];
-        $future_activities = $row['future_activities'];
+        $impressions =$row['impressions'];//反省
+        $future_activities = $row['future_activities'];//今後の予定
+        $as_name = $row['apply_status'];
 
 
     }catch (PDOException $e) {
@@ -62,6 +63,7 @@
     }
 
 ?>
+
 
 <!DOCTYPE html>
     <html lang="ja">
@@ -73,7 +75,7 @@
         </head>
         <body>
             <div class="return">    <!-- 犬の画像用戻るボタン -->
-                <a href="dvSearch.php"><img src="images/innu.jpeg"></a>
+                <a href="dvSearch.php#table_erea"><img src="images/innu.jpeg"></a>
             </div>
             <div id="main_title">   <!-- 共通のタイトル部分 -->
                 <h1>就職活動<br class="br-sp">過去データ</h1>
@@ -93,7 +95,7 @@
                         <p class="p-info">応募先企業：</p><p class="p-view"><?php check_null( $comp_name )?></p>
                     </div>
                     <div class="divdiv">
-                        <p class="p-info">企業所在地：</p><p class="p-view"><?php address_check( $comp_address) ?></p>
+                        <p class="p-info" title="<?php check_null($comp_address)?>">応募先所在地：</p><p class="p-view" title="<?php check_null($comp_address)?>"><?php address_check( $comp_address) ?></p>
                     </div>
                     <div class="divdiv">
                         <p class="p-info">提出書類：</p><p class="p-view"><?php check_null(change_format($docmt_submit))?></p>
@@ -110,15 +112,16 @@
                     
                     <div class="test">
                         <div>
-                            <p class="p-info">感想、反省点：</p><p class="p-view">表示</p>
+                            <p class="p-info">感想、反省点：</p><p class="p-view"><?php check_null($impressions) ?></p>
                         </div>
                     </div>
                     <div class="test">
                         <div>
-                            <p class="p-info">今後の活動予定：</p><p class="p-view">表示</p>
+                            <p class="p-info">今後の活動予定：</p><p class="p-view"><?php check_null($future_activities) ?></p>
                         </div>
                     </div>
                 </div>
+                <p class="as_status">申請状況：<strong><span><?php check_null($as_name) ?></span></strong></p>
                 <div class="page-top">
                     <a href="#"><img src="images/pagetop 1.png" alt="page-top"></a>
                 </div>

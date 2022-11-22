@@ -56,7 +56,7 @@
                             <!-- ここに詳細欄を追加していく-->
                         </div>  
                         
-                        </div>
+                    </div>
                     
                     <div class="button">
                         <input type="reset"  class="btn_item" value="キャンセル" alt="キャンセル">

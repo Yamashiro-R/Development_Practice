@@ -11,6 +11,7 @@
     if(isset($_GET['page'])){
         $page = $_GET['page'];
         $_SESSION['page'] = $_GET['page']; 
+        header('Location: dvSearch.php#table_erea');
     }else if(isset($_SESSION['page'])){
         $page = $_SESSION['page'];
     } else{
@@ -154,7 +155,7 @@
                     </form>
                 </div>
                 <div>
-                    <table class="dvtable">
+                    <table class="dvtable" id="table_erea">
                         <thead>
                             <tr>
                                 <th scope="col">最終<br class="br-sp">更新日</th>

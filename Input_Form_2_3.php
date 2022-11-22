@@ -54,6 +54,8 @@
                         <div class="divdiv_width_all_ex" id="text_info">
                             <!-- ここに詳細欄を追加していく-->
                         </div>
+                            <div class="divdiv_width_all_ex" id="text_info"></div>
+                               
                     </div>
                     
                     <div class="button">
