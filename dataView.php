@@ -1,10 +1,42 @@
+<?php
+    include 'includes/login.php';
+    include 'function.php';
+
+    $dsn = 'mysql:host=localhost;dbname=job_hunt_manage;charset=utf8';
+    $user = 'root';
+    $password = '';
+
+    try{
+        $db = new PDO($dsn, $user, $password);
+        $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+        //プリペアドステートメントを作成
+        $stmt = $db->prepare("SELECT * FROM ac_comp_data_tb join apply_status_tb
+                            on ac_comp_data_tb.as_number = apply_status_tb.as_number
+                             where act_id = :ID");
+        
+        //パラメータ割り当て
+        $stmt->bindParam(':ID', $_SESSION['ID'], PDO::PARAM_STR);
+        //クエリの実行
+        $stmt->execute();
+
+        // print_r($row = $stmt->fetchAll());
+        $row = $stmt->fetchAll();
+
+    }catch (PDOException $e) {
+        exit('エラー：' . $e->getMessage());
+    }
+
+
+    
+
+?>
+
 <!DOCTYPE html>
     <html lang="ja">
         <head>
             <meta charset="UTF-8">
             <link rel="stylesheet" href="cssfiles/style.css">
             <link rel="stylesheet" href="cssfiles/style_dv_dvS.css">
-            <link rel="stylesheet" href="cssfiles/style_flexible.css">
             <title>データ一覧</title>
         </head>
         <body>
@@ -19,44 +51,16 @@
                     <table class="dvtable">
                         <thead>
                             <tr>
-                                <th scope="col">最終更新日</th>
-                                <th scope="col">会社名</th>
+                                <th scope="col">最終<br class="br-sp">更新日</th>
+                                <th scope="col">企業名</th>
                                 <th scope="col">所在地</th>
                                 <th scope="col">職種</th>
+                                <th scope="col">申請<br class="br-sp">状況</th>
                             </tr>
                         </thead>
 
                         <tbody>
-                            <tr class="row1">
-                                <td class="day">2022/5/4</td>
-                                <td class="comp-name">○○○○株式会社<button onclick="location='savedata.php'"  class="dvtable-view">詳細閲覧</button></td>
-                                <td class="address">那覇市</td>
-                                <td class="Occupation">SE</td>
-                            </tr>
-                            <tr class="row2">
-                                <td class="day"></td>
-                                <td class="comp-name"></td>
-                                <td class="address"></td>
-                                <td class="Occupation"></td>
-                            </tr>
-                            <tr class="row3">
-                                <td class="day"></td>
-                                <td class="comp-name"></td>
-                                <td class="address"></td>
-                                <td class="Occupation"></td>
-                            </tr>
-                            <tr class="row4">
-                                <td class="day"></td>
-                                <td class="comp-name"></td>
-                                <td class="address"></td>
-                                <td class="Occupation"></td>
-                            </tr>
-                            <tr class="row5">
-                                <td class="day"></td>
-                                <td class="comp-name"></td>
-                                <td class="address"></td>
-                                <td class="Occupation"></td>
-                            </tr>
+                            <?php create_tbody($row);?>
                         </tbody>
                     </table>
                 </div>
@@ -70,6 +74,5 @@
         </body>
     
     </html>
-
 
 </html>
