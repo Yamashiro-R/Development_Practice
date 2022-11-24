@@ -1,15 +1,6 @@
 <?php
     include 'includes/login.php';
     include 'function.php';
-<<<<<<< HEAD
-    echo 'ユーザ名：'.$_SESSION['name'];
-
-    $reference_number = $_POST['no'];
-
-    $dsn = 'mysql:host=localhost;dbname=job_hunt_manage;charset=utf8';
-    $user = 'root';
-    $password = '';
-=======
 
     if(isset($_POST['no'])){
         $reference_number = $_POST['no'];
@@ -32,7 +23,6 @@
     $dsn = 'mysql:host=192.168.2.136;dbname=job_hunt_manage;charset=utf8';
     $user = 'user';
     $password = 'test';
->>>>>>> 8176cc507516f8dbb0ebfbef490524f318fcd64b
 
     try{
         $db = new PDO($dsn, $user, $password);
@@ -62,17 +52,9 @@
         $stmt_day->execute();
         $stmt_detalis->execute();
 
-<<<<<<< HEAD
-        // print_r($row = $stmt->fetchAll());
         $row = $stmt_ac_comp->fetch();
         $row_day = $stmt_day->fetchAll();
         $row_detalis = $stmt_detalis->fetchAll();
-
-=======
-        $row = $stmt_ac_comp->fetch();
-        $row_day = $stmt_day->fetchAll();
-        $row_detalis = $stmt_detalis->fetchAll();
->>>>>>> 8176cc507516f8dbb0ebfbef490524f318fcd64b
         //データの切り分け
         //  print_r($row_detalis);
         $family_name = $row['family_name']; //科名
@@ -86,26 +68,6 @@
         $docmt_submit = $row['docmt_submit']; //提出書類
         $job = $row['job']; //職種
         $person_charge_name = $row['person_charge_name']; //担当者名
-<<<<<<< HEAD
-
-
-        // $youbi = array_column($row_day,'date_data');
-        // $begin_time_data = array_column($row_day,'begin_time_data');
-        // $end_time_data = array_column($row_day,'end_time_data');
-
-        // $sp = array_column($row_detalis,'select_process');
-
-        
-
-        // print_r($sp);
-        
-
-
-
-    
-        
-
-=======
         $impressions =$row['impressions'];
         $future_activities = $row['future_activities'];
         $status = $row['as_number'];
@@ -113,7 +75,6 @@
 
 
         $param_p = json_encode($status);
->>>>>>> 8176cc507516f8dbb0ebfbef490524f318fcd64b
 
 
     }catch (PDOException $e) {
@@ -122,14 +83,11 @@
 
 ?>
 
-<<<<<<< HEAD
-=======
 
 
 
 
 
->>>>>>> 8176cc507516f8dbb0ebfbef490524f318fcd64b
 <!DOCTYPE html>
     <html lang="ja">
         <head>
@@ -140,11 +98,7 @@
         </head>
         <body>
             <div class="return">    <!-- 犬の画像用戻るボタン -->
-<<<<<<< HEAD
-                <a href="dataView.php"><img src="images/innu.jpeg"></a>
-=======
                 <a href="dataView.php#table_erea"><img src="images/innu.jpeg"></a>
->>>>>>> 8176cc507516f8dbb0ebfbef490524f318fcd64b
             </div>
             <div id="main_title">   <!-- 共通のタイトル部分 -->
                 <h1>就職活動<br class="br-sp">保存データ</h1>
@@ -152,39 +106,6 @@
             <div class="big-div">
                 <div class="div-info">
                     <div class="divdiv">
-<<<<<<< HEAD
-                        <p class="p-info">科名：</p><p class="p-view"><?php echo $family_name ?></p>
-                    </div>
-                    <div class="divdiv">
-                        <p class="p-info">氏名：</p><p class="p-view"><?php echo $account_name ?></p>
-                    </div>
-                    <div class="divdiv">
-                        <p class="p-info">番号：</p><p class="p-view"><?php echo $attend_number ?></p>
-                    </div>
-                    <div class="divdiv">
-                        <p class="p-info">応募件数：</p><p class="p-view"><?php echo $no_appli ?> 件目</p>
-                    </div>
-                    <div class="divdiv">
-                        <p class="p-info">応募方法：</p><p class="p-view"><?php change_format($how_to_apply)?></p>
-                    </div>
-                    <div class="divdiv">
-                        <p class="p-info">書類選考：</p><p class="p-view"><?php echo $docmt_screening?></p>
-                    </div>
-                    <div class="divdiv">
-                        <p class="p-info">応募先企業：</p><p class="p-view"><?php echo $comp_name ?></p>
-                    </div>
-                    <div class="divdiv">
-                        <p class="p-info">応募先所在地：</p><p class="p-view"><?php address_check($comp_address) ?></p>
-                    </div>
-                    <div class="divdiv">
-                        <p class="p-info">提出書類：</p><p class="p-view"><?php change_format($docmt_submit)?></p>
-                    </div>
-                    <div class="divdiv">
-                        <p class="p-info">職種：</p><p class="p-view"><?php echo $job ?></p>
-                    </div>
-                    <div class="divdiv">
-                        <p class="p-info">担当者名：</p><p class="p-view"><?php echo $person_charge_name ?></p>
-=======
                         <p class="p-info">科名：</p><p class="p-view"><?php check_null($family_name) ?></p>
                     </div>
                     <div class="divdiv">
@@ -216,7 +137,6 @@
                     </div>
                     <div class="divdiv">
                         <p class="p-info">担当者名：</p><p class="p-view"><?php check_null( $person_charge_name) ?></p>
->>>>>>> 8176cc507516f8dbb0ebfbef490524f318fcd64b
                     </div>
                 </div>
                 <div class="div-detail">
@@ -224,48 +144,11 @@
 
                     <div class="test">
                         <div>
-<<<<<<< HEAD
-                            <p>一次：</p><p>日付(<span>○○月 ○○日</span>)</p><p>試験内容(<span>適性検査</span>)</p>
-                        </div>
-                        <div>
-                            <p class="p-info">適性検査詳細：</p><p class="p-view">表示</p>
-=======
                             <p class="p-info">感想、反省点：</p><p class="p-view"><?php check_null( $impressions )?></p>
->>>>>>> 8176cc507516f8dbb0ebfbef490524f318fcd64b
                         </div>
                     </div>
                     <div class="test">
                         <div>
-<<<<<<< HEAD
-                            <p>二次：</p><p>日付(<span>○○月 ○○日</span>)</p><p>試験内容(<span>面接</span>)</p>
-                        </div>
-                        <div>
-                            <p class="p-info">面接試験詳細：</p><p class="p-view">表示</p>
-                        </div>
-                    </div>
-                    <div class="test">
-                        <div>
-                            <p>三次：</p><p>日付(<span>○○月 ○○日</span>)</p><p>試験内容(<span>実技</span>)</p>
-                        </div>
-                        <div>
-                            <p class="p-info">実技試験詳細：</p><p class="p-view">表示</p>
-                        </div>
-                    </div>
-                    <div class="test">
-                        <div>
-                            <p class="p-info">感想、反省点：</p><p class="p-view">表示</p>
-                        </div>
-                    </div>
-                    <div class="test">
-                        <div>
-                            <p class="p-info">今後の活動予定：</p><p class="p-view"><?php   ?></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="button">
-                    <button onclick="location.href='#!'">削除</button>
-                    <button onclick="location.href='#!'">編集</button>
-=======
                             <p class="p-info">今後の活動予定：</p><p class="p-view"><?php check_null( $future_activities) ?></p>
                         </div>
                     </div>
@@ -282,7 +165,6 @@
                     <form action="">
                         <input type="submit" value="編集" id="edit">
                     </form>
->>>>>>> 8176cc507516f8dbb0ebfbef490524f318fcd64b
                 </div>
                 <div class="page-top">
                     <a href="#"><img src="images/pagetop 1.png" alt="page-top"></a>

@@ -1,10 +1,4 @@
 <?php 
-<<<<<<< HEAD
-    /*配列に添え字の要素があるか判定して、ある場合はその要素を出力*/ 
-    function orig_array_key_exists (int $index, array $array) {
-        if (array_key_exists($index,$array)) {
-            echo $array[$index];
-=======
     /*値がないときの出力*/
     function check_null($value){
         if($value == "" || $value == null || $value == 0){
@@ -19,22 +13,11 @@
             return "無回答";
         }else{
             return $value;
->>>>>>> 8176cc507516f8dbb0ebfbef490524f318fcd64b
         }
     }
 
 
 
-<<<<<<< HEAD
-    /*アドレス値から市町村だけを出力。県外の場合は県名だけ出力*/
-    function address_key_exists (int $index, array $array) {
-        if (array_key_exists($index,$array)) {
-            if(preg_match("/沖縄県/",$array[$index])){
-                create_address($array[$index]);
-            }else{
-                create_address_out($array[$index]);
-            }
-=======
 
 
 
@@ -54,7 +37,6 @@
     function address_key_exists (int $index,array $array) {
         if (array_key_exists($index,$array)) {
             address_check($array[$index]);
->>>>>>> 8176cc507516f8dbb0ebfbef490524f318fcd64b
         }
     }
 
@@ -65,11 +47,8 @@
                 create_address_out($address);
             }
     }
-<<<<<<< HEAD
-=======
 
 
->>>>>>> 8176cc507516f8dbb0ebfbef490524f318fcd64b
     /*県名が沖縄県のとき市町村を判定し出力*/
     function create_address ($comp_address) {
         $okinawa = array("那覇市","宜野湾市","石垣市","浦添市","名護市","糸満市","沖縄市","豊見城市","うるま市","宮古島市","南城市",
@@ -79,21 +58,13 @@
         $i = 0;
         for(;$i < count($okinawa);$i++) {
             if(preg_match("/$okinawa[$i]/",$comp_address)){
-<<<<<<< HEAD
-                echo $okinawa[$i];
-=======
                 check_null($okinawa[$i]) ;
->>>>>>> 8176cc507516f8dbb0ebfbef490524f318fcd64b
                 break;
             }
         }
 
         if($i >= count($okinawa)) {
-<<<<<<< HEAD
-            echo $comp_address;
-=======
             check_null($comp_address);
->>>>>>> 8176cc507516f8dbb0ebfbef490524f318fcd64b
         }
     }
 
@@ -107,31 +78,19 @@
         $i = 0;
         for(;$i < count($kenn);$i++) {
             if(preg_match("/$kenn[$i]/",$comp_address)){
-<<<<<<< HEAD
-                echo $kenn[$i];
-=======
                 check_null($kenn[$i]) ;
->>>>>>> 8176cc507516f8dbb0ebfbef490524f318fcd64b
                 break;
             }
         }
 
         if($i >= count($kenn)) {
-<<<<<<< HEAD
-            echo $comp_address;
-=======
             check_null($comp_address) ;
->>>>>>> 8176cc507516f8dbb0ebfbef490524f318fcd64b
         }
     }
 
 
     /*tableの中身を生成*/
-<<<<<<< HEAD
-    function create_tbody ($row) {
-=======
     function create_tbody ($row,$page) {
->>>>>>> 8176cc507516f8dbb0ebfbef490524f318fcd64b
         if($row != false){
             $modified = array_column($row, 'modified');
             $comp_name = array_column($row, 'comp_name');
@@ -145,37 +104,22 @@
             while($i < 5){
             echo '<tr class="row', $i + 1 , '">
                 <td class="day">', date_only($i ,$modified) ,'</td>
-<<<<<<< HEAD
-                <td class="comp-name">', orig_array_key_exists( $i ,$comp_name) , create_button($i,$row) ,'</td>
-                <td class="address">', address_key_exists($i,$comp_address) , '</td>
-                <td class="job">', orig_array_key_exists($i,$job) ,'</td>
-                <td class="satus">', orig_array_key_exists($i++,$apply_status) ,'</td>
-=======
                 <td class="comp-name"><label>', orig_array_key_exists( $i ,$comp_name) , create_button($i,$row,$page)   ,'</lable></td>
                 <td class="address" title="', orig_array_key_exists($i,$comp_address) ,'">', address_key_exists($i,$comp_address) , '</td>
                 <td class="job">', orig_array_key_exists($i,$job) ,'</td>
                 <td class="show">', create_button($i++,$row,$page) ,'</td>
->>>>>>> 8176cc507516f8dbb0ebfbef490524f318fcd64b
             </tr>
             ';
             }
         }else{
             $i = 0;
-<<<<<<< HEAD
-            while($i < 5){
-=======
             while($i++ < 5){
->>>>>>> 8176cc507516f8dbb0ebfbef490524f318fcd64b
             echo '<tr class="row">
                 <td class="day"></td>
                 <td class="comp-name"></td>
                 <td class="address"></td>
                 <td class="job"></td>
-<<<<<<< HEAD
-                <td class="satus"></td>
-=======
                 <td class="show"></td>
->>>>>>> 8176cc507516f8dbb0ebfbef490524f318fcd64b
             </tr>
             ';
 
@@ -183,13 +127,6 @@
          }
     }
 
-<<<<<<< HEAD
-    /*buttonの作成*/ 
-    function create_button (int $index, $row) {
-        if (array_key_exists($index,$row)) {
-            echo '<form action="savedata.php" class="btn_form" method="POST"><button type="submit" class="dvtable-view" value="' , $row[$index][0] ,
-                 '" name="no">詳細閲覧</button>';
-=======
 
 
 
@@ -206,15 +143,12 @@
             echo '<form action="pastdata.php" class="btn_form" method="POST"><button type="submit" class="dvtable-view" value="' , $row[$index][0] ,
                  '" name="no">閲覧</button></form>';
             }
->>>>>>> 8176cc507516f8dbb0ebfbef490524f318fcd64b
         }
 
     }
 
 
 
-<<<<<<< HEAD
-=======
     function create_btn_chg ($page,$max,$pass){
         $max_page = ceil($max/5);
         if($pass == 'search'){
@@ -262,16 +196,11 @@
 
 
 
->>>>>>> 8176cc507516f8dbb0ebfbef490524f318fcd64b
     /*日時の値で日付だけ出力したいとき*/
     function date_only($index,$date) {
         $day = "";
         if (array_key_exists($index,$date)) {
-<<<<<<< HEAD
-            echo date('Y年m月d日',strtotime($date[$index]));
-=======
            check_null(date('Y年m月d日',strtotime($date[$index]))) ;
->>>>>>> 8176cc507516f8dbb0ebfbef490524f318fcd64b
         }
 
     }
@@ -294,64 +223,11 @@
            }
         }
 
-<<<<<<< HEAD
-        echo $new_hta ;
-=======
         return $new_hta ;
->>>>>>> 8176cc507516f8dbb0ebfbef490524f318fcd64b
     } 
 
 
     /*一次、二次、三次及びその他の出力形式の作成*/
-<<<<<<< HEAD
-    // function print_data($day,$data){
-    //     /*データの切り分け*/
-    //     /*$day*/
-    //     $youbi = array_column($day,'date_data');
-    //     $begin_time_data = array_column($day,'begin_time_data');
-    //     $end_time_data = array_column($day,'end_time_data');
-
-    //     /*$data*/
-    //     $status = 1;
-    //     $sp = array_column($data,'select_process');
-        
-
-
-    //     /*試験名を格納する*/
-
-    //     for($i=0;$i < 3;$i++){
-    //         $datalis = 
-    //         '<div class="test">
-    //             <div>
-    //                 <p>'. $status .'次：</p>
-    //                 <p>日付(<'. date('m月d日',$youbi[$i]) .' ' . $begin_time_data[$i] . '～' . $end_time_data[$i] .')</p>
-    //                 <p>試験内容＝＞';
-                    
-    //         for($j=0;;$j++){
-                
-    //             $datalis .= $sp[$i+$j];
-    //             if(array_key_exists($i+$j+1,$data) && $status == $data[$i+$j+1]['td_status']){
-    //                 $datalis .= ' + ';
-    //             }else{
-    //                 $datalis .= '</p></div>';
-    //                 $status++;
-    //                 break;
-    //             }
-    //         }
-
-    //         $datalis .= '<div>
-    //                         <p class="p-info"></p>';
-                            
-                            
-                            
-    //                         <p class="p-view">'</p>
-    //                     </div>
-    //                  </div>';
-                    
-                
-    //     }
-    // }
-=======
     function print_data($day,$data){
 
         if($day){
@@ -529,5 +405,4 @@
 
     }
 
->>>>>>> 8176cc507516f8dbb0ebfbef490524f318fcd64b
 ?>

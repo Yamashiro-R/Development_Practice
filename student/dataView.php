@@ -2,11 +2,6 @@
     include 'includes/login.php';
     include 'function.php';
 
-<<<<<<< HEAD
-    $dsn = 'mysql:host=localhost;dbname=job_hunt_manage;charset=utf8';
-    $user = 'root';
-    $password = '';
-=======
     $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';
     $user = 'user';
     $password = 'test';
@@ -21,7 +16,6 @@
     } else{
         $page = 1;
     }
->>>>>>> 8176cc507516f8dbb0ebfbef490524f318fcd64b
 
     try{
         $db = new PDO($dsn, $user, $password);
@@ -29,12 +23,6 @@
         //プリペアドステートメントを作成
         $stmt = $db->prepare("SELECT * FROM ac_comp_data_tb join apply_status_tb
                             on ac_comp_data_tb.as_number = apply_status_tb.as_number
-<<<<<<< HEAD
-                             where act_id = :ID");
-        
-        //パラメータ割り当て
-        $stmt->bindParam(':ID', $_SESSION['ID'], PDO::PARAM_STR);
-=======
 
                              where act_id = :ID
                              ORDER by modified 
@@ -46,7 +34,6 @@
         $stmt->bindParam(':page', $limit, PDO::PARAM_INT);
         $stmt->bindParam(':num', $num, PDO::PARAM_INT);
 
->>>>>>> 8176cc507516f8dbb0ebfbef490524f318fcd64b
         //クエリの実行
         $stmt->execute();
 
@@ -58,8 +45,6 @@
     }
 
 
-<<<<<<< HEAD
-=======
     try{
         $stmt = $db->prepare("SELECT * FROM ac_comp_data_tb join apply_status_tb
                             on ac_comp_data_tb.as_number = apply_status_tb.as_number
@@ -79,7 +64,6 @@
        exit('エラー：' . $e->getMessage());
    }
 
->>>>>>> 8176cc507516f8dbb0ebfbef490524f318fcd64b
     
 
 ?>
@@ -95,7 +79,7 @@
         <body class="view_back-color">
             <div>
                 <div class="return">
-                    <a href="./home.php"><img class="return" src="images/innu.jpeg"></a>
+                    <a href="./home_2.php"><img class="return" src="images/innu.jpeg"></a>
                 </div>
                 <div id="main_title"> 
                     <h1>データ一覧</h1>
@@ -108,20 +92,12 @@
                                 <th scope="col">企業名</th>
                                 <th scope="col">所在地</th>
                                 <th scope="col">職種</th>
-<<<<<<< HEAD
-                                <th scope="col">申請<br class="br-sp">状況</th>
-=======
                                 <th scope="col">詳細<br class="br-sp">閲覧</th>
->>>>>>> 8176cc507516f8dbb0ebfbef490524f318fcd64b
                             </tr>
                         </thead>
 
                         <tbody>
-<<<<<<< HEAD
-                            <?php create_tbody($row);?>
-=======
                             <?php create_tbody($row,'save');?>
->>>>>>> 8176cc507516f8dbb0ebfbef490524f318fcd64b
                         </tbody>
                     </table>
                 </div>

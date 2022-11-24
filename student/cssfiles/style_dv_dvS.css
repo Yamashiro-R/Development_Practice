@@ -1,13 +1,10 @@
 /*dataView.html↓*/
-<<<<<<< HEAD
-=======
 .view_back-color{
     /* saveと統一 */
     background-color: #99ffcc;
 }
 
 
->>>>>>> 8176cc507516f8dbb0ebfbef490524f318fcd64b
 .br-sp{
     display: none;
 }
@@ -19,11 +16,8 @@ table th,table td {
 }
     
 .dvtable {
-<<<<<<< HEAD
-=======
     table-layout: fixed;
     box-sizing: border-box;
->>>>>>> 8176cc507516f8dbb0ebfbef490524f318fcd64b
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 20px;
@@ -42,23 +36,11 @@ table th,table td {
 .dvtable th,td {
     box-sizing: border-box;
     text-align: center;
-<<<<<<< HEAD
-    width: auto;
-    height: 50px;
-}
-
-tr td:nth-of-type(1),
-tr td:nth-of-type(2){
-    word-wrap: break-word;
-    width: 30%;
-    height: 60px;
-=======
     height: 50px;
 }
 
 th:nth-of-type(1){
     width: 150px;
->>>>>>> 8176cc507516f8dbb0ebfbef490524f318fcd64b
 }
 
 th:nth-of-type(2){
@@ -93,12 +75,6 @@ td{
     font-size: 80%;
 }
 
-<<<<<<< HEAD
-.btn_form {
-    display: inline;
-}
-
-=======
 .btn_form{
     display: inline;
 }
@@ -110,7 +86,6 @@ td{
 .comp-name button{
     display: none;
 }
->>>>>>> 8176cc507516f8dbb0ebfbef490524f318fcd64b
 
 
 /*dataView.htmlここまで↑*/
@@ -144,14 +119,6 @@ td{
     font-size: small;
 }
 
-<<<<<<< HEAD
-.dvtable-view {
-    margin-bottom: 5px;
-    margin-left: 10px;
-}
-
-
-=======
 
 input[type="search"] {
     -webkit-appearance: searchfield;
@@ -198,7 +165,6 @@ input[type="search"] {
 }
 
 
->>>>>>> 8176cc507516f8dbb0ebfbef490524f318fcd64b
 
 /*dvSearch.html↑*/
 
@@ -223,8 +189,6 @@ input[type="search"] {
     font-size: 140%;
 }
 
-<<<<<<< HEAD
-=======
 th:nth-of-type(1){
     width: 130px;
 }
@@ -234,7 +198,6 @@ th:nth-of-type(2){
     width: 120px;
 }
 
->>>>>>> 8176cc507516f8dbb0ebfbef490524f318fcd64b
 .dvtable td {
     font-size: 90%;
 }
