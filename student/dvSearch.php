@@ -130,7 +130,7 @@
         <body class="serch_back-color">
             <div>
                 <div class="return">
-                    <a href="home.php"><img src="images/innu.jpeg"></a>
+                    <a href="home_2.php"><img src="images/innu.jpeg"></a>
                 </div>
                 <div id="main_title"> 
                     <h1>報告書📄<br class="br-sp">全データ検索</h1>

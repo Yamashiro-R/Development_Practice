@@ -3,7 +3,11 @@
     if (isset($_SESSION['ID'])) {
         //セッションにユーザIDがある＝ログインしている
         //ログイン済みならトップページに遷移する
-        header('Location: home.php');
+        if($_SESSION['ID'] / 100 == 99) {
+            header('Location: teacher/home_2.php'); /*管理者ユーザ*/
+        }else{
+            header('Location: student/home_2.php');/*生徒ユーザ*/
+        }
         exit();
     }else if (isset($_POST['ID']) && isset($_POST['pass'])) {
         //ログインしていないがユーザ名とパスワードが送信されたとき
@@ -29,7 +33,13 @@
                 //ユーザが存在していたら、セッションにユーザIDセット
                 $_SESSION['ID'] = $row['act_id'];
                 $_SESSION['name'] = $row['account_name'];
-                header('Location: home.php');
+
+                if($_SESSION['ID'] / 100 == 99) {
+                    header('Location: teacher/home_2.php');
+                }else{
+                    header('Location: student/home_2.php');
+                }
+        
 
 
                 // if(intval($_POST['pass'])  == $_POST['ID']){
