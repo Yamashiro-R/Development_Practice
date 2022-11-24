@@ -1,3 +1,7 @@
+<?php
+    include 'includes/login.php';
+?>
+
 <!DOCTYPE html>
     <html lang="ja">
         <head>
@@ -16,19 +20,19 @@
             </div>
 
             <div class="big-div">   
-                <form action="#">
+                <form action="#" name="test">
                     <div class="div-info">
-                        <div class="divdiv_col_1 divdiv"> 
-                            <p class="p-info p-width">一次試験日付：</p>
-                            <input type="date" class="input-view" name="once_date">
+                        <div class="divdiv_col_1 divdiv input_width"> 
+                            <p class="p-info p-width_1"><label for="test_day">一次試験日付：</label></p>
+                            <input type="date" class="input-view" name="once_date" id="test_day">
                         </div>      
                         <div class="divdiv"> 
-                            <p class="p-info p-width">開始日時：</p>
-                            <input type="time" class="input-view input_view_time time_margin">
+                            <p class="p-info p-width_2"><label for="start_time">開始日時：</label></p>
+                            <input type="time" class="input-view input_view_time time_margin" id="start_time">
                         </div> 
                         <div class="divdiv"> 
-                            <p class="p-info p-width">終了日時：</p>
-                            <input type="time" class="input-view input_view_time time_margin">
+                            <p class="p-info p-width_2"><label for="end_time">終了日時：</label></p>
+                            <input type="time" class="input-view input_view_time time_margin" id="end_time">
                         </div> 
 
 
@@ -36,22 +40,23 @@
                             <p class="p-info">一次試験内容：</p>
                             
                             <div class="Input_Form_2_1_area_div">
-                                <div class="first-exam_test"><input type="checkbox" name="First-stage exam" value="1">筆記(専門)</div>
-                                <div class="first-exam_test"><input type="checkbox" name="First-stage exam" value="2">筆記(一般常識)</div>
-                                <div class="first-exam_test"><input type="checkbox" name="First-stage exam" value="3">適性検査(専門)</div>
-                                <div class="first-exam_test"><input type="checkbox" name="First-stage exam" value="4">適性検査(一般常識)</div>
-                                <div class="first-exam_test"><input type="checkbox" name="First-stage exam" value="5">面接(個別)</div>
-                                <div class="first-exam_test"><input type="checkbox" name="First-stage exam" value="6">面接(集団)</div>
-                                <div class="first-exam_test"><input type="checkbox" name="First-stage exam" value="7">面接(ディスカッション等)</div>
-                                <div class="first-exam_test"><input type="checkbox" name="First-stage exam" value="8">作文</div>
-                                <div class="first-exam_test"><input type="checkbox" name="First-stage exam" value="9">実技</div>
-                                <div class="first-exam_test"><input type="checkbox" name="First-stage exam" value="10">その他</div>
+                                <div class="exam_test"><label><input type="checkbox" name="test_type" value="1">筆記(専門)</label></div>
+                                <div class="exam_test"><label><input type="checkbox" name="test_type" value="2">筆記(一般<span class="comm">常識</span>)</label></div>
+                                <div class="exam_test"><label><input type="checkbox" name="test_type" value="3">適性検査(専門)</label></div>
+                                <div class="exam_test"><label><input type="checkbox" name="test_type" value="4">適性検査(一般<span class="comm">常識</span>)</label></div>
+                                <div class="exam_test"><label><input type="checkbox" name="test_type" value="5">面接(個別)</label></div>
+                                <div class="exam_test"><label><input type="checkbox" name="test_type" value="6">面接(集団)</label></div>
+                                <div class="exam_test"><label><input type="checkbox" name="test_type" value="7">面接(ディスカッション等)</label></div>
+                                <div class="exam_test"><label><input type="checkbox" name="test_type" value="8">作文</label></div>
+                                <div class="exam_test"><label><input type="checkbox" name="test_type" value="9">実技</label></div>
+                                <div class="exam_test"><label><input type="checkbox" name="test_type" value="10">その他</label></div>
                             </div>
                         </div>
-                        <div class="divdiv_width_all_ex" id="text_info"></div>  
-                            
+                        <div class="divdiv_width_all_ex" id="text_info">
+                            <!-- ここに詳細欄を追加していく-->
+                        </div>  
                         
-                     </div>
+                    </div>
                     
                     <div class="button">
                         <input type="reset"  class="btn_item" value="キャンセル" alt="キャンセル">
@@ -65,6 +70,7 @@
 
 
             <script type="text/javascript" src="methot.js"></script>
+            <script type="text/javascript">setting_detail()</script>
 
         </body>
     </html>

@@ -101,19 +101,92 @@ p {
     margin-left: 10px;
     position: absolute;
 }
+
 .button{
     margin-top: 50px;
     margin-bottom: 20px;
     padding-right: 10px;
     text-align: right;
 }
+
 .button input ,.button button{
     width: 120px;
     height: 40px;   
- 
 }
 
 .change {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.change button {
+    width: 70px;
+    height: 30px;
+    margin-top: 40px;
+    font-weight: bold;
+    font-size: 1em;
+}
+
+.change button:first-child {
+    margin-right: 100px;
+}
+
+
+#tg {
+    display: none;
+    }
+
+.menu {
+    position: relative;
+    visibility: hidden;
+    opacity: 0;
+    top: -10px;
+    list-style: none;
+    width: 120px;
+    text-align-last: center;
+    }
+
+.menu li {
+    border-bottom: solid 1px rgb(141, 141, 252);
+}
+
+.menu li:last-child {
+    border-bottom: none;
+}
+
+.menu a {
+    text-decoration: none;
+}
+
+.menu li:hover {
+    background-color: aquamarine;
+}
+
+.dropInput:checked ~ .menu {
+    visibility: visible;
+    opacity: 1;
+    top: 0;
+    background-color: rgb(213, 213, 253);
+     border: solid 1px rgb(141, 141, 252);
+    }
+
+.dropdown {
+    width: auto;
+    height: 24px;
+}
+
+  
+  .dropLabel:hover, .dropInput:checked + label {
+    color: blue;
+    }
+  
+  .animation {
+    -webkit-transition: all .3s;
+    -moz-transition: all .3s;
+    -ms-transition: all .3s;
+    transition: all .3s;
+    }
+
+/* .change {
     text-align: center;
     margin-bottom: 20px;
 }
@@ -128,20 +201,235 @@ p {
 
 .change button:first-child {
     margin-right: 100px;
+} */
+
+/*グローバルメニュー↓*/
+.button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+            appearance: none;
+    color: #fff;
+    background-color: red;
+    min-width: 120px;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    text-align: center;
+}
+
+@media (max-width: 760px) {
+    .button {
+    margin-right: 2.5rem;     
+    }
+}
+
+.brand {
+    font-weight: bold;
+    font-size: 20px; 
+}
+
+.site-header {
+    position: relative;
+    background-color: #def7ff; 
+}
+
+.site-header__wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1rem; 
+}
+
+/*項目*/
+li.nav__item {
+    list-style-type: none;
+}
+.nav__item  {
+    display: block;
+    padding: 1rem;
+}
+
+.nav__toggle {
+    display: none; 
+}
+/**/
+
+
+.site-header__wrapper {
+    justify-content: initial; 
+}
+
+
+
+.site-header__middle {
+    margin-left: auto; 
+}
+
+.nav__wrapper {
+    display: flex; 
 }
 
 
 
 
 
+/*ヘッダーのハンバーガーメニュー*/
+.hamburger-menu {
+    display: none;
+}
+
+.menu-btn {
+    position: fixed;
+    top: 5px;
+    right: 10px;
+    display: flex;
+    height: 40px;
+    width: 40px;
+    justify-content: center;
+    align-items: center;
+    z-index: 90;
+    background-color: #3584bb;
+}
+.menu-btn span,
+.menu-btn span:before,
+.menu-btn span:after {
+    content: '';
+    display: block;
+    height: 3px;
+    width: 25px;
+    border-radius: 3px;
+    background-color: #ffffff;
+    position: absolute;
+}
+.menu-btn span:before {
+    bottom: 8px;
+}
+.menu-btn span:after {
+    top: 8px;
+}
+
+/*ボタンがタップされたとき三本線を「×」マークにする*/
+
+#menu-btn-check:checked ~ .menu-btn span {
+    background-color: rgba(255, 255, 255, 0);/*メニューオープン時は真ん中の線を透明にする*/
+}
+#menu-btn-check:checked ~ .menu-btn span::before {
+    bottom: 0;
+    transform: rotate(45deg);
+}
+#menu-btn-check:checked ~ .menu-btn span::after {
+    top: 0;
+    transform: rotate(-45deg);
+}
 
 
 
 
+/*メニューの装飾CSS*/
+
+.menu-content {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 80;
+    background-color: #3584bb;
+}
+.menu-content ul {
+    padding: 70px 10px 0;
+}
+.menu-content ul li {
+    border-bottom: solid 1px #ffffff;
+    list-style: none;
+}
+.menu-content ul li a {
+    display: block;
+    width: 100%;
+    font-size: 15px;
+    box-sizing: border-box;
+    color:#ffffff;
+    text-decoration: none;
+    padding: 9px 15px 10px 0;
+    position: relative;
+}
+.menu-content ul li a::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-top: solid 2px #ffffff;
+    border-right: solid 2px #ffffff;
+    transform: rotate(45deg);
+    position: absolute;
+    right: 11px;
+    top: 16px;
+}
+
+
+/*ボタンを押したらメニューが出てくるように記述を追加・変更*/
+
+.menu-content {
+    width: 40%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 100%;/*leftの値を変更してメニューを画面外へ*/
+    z-index: 80;
+    background-color: #3584bb;
+    transition: all 0.5s;/*アニメーション設定*/
+}
 
 
 
 
+#menu-btn-check:checked ~ .menu-content {
+    left: 60%;/*メニューを画面内へ*/
+}
 
+#menu-btn-check:checked ~ body {
+    /* display: flex;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    justify-content: space-around;
+    opacity: 1;
+    z-index: 2000000000; */
+    pointer-events: none;
+}
 
+@media (max-width: 760px) {
+    .site-header__end {
+    padding-right: 4rem; 
+    }
+}
 
+@media (max-width: 760px) {
+    .hamburger-menu {
+        display: block;
+    }
+     
+    .site-header__end {
+        display: none;
+    }
+
+    .dropdown{
+        display: none;
+    }
+
+    /* .nav__wrapper {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        left: 0;
+        z-index: -1;
+        background-color: #d9f0f7;
+        opacity: 0;
+        visibility: visible;
+        transform: translateY(-100%);
+        transition: transform 0.3s ease-out, opacity 0.3s ease-out; 
+    }
+    .nav__wrapper.active {
+        visibility: visible;
+        opacity: 1;
+        transform: translateY(0);
+    } */
+} 

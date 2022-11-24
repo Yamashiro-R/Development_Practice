@@ -1,107 +1,180 @@
+<?php
+    include 'includes/login.php';
+    include 'function.php';
+
+    $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';
+    $user = 'user';
+    $password = 'test';
+
+    $num = 5;
+
+    if(isset($_GET['page'])){
+        $page = $_GET['page'];
+        $_SESSION['page'] = $_GET['page']; 
+        header('Location: dvSearch.php#table_erea');
+    }else if(isset($_SESSION['page'])){
+        $page = $_SESSION['page'];
+    } else{
+        $page = 1;
+    }
+
+
+    if($_POST){
+        $name = $_POST['comp_name'];
+        $address = $_POST['comp_address'];
+        $job = $_POST['job'];
+
+        $page = 1;
+        $_SESSION['page'];
+        $_SESSION['ps_val'] = $_POST;
+    }else if(!$_POST && isset($_SESSION['ps_val'])){
+        $_POST = $_SESSION['ps_val'];
+        $name = $_POST['comp_name'];
+        $address = $_POST['comp_address'];
+        $job = $_POST['job'];
+
+    } else{
+        $name = false;
+        $address = false;
+        $job = false;
+    }
+
+
+
+    $select = 'SELECT * FROM ac_comp_data_tb join apply_status_tb 
+                on ac_comp_data_tb.as_number = apply_status_tb.as_number 
+                where ac_comp_data_tb.as_number = 3 ';
+
+    if($name){
+        $select .=  "and comp_name LIKE '%". $name . "%'" ; 
+    }
+
+    if($address){
+        $select .=  "and comp_address LIKE '%". $address . "%'" ; 
+    }
+
+    if($job){
+        $select .=  "and job LIKE '%". $job . "%'" ; 
+    }
+
+
+    $select_limit = $select; 
+    $select_limit .= 'LIMIT :page , :num';
+
+
+
+    try{
+        $db = new PDO($dsn, $user, $password);
+        $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+        //プリペアドステートメントを作成
+        $stmt = $db->prepare("SELECT * FROM ac_comp_data_tb join apply_status_tb
+                            on ac_comp_data_tb.as_number = apply_status_tb.as_number
+                             where ac_comp_data_tb.as_number = 3 
+                             ORDER by modified 
+                             LIMIT :page,:num ");
+
+        if($name || $address || $job){
+            $stmt = $db->prepare($select_limit);
+        }
+        
+        
+
+       
+        //パラメータ割り当て
+        $limit = ($page - 1) * $num;
+        $stmt->bindParam(':page', $limit, PDO::PARAM_INT);
+        $stmt->bindParam(':num', $num, PDO::PARAM_INT);
+        //クエリの実行
+        $stmt->execute();
+
+        // print_r($row = $stmt->fetchAll());
+        $row = $stmt->fetchAll();
+
+
+
+    }catch (PDOException $e) {
+        exit('エラー：' . $e->getMessage());
+    }
+
+
+    try{
+         $stmt = $db->prepare("SELECT * FROM ac_comp_data_tb join apply_status_tb
+                                on ac_comp_data_tb.as_number = apply_status_tb.as_number
+                                where ac_comp_data_tb.as_number = 3 
+                                ORDER by modified ");
+        
+        if($name || $address || $job){
+            $stmt = $db->prepare($select);
+        }
+
+    
+        $stmt->execute();
+
+
+        $data = $stmt->fetchAll();
+        $records = count($data);
+
+    }catch (PDOException $e){
+        exit('エラー：' . $e->getMessage());
+    }
+?>
+
 <!DOCTYPE html>
     <html lang="ja">
         <head>
             <meta charset="UTF-8">
             <link rel="stylesheet" href="cssfiles/style.css">
             <link rel="stylesheet" href="cssfiles/style_dv_dvS.css">
-            <link rel="stylesheet" href="cssfiles/style_flexible.css">
             <title>就職活動データ検索</title>
         </head>
-        <body>
+        <body class="serch_back-color">
             <div>
                 <div class="return">
-                    <a href="./home.php"><img class="return" src="images/innu.jpeg"></a>
+                    <a href="home.php"><img src="images/innu.jpeg"></a>
                 </div>
                 <div id="main_title"> 
-                    <h1>就職活動<br class="br-sp">データ検索</h1>
+                    <h1>報告書📄<br class="br-sp">全データ検索</h1>
                 </div>
 
                 <div>
-                    <form class="dvSform" action="">
-                        <div class="dvStop">
-                            <div class="dvSname">
-                                <p>
-                                    <label for="names">会社名：</label>
-                                </p>
-                                <p>
-                                    <input type="text" id="names">
-                                </p>
-                            </div>
-                            <div class="dvSivf">
-                                <p>面接形式：</p>
-                                <p>
-                                    <select name="ivformat">
-                                        <option>個別面接</option>
-                                        <option>集団面接</option>
-                                        <option>ディスカッション等</option>
-                                    </select>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="dvScheck">
-                            <p>選考方法：</p>
-                            <p>
-                                <label><input type="checkbox" name="slctmth" value="適性検査">適性検査</label>
-                                <label><input type="checkbox" name="slctmth" value="作文（論文）">作文（論文）</label>
-                                <br class="br-sp">
-                                <label><input type="checkbox" name="slctmth" value="実技">実技</label>
-                                <br class="br-spr"> 
-                                <label><input type="checkbox" name="slctmth" value="面接">面接</label>
-                                <label><input type="checkbox" name="slctmth" value="その他">その他</label>
+                    <form class="dvSform" action="dvSearch.php" method="POST">
+                        <!-- <div class="dvStop">
+                            <div class="dvSname"> -->
+                        <div>
+                             <p>
+                                <label>企業名で検索<br><input type="search" name="comp_name" value="<?php echo $name ?>"></label>
                             </p>
-                            <div class="button"><input type="submit" value="🔍検索"></div> 
+                            <p>
+                                <label>所在地<br><span class="small">※市町村で記入<br>(県外の場合は県名で記入)</span><br><input type="search" name="comp_address" value="<?php echo $address ?>"> </label>
+                            </p>
+                            <p>
+                                <label>職種で検索<br><input type="search" name="job" value="<?php echo $job ?>"> </label>
+                                <div class="button_d"><input type="submit" value="🔍検索"></div> 
+                            </p>
                         </div>
                     </form>
                 </div>
                 <div>
-                    <table class="dvtable">
+                    <table class="dvtable" id="table_erea">
                         <thead>
                             <tr>
-                                <th scope="col">受験日</th>
+                                <th scope="col">最終<br class="br-sp">更新日</th>
                                 <th scope="col">企業名</th>
                                 <th scope="col">所在地</th>
                                 <th scope="col">職種</th>
+                                <th scope="col">詳細<br class="br-sp">閲覧</th>
                             </tr>
                         </thead>
 
                         <tbody>
-                            <tr class="row1">
-                                <td class="day">2022/5/4</td>
-                                <td class="comp-name">○○○○株式会社<button onclick="location='pastdata.php'" class="dvtable-view">詳細閲覧</button></td>
-                                <td class="address">那覇市</td>
-                                <td class="Occupation">SE</td>
-                            </tr>
-                            <tr class="row2">
-                                <td class="day"></td>
-                                <td class="comp-name"></td>
-                                <td class="address"></td>
-                                <td class="Occupation"></td>
-                            </tr>
-                            <tr class="row3">
-                                <td class="day"></td>
-                                <td class="comp-name"></td>
-                                <td class="address"></td>
-                                <td class="Occupation"></td>
-                            </tr>
-                            <tr class="row4">
-                                <td class="day"></td>
-                                <td class="comp-name"></td>
-                                <td class="address"></td>
-                                <td class="Occupation"></td>
-                            </tr>
-                            <tr class="row5">
-                                <td class="day"></td>
-                                <td class="comp-name"></td>
-                                <td class="address"></td>
-                                <td class="Occupation"></td>
-                            </tr>
+                        <?php create_tbody($row,'past');?>
                         </tbody>
                     </table>
                 </div>
 
                 <footer>
-                    <div class="change">
-                        <button onclick="location.href='#!'">← 前</button>  <!-- <span class="dvspan">1</span>-->  <button onclick="location.href='#!'">次 →</button> 
+                    <div class="change_save">
+                        <?php create_btn_chg($page,$records,'search'); ?>
                     </div>
                 </footer>
 

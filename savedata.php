@@ -1,6 +1,7 @@
 <?php
     include 'includes/login.php';
     include 'function.php';
+<<<<<<< HEAD
     echo 'ユーザ名：'.$_SESSION['name'];
 
     $reference_number = $_POST['no'];
@@ -8,6 +9,30 @@
     $dsn = 'mysql:host=localhost;dbname=job_hunt_manage;charset=utf8';
     $user = 'root';
     $password = '';
+=======
+
+    if(isset($_POST['no'])){
+        $reference_number = $_POST['no'];
+        $_SESSION['s_no'] = $_POST['no'];
+    }else if(isset($_SESSION['s_no'])){
+        $reference_number = $_SESSION['s_no'];
+    }else{
+        header('Location: dataView.php');
+        exit();
+    }
+
+    if(isset($_POST['CONFIRM'])){
+        if($_POST['CONFIRM'] == 1){
+            delete_data($reference_number);
+        }
+        $_POST['CONFIRM'] = null;
+    }
+
+
+    $dsn = 'mysql:host=192.168.2.136;dbname=job_hunt_manage;charset=utf8';
+    $user = 'user';
+    $password = 'test';
+>>>>>>> 8176cc507516f8dbb0ebfbef490524f318fcd64b
 
     try{
         $db = new PDO($dsn, $user, $password);
@@ -37,11 +62,17 @@
         $stmt_day->execute();
         $stmt_detalis->execute();
 
+<<<<<<< HEAD
         // print_r($row = $stmt->fetchAll());
         $row = $stmt_ac_comp->fetch();
         $row_day = $stmt_day->fetchAll();
         $row_detalis = $stmt_detalis->fetchAll();
 
+=======
+        $row = $stmt_ac_comp->fetch();
+        $row_day = $stmt_day->fetchAll();
+        $row_detalis = $stmt_detalis->fetchAll();
+>>>>>>> 8176cc507516f8dbb0ebfbef490524f318fcd64b
         //データの切り分け
         //  print_r($row_detalis);
         $family_name = $row['family_name']; //科名
@@ -55,6 +86,7 @@
         $docmt_submit = $row['docmt_submit']; //提出書類
         $job = $row['job']; //職種
         $person_charge_name = $row['person_charge_name']; //担当者名
+<<<<<<< HEAD
 
 
         // $youbi = array_column($row_day,'date_data');
@@ -73,6 +105,15 @@
     
         
 
+=======
+        $impressions =$row['impressions'];
+        $future_activities = $row['future_activities'];
+        $status = $row['as_number'];
+        $as_name = $row['apply_status'];
+
+
+        $param_p = json_encode($status);
+>>>>>>> 8176cc507516f8dbb0ebfbef490524f318fcd64b
 
 
     }catch (PDOException $e) {
@@ -81,6 +122,14 @@
 
 ?>
 
+<<<<<<< HEAD
+=======
+
+
+
+
+
+>>>>>>> 8176cc507516f8dbb0ebfbef490524f318fcd64b
 <!DOCTYPE html>
     <html lang="ja">
         <head>
@@ -91,7 +140,11 @@
         </head>
         <body>
             <div class="return">    <!-- 犬の画像用戻るボタン -->
+<<<<<<< HEAD
                 <a href="dataView.php"><img src="images/innu.jpeg"></a>
+=======
+                <a href="dataView.php#table_erea"><img src="images/innu.jpeg"></a>
+>>>>>>> 8176cc507516f8dbb0ebfbef490524f318fcd64b
             </div>
             <div id="main_title">   <!-- 共通のタイトル部分 -->
                 <h1>就職活動<br class="br-sp">保存データ</h1>
@@ -99,6 +152,7 @@
             <div class="big-div">
                 <div class="div-info">
                     <div class="divdiv">
+<<<<<<< HEAD
                         <p class="p-info">科名：</p><p class="p-view"><?php echo $family_name ?></p>
                     </div>
                     <div class="divdiv">
@@ -130,19 +184,59 @@
                     </div>
                     <div class="divdiv">
                         <p class="p-info">担当者名：</p><p class="p-view"><?php echo $person_charge_name ?></p>
+=======
+                        <p class="p-info">科名：</p><p class="p-view"><?php check_null($family_name) ?></p>
+                    </div>
+                    <div class="divdiv">
+                        <p class="p-info">氏名：</p><p class="p-view"><?php check_null( $account_name) ?></p>
+                    </div>
+                    <div class="divdiv">
+                        <p class="p-info">番号：</p><p class="p-view"><?php check_null( $attend_number) ?></p>
+                    </div>
+                    <div class="divdiv">
+                        <p class="p-info">応募方法：</p><p class="p-view"><?php check_null(change_format($how_to_apply))?></p>
+                    </div>
+                    <div class="divdiv">
+                        <p class="p-info">書類選考：</p><p class="p-view"><?php check_null( $docmt_screening) ?></p>
+                    </div>
+                    <div class="divdiv">
+                        <p class="p-info">応募件数：</p><p class="p-view"><?php check_null( $no_appli) ?> </p>
+                    </div>
+                    <div class="divdiv">
+                        <p class="p-info">応募先企業：</p><p class="p-view"><?php check_null( $comp_name )?></p>
+                    </div>
+                    <div class="divdiv">
+                        <p class="p-info" title="<?php check_null($comp_address)?>">応募先所在地：</p><p class="p-view" title="<?php check_null($comp_address)?>"><?php address_check( $comp_address)  ?></p>
+                    </div>
+                    <div class="divdiv">
+                        <p class="p-info">提出書類：</p><p class="p-view"><?php check_null(change_format($docmt_submit))?></p>
+                    </div>
+                    <div class="divdiv">
+                        <p class="p-info">職種：</p><p class="p-view"><?php check_null( $job )?></p>
+                    </div>
+                    <div class="divdiv">
+                        <p class="p-info">担当者名：</p><p class="p-view"><?php check_null( $person_charge_name) ?></p>
+>>>>>>> 8176cc507516f8dbb0ebfbef490524f318fcd64b
                     </div>
                 </div>
                 <div class="div-detail">
+                    <?php print_data($row_day,$row_detalis) ?>
+
                     <div class="test">
                         <div>
+<<<<<<< HEAD
                             <p>一次：</p><p>日付(<span>○○月 ○○日</span>)</p><p>試験内容(<span>適性検査</span>)</p>
                         </div>
                         <div>
                             <p class="p-info">適性検査詳細：</p><p class="p-view">表示</p>
+=======
+                            <p class="p-info">感想、反省点：</p><p class="p-view"><?php check_null( $impressions )?></p>
+>>>>>>> 8176cc507516f8dbb0ebfbef490524f318fcd64b
                         </div>
                     </div>
                     <div class="test">
                         <div>
+<<<<<<< HEAD
                             <p>二次：</p><p>日付(<span>○○月 ○○日</span>)</p><p>試験内容(<span>面接</span>)</p>
                         </div>
                         <div>
@@ -171,14 +265,50 @@
                 <div class="button">
                     <button onclick="location.href='#!'">削除</button>
                     <button onclick="location.href='#!'">編集</button>
+=======
+                            <p class="p-info">今後の活動予定：</p><p class="p-view"><?php check_null( $future_activities) ?></p>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="as_status">申請状況：<strong><span><?php check_null($as_name) ?></span></strong></p>
+
+                <div class="button_d">
+                    <form method="POST" action="savedata.php" onsubmit="delete_btn();">
+                        <input type="submit" value="削除" id="delete">
+                        <input type="hidden" name="CONFIRM" value="" >
+                    </form>
+
+                    <form action="">
+                        <input type="submit" value="編集" id="edit">
+                    </form>
+>>>>>>> 8176cc507516f8dbb0ebfbef490524f318fcd64b
                 </div>
                 <div class="page-top">
                     <a href="#"><img src="images/pagetop 1.png" alt="page-top"></a>
                 </div>
             </div>
 
+
+
+<script type="text/javascript">
+    function delete_btn(){
+        if(confirm("本当に削除してもよろしいですか？")){
+        document.forms[0].CONFIRM.value=1;//ＯＫの場合
+        }else{
+        document.forms[0].CONFIRM.value=0;//キャンセルの場合
+        }
+    }
+
+    var  param_j = JSON.parse('<?php echo $param_p; ?>') ;
+
+    if(/*param_j == 2 || param_j == 3*/false){
+        var dele = document.getElementById('delete').style.display = 'none';
+        document.getElementById('edit').style.display = 'none';
+    }
+</script>
+
         </body>
-    
     </html>
 
 
