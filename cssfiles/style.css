@@ -204,7 +204,7 @@ p {
 } */
 
 /*グローバルメニュー↓*/
-.button {
+.out-button {
     -webkit-appearance: none;
     -moz-appearance: none;
             appearance: none;
@@ -251,6 +251,11 @@ li.nav__item {
 .nav__toggle {
     display: none; 
 }
+
+
+
+
+
 /**/
 
 

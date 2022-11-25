@@ -60,7 +60,7 @@
                     </nav>
                 </div>
                 <div class="site-header__end">
-                    <a class="button" href="#">ログアウト</a>
+                    <a class="out-button" href="#">ログアウト</a>
                 </div>
                 <div class="hamburger-menu" >
                     <input type="checkbox" id="menu-btn-check">

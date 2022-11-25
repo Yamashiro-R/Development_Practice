@@ -143,6 +143,10 @@ body{
     margin-bottom: 100px;
 }
 
+.pg-top {
+    border-radius: 50%;
+}
+
 .button_d{
     margin-top: 20px;
     margin-bottom: 20px;
