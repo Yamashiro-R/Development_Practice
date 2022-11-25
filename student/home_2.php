@@ -10,8 +10,8 @@
     <html lang="ja">
         <head>
             <meta charset="UTF-8">
-            <link rel="stylesheet" href="cssfiles/style.css">
-            <link rel="stylesheet" href="cssfiles/style_prot.css">
+            <link rel="stylesheet" href="\DEVELOPMENT_PRACTICE/cssfiles/style.css">
+            <link rel="stylesheet" href="\DEVELOPMENT_PRACTICE/cssfiles/style_prot.css">
             <!-- アイコン用のkit -->
             <script src="https://kit.fontawesome.com/fd6da7ad7b.js" crossorigin="anonymous"></script>
 

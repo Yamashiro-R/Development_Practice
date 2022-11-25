@@ -1,7 +1,8 @@
-/*pastdata.html↓*/
+
+/*savedata.html↓*/
 body{
-    /* serchと統一 */
-    background-color: #ffdbed;
+    /* viewと統一 */
+    background-color: #99ffcc;
 }
 
 .big-div {
@@ -36,39 +37,38 @@ body{
 
 
 
-.div-info div:nth-of-type(1), .div-info div:nth-of-type(2), .div-info div:nth-of-type(3) {
+.div-info div {
     width: 33%;
 }
 
-.div-info div:nth-of-type(1) .p-info,
-.div-info div:nth-of-type(2) .p-info,
-.div-info div:nth-of-type(3) .p-info{
+.div-info div .p-info {
     width: 46%;
-
 }
 
 .div-info div:nth-of-type(3) .p-info,
 .div-info div:nth-of-type(3) .p-view,
-.div-info div:nth-of-type(5) .p-info,
-.div-info div:nth-of-type(5) .p-view,
-.div-info div:nth-of-type(7) .p-info,
-.div-info div:nth-of-type(7) .p-view {
+.div-info div:nth-of-type(6) .p-info,
+.div-info div:nth-of-type(6) .p-view,
+.div-info div:nth-of-type(8) .p-info,
+.div-info div:nth-of-type(8) .p-view,
+.div-info div:nth-of-type(10) .p-info,
+.div-info div:nth-of-type(10) .p-view {
     width: 50%;
 }
 
 
-.div-info div:nth-of-type(4),
-.div-info div:nth-of-type(6) {
+.div-info div:nth-of-type(7),
+.div-info div:nth-of-type(9) {
     width: 66.5%;
 }
 
-.div-info div:nth-of-type(4) .p-info,
-.div-info div:nth-of-type(6) .p-info {
+.div-info div:nth-of-type(7) .p-info,
+.div-info div:nth-of-type(9) .p-info {
     width: 23%;
 }
 
-.div-info div:nth-of-type(5),
-.div-info div:nth-of-type(7) {
+.div-info div:nth-of-type(8),
+.div-info div:nth-of-type(10) {
     width: 33%;
 }
 
@@ -85,7 +85,7 @@ body{
 
 .divdiv p {
     margin-top: 0;
-}
+} 
 
 
 .p-info {
@@ -106,25 +106,24 @@ body{
     padding-bottom: 5px;
 }
 
+
 .div-detail .p-view {
     box-sizing: border-box;
     width: 100%;
     padding: 5px;
 }
+
+
 .test div {
     width: 95%;
     margin-left: auto;
     margin-right: auto;
 }
 
-.test .p-view {
+.test .p-info {
     width: auto;
     text-align-last: left;
-}
 
-.test .p-info {
-    text-align-last: auto;
-    width: auto;
 }
 
 .test div:first-child p {
@@ -135,13 +134,36 @@ body{
     margin-right: 0;
 }
 
+.svdata_option button:first-child {
+    margin-right: 100px;
+}
+
 .page-top {
     width: 70px;
-    margin-top: 50px;
     margin-bottom: 100px;
 }
 
+.pg-top {
+    border-radius: 50%;
+}
 
+.button_d{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding-right: 10px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+
+.button_d form {
+    padding-left: 10px;
+}
+
+.button_d input ,.button button{
+    width: 120px;
+    height: 40px;   
+}
 
 .as_status {
     margin-left: auto;
@@ -150,20 +172,6 @@ body{
     border-radius: 5%;
     width: 180px;
 }
-
-
-/*pastdata.html↑*/
-
-
-
-/*savedata.html↓*/
-
-/* .div-info div:nth-of-type(1), .div-info div:nth-of-type(2), .div-info div:nth-of-type(3) {
-    width: 33%;
-} */
-
-
-
 
 
 /*savedata.html↑*/
@@ -188,16 +196,15 @@ body{
         margin-top: 50px;
     }
 
-    .div-info .p-view {
-        width: 55%;
-    }
-
-
     .divdiv {
         justify-content: space-around;
         margin-right: auto;
         margin-left: auto;
         width: 100% !important;
+    }
+    
+    .div-info .p-view {
+        width: 55%;
     }
 
     .divdiv .p-info {
@@ -216,17 +223,16 @@ body{
         padding-bottom: 10px;
     }
 
-    .div-info .p-view {
-        width: 55%;
-    }
 
     .div-detail .p-info {
         text-align-last: left;
     }
 
+
     .div-detail div .p-info {
         width: auto;
     }
+
 
 }    
 
