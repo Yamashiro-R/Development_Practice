@@ -79,7 +79,7 @@
         <body class="view_back-color">
             <div>
                 <div class="return">
-                    <a href="./home.php"><img class="return" src="images/innu.jpeg"></a>
+                    <a href="./home_2.php"><img class="return" src="images/innu.jpeg"></a>
                 </div>
                 <div id="main_title"> 
                     <h1>データ一覧</h1>
