@@ -92,7 +92,7 @@
     <html lang="ja">
         <head>
             <meta charset="UTF-8">
-            <link rel="stylesheet" href="cssfiles/style.css">
+            <link rel="stylesheet" href="\DEVELOPMENT_PRACTICE/cssfiles/style.css">
             <link rel="stylesheet" href="cssfiles/style_svdata.css">
             <title>保存データ</title>
         </head>
@@ -169,7 +169,7 @@
                     </form>
                 </div>
                 <div class="page-top">
-                    <a href="#"><img src="images/pagetop 1.png" alt="page-top"></a>
+                    <a href="#"><img class="pg-top" src="images/pagetop 1.png" alt="page-top"></a>
                 </div>
             </div>
 

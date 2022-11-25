@@ -90,3 +90,20 @@
 
 
 /**/
+
+
+
+/*フレキシブル設定*/
+
+@media (max-width: 855px) {
+    .test {
+        width: 450px;
+    }
+    .test_div p:nth-of-type(3) {
+        display: none;
+    }
+}
+
+
+
+/**/
