@@ -105,7 +105,7 @@
     <html lang="ja">
         <head>
             <meta charset="UTF-8">
-            <link rel="stylesheet" href="cssfiles/style.css">
+            <link rel="stylesheet" href="\DEVELOPMENT_PRACTICE/cssfiles/style.css">
             <link rel="stylesheet" href="cssfiles/style_Input_Form.css">
             <title>入力画面</title>
         </head>

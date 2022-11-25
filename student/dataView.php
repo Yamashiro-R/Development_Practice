@@ -72,7 +72,7 @@
     <html lang="ja">
         <head>
             <meta charset="UTF-8">
-            <link rel="stylesheet" href="cssfiles/style.css">
+            <link rel="stylesheet" href="\DEVELOPMENT_PRACTICE/cssfiles/style.css">
             <link rel="stylesheet" href="cssfiles/style_dv_dvS.css">
             <title>データ一覧</title>
         </head>

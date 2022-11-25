@@ -399,6 +399,11 @@ li.nav__item {
     pointer-events: none;
 }
 
+.pg-top {
+    border-radius: 50%;
+}
+
+
 @media (max-width: 760px) {
     .site-header__end {
     padding-right: 4rem; 
