@@ -141,6 +141,10 @@ body{
     margin-bottom: 100px;
 }
 
+.pg-top {
+    border-radius: 50%;
+}
+
 
 .as_status {
     margin-left: auto;

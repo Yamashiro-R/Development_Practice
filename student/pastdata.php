@@ -6,7 +6,7 @@
 
     $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';
     $user = 'user';
-    $password = 'text';
+    $password = 'test';
 
     try{
         $db = new PDO($dsn, $user, $password);
@@ -123,7 +123,7 @@
                 </div>
                 <p class="as_status">申請状況：<strong><span><?php check_null($as_name) ?></span></strong></p>
                 <div class="page-top">
-                    <a href="#"><img src="images/pagetop 1.png" alt="page-top"></a>
+                    <a href="#"><img class="pg-top" src="images/pagetop 1.png" alt="page-top"></a>
                 </div>
             </div>
 

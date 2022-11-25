@@ -20,7 +20,7 @@
     }
 
 
-    $dsn = 'mysql:host=192.168.2.136;dbname=job_hunt_manage;charset=utf8';
+    $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';
     $user = 'user';
     $password = 'test';
 
@@ -167,7 +167,7 @@
                     </form>
                 </div>
                 <div class="page-top">
-                    <a href="#"><img src="images/pagetop 1.png" alt="page-top"></a>
+                    <a href="#"><img class="pg-top" src="images/pagetop 1.png" alt="page-top"></a>
                 </div>
             </div>
 
