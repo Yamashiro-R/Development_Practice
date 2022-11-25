@@ -123,7 +123,7 @@
     <html lang="ja">
         <head>
             <meta charset="UTF-8">
-            <link rel="stylesheet" href="cssfiles/style.css">
+            <link rel="stylesheet" href="\DEVELOPMENT_PRACTICE/cssfiles/style.css">
             <link rel="stylesheet" href="cssfiles/style_dv_dvS.css">
             <title>就職活動データ検索</title>
         </head>

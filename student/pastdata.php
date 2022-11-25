@@ -69,7 +69,7 @@
     <html lang="ja">
         <head>
             <meta charset="UTF-8">
-            <link rel="stylesheet" href="cssfiles/style.css">
+            <link rel="stylesheet" href="\DEVELOPMENT_PRACTICE/cssfiles/style.css">
             <link rel="stylesheet" href="cssfiles/style_pastdata.css">
             <title>就職活動過去データ</title>
         </head>
@@ -95,7 +95,7 @@
                         <p class="p-info">応募先企業：</p><p class="p-view"><?php check_null( $comp_name )?></p>
                     </div>
                     <div class="divdiv">
-                        <p class="p-info" title="<?php check_null($comp_address)?>">応募先所在地：</p><p class="p-view" title="<?php check_null($comp_address)?>"><?php address_check( $comp_address) ?></p>
+                        <p class="p-info" title="<?php check_null($comp_address)?>">応募先住所：</p><p class="p-view" title="<?php check_null($comp_address)?>"><?php address_check( $comp_address) ?></p>
                     </div>
                     <div class="divdiv">
                         <p class="p-info">提出書類：</p><p class="p-view"><?php check_null(change_format($docmt_submit))?></p>

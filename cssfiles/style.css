@@ -204,7 +204,7 @@ p {
 } */
 
 /*グローバルメニュー↓*/
-.out-button {
+.button {
     -webkit-appearance: none;
     -moz-appearance: none;
             appearance: none;
@@ -251,11 +251,6 @@ li.nav__item {
 .nav__toggle {
     display: none; 
 }
-
-
-
-
-
 /**/
 
 
@@ -400,6 +395,11 @@ li.nav__item {
     z-index: 2000000000; */
     pointer-events: none;
 }
+
+.pg-top {
+    border-radius: 50%;
+}
+
 
 @media (max-width: 760px) {
     .site-header__end {
