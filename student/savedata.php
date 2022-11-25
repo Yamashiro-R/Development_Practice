@@ -20,7 +20,7 @@
     }
 
 
-    $dsn = 'mysql:host=192.168.2.136;dbname=job_hunt_manage;charset=utf8';
+    $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';
     $user = 'user';
     $password = 'test';
 
@@ -94,8 +94,10 @@
             <meta charset="UTF-8">
             <link rel="stylesheet" href="cssfiles/style.css">
             <link rel="stylesheet" href="cssfiles/style_svdata.css">
-            <title>就職活動過去データ</title>
+            <title>保存データ</title>
         </head>
+        <?php include 'header.php' ?>
+
         <body>
             <div class="return">    <!-- 犬の画像用戻るボタン -->
                 <a href="dataView.php#table_erea"><img src="images/innu.jpeg"></a>
@@ -127,7 +129,7 @@
                         <p class="p-info">応募先企業：</p><p class="p-view"><?php check_null( $comp_name )?></p>
                     </div>
                     <div class="divdiv">
-                        <p class="p-info" title="<?php check_null($comp_address)?>">応募先所在地：</p><p class="p-view" title="<?php check_null($comp_address)?>"><?php address_check( $comp_address)  ?></p>
+                        <p class="p-info" title="<?php check_null($comp_address)?>">応募先住所：</p><p class="p-view" title="<?php check_null($comp_address)?>"><?php address_check( $comp_address)  ?></p>
                     </div>
                     <div class="divdiv">
                         <p class="p-info">提出書類：</p><p class="p-view"><?php check_null(change_format($docmt_submit))?></p>
@@ -173,23 +175,22 @@
 
 
 
-<script type="text/javascript">
-    function delete_btn(){
-        if(confirm("本当に削除してもよろしいですか？")){
-        document.forms[0].CONFIRM.value=1;//ＯＫの場合
-        }else{
-        document.forms[0].CONFIRM.value=0;//キャンセルの場合
-        }
-    }
+        <script type="text/javascript" src="methot.js">
+            function delete_btn(){
+                if(confirm("本当に削除してもよろしいですか？")){
+                document.forms[0].CONFIRM.value=1;//ＯＫの場合
+                }else{
+                document.forms[0].CONFIRM.value=0;//キャンセルの場合
+                }
+            }
 
-    var  param_j = JSON.parse('<?php echo $param_p; ?>') ;
+            var  param_j = JSON.parse('<?php echo $param_p; ?>') ;
 
-    if(/*param_j == 2 || param_j == 3*/false){
-        var dele = document.getElementById('delete').style.display = 'none';
-        document.getElementById('edit').style.display = 'none';
-    }
-</script>
-
+            if(/*param_j == 2 || param_j == 3*/false){
+                var dele = document.getElementById('delete').style.display = 'none';
+                document.getElementById('edit').style.display = 'none';
+            }
+        </script>
         </body>
     </html>
 

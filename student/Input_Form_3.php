@@ -9,6 +9,8 @@
             <link rel="stylesheet" href="cssfiles/style_Input_Form.css">
             <title>theme</title>
         </head>
+        <?php include 'header.php' ?>
+
         <body>
             <div class="return">    <!-- 犬の画像用戻るボタン -->
                 <a href="Input_Form_1.php"><img src="images/innu.jpeg"></a>
@@ -36,7 +38,7 @@
             </div>
 
         </body>
-    
+        <script type="text/javascript" src="methot.js"></script>
     </html>
 
 

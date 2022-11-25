@@ -1,9 +1,8 @@
 <?php
+    include 'includes/login.php';
 
-    // include 'includes/login.php';
-
-    // $_SESSION['ps_val'] = null;
-    // $_SESSION['page'] = null;
+    $_SESSION['ps_val'] = null;
+    $_SESSION['page'] = null;
 ?>
 
 <!DOCTYPE html>
@@ -17,6 +16,8 @@
 
             <title>ホーム画面</title>
         </head>
+        <?php include 'header.php' ?>
+
         <body class="home">
         <div id="main_title"> 
             <!-- 後で考える -->
@@ -47,13 +48,14 @@
             </div>
             
             <script type="text/javascript" src="home.js"></script>
+            <script type="text/javascript" src="methot.js"></script>
             
 
         </body>
 
 
 
-    
+
     </html>
 
 

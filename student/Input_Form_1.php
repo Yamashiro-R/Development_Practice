@@ -98,6 +98,8 @@
             <link rel="stylesheet" href="cssfiles/style_Input_Form.css">
             <title>入力画面</title>
         </head>
+        <?php include 'header.php' ?>
+
         <body>
             <div class="return">
                 <a href="home_2.php"><img src="images/innu.jpeg"></a>
@@ -193,7 +195,8 @@
             <script type="text/javascript" src="methot.js"></script>
             <script>window.onload = validation_check()</script>
         </body>
-    
+        <script type="text/javascript" src="methot.js"></script>
+
     </html>
 
 

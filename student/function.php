@@ -154,18 +154,18 @@
         if($pass == 'search'){
             $btn = "";
             if($page < 2){
-                $btn .= '<form action="dvSearch.php" class="btn_form"><button  class="dvtable-view" disabled>←前</button></form>';
+                $btn .= '<form action="" class="btn_form"><button  class="dvtable-view" disabled>←前</button></form>';
             }else{
-                $btn .= '<form action="dvSearch.php" class="btn_form" method="GET"><button type="submit" class="dvtable-view" value="' . ($page-1) .
+                $btn .= '<form action="" class="btn_form" method="GET"><button type="submit" class="dvtable-view" value="' . ($page-1) .
                 '" name="page">←前</button></form>';
             }
 
             $btn .= '<p>' . $page . '</p>';
 
             if($page >= $max_page){
-                $btn .= '<form action="dvSearch.php" class="btn_form" ><button  class="dvtable-view" disabled>次→</button></form>';
+                $btn .= '<form action="" class="btn_form" ><button  class="dvtable-view" disabled>次→</button></form>';
             }else{
-                 $btn .= '<form action="dvSearch.php" class="btn_form" method="GET"><button type="submit" class="dvtable-view" value="' . ($page+1) .
+                 $btn .= '<form action="" class="btn_form" method="GET"><button type="submit" class="dvtable-view" value="' . ($page+1) .
                 '" name="page">次→</button></form>';
             }
             
@@ -173,18 +173,18 @@
         }else if('save'){
             $btn = "";
             if($page < 2){
-                $btn .= '<form action="dataView.php" class="btn_form"><button  class="dvtable-view" disabled>←前</button></form>';
+                $btn .= '<form action="" class="btn_form"><button  class="dvtable-view" disabled>←前</button></form>';
             }else{
-                $btn .= '<form action="dataView.php" class="btn_form" method="GET"><button type="submit" class="dvtable-view" value="' . ($page-1) .
+                $btn .= '<form action="" class="btn_form" method="GET"><button type="submit" class="dvtable-view" value="' . ($page-1) .
                 '" name="page">←前</button></form>';
             }
 
             $btn .= '<p>' . $page . '</p>';
 
             if($page >= $max_page){
-                $btn .= '<form action="dataView.php" class="btn_form" ><button  class="dvtable-view" disabled>次→</button></form>';
+                $btn .= '<form action="" class="btn_form" ><button  class="dvtable-view" disabled>次→</button></form>';
             }else{
-                 $btn .= '<form action="dataView.php" class="btn_form" method="GET"><button type="submit" class="dvtable-view" value="' . ($page+1) .
+                 $btn .= '<form action="" class="btn_form" method="GET"><button type="submit" class="dvtable-view" value="' . ($page+1) .
                 '" name="page">次→</button></form>';
             }
             
@@ -402,7 +402,6 @@
         }catch (PDOException $e) {
             exit('エラー：' . $e->getMessage());
         }
-
     }
 
 ?>

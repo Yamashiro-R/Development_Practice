@@ -127,6 +127,8 @@
             <link rel="stylesheet" href="cssfiles/style_dv_dvS.css">
             <title>就職活動データ検索</title>
         </head>
+        <?php include 'header.php' ?>
+        
         <body class="serch_back-color">
             <div>
                 <div class="return">
@@ -181,7 +183,8 @@
             </div>
 
         </body>
-    
+        <script type="text/javascript" src="methot.js"></script>
+
     </html>
 
 

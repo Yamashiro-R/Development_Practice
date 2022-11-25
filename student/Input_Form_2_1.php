@@ -10,6 +10,8 @@
             <link rel="stylesheet" href="cssfiles/style_Input_Form.css">
             <title>入力画面</title>
         </head>
+        <?php include 'header.php' ?>
+
         <body>
             <div class="return">
                 <a href="Input_Form_1.php"><img src="images/innu.jpeg"></a>
