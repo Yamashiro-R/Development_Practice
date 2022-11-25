@@ -70,6 +70,7 @@ width /***/:auto;
     width: 100%;
     height: 120px;
     padding-top: 70px;
+    margin-bottom: 35px;
 }
 
 h1{
@@ -84,7 +85,8 @@ h2{
     text-align: center;
 }
 h3{
-    font-size: 200%;
+    font-size: 170%;
+    text-align: center;
 }
 
 p {
