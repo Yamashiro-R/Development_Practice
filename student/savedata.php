@@ -1,6 +1,7 @@
 <?php
-    include 'includes/login.php';
-    include 'function.php';
+    include '../includes/login.php';
+    include '../includes/function.php';
+
 
     if(isset($_POST['no'])){
         $reference_number = $_POST['no'];
@@ -92,13 +93,15 @@
     <html lang="ja">
         <head>
             <meta charset="UTF-8">
-            <link rel="stylesheet" href="\DEVELOPMENT_PRACTICE/cssfiles/style.css">
+            <link rel="stylesheet" href="../cssfiles/style.css">
             <link rel="stylesheet" href="cssfiles/style_svdata.css">
-            <title>就職活動過去データ</title>
+            <title>保存データ</title>
         </head>
+        <?php include 'header.php' ?>
+
         <body>
             <div class="return">    <!-- 犬の画像用戻るボタン -->
-                <a href="dataView.php#table_erea"><img src="images/innu.jpeg"></a>
+                <a href="dataView.php#table_erea"><img src="../images/innu.jpeg"></a>
             </div>
             <div id="main_title">   <!-- 共通のタイトル部分 -->
                 <h1>就職活動<br class="br-sp">保存データ</h1>
@@ -167,29 +170,28 @@
                     </form>
                 </div>
                 <div class="page-top">
-                    <a href="#"><img class="pg-top" src="images/pagetop 1.png" alt="page-top"></a>
+                    <a href="#"><img class="pg-top" src="../images/pagetop 1.png" alt="page-top"></a>
                 </div>
             </div>
 
 
 
-<script type="text/javascript">
-    function delete_btn(){
-        if(confirm("本当に削除してもよろしいですか？")){
-        document.forms[0].CONFIRM.value=1;//ＯＫの場合
-        }else{
-        document.forms[0].CONFIRM.value=0;//キャンセルの場合
-        }
-    }
+            <script type="text/javascript" src="\DEVELOPMENT_PRACTICE/JS_files/methot.js">
+            function delete_btn(){
+                if(confirm("本当に削除してもよろしいですか？")){
+                document.forms[0].CONFIRM.value=1;//ＯＫの場合
+                }else{
+                document.forms[0].CONFIRM.value=0;//キャンセルの場合
+                }
+            }
 
-    var  param_j = JSON.parse('<?php echo $param_p; ?>') ;
+            var  param_j = JSON.parse('<?php echo $param_p; ?>') ;
 
-    if(/*param_j == 2 || param_j == 3*/false){
-        var dele = document.getElementById('delete').style.display = 'none';
-        document.getElementById('edit').style.display = 'none';
-    }
-</script>
-
+            if(/*param_j == 2 || param_j == 3*/false){
+                var dele = document.getElementById('delete').style.display = 'none';
+                document.getElementById('edit').style.display = 'none';
+            }
+        </script>
         </body>
     </html>
 

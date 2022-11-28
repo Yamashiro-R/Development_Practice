@@ -1,4 +1,5 @@
 
+
 function setting_detail(){
     const first_exam = document.querySelectorAll(`input[type='checkbox'][name='test_type[]']`);
     
@@ -395,4 +396,18 @@ function validation_check(){
 //     alert('true');
 //         document.getElementsByClassName('req_form').style.pointerEvents.value = 'none';
 //     }
-// }
+// } 
+
+
+
+/*ログアウト処理　　↓*/
+function rog_out_js(){
+    if(confirm('ログアウトしてもよろしいですか？')){
+        xhr = new XMLHttpRequest();
+        xhr.open('POST', '../includes/rog_out.php', true);
+        xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
+        xhr.send(1);
+    }
+}
+
+/*ログアウト処理　　↑*/

@@ -1,6 +1,6 @@
 <?php
-    include 'includes/login.php';
-    include 'function.php';
+    include '../includes/login.php';
+    include '../includes/function.php';
 
     $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';
     $user = 'user';
@@ -10,7 +10,7 @@
     if(isset($_GET['page'])){
         $page = $_GET['page'];
         $_SESSION['page'] = $_GET['page']; 
-        header('Location: dvSearch.php#table_erea');
+        header('Location: dataView.php#table_erea');
     }else if(isset($_SESSION['page'])){
         $page = $_SESSION['page'];
     } else{
@@ -23,7 +23,6 @@
         //プリペアドステートメントを作成
         $stmt = $db->prepare("SELECT * FROM ac_comp_data_tb join apply_status_tb
                             on ac_comp_data_tb.as_number = apply_status_tb.as_number
-
                              where act_id = :ID
                              ORDER by modified 
                              LIMIT :page,:num ");
@@ -72,17 +71,19 @@
     <html lang="ja">
         <head>
             <meta charset="UTF-8">
-            <link rel="stylesheet" href="\DEVELOPMENT_PRACTICE/cssfiles/style.css">
+            <link rel="stylesheet" href="../cssfiles/style.css">
             <link rel="stylesheet" href="cssfiles/style_dv_dvS.css">
             <title>データ一覧</title>
         </head>
+        <?php include 'header.php' ?>
+
         <body class="view_back-color">
-            <div>
                 <div class="return">
-                    <a href="./home_2.php"><img class="return" src="images/innu.jpeg"></a>
+                    <a href="home_2.php"><img src="../images/innu.jpeg"></a>
                 </div>
+            <div>
                 <div id="main_title"> 
-                    <h1>データ一覧</h1>
+                    <h1>保存データ一覧</h1>
                 </div>
                 <div>
                     <table class="dvtable" id="table_erea">
@@ -109,7 +110,7 @@
             </div>
 
         </body>
-    
+        <script type="text/javascript" src="\DEVELOPMENT_PRACTICE/JS_files/methot.js"></script>
     </html>
 
 </html>

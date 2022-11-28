@@ -207,7 +207,7 @@ p {
 } */
 
 /*グローバルメニュー↓*/
-.button {
+.button_header {
     -webkit-appearance: none;
     -moz-appearance: none;
             appearance: none;

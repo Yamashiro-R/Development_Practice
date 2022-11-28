@@ -1,8 +1,17 @@
 <?php
-    include 'includes/login.php';
-    include 'function.php';
+    include '../includes/login.php';
+    include '../includes/function.php';
 
-    $reference_number = $_POST['no'];
+
+    if(isset($_POST['no'])){
+        $reference_number = $_POST['no'];
+        $_SESSION['s_no'] = $_POST['no'];
+    }else if(isset($_SESSION['s_no'])){
+        $reference_number = $_SESSION['s_no'];
+    }else{
+        header('Location: dataView.php');
+        exit();
+    }
 
     $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';
     $user = 'user';
@@ -69,13 +78,15 @@
     <html lang="ja">
         <head>
             <meta charset="UTF-8">
-            <link rel="stylesheet" href="\DEVELOPMENT_PRACTICE/cssfiles/style.css">
+            <link rel="stylesheet" href="../cssfiles/style.css">
             <link rel="stylesheet" href="cssfiles/style_pastdata.css">
             <title>就職活動過去データ</title>
         </head>
+        <?php include 'header.php' ?>
+
         <body>
             <div class="return">    <!-- 犬の画像用戻るボタン -->
-                <a href="dvSearch.php#table_erea"><img src="images/innu.jpeg"></a>
+                <a href="dvSearch.php#table_erea"><img src="../images/innu.jpeg"></a>
             </div>
             <div id="main_title">   <!-- 共通のタイトル部分 -->
                 <h1>就職活動<br class="br-sp">過去データ</h1>
@@ -123,12 +134,12 @@
                 </div>
                 <p class="as_status">申請状況：<strong><span><?php check_null($as_name) ?></span></strong></p>
                 <div class="page-top">
-                    <a href="#"><img class="pg-top" src="images/pagetop 1.png" alt="page-top"></a>
+                    <a href="#"><img class="pg-top" src="../images/pagetop 1.png" alt="page-top"></a>
                 </div>
             </div>
 
         </body>
-    
+        <script type="text/javascript" src="\DEVELOPMENT_PRACTICE/JS_files/methot.js"></script>
     </html>
 
 
