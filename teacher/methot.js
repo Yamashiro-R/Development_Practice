@@ -1,7 +1,6 @@
 
-
 function setting_detail(){
-    const first_exam = document.querySelectorAll(`input[type='checkbox'][name='test_type[]']`);
+    const first_exam = document.querySelectorAll(`input[type='checkbox'][name='test_type']`);
     
     for(let i=0;i<first_exam.length;i++){
         exam_check(i);
@@ -10,15 +9,13 @@ function setting_detail(){
 
 
 function exam_check(cnt){
-    const first_exam = document.querySelectorAll(`input[type='checkbox'][name='test_type[]']`);
+    const first_exam = document.querySelectorAll(`input[type='checkbox'][name='test_type']`);
     const div_class = document.getElementsByClassName('exam_test');
     //詳細欄出力場所
     const l1 = document.getElementById('text_info');
     //消去注意文
     const result = "記入内容はすべて削除されます。よろしいですか？";
     const exam_type = div_class[cnt].textContent +"詳細内容";
-    //テキストエリア其々のネーム用DBに併せる為＋１
-    const textarea_name = "textarea_" + (cnt + 1);
     
     let place = first_exam[cnt];
 
@@ -36,15 +33,14 @@ function exam_check(cnt){
     para.classList.add('title-tests');
     area.classList.add('text-tests');
     area.name = 'details';
-   
 
+
+    
     place.addEventListener('input',()=>{
         if(place.checked){
             //チェックが入ったら
-            area.name = textarea_name;
             div.appendChild(para);
             div.appendChild(area);            
-            
             l1.appendChild(div); 
             area.focus();
         }else{
@@ -111,9 +107,8 @@ function validation_check(){
     let job = formElements.elements[5];
     let number = formElements.elements[6]; 
     let documents_checkbox = document.querySelectorAll("input[type='checkbox']");
-    let savebtn = formElements.elements[15]; 
-    let submitbtn = formElements.elements[16]; 
-  
+    let savebtn = formElements.elements[16]; 
+    let submitbtn = formElements.elements[17]; 
     
     //エラー出力先を配列で取得
     let denger = formElements.getElementsByClassName('denger_field');
@@ -327,64 +322,59 @@ function validation_check(){
         //for文でcheckbox文にそれぞれイベントを追加。
         documents_checkbox[i].addEventListener("change",()=>{
         
-            if(documents_checkbox[i].checked){
-                //どれかにチェックが入った時
-                activedocuments_checkbox = true;
-                console.log("チェックが入りました。");
+        if(documents_checkbox[i].checked){
+            //どれかにチェックが入った時
+            activedocuments_checkbox = true;
+            console.log("チェックが入りました。");
+            checkboxpara.textContent = "";
+            checkboxpara.id = "row_1_para";
+            denger[6].appendChild(checkboxpara);
+            activedocuments_checkbox = true;
+        }else{
+            //配列にチェックボックスそれぞれの状態を格納
+            for(let j=0;j<documents_checkbox.length;j++){
+                array_checkbox[j] = documents_checkbox[j].checked;
+            }
+            //配列のどれかにチェックが入っていたらブレイクその位置を特定するためにcheckbox_cntでカウント
+            for(let tmp=0;tmp<array_checkbox.length;tmp++,checkbox_cnt++){
+                if(array_checkbox[tmp]){break;}
+            }
+            //最後まで到達した時 == 全てfalseの時
+            if(checkbox_cnt == documents_checkbox.length){
+                // console.log("テスト：全てのチェックボックスが空");
+                checkboxpara.textContent = "どれかにチェックを入れてください。";
+                checkboxpara.id = "row_1_para";
+                denger[6].appendChild(checkboxpara);
+                activedocuments_checkbox = false;
+                checkbox_cnt = 0;
+            }else{
+                // console.log("テスト：どれかにチェックが入っている");
                 checkboxpara.textContent = "";
                 checkboxpara.id = "row_1_para";
                 denger[6].appendChild(checkboxpara);
                 activedocuments_checkbox = true;
-            }else{
-                //配列にチェックボックスそれぞれの状態を格納
-                for(let j=0;j<documents_checkbox.length;j++){
-                    array_checkbox[j] = documents_checkbox[j].checked;
-                }
-                //配列のどれかにチェックが入っていたらブレイクその位置を特定するためにcheckbox_cntでカウント
-                for(let tmp=0;tmp<array_checkbox.length;tmp++,checkbox_cnt++){
-                    if(array_checkbox[tmp]){break;}
-                }
-                //最後まで到達した時 == 全てfalseの時
-                if(checkbox_cnt == documents_checkbox.length){
-                    // console.log("テスト：全てのチェックボックスが空");
-                    checkboxpara.textContent = "どれかにチェックを入れてください。";
-                    checkboxpara.id = "row_1_para";
-                    denger[6].appendChild(checkboxpara);
-                    activedocuments_checkbox = false;
-                    checkbox_cnt = 0;
-                }else{
-                    // console.log("テスト：どれかにチェックが入っている");
-                    checkboxpara.textContent = "";
-                    checkboxpara.id = "row_1_para";
-                    denger[6].appendChild(checkboxpara);
-                    activedocuments_checkbox = true;
-                    checkbox_cnt = 0;
-                }    
+                checkbox_cnt = 0;
             }
-        });
+            
+            
+        }
+    });
 
     
     }
+    
+
+
+
+    
 }
 
 
 
-/*teach_reqのグローバルメニュー↓*/
-// なんかエラー
-// let navToggle = document.querySelector(".nav__toggle");
-// let navWrapper = document.querySelector(".nav__wrapper");
 
-// navToggle.addEventListener("click", function () {
-// if (navWrapper.classList.contains("active")) {
-//     this.setAttribute("aria-expanded", "false");
-//     this.setAttribute("aria-label", "menu");
-//     navWrapper.classList.remove("active");
-// } else {
-//     navWrapper.classList.add("active");
-//     this.setAttribute("aria-label", "close menu");
-//     this.setAttribute("aria-expanded", "true");
-// }
-// });
+
+/*teach_reqのグローバルメニュー↓*/
+
 
 /*teach_reqのグローバルメニュー↑*/
 
@@ -397,17 +387,3 @@ function validation_check(){
 //         document.getElementsByClassName('req_form').style.pointerEvents.value = 'none';
 //     }
 // } 
-
-
-
-/*ログアウト処理　　↓*/
-function rog_out_js(){
-    if(confirm('ログアウトしてもよろしいですか？')){
-        xhr = new XMLHttpRequest();
-        xhr.open('POST', '../includes/rog_out.php', true);
-        xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
-        xhr.send(1);
-    }
-}
-
-/*ログアウト処理　　↑*/
