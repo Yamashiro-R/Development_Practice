@@ -1,6 +1,7 @@
 <?php
-    include 'includes/login.php';
-    include 'function.php';
+    include '../includes/login.php';
+    include '../includes/function.php';
+
 
     if(isset($_POST['no'])){
         $reference_number = $_POST['no'];
@@ -101,13 +102,13 @@
     <html lang="ja">
         <head>
             <meta charset="UTF-8">
-            <link rel="stylesheet" href="\DEVELOPMENT_PRACTICE/cssfiles/style.css">
+            <link rel="stylesheet" href="../cssfiles/style.css">
             <link rel="stylesheet" href="cssfiles/style_svdata.css">
             <title>就職活動過去データ</title>
         </head>
         <body>
             <div class="return">    <!-- 犬の画像用戻るボタン -->
-                <a href="teach_req.php"><img src="images/innu.jpeg"></a>
+                <a href="teach_req.php"><img src="../images/innu.jpeg"></a>
             </div>
             <div id="main_title">   <!-- 共通のタeイトル部分 -->
                 <h1>就職活動<br class="br-sp">保存データ</h1>
@@ -174,14 +175,14 @@
                     </form>
                 </div>
                 <div class="page-top">
-                    <a href="#"><img class="pg-top" src="images/pagetop 1.png" alt="page-top"></a>
+                    <a href="#"><img class="pg-top" src="../images/pagetop 1.png" alt="page-top"></a>
                 </div>
             </div>
 
 
         </body>
 
-    <script type="text/javascript">
+        <script type="text/javascript" src="\DEVELOPMENT_PRACTICE/JS_files/methot.js">
         function req_btn(i){
             if(i == 0){
                 if(confirm("承認してもよろしいですか？")){

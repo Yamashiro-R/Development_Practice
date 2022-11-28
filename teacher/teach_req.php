@@ -1,6 +1,7 @@
 <?php
-    // include 'includes/login.php';
-    include 'function.php';
+    include '../includes/login.php';
+    include '../includes/function.php';
+
 
     $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';
     $user = 'user';
@@ -97,7 +98,7 @@
                     <?php teach_func($row) ?>
                 </div>
         </body>
-        <!-- <script type="text/javascript" src="methot.js"></script> -->
+        <script type="text/javascript" src="\DEVELOPMENT_PRACTICE/JS_files/methot.js"></script>
     </html>
 
 

@@ -1,7 +1,8 @@
 
 <?php
-    include 'includes/login.php';
-    
+    include '../includes/login.php';
+    include '../includes/function.php';
+
 ?>
 
 
@@ -94,7 +95,7 @@
     <html lang="ja">
         <head>
             <meta charset="UTF-8">
-            <link rel="stylesheet" href="\DEVELOPMENT_PRACTICE/cssfiles/style.css">
+            <link rel="stylesheet" href="../cssfiles/style.css">
             <link rel="stylesheet" href="cssfiles/style_Input_Form.css">
             <title>入力画面</title>
         </head>
@@ -102,7 +103,7 @@
 
         <body>
             <div class="return">
-                <a href="home_2.php"><img src="images/innu.jpeg"></a>
+                <a href="home_2.php"><img src="../images/innu.jpeg"></a>
             </div>
             <div id="main_title"> 
                 <h1>就職活動報告</h1>
@@ -195,7 +196,7 @@
             <script type="text/javascript" src="methot.js"></script>
             <script>window.onload = validation_check()</script>
         </body>
-        <script type="text/javascript" src="methot.js"></script>
+        <script type="text/javascript" src="\DEVELOPMENT_PRACTICE/JS_files/methot.js"></script>
 
     </html>
 

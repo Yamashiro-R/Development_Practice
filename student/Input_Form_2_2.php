@@ -1,11 +1,13 @@
 <?php
-    include 'includes/login.php';
+    include '../includes/login.php';
+    include '../includes/function.php';
+
 ?>
 <!DOCTYPE html>
     <html lang="ja">
         <head>
             <meta charset="UTF-8">
-            <link rel="stylesheet" href="\DEVELOPMENT_PRACTICE/cssfiles/style.css">
+            <link rel="stylesheet" href="../cssfiles/style.css">
             <link rel="stylesheet" href="cssfiles/style_Input_Form.css">
             <title>入力画面</title>
         </head>
@@ -13,7 +15,7 @@
 
         <body>
             <div class="return">
-                <a href="Input_Form_2_1.php"><img src="images/innu.jpeg"></a>
+                <a href="Input_Form_2_1.php"><img src="../images/innu.jpeg"></a>
             </div>
             <div id="main_title"> 
                 <h1>就職活動報告</h1>
@@ -64,7 +66,7 @@
                     </div>
                 </form>
             </div>
-            <script type="text/javascript" src="methot.js"></script>
+            <script type="text/javascript" src="\DEVELOPMENT_PRACTICE/JS_files/methot.js"></script>
             <script type="text/javascript">setting_detail()</script>
 
         </body>

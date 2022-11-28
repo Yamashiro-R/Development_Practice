@@ -1,6 +1,8 @@
 <?php
 
-    // include 'includes/login.php';
+// include '../includes/login.php';
+// include '../includes/function.php';
+
 
     // $_SESSION['ps_val'] = null;
     // $_SESSION['page'] = null;
@@ -10,8 +12,8 @@
     <html lang="ja">
         <head>
             <meta charset="UTF-8">
-            <link rel="stylesheet" href="\DEVELOPMENT_PRACTICE/cssfiles/style.css">
-            <link rel="stylesheet" href="\DEVELOPMENT_PRACTICE/cssfiles/style_prot.css">
+            <link rel="stylesheet" href="../cssfiles/style.css">
+            <link rel="stylesheet" href="../cssfiles/style_prot.css">
             <!-- アイコン用のkit -->
             <script src="https://kit.fontawesome.com/fd6da7ad7b.js" crossorigin="anonymous"></script>
 
@@ -45,8 +47,8 @@
                     </button>
                 </div>
             </div>
-            
-            <script type="text/javascript" src="home.js"></script>
+            <script type="text/javascript" src="\DEVELOPMENT_PRACTICE/JS_files/home.js"></script>
+            <script type="text/javascript" src="\DEVELOPMENT_PRACTICE/JS_files/methot.js"></script>
             
 
         </body>

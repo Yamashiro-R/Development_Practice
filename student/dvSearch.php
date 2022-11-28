@@ -1,6 +1,7 @@
 <?php
-    include 'includes/login.php';
-    include 'function.php';
+    include '../includes/login.php';
+    include '../includes/function.php';
+
 
     $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';
     $user = 'user';
@@ -123,7 +124,7 @@
     <html lang="ja">
         <head>
             <meta charset="UTF-8">
-            <link rel="stylesheet" href="\DEVELOPMENT_PRACTICE/cssfiles/style.css">
+            <link rel="stylesheet" href="../cssfiles/style.css">
             <link rel="stylesheet" href="cssfiles/style_dv_dvS.css">
             <title>就職活動データ検索</title>
         </head>
@@ -132,7 +133,7 @@
         <body class="serch_back-color">
             <div>
                 <div class="return">
-                    <a href="home_2.php"><img src="images/innu.jpeg"></a>
+                    <a href="home_2.php"><img src="../images/innu.jpeg"></a>
                 </div>
                 <div id="main_title"> 
                     <h1>報告書📄<br class="br-sp">全データ検索</h1>
@@ -183,7 +184,7 @@
             </div>
 
         </body>
-        <script type="text/javascript" src="methot.js"></script>
+        <script type="text/javascript" src="\DEVELOPMENT_PRACTICE/JS_files/methot.js"></script>
 
     </html>
 
