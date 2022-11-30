@@ -9,15 +9,15 @@
             menu
             </button>
             <ul class="nav__wrapper">
-                <li class="nav__item" title="ID:1224">👤情報太郎</li>
+                <li class="nav__item" title="ID:1224">👤<?php echo $_SESSION['name'] ?></li>
                 <li class="nav__item">
                     <div class="dropdown">
                         <input id="tg" class="dropInput" type="checkbox">
                         <label for="tg" class="dropLabel">PageList▼</label>
                         <ul class="menu animation">
-                            <li><a class="item" href="#">ホーム</a></li>
-                            <li><a class="item" href="#">閲覧検索</a></li>
-                            <li><a class="item" href="#">報告書新規作成</a></li>
+                            <li><a class="item" href="home_2.php">ホーム</a></li>
+                            <li><a class="item" href="dvSearch.php">閲覧検索</a></li>
+                            <li><a class="item" href="Input_Form_1.php">報告書新規作成</a></li>
                         </ul>
                     </div>
                 </li>
@@ -33,16 +33,16 @@
             <div class="menu-content">
                 <ul>
                     <li>
-                        <a href="#">ホーム</a>
+                        <a href="home_2.php">ホーム</a>
                     </li>
                     <li>
-                        <a href="#">閲覧検索</a>
+                        <a href="dvSearch.php">閲覧検索</a>
                     </li>
                     <li>
-                        <a href="#">報告書新規作成</a>
+                        <a href="Input_Form_1.php">報告書新規作成</a>
                     </li>
                     <li>
-                        <a href="#">ログアウト</a>
+                    <a class="button_header" href="#" onclick="rog_out_js(); return false;">ログアウト</a>
                     </li>
                 </ul>
             </div>

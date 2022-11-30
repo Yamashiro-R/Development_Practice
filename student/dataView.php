@@ -104,7 +104,7 @@
                 </div>
 
                 <div class="change_save">
-                    <?php create_btn_chg($page,$records,'save') ?>   
+                    <?php create_btn_chg($page,$records) ?>   
                 </div>
 
             </div>

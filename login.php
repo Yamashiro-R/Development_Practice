@@ -3,7 +3,7 @@
     if (isset($_SESSION['ID'])) {
         //セッションにユーザIDがある＝ログインしている
         //ログイン済みならトップページに遷移する
-        if($_SESSION['ID'] / 100 == 99) {
+        if($_SESSION['ID'] / 100 >= 99) {
             header('Location: teacher/home_2.php'); /*管理者ユーザ*/
         }else{
             header('Location: student/home_2.php');/*生徒ユーザ*/
@@ -34,7 +34,7 @@
                 $_SESSION['ID'] = $row['act_id'];
                 $_SESSION['name'] = $row['account_name'];
 
-                if($_SESSION['ID'] / 100 == 99) {
+                if($_SESSION['ID'] / 100 >= 99) {
                     header('Location: teacher/home_2.php');
                 }else{
                     header('Location: student/home_2.php');

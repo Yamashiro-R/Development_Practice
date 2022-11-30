@@ -2,7 +2,7 @@
 /*savedata.html↓*/
 body{
     /* viewと統一 */
-    background-color: #99ffcc;
+    background-color: #ffdbed;
 }
 
 .big-div {
@@ -143,13 +143,10 @@ body{
     margin-bottom: 100px;
 }
 
-<<<<<<< HEAD
-=======
 .pg-top {
     border-radius: 50%;
 }
 
->>>>>>> 8980e1c4306d8b01b80ddbfe2c4d7a0d3d743068
 .button_d{
     margin-top: 20px;
     margin-bottom: 20px;

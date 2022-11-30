@@ -9,15 +9,15 @@
             menu
             </button>
             <ul class="nav__wrapper">
-                <li class="nav__item" title="ID:1224">👤情報太郎</li>
+                <li class="nav__item" title="ID:1224">👤<?php echo $_SESSION['name'] ?></li>
                 <li class="nav__item">
                     <div class="dropdown">
                         <input id="tg" class="dropInput" type="checkbox">
                         <label for="tg" class="dropLabel">PageList▼</label>
                         <ul class="menu animation">
-                            <li><a class="item" href="#">ホーム</a></li>
-                            <li><a class="item" href="#">閲覧検索</a></li>
-                            <li><a class="item" href="#">報告書新規作成</a></li>
+                            <li><a class="item" href="home_2.php">ホーム</a></li>
+                            <li><a class="item" href="t_dvSearch.php">閲覧検索</a></li>
+                            <li><a class="item" href="teach_req.php">新規申請依頼</a></li>
                         </ul>
                     </div>
                 </li>
@@ -25,7 +25,7 @@
             </nav>
         </div>
         <div class="site-header__end">
-            <a class="button" href="#">ログアウト</a>
+            <a class="button_header" href="#" onclick="rog_out_js(); return false;">ログアウト</a>
         </div>
         <div class="hamburger-menu" >
             <input type="checkbox" id="menu-btn-check">
@@ -33,16 +33,18 @@
             <div class="menu-content">
                 <ul>
                     <li>
-                        <a href="#">ホーム</a>
+                        <a href="home_2.php">ホーム</a>
                     </li>
                     <li>
-                        <a href="#">閲覧検索</a>
+                        <a href="t_dvSearch.php">閲覧検索</a>
                     </li>
                     <li>
-                        <a href="#">報告書新規作成</a>
+                        <a href="teach_req.php">新規申請依頼</a>
                     </li>
                     <li>
-                        <a href="#">ログアウト</a>
+                    <div class="site-header__end">
+            <a class="button_header" href="#" onclick="rog_out_js(); return false;">ログアウト</a>
+        </div>
                     </li>
                 </ul>
             </div>
