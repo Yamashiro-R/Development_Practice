@@ -1,6 +1,7 @@
 <?php
-    include 'includes/login.php';
-    include 'function.php';
+    include '../includes/login.php';
+    include '../includes/function.php';
+
 
     $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';
     $user = 'user';
@@ -25,7 +26,6 @@
         $job = $_POST['job'];
 
         $page = 1;
-        $_SESSION['page'];
         $_SESSION['ps_val'] = $_POST;
     }else if(!$_POST && isset($_SESSION['ps_val'])){
         $_POST = $_SESSION['ps_val'];
@@ -41,9 +41,9 @@
 
 
 
-    $select = 'SELECT * FROM ac_comp_data_tb join apply_status_tb 
-                on ac_comp_data_tb.as_number = apply_status_tb.as_number 
-                where ac_comp_data_tb.as_number = 3 ';
+    $select = 'SELECT * FROM ac_comp_data_tb,apply_status_tb 
+                where ac_comp_data_tb.as_number = apply_status_tb.as_number 
+                and ac_comp_data_tb.as_number = 3 ';
 
     if($name){
         $select .=  "and comp_name LIKE '%". $name . "%'" ; 
@@ -123,14 +123,16 @@
     <html lang="ja">
         <head>
             <meta charset="UTF-8">
-            <link rel="stylesheet" href="\DEVELOPMENT_PRACTICE/cssfiles/style.css">
+            <link rel="stylesheet" href="../cssfiles/style.css">
             <link rel="stylesheet" href="cssfiles/style_dv_dvS.css">
             <title>就職活動データ検索</title>
         </head>
+        <?php include 'header.php' ?>
+        
         <body class="serch_back-color">
             <div>
                 <div class="return">
-                    <a href="home_2.php"><img src="images/innu.jpeg"></a>
+                    <a href="home_2.php"><img src="../images/innu.jpeg"></a>
                 </div>
                 <div id="main_title"> 
                     <h1>報告書📄<br class="br-sp">全データ検索</h1>
@@ -174,14 +176,15 @@
 
                 <footer>
                     <div class="change_save">
-                        <?php create_btn_chg($page,$records,'search'); ?>
+                        <?php create_btn_chg($page,$records); ?>
                     </div>
                 </footer>
 
             </div>
 
         </body>
-    
+        <script type="text/javascript" src="\DEVELOPMENT_PRACTICE/JS_files/methot.js"></script>
+
     </html>
 
 

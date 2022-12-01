@@ -84,10 +84,9 @@ h2{
     margin-bottom: 10px;
     text-align: center;
 }
-/* Input欄サブタイトル用*/
 h3{
-    font-size: 170%;   
-    text-align: center;     
+    font-size: 170%;
+    text-align: center;
 }
 
 p {
@@ -207,7 +206,7 @@ p {
 } */
 
 /*グローバルメニュー↓*/
-.button_header {
+.button {
     -webkit-appearance: none;
     -moz-appearance: none;
             appearance: none;
@@ -217,7 +216,7 @@ p {
     padding: 0.5rem 1rem;
     border-radius: 5px;
     text-align: center;
-} */
+}
 
 @media (max-width: 760px) {
     .button {
@@ -398,11 +397,6 @@ li.nav__item {
     z-index: 2000000000; */
     pointer-events: none;
 }
-
-.pg-top {
-    border-radius: 50%;
-}
-
 
 @media (max-width: 760px) {
     .site-header__end {

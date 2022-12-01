@@ -13,12 +13,6 @@
         exit();
     }
 
-    if(isset($_POST['CONFIRM'])){
-        if($_POST['CONFIRM'] == 1){
-            delete_data($reference_number);
-        }
-        $_POST['CONFIRM'] = null;
-    }
 
 
     $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';
@@ -30,10 +24,11 @@
         $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
         //プリペアドステートメントを作成
         $stmt_ac_comp = $db->prepare("SELECT * FROM ac_comp_data_tb,apply_status_tb,account_tb,family_name_tb
-                             where ac_comp_data_tb.act_id = :ID and 
-                             ac_comp_data_tb.as_number = apply_status_tb.as_number and
+                             where  ac_comp_data_tb.as_number = apply_status_tb.as_number and
                              ac_comp_data_tb.act_id = account_tb.act_id and
-                             account_tb.fn_number = family_name_tb.fn_number");
+                             account_tb.fn_number = family_name_tb.fn_number and
+                             ac_comp_data_tb.reference_number = :ref_num");
+                             
 
         $stmt_day = $db->prepare("SELECT * FROM tests_tb
                                  where reference_number = :num1
@@ -45,7 +40,7 @@
                                 ORDER BY td_status");
 
 //パラメータ割り当て
-        $stmt_ac_comp->bindParam(':ID', $_SESSION['ID'], PDO::PARAM_STR);
+        $stmt_ac_comp->bindParam(':ref_num',$reference_number, PDO::PARAM_STR);
         $stmt_day->bindParam(':num1',$reference_number, PDO::PARAM_STR);
         $stmt_detalis->bindParam(':num2',$reference_number, PDO::PARAM_STR);
         //クエリの実行
@@ -59,7 +54,7 @@
         //データの切り分け
         //  print_r($row_detalis);
         $family_name = $row['family_name']; //科名
-        $account_name = $_SESSION['name']; //アカウント名
+        $account_name = $row['account_name']; //アカウント名
         $attend_number = attend_number($row['act_id']); //出席番号
         $no_appli = $row['no_appli']; //応募件数
         $how_to_apply = $row['how_to_apply']; //応募方法
@@ -69,13 +64,9 @@
         $docmt_submit = $row['docmt_submit']; //提出書類
         $job = $row['job']; //職種
         $person_charge_name = $row['person_charge_name']; //担当者名
-        $impressions =$row['impressions'];
-        $future_activities = $row['future_activities'];
-        $status = $row['as_number'];
+        $impressions =$row['impressions'];//反省
+        $future_activities = $row['future_activities'];//今後の予定
         $as_name = $row['apply_status'];
-
-
-        $param_p = json_encode($status);
 
 
     }catch (PDOException $e) {
@@ -94,14 +85,14 @@
         <head>
             <meta charset="UTF-8">
             <link rel="stylesheet" href="../cssfiles/style.css">
-            <link rel="stylesheet" href="cssfiles/style_svdata.css">
-            <title>保存データ</title>
+            <link rel="stylesheet" href="cssfiles/style_t_pd.css">
+            <title>依頼内容</title>
         </head>
         <?php include 'header.php' ?>
 
         <body>
             <div class="return">    <!-- 犬の画像用戻るボタン -->
-                <a href="dataView.php#table_erea"><img src="../images/innu.jpeg"></a>
+                <a href="t_dvSearch.php#table_erea"><img src="../images/innu.jpeg"></a>
             </div>
             <div id="main_title">   <!-- 共通のタイトル部分 -->
                 <h1>就職活動<br class="br-sp">保存データ</h1>
@@ -159,16 +150,6 @@
 
                 <p class="as_status">申請状況：<strong><span><?php check_null($as_name) ?></span></strong></p>
 
-                <div class="button_d">
-                    <form method="POST" action="savedata.php" onsubmit="delete_btn();">
-                        <input type="submit" value="削除" id="delete">
-                        <input type="hidden" name="CONFIRM" value="" >
-                    </form>
-
-                    <form action="">
-                        <input type="submit" value="編集" id="edit">
-                    </form>
-                </div>
                 <div class="page-top">
                     <a href="#"><img class="pg-top" src="../images/pagetop 1.png" alt="page-top"></a>
                 </div>
@@ -176,24 +157,7 @@
 
 
 
-            <script type="text/javascript">
-            function delete_btn(){
-                if(confirm("本当に削除してもよろしいですか？")){
-                document.forms[0].CONFIRM.value=1;//ＯＫの場合
-                }else{
-                document.forms[0].CONFIRM.value=0;//キャンセルの場合
-                }
-            }
-
-            var  param_j = JSON.parse('<?php echo $param_p; ?>') ;
-
-            if(/*param_j == 2 || param_j == 3*/false){
-                var dele = document.getElementById('delete').style.display = 'none';
-                document.getElementById('edit').style.display = 'none';
-            }
-        </script>
-        <script type="text/javascript" src="\DEVELOPMENT_PRACTICE/JS_files/methot.js"></script>
-
+            <script type="text/javascript" src="\DEVELOPMENT_PRACTICE/JS_files/methot.js"></script>
         </body>
     </html>
 

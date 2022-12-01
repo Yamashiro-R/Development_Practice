@@ -22,7 +22,7 @@ if ($_POST) {
         }
     }
 
-        $dsn = 'mysql:host=192.168.2.136;dbname=job_hunt_manage;charset=utf8';
+        $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';
         $user = 'user';
         $password = 'test';
 

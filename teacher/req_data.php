@@ -1,6 +1,7 @@
 <?php
-    include 'includes/login.php';
-    include 'function.php';
+    include '../includes/login.php';
+    include '../includes/function.php';
+
 
     if(isset($_POST['no'])){
         $reference_number = $_POST['no'];
@@ -8,7 +9,7 @@
     }else if(isset($_SESSION['s_no'])){
         $reference_number = $_SESSION['s_no'];
     }else{
-        header('Location: dataView.php');
+        header('Location: t_dataView.php');
         exit();
     }
 
@@ -23,7 +24,6 @@
             ap_status_up($reference_number,1);
         }
         $_POST['CONFIRM_2'] = null;
-
     }
 
 
@@ -39,24 +39,24 @@
         $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
         //プリペアドステートメントを作成
         $stmt_ac_comp = $db->prepare("SELECT * FROM ac_comp_data_tb,apply_status_tb,account_tb,family_name_tb
-                             where ac_comp_data_tb.act_id = :ID and 
+                             where ac_comp_data_tb.reference_number = :num1 and
                              ac_comp_data_tb.as_number = apply_status_tb.as_number and
                              ac_comp_data_tb.act_id = account_tb.act_id and
                              account_tb.fn_number = family_name_tb.fn_number");
 
         $stmt_day = $db->prepare("SELECT * FROM tests_tb
-                                 where reference_number = :num1
+                                 where reference_number = :num2
                                  ORDER BY td_status,date_data");
 
         $stmt_detalis = $db->prepare("SELECT * FROM test_detalis_tb,select_process_tb
                                 where test_detalis_tb.sp_number = select_process_tb.sp_number and
-                                reference_number = :num2
+                                reference_number = :num3
                                 ORDER BY td_status");
 
 //パラメータ割り当て
-        $stmt_ac_comp->bindParam(':ID', $_SESSION['ID'], PDO::PARAM_STR);
-        $stmt_day->bindParam(':num1',$reference_number, PDO::PARAM_STR);
-        $stmt_detalis->bindParam(':num2',$reference_number, PDO::PARAM_STR);
+        $stmt_ac_comp->bindParam(':num1', $reference_number, PDO::PARAM_STR);
+        $stmt_day->bindParam(':num2',$reference_number, PDO::PARAM_STR);
+        $stmt_detalis->bindParam(':num3',$reference_number, PDO::PARAM_STR);
         //クエリの実行
         $stmt_ac_comp->execute();
         $stmt_day->execute();
@@ -68,7 +68,7 @@
         //データの切り分け
         //  print_r($row_detalis);
         $family_name = $row['family_name']; //科名
-        $account_name = $_SESSION['name']; //アカウント名
+        $account_name = $row['account_name']; //アカウント名
         $attend_number = attend_number($row['act_id']); //出席番号
         $no_appli = $row['no_appli']; //応募件数
         $how_to_apply = $row['how_to_apply']; //応募方法
@@ -80,9 +80,6 @@
         $person_charge_name = $row['person_charge_name']; //担当者名
         $impressions =$row['impressions'];
         $future_activities = $row['future_activities'];
-        $status = $row['as_number'];
-
-        $param_p = json_encode($status);
 
 
 
@@ -101,16 +98,16 @@
     <html lang="ja">
         <head>
             <meta charset="UTF-8">
-            <link rel="stylesheet" href="\DEVELOPMENT_PRACTICE/cssfiles/style.css">
-            <link rel="stylesheet" href="cssfiles/style_svdata.css">
-            <title>就職活動過去データ</title>
+            <link rel="stylesheet" href="../cssfiles/style.css">
+            <link rel="stylesheet" href="cssfiles/style_t_pd.css">
+            <title>就職活動報告依頼内容</title>
         </head>
         <body>
             <div class="return">    <!-- 犬の画像用戻るボタン -->
-                <a href="teach_req.php"><img src="images/innu.jpeg"></a>
+                <a href="teach_req.php"><img src="../images/innu.jpeg"></a>
             </div>
             <div id="main_title">   <!-- 共通のタeイトル部分 -->
-                <h1>就職活動<br class="br-sp">保存データ</h1>
+            <h1>就職活動報告<br class="br-sp">依頼内容</h1>
             </div>
             <div class="big-div">
                 <div class="div-info">
@@ -136,7 +133,7 @@
                         <p class="p-info">応募先企業：</p><p class="p-view"><?php check_null( $comp_name )?></p>
                     </div>
                     <div class="divdiv">
-                        <p class="p-info">応募先所在地：</p><p class="p-view"><?php address_check( $comp_address)  ?></p>
+                        <p class="p-info">応募先住所：</p><p class="p-view"><?php address_check( $comp_address)  ?></p>
                     </div>
                     <div class="divdiv">
                         <p class="p-info">提出書類：</p><p class="p-view"><?php check_null(change_format($docmt_submit))?></p>
@@ -174,14 +171,14 @@
                     </form>
                 </div>
                 <div class="page-top">
-                    <a href="#"><img class="pg-top" src="images/pagetop 1.png" alt="page-top"></a>
+                    <a href="#"><img class="pg-top" src="../images/pagetop 1.png" alt="page-top"></a>
                 </div>
             </div>
 
 
         </body>
 
-    <script type="text/javascript">
+        <script type="text/javascript">
         function req_btn(i){
             if(i == 0){
                 if(confirm("承認してもよろしいですか？")){
@@ -201,12 +198,6 @@
             }
         }
 
-        var  param_j = JSON.parse('<?php echo $param_p; ?>') ;
-
-        if(/*param_j == 2 || param_j == 3*/false){
-            var dele = document.getElementById('delete').style.display = 'none';
-            document.getElementById('edit').style.display = 'none';
-        }
         </script>
 
     </html>
