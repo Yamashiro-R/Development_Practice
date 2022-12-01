@@ -97,7 +97,7 @@
                 //INSERT完了したらページ遷移
                 header('Location: Input_Form_2_1.php');
             
-            }
+//            }
     
     
 ?>
