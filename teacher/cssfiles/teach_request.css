@@ -16,6 +16,10 @@
 
 /*新規依頼画面↓*/
 
+body{
+    margin-bottom: 20px;
+}
+
 #newreq-title,#now-req{
     text-align: center;
 }

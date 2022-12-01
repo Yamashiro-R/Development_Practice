@@ -1,11 +1,11 @@
 <?php
 
-// include '../includes/login.php';
-// include '../includes/function.php';
+include '../includes/login.php';
+include '../includes/function.php';
 
 
-    // $_SESSION['ps_val'] = null;
-    // $_SESSION['page'] = null;
+    $_SESSION['ps_val'] = null;
+    $_SESSION['page'] = null;
 ?>
 
 <!DOCTYPE html>
@@ -20,6 +20,7 @@
             <title>ホーム画面</title>
         </head>
         <body class="home">
+        <?php include 'header.php' ?>
         <div id="main_title"> 
             <!-- 後で考える -->
             <h1>ホーム画面</h1>     
@@ -28,23 +29,23 @@
             <div class="prot_div">
                 <div class="new_title"> 
                     <div class="title" onclick="TOP()">TOP</div>
-                    <div class="title" onclick="CreateReport()">報告書作成</div>
+                    <div class="title" onclick="CreateReport()">申請依頼</div>
                 </div>
                 <div class="prot_body1">
-                    <button onclick="location.href='dvSearch.php'">
+                    <button onclick="location.href='t_dvSearch.php'">
                         <i class="fa-solid fa-magnifying-glass"></i><br>
                         検索
                     </button>
                 </div>
                 <div class="prot_body2">
-                    <button onclick="location.href='Input_Form_1.php'">
+                    <button onclick="location.href='teach_req.php'">
                         <i class="fa-solid fa-pen-to-square"></i><br>
-                        新規作成
+                        依頼を確認
                     </button>
-                    <button onclick="location.href='dataView.php'">
+                    <!-- <button onclick="location.href='dataView.php'">
                         <i class="fa-solid fa-floppy-disk"></i><br>
                         保存済データ
-                    </button>
+                    </button> -->
                 </div>
             </div>
             <script type="text/javascript" src="\DEVELOPMENT_PRACTICE/JS_files/home.js"></script>

@@ -26,7 +26,6 @@
         $job = $_POST['job'];
 
         $page = 1;
-        $_SESSION['page'];
         $_SESSION['ps_val'] = $_POST;
     }else if(!$_POST && isset($_SESSION['ps_val'])){
         $_POST = $_SESSION['ps_val'];
@@ -42,9 +41,9 @@
 
 
 
-    $select = 'SELECT * FROM ac_comp_data_tb join apply_status_tb 
-                on ac_comp_data_tb.as_number = apply_status_tb.as_number 
-                where ac_comp_data_tb.as_number = 3 ';
+    $select = 'SELECT * FROM ac_comp_data_tb,apply_status_tb 
+                where ac_comp_data_tb.as_number = apply_status_tb.as_number 
+                and ac_comp_data_tb.as_number = 3 ';
 
     if($name){
         $select .=  "and comp_name LIKE '%". $name . "%'" ; 
@@ -177,7 +176,7 @@
 
                 <footer>
                     <div class="change_save">
-                        <?php create_btn_chg($page,$records,'search'); ?>
+                        <?php create_btn_chg($page,$records); ?>
                     </div>
                 </footer>
 

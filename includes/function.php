@@ -89,7 +89,7 @@
     }
 
 
-    /*tableの中身を生成*/
+    /*tableの中身を生成　生徒画面*/
     function create_tbody ($row,$page) {
         if($row != false){
             $modified = array_column($row, 'modified');
@@ -122,12 +122,47 @@
                 <td class="show"></td>
             </tr>
             ';
-
             }
          }
     }
 
 
+        /*tableの中身を生成　管理者画面*/
+        function t_create_tbody ($row,$page) {
+            if($row != false){
+                $modified = array_column($row, 'modified');
+                $comp_name = array_column($row, 'comp_name');
+                $student_name = array_column($row, 'account_name');
+                $apply_status = array_column($row, 'apply_status');
+                $reference_numbe = array_column($row,'reference_numbe');
+    
+    
+                $i = 0;
+                while($i < 5){
+                echo '<tr class="row', $i + 1 , '">
+                    <td class="day">', date_only($i ,$modified) ,'</td>
+                    <td class="comp-name"><label>', orig_array_key_exists( $i ,$comp_name) , create_button($i,$row,$page)   ,'</lable></td>
+                    <td class="student_name">', orig_array_key_exists($i,$student_name) , '</td>
+                    <td class="app_status">', orig_array_key_exists($i,$apply_status) ,'</td>
+                    <td class="show">', create_button($i++,$row,$page) ,'</td>
+                </tr>
+                ';
+                }
+            }else{
+                $i = 0;
+                while($i++ < 5){
+                echo '<tr class="row">
+                    <td class="day"></td>
+                    <td class="comp-name"></td>
+                    <td class="student_name"></td>
+                    <td class="app_status"></td>
+                    <td class="show"></td>
+                </tr>
+                ';
+                }
+             }
+        }
+    
 
 
 
@@ -142,16 +177,18 @@
             }else if($pass == 'past'){
             echo '<form action="pastdata.php" class="btn_form" method="POST"><button type="submit" class="dvtable-view" value="' , $row[$index][0] ,
                  '" name="no">閲覧</button></form>';
-            }
+            }else if($pass == 'teach'){
+                echo '<form action="teach_pd.php" class="btn_form" method="POST"><button type="submit" class="dvtable-view" value="' , $row[$index][0] ,
+                '" name="no">閲覧</button></form>';
+           }
         }
 
     }
 
 
 
-    function create_btn_chg ($page,$max,$pass){
-        $max_page = ceil($max/5);
-        if($pass == 'search'){
+    function create_btn_chg ($page,$records){
+        $max_page = ceil($records/5);
             $btn = "";
             if($page < 2){
                 $btn .= '<form action="" class="btn_form"><button  class="dvtable-view" disabled>←前</button></form>';
@@ -160,7 +197,7 @@
                 '" name="page">←前</button></form>';
             }
 
-            $btn .= '<p>' . $page . '</p>';
+            $btn .= '<p>' . $page . '/' . $max_page  . '</p>';
 
             if($page >= $max_page){
                 $btn .= '<form action="" class="btn_form" ><button  class="dvtable-view" disabled>次→</button></form>';
@@ -170,26 +207,6 @@
             }
             
             echo $btn;
-        }else if('save'){
-            $btn = "";
-            if($page < 2){
-                $btn .= '<form action="" class="btn_form"><button  class="dvtable-view" disabled>←前</button></form>';
-            }else{
-                $btn .= '<form action="" class="btn_form" method="GET"><button type="submit" class="dvtable-view" value="' . ($page-1) .
-                '" name="page">←前</button></form>';
-            }
-
-            $btn .= '<p>' . $page . '</p>';
-
-            if($page >= $max_page){
-                $btn .= '<form action="" class="btn_form" ><button  class="dvtable-view" disabled>次→</button></form>';
-            }else{
-                 $btn .= '<form action="" class="btn_form" method="GET"><button type="submit" class="dvtable-view" value="' . ($page+1) .
-                '" name="page">次→</button></form>';
-            }
-            
-            echo $btn;
-        }
     }
 
 
@@ -403,5 +420,6 @@
             exit('エラー：' . $e->getMessage());
         }
     }
+
 
 ?>

@@ -17,12 +17,12 @@
 
             <title>ホーム画面</title>
         </head>
-        <?php include 'header.php' ?>
 
         <body class="home">
+        <?php include 'header.php' ?>
         <div id="main_title"> 
             <!-- 後で考える -->
-            <h1>ホーム画面</h1>     
+            <h1>ホーム画面</h1> 
         </div>
 
             <div class="prot_div">
