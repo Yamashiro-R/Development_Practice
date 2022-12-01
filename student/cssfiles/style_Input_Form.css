@@ -103,7 +103,7 @@
 
 .select_box {
     width: 84%;
- }
+}
 
 .divdiv_col_1 {
     width: 100%;
@@ -155,6 +155,10 @@
     width:565px;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 50px;
+    padding: 5px 25px 5px 25px;
+    background-color: #f6f6f6;
 }
 
 /* .thoughts-text {
@@ -332,7 +336,21 @@
         width: 100%;
     }*/
 
-   
+    /*Input_Form_3*/
+    @media screen and (max-width: 760px){
+        .box {
+            width: 390px;
+        }
+        .thoughts,.schedule {
+            width: 390px;
+        }
+        .button {
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+    /*Input_Form_3 ↑*/
+
 }    
 
 /*フレキシブル設定↑*/

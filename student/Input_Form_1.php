@@ -9,7 +9,7 @@
 //     if($_POST == null){
 //         ;
 //     }else {
-//         if(isset ($_POST['hantei']) ){
+//         if(isset ($_POST['hantei'])){
 //             if(toBoolean($_POST['hantei'])){
 //                 echo '成功';
 //                 //ポストされたデータを変数に格納
@@ -108,16 +108,16 @@
             </div>
             <div class="big-div">   
                 <form action="Input_Form_1.php" method="post">
-                         <!--　ポストで送信 -->
+                        <!--　ポストで送信 -->
                     <div class="div-info">
-                         <div class="divdiv_col_1 divdiv">   
+                        <div class="divdiv_col_1 divdiv">   
                             <p class="p-info_col_1"><label for="company_name">応募先企業名：</label></p>
                             <div class="denger_field">
                                 <input type="text" class="input-view" name="company_name"  id="company_name">
                                 <!-- ここにエラー文を出力-->
                             </div>
                         </div>
-                         <div class="divdiv_col_1 divdiv">   
+                        <div class="divdiv_col_1 divdiv">   
                             <p class="p-info_col_1"><label for="company_address">応募先所在地：</label></p>
                             <div class="denger_field">
                                 <input type="text" class="input-view" name="company_address" id="company_address">
@@ -184,7 +184,7 @@
                         <input type="hidden" value="" name="hantei">            
                     </div>
                     <div class="button">
-                       <input type="reset"  class="btn_item" value="キャンセル" alt="キャンセル">
+                        <input type="reset"  class="btn_item" value="キャンセル" alt="キャンセル">
                         <input type="submit" class="btn_item" value="保存" alt="保存">
                         <input type="submit" class="btn_item" value="一次→" alt="一次→">
                     </div>
