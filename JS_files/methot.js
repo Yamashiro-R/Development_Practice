@@ -406,6 +406,8 @@ function rog_out_js(){
         xhr.open('POST', '../includes/rog_out.php', true);
         xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
         xhr.send(1);
+
+        window.location.href = '../login.php';
     }
 }
 
