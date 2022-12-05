@@ -136,6 +136,12 @@ input[type="search"] {
     font-size: 80%;
 }
 
+.kensu {
+    color: red;
+    font-size: 100%;
+    text-align: center;
+  }
+
 
 .change_save button {
     width: 50px;
