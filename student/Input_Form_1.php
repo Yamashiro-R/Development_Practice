@@ -7,25 +7,33 @@
 
 
 <?php
-    if($_POST == null){
-        ;
-    }else{
-                //ポストされたデータを変数に格納
-                $id = intval($_SESSION['ID']);
-                $number = 1;
-                $company_name = $_POST['company_name'];
-                $company_address = $_POST['company_address'];
+//     if($_POST == null){
+//         ;
+//     }else {
+//         if(isset ($_POST['hantei'])){
+//             if(toBoolean($_POST['hantei'])){
+//                 echo '成功';
+//                 //ポストされたデータを変数に格納
+//                 $id = intval($_SESSION['ID']);
+//                 $number = 1;
+//                 $company_name = $_POST['company_name'];
+//                 $company_address = $_POST['company_address'];
 
-                $total_number = intval($_POST['number_of_applications']);
-                $method = $_POST['application_method'];
-                $document_screening = $_POST['document_screening'];
-                $job = $_POST['occupation'];
-                $document_submitted = "";
-                $cntflag = 1;
-                //データベースに格納できる様に書式を変更
-                //checkboxに複数チェックがあるとき
-                //例 履歴書,修了見込み証明書 に加工し1行で纏める。
-                $document_submitted = implode(",",$_POST['Documents_submitted']);
+//                 $total_number = intval($_POST['number_of_applications']);
+//                 $method = $_POST['application_method'];
+//                 $document_screening = $_POST['document_screening'];
+//                 $job = $_POST['occupation'];
+//                 $document_submitted = "";
+//                 $cntflag = 1;
+                
+//                 foreach($_POST['Documents_submitted'] as $value){
+//                     if($cntflag != count($_POST['Documents_submitted'])){
+//                         $document_submitted .= $value . ',' ;
+//                     }else{
+//                         $document_submitted .= $value;
+//                     }
+//                      $cntflag++;
+//                 }
                 
                 
                 //DBに接続
@@ -87,9 +95,9 @@
                 $_SESSION['reference'] = $row['reference_number'];
 
                 //INSERT完了したらページ遷移
-                header('Location: Input_Form_2_1.php');
+                //header('Location: Input_Form_2_1.php');
             
-            }
+//            }
     
     
 ?>
@@ -122,16 +130,16 @@
             </div>
             <div class="big-div">   
                 <form action="Input_Form_1.php" method="post">
-                         <!--　ポストで送信 -->
+                        <!--　ポストで送信 -->
                     <div class="div-info">
-                         <div class="divdiv_col_1 divdiv">   
+                        <div class="divdiv_col_1 divdiv">   
                             <p class="p-info_col_1"><label for="company_name">応募先企業名：</label></p>
                             <div class="denger_field">
                                 <input type="text" class="input-view" name="company_name"  id="company_name">
                                 <!-- ここにエラー文を出力-->
                             </div>
                         </div>
-                         <div class="divdiv_col_1 divdiv">   
+                        <div class="divdiv_col_1 divdiv">   
                             <p class="p-info_col_1"><label for="company_address">応募先所在地：</label></p>
                             <div class="denger_field">
                                 <input type="text" class="input-view" name="company_address" id="company_address">
@@ -198,7 +206,7 @@
                     
                     </div>
                     <div class="button">
-                       <input type="reset"  class="btn_item" value="キャンセル" alt="キャンセル">
+                        <input type="reset"  class="btn_item" value="キャンセル" alt="キャンセル">
                         <input type="submit" class="btn_item" value="保存" alt="保存">
                         <input type="submit" class="btn_item" value="一次→" alt="一次→">
                     </div>

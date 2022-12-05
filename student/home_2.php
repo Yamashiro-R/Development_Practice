@@ -50,10 +50,11 @@
             
             <script type="text/javascript" src="\DEVELOPMENT_PRACTICE/JS_files/home.js"></script>
             <script type="text/javascript" src="\DEVELOPMENT_PRACTICE/JS_files/methot.js"></script>
+
             
 
         </body>
-
+       
 
 
 

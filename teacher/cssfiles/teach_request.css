@@ -18,6 +18,7 @@
 
 body{
     margin-bottom: 20px;
+    background-color: #FFFFBB;
 }
 
 #newreq-title,#now-req{
@@ -37,6 +38,7 @@ body{
     border: #0fffff 5px solid;
     margin-left: auto;
     margin-right: auto;
+    background-color: #DDFFFF;
 }
 
 .test_div {

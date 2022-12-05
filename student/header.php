@@ -1,7 +1,7 @@
 <header class="site-header">
     <div class="wrapper site-header__wrapper">
         <div class="site-header__start">
-            <p class="brand">就職活動管理Webアプリ</p>
+            <p class="brand"><a href="home_2.php">就職活動管理Webアプリ</a></p>
         </div>
         <div class="site-header__middle">
             <nav class="nav">
@@ -11,7 +11,7 @@
             <ul class="nav__wrapper">
                 <li class="nav__item" title="ID:1224">👤<?php echo $_SESSION['name'] ?></li>
                 <li class="nav__item">
-                    <div class="dropdown">
+                    <div class="dropdown" id="la">
                         <input id="tg" class="dropInput" type="checkbox">
                         <label for="tg" class="dropLabel">PageList▼</label>
                         <ul class="menu animation">
@@ -49,3 +49,16 @@
         </div>
     </div>
 </header>
+
+
+<script>
+    const la =  document.getElementById('la');
+    la.addEventListener('mouseover',function() {
+        document.getElementById('tg').checked = true;
+    });
+
+    la.addEventListener('mouseout',function() {
+        document.getElementById('tg').checked = false;
+    });
+</script>
+
