@@ -101,7 +101,7 @@
 
 
             $i = 0;
-            while($i < 5){
+            while($i < count($row)){
             echo '<tr class="row', $i + 1 , '">
                 <td class="day">', date_only($i ,$modified) ,'</td>
                 <td class="comp-name"><label>', orig_array_key_exists( $i ,$comp_name) , create_button($i,$row,$page)   ,'</lable></td>
@@ -112,18 +112,11 @@
             ';
             }
         }else{
-            $i = 0;
-            while($i++ < 5){
             echo '<tr class="row">
-                <td class="day"></td>
-                <td class="comp-name"></td>
-                <td class="address"></td>
-                <td class="job"></td>
-                <td class="show"></td>
+            <td colspan="5">検索条件に該当するデータはありません</td>
             </tr>
-            ';
-            }
-         }
+        ';
+ }
     }
 
 
@@ -138,7 +131,7 @@
     
     
                 $i = 0;
-                while($i < 5){
+                while($i < count($row)){
                 echo '<tr class="row', $i + 1 , '">
                     <td class="day">', date_only($i ,$modified) ,'</td>
                     <td class="comp-name"><label>', orig_array_key_exists( $i ,$comp_name) , create_button($i,$row,$page)   ,'</lable></td>
@@ -148,18 +141,11 @@
                 </tr>
                 ';
                 }
-            }else{
-                $i = 0;
-                while($i++ < 5){
+            }else{               
                 echo '<tr class="row">
-                    <td class="day"></td>
-                    <td class="comp-name"></td>
-                    <td class="student_name"></td>
-                    <td class="app_status"></td>
-                    <td class="show"></td>
-                </tr>
+                    <td colspan="5">検索条件に該当するデータはありません</td>
+                    </tr>
                 ';
-                }
              }
         }
     
@@ -188,7 +174,8 @@
 
 
     function create_btn_chg ($page,$records){
-        $max_page = ceil($records/5);
+        if($records > 10){
+            $max_page = ceil($records/10);
             $btn = "";
             if($page < 2){
                 $btn .= '<form action="" class="btn_form"><button  class="dvtable-view" disabled>←前</button></form>';
@@ -207,6 +194,8 @@
             }
             
             echo $btn;
+           
+        }
     }
 
 

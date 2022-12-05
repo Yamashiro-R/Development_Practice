@@ -7,7 +7,7 @@
     $user = 'user';
     $password = 'test';
 
-    $num = 5;
+    $num = 10;
 
     if(isset($_GET['page'])){
         $page = $_GET['page'];
@@ -157,6 +157,7 @@
                     </form>
                 </div>
                 <div>
+                <p class="kensu">全部で<?php echo $records ?>件のデータがあります。</p>
                     <table class="dvtable" id="table_erea">
                         <thead>
                             <tr>

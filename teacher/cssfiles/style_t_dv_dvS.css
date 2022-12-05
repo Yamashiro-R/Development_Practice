@@ -167,11 +167,23 @@ input[type="search"] {
     margin: 0;
 }
 
+.t_dvSerach_btn {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.button_re {
+    justify-content: flex-start;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+}
+
 .button_d{
     margin-top: 20px;
     margin-bottom: 20px;
     padding-right: 10px;
-    display: flex;
     justify-content: flex-end;
 }
 
@@ -193,49 +205,54 @@ input[type="search"] {
 
 @media screen and (max-width: 800px){
 
-.dvSearch{
-    width: 400px;
-}
+    .dvSearch{
+        width: 400px;
+    }
 
-.main_div {
-    display: block;
-}
+    .main_div {
+        display: block;
+    }
 
-.main_div p {
-    margin-left: auto;
-    margin-right: auto;
-}
+    .main_div p {
+        margin-left: auto;
+        margin-right: auto;
+    }
 
-.dvSform {
-    font-size: 80%;
-    margin-top: 20px;
-}
+    .dvSform {
+        font-size: 80%;
+        margin-top: 20px;
+    }
 
-       
-.br-spr {display: none;}
+        
+    .br-spr {display: none;}
 
-.br-sp {display: block;}
+    .br-sp {display: block;}
 
-.dvtable {
-    width: 500px;
-}
+    .dvtable {
+        width: 500px;
+    }
 
-.dvtable th {
-    font-size: 140%;
-}
+    .dvtable th {
+        font-size: 140%;
+    }
 
-th:nth-of-type(1){
-    width: 130px;
-}
+    th:nth-of-type(1){
+        width: 130px;
+    }
 
 
-th:nth-of-type(2){
-    width: 120px;
-}
+    th:nth-of-type(2){
+        width: 120px;
+    }
 
-.dvtable td {
-    font-size: 90%;
-}
+    .dvtable td {
+        font-size: 90%;
+    }
+
+    .t_dvSerach_btn {
+        justify-content: space-around;
+    }
+    
 
 }
 
