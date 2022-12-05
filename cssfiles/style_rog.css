@@ -82,6 +82,9 @@
     margin-right: auto;
 }
 
+.btn-border:active {
+    background-color: gray;
+}
 
 /*フレキシブル設定↓*/
 

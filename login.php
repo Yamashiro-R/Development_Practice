@@ -32,21 +32,19 @@
             if ($row = $stmt->fetch()) {
                 //ユーザが存在していたら、セッションにユーザIDセット
                 $_SESSION['ID'] = $row['act_id'];
+                $_SESSION['pass'] = $row['password'];
                 $_SESSION['name'] = $row['account_name'];
+
+                if(strcmp($_POST['pass'],strval($_POST['ID'])) == 0){
+                    header('Location: newlogin.php');
+                    exit();
+                }
 
                 if($_SESSION['ID'] / 100 >= 99) {
                     header('Location: teacher/home_2.php');
                 }else{
                     header('Location: student/home_2.php');
                 }
-        
-
-
-                // if(intval($_POST['pass'])  == $_POST['ID']){
-                //     header('Location: newlogin.php');
-                // }else{
-                //     header('Location: home.php');
-                // }
                 exit();
             }else {
                 //1レコードも取得できなかったとき
@@ -77,14 +75,14 @@
             <form class="roginform" action="login.php" method="POST">
                 <div class="ID-From">
                     <p class="p-title">ID</p>
-                        <input type="text" class="id rogin-input" name="ID" autocomplete="off">
+                        <input type="text" class="id rogin-input" name="ID" maxlength="4" placeholder="4桁数字" pattern="^[0-9]+$" autocomplete="off">
                 </div>
                 <div class="infomation">
                     <p class="info">※パスワードを設定してください。</p>
                 </div>
                 <div class="password">
                     <p class="p-title">Pass</p>
-                        <input type="password" name="pass" placeholder="4桁英数字" class="pass rogin-input">
+                        <input type="password" name="pass" maxlength="8" placeholder="4～8桁の英数字" pattern="^[0-9a-zA-Z]+$" class="pass rogin-input">
                 </div>
                 <input type="submit" class="btn btn-border" value="ログイン">
             </form>

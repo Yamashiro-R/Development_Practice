@@ -24,7 +24,7 @@
 <header class="site-header">
     <div class="wrapper site-header__wrapper">
         <div class="site-header__start">
-            <p class="brand">就職活動管理Webアプリ</p>
+            <p class="brand"><a href="home_2.php">就職活動管理Webアプリ</a></p>
         </div>
         <div class="site-header__middle">
             <nav class="nav">
@@ -81,15 +81,15 @@
                         <a href="teach_req.php">新規申請依頼</a>
                         <p class="sinki_kensu_hg">
                             <?php 
-                                if(count($row) > 0){
-                                    echo "新規".count($row)."件";
+                                if(count($row_header) > 0){
+                                    echo "新規".count($row_header)."件";
                                 }
                             ?>
                     </li>
                     <li>
-                    <div class="site-header__end">
-            <a class="button_header" href="#" onclick="rog_out_js(); return false;">ログアウト</a>
-        </div>
+                        <div class="site-header__end">
+                            <a class="button_header" href="#" onclick="rog_out_js(); return false;">ログアウト</a>
+                        </div>
                     </li>
                 </ul>
             </div>

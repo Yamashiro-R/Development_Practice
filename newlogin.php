@@ -1,5 +1,6 @@
 <?php
-session_start();
+    include 'includes/login.php';
+
 
 $select = "selected";
 $option = array(7);
@@ -8,11 +9,15 @@ for ($i = 0; $i < 7; $i++) {
     $option[$i] = "";
 }
 
-if ($_POST) {
-    $id = $_POST['ID'];
+if (!empty( $_POST['pass']) && !empty($_POST['re-pass']) && !empty($_POST['department'])) {
     $pass = $_POST['pass'];
     $re_pas = $_POST['re-pass'];
     $family = $_POST['department'];
+
+    $param_pass = json_encode($pass);
+    $param_re_pass = json_encode($re_pas);
+
+
 
     for ($i = 1; $i < 8; $i++) {
         if ($_POST['department'] == $i) {
@@ -26,32 +31,42 @@ if ($_POST) {
         $user = 'user';
         $password = 'test';
 
-        $test = hash("sha256",$pass);
+        $p_test = hash("sha256",$pass);
+        $re_p_test = hash("sha256",$re_pas);
         $family = intval($family) ;
 
+        if($p_test === $re_p_test){/*問題あり　　どちらもnullの時も成り立ってしまう？　javascriptで問題ない？*/
+            if($_SESSION['password'] != $p_test){
+                try {
+                    $db = new PDO($dsn, $user, $password);
+                    $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+                    //プリペアドステートメントを作成
+                    $stmt = $db->prepare("UPDATE account_tb SET password  = :pass WHERE act_id = :act");
+                    //パラメータ割り当て
+                    $stmt->bindParam(':pass',$p_test, PDO::PARAM_STR);
+                    $stmt->bindParam(':act', $_SESSION['ID'], PDO::PARAM_INT);
+                    //クエリの実行
+                    $stmt->execute();
 
 
-    
-    
-        try {
-            $db = new PDO($dsn, $user, $password);
-            $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-             //プリペアドステートメントを作成
-            $stmt = $db->prepare("UPDATE account_tb SET password  = :pass WHERE act_id = :act");
-            //パラメータ割り当て
-            $stmt->bindParam(':pass',$test, PDO::PARAM_STR);
-            $stmt->bindParam(':act', $id, PDO::PARAM_STR);
-            //クエリの実行
-            $stmt->execute();
-            $stmt = $db->prepare("UPDATE account_tb SET fn_number = :num WHERE act_id = :act");
-            $stmt->bindParam(':num', $family, PDO::PARAM_INT);
-            $stmt->bindParam(':act', $id, PDO::PARAM_STR);
-            //クエリの実行
-            $stmt->execute();
-        }catch(PDOException $e){
-            exit('エラー：' . $e->getMessage());
-        }
-    echo $family;
+                    $stmt = $db->prepare("UPDATE account_tb SET fn_number = :num WHERE act_id = :act");
+                    $stmt->bindParam(':num', $family, PDO::PARAM_INT);
+                    $stmt->bindParam(':act', $_SESSION['ID'], PDO::PARAM_INT);
+                    //クエリの実行
+                    $stmt->execute();
+
+                    $_SESSION = array();
+
+
+                    header('Location: login.php');
+
+
+                }catch(PDOException $e){
+                    exit('エラー：' . $e->getMessage());
+                }
+            }
+
+        }    
 }else{
     echo 'ii';
     $id = null;
@@ -78,7 +93,7 @@ if ($_POST) {
                 <form action="newlogin.php" class="roginform" method="POST">
                     <div class="ID-From">
                         <p class="p-title">ID</p>
-                            <input type="text" class="id rogin-input" name="ID" value="<?php echo $id ?>" autocomplete="off"
+                            <input type="text" class="id rogin-input"  value="<?php echo $_SESSION['ID'] ?>" autocomplete="off"
 >
                     </div>
                     <div class="infomation">
@@ -111,7 +126,9 @@ if ($_POST) {
                 <!-- <button class="btn btn-border">登録</button> -->
                 <input type="submit" class="btn btn-border" value="登録" onclick="new_login_check()">
                 </form>
-                <script type="text/javascript" src="methot.js"></script>
+
+
+                <script type="text/javascript" src="JS_files/methot.js"></script>
         </body>
     </html>
 </html>

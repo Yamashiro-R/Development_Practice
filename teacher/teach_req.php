@@ -47,7 +47,7 @@
                 </div>
                 <div class="title_req">
                     <h3 id="newreq-title" style="color: red;">新規依頼</h3>
-                    <p id="now-req">現在<strong style="color: blue;"><?php echo count($row) ?>件</strong>の依頼が来ています。</p>
+                    <p id="now-req">現在<strong style="color: red;"><?php echo count($row) ?>件</strong>の依頼が来ています。</p>
                 </div>
                 <div class="test">
                     <?php teach_func($row) ?>
