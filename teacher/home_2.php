@@ -6,6 +6,8 @@ include '../includes/function.php';
 
     $_SESSION['ps_val'] = null;
     $_SESSION['page'] = null;
+
+
 ?>
 
 <!DOCTYPE html>
@@ -29,7 +31,15 @@ include '../includes/function.php';
             <div class="prot_div">
                 <div class="new_title"> 
                     <div class="title" onclick="TOP()">TOP</div>
-                    <div class="title" onclick="CreateReport()">申請依頼</div>
+                    <div class="title" onclick="CreateReport()">申請依頼
+                        <p class="sinki">
+                            <?PHP 
+                                if(count($row_header) > 0){
+                                echo '🔴'; 
+                                }
+                            ?>
+                        </p>
+                    </div>
                 </div>
                 <div class="prot_body1">
                     <button onclick="location.href='t_dvSearch.php'">
@@ -41,6 +51,13 @@ include '../includes/function.php';
                     <button onclick="location.href='teach_req.php'">
                         <i class="fa-solid fa-pen-to-square"></i><br>
                         依頼を確認
+                        <p class="sinki_kensu">
+                                <?php 
+                                    if(count($row_header) > 0){
+                                        echo count($row_header)."件";
+                                    }
+                                ?>
+                        </p>
                     </button>
                     <!-- <button onclick="location.href='dataView.php'">
                         <i class="fa-solid fa-floppy-disk"></i><br>

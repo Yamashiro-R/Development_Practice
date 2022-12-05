@@ -68,6 +68,30 @@ i{
     margin-left: 300px;
 }
 
+
+.sinki {
+    font-size: 85%;
+    position: relative;
+    right: -30px;
+    display: inline;
+    border-radius: 50%;
+}
+
+.sinki_kensu {
+    margin-right: auto;
+    margin-left: auto;
+    vertical-align: middle;
+    text-align: center;
+    font-size: 100%;
+    width: 40px;
+    background-color: red;
+    border-radius: 15%;
+
+}
+
+
+/*teacher*/
+
 /* フレックス設定 */
 /*フレキシブル設定↓*/
 
