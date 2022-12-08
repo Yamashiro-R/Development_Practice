@@ -9,23 +9,25 @@ for ($i = 0; $i < 7; $i++) {
     $option[$i] = "";
 }
 
-if (!empty( $_POST['pass']) && !empty($_POST['re-pass']) && !empty($_POST['department'])) {
+if (!empty( $_POST['pass']) && !empty($_POST['re-pass'])) {
     $pass = $_POST['pass'];
     $re_pas = $_POST['re-pass'];
     $family = $_POST['department'];
 
-    $param_pass = json_encode($pass);
-    $param_re_pass = json_encode($re_pas);
+    if($_POST['department'] != 8){
+
+        $param_pass = json_encode($pass);
+        $param_re_pass = json_encode($re_pas);
 
 
 
-    for ($i = 1; $i < 8; $i++) {
-        if ($_POST['department'] == $i) {
-            $option[$i-1] = "selected";
-            $select = null;
-            break;
+        for ($i = 1; $i < 8; $i++) {
+            if ($_POST['department'] == $i) {
+                $option[$i-1] = "selected";
+                $select = null;
+                break;
+            }
         }
-    }
 
         $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';
         $user = 'user';
@@ -67,6 +69,8 @@ if (!empty( $_POST['pass']) && !empty($_POST['re-pass']) && !empty($_POST['depar
             }
 
         }    
+
+    }
 }else{
     echo 'ii';
     $id = null;
