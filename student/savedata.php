@@ -72,6 +72,8 @@
         $future_activities = $row['future_activities'];
         $status = $row['as_number'];
         $as_name = $row['apply_status'];
+        $remarks = $row['remarks'];
+
         $confirmation =  $row['confirmation'];
 
 
@@ -165,6 +167,11 @@
                     <div class="test">
                         <div>
                             <p class="p-info">今後の活動予定：</p><p class="p-view"><?php check_null( $future_activities) ?></p>
+                        </div>
+                    </div>
+                    <div class="test">
+                        <div>
+                            <p class="p-info">備考：</p><p class="p-view"><?php check_null($remarks) ?></p>
                         </div>
                     </div>
                 </div>
