@@ -104,6 +104,7 @@
             <title>就職活動報告依頼内容</title>
         </head>
         <body>
+        <?php include 'header.php' ?>
             <div class="return">    <!-- 犬の画像用戻るボタン -->
                 <a href="teach_req.php"><img src="../images/innu.jpeg"></a>
             </div>
@@ -208,6 +209,9 @@
         }
 
         </script>
+
+        <script type="text/javascript" src="\DEVELOPMENT_PRACTICE/JS_files/methot.js"></script>
+
 
     </html>
 

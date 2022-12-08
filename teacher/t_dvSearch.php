@@ -28,19 +28,19 @@
     } else{
         $page = 1;
     }
+    
     if(isset($_POST['reset'])){
         unset($_SESSION['ps_val']);
         $_POST = null;
         $page = 1;
 
-        header('Location: t_dvSearch.php#');
+        header('Location: t_dvSearch.php#dvS_contentu');
     }
 
 
     //検索が押されたかの判定と処理
     if($_POST){
         if(!isset($_POST['reset'])) {
-            header('Location: t_dvSearch.php#table_erea');
 
             $comp_name = $_POST['comp_name'];
             $student_name = $_POST['student_name'];
@@ -48,6 +48,8 @@
             $student_id = $_POST['student_id'];
             $docmt = $_POST['docmt'];
             $year = $_POST['year'];
+            $fn_number = $_POST['gakka'];
+
 
             $_SESSION['ps_val'] = $_POST;
             $page = 1;
@@ -64,6 +66,8 @@
         $student_id = $_POST['student_id'];
         $docmt = $_POST['docmt'];
         $year = $_POST['year'];
+        $fn_number = $_POST['gakka'];
+
 
         $boole = true;
     } else{
@@ -73,6 +77,8 @@
         $student_id = false;
         $docmt = false;
         $year = false;
+        $fn_number = false;
+
 
 
         $boole = false;
@@ -90,6 +96,14 @@
 
     if($student_name){
         $select .=  " and  account_name LIKE '%". $student_name . "%'" ; 
+    }
+
+    if($fn_number){
+        if($fn_number != 'defa'){
+            $select .=  " and fn_number = ". $fn_number; 
+        }else {
+            $fn_number = false;
+        }
     }
 
     if($status){
@@ -217,7 +231,7 @@
                     </div>
                         <!-- <div class="dvStop">
                             <div class="dvSname"> -->
-                    <form class="dvSform" action="" method="POST">
+                    <form class="dvSform" action="t_dvSearch.php#table_erea" method="POST">
                         <div id="dvS_contentu" style="display: block;">
                             <div class="main_div">
                                 <p class="p_input">
@@ -228,6 +242,23 @@
                                 </p>
                                 <p class="p_input">
                                     <label>生徒ID<br><input type="search" name="student_id" value="<?php echo $student_id ?>"> </label>
+                                </p>
+                                <p class="p_select">
+                                    <label>学科名<br>
+                                        <select name="gakka" class="pull-down">
+                                            <option value="defa">全学科</option>
+                                            <?php
+                                                $gakka = array("造園ガーデニング科","電気システム科","自動車整備科","オフィスビジネス科","メディア・アート科","情報システム科","総合実務科");
+                                                for($i = 0  ; $i < count($gakka); $i++){
+                                                    echo '<option value="', $i + 1 ,'"';    
+                                                    if($i + 1 == $fn_number){
+                                                        echo 'selected';
+                                                    }
+                                                    echo '>', $gakka[$i] ,'</option>';
+                                                }
+                                            ?>
+                                        </select>
+                                    </label>
                                 </p>
                                 <p class="p_select">
                                     <label>入校年度(過去10年分)<br>

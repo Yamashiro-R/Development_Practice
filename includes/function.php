@@ -92,31 +92,61 @@
     /*tableの中身を生成　生徒画面*/
     function create_tbody ($row,$page) {
         if($row != false){
-            $modified = array_column($row, 'modified');
-            $comp_name = array_column($row, 'comp_name');
-            $comp_address = array_column($row, 'comp_address');
-            $job = array_column($row, 'job');
-            $apply_status = array_column($row, 'apply_status');
-            $reference_numbe = array_column($row,'reference_numbe');
+            if($page == 'save'){
+                $modified = array_column($row, 'modified');
+                $comp_name = array_column($row, 'comp_name');
+                $comp_address = array_column($row, 'comp_address');
+                $job = array_column($row, 'job');
+                $apply_status = array_column($row, 'apply_status');
+                $reference_numbe = array_column($row,'reference_numbe');
+                $confirmation =  array_column($row,'confirmation');
+                $as_number = array_column($row,'as_number');
+        
+                $i = 0;
+                while($i < count($row)){
+                    echo '<tr class="row', $i + 1 , '">
+                        <td class="day">', date_only($i ,$modified) ,'</td>
+                        <td class="comp-name"><label>', orig_array_key_exists( $i ,$comp_name) , create_button($i,$row,$page)   ,'</lable></td>
+                        <td class="address" title="', orig_array_key_exists($i,$comp_address) ,'">', address_key_exists($i,$comp_address) , '</td>
+                        <td class="job">', orig_array_key_exists($i,$job) ,'</td>
+                        <td class="show">', create_button($i,$row,$page);
+                    if($confirmation[$i] == false && ($as_number[$i] == 3 || $as_number[$i] == 4)){
+                        echo '<br><span>未確認</span>';
+                    }
+                    echo '</td></tr>';
 
+                    $i++;
 
-            $i = 0;
-            while($i < count($row)){
-            echo '<tr class="row', $i + 1 , '">
-                <td class="day">', date_only($i ,$modified) ,'</td>
-                <td class="comp-name"><label>', orig_array_key_exists( $i ,$comp_name) , create_button($i,$row,$page)   ,'</lable></td>
-                <td class="address" title="', orig_array_key_exists($i,$comp_address) ,'">', address_key_exists($i,$comp_address) , '</td>
-                <td class="job">', orig_array_key_exists($i,$job) ,'</td>
-                <td class="show">', create_button($i++,$row,$page) ,'</td>
-            </tr>
-            ';
+                }
+            }else if($page == 'past'){
+                $modified = array_column($row, 'modified');
+                $comp_name = array_column($row, 'comp_name');
+                $comp_address = array_column($row, 'comp_address');
+                $job = array_column($row, 'job');
+                $apply_status = array_column($row, 'apply_status');
+                $reference_numbe = array_column($row,'reference_numbe');
+                $confirmation =  array_column($row,'confirmation');
+                $as_number = array_column($row,'as_number');
+        
+                $i = 0;
+                while($i < count($row)){
+                    echo '<tr class="row', $i + 1 , '">
+                        <td class="day">', date_only($i ,$modified) ,'</td>
+                        <td class="comp-name"><label>', orig_array_key_exists( $i ,$comp_name) , create_button($i,$row,$page)   ,'</lable></td>
+                        <td class="address" title="', orig_array_key_exists($i,$comp_address) ,'">', address_key_exists($i,$comp_address) , '</td>
+                        <td class="job">', orig_array_key_exists($i,$job) ,'</td>
+                        <td class="show">', create_button($i,$row,$page),'</td></tr>';
+
+                    $i++;
+
+                }
             }
         }else{
             echo '<tr class="row">
             <td colspan="5">検索条件に該当するデータはありません</td>
             </tr>
-        ';
- }
+                ';
+        }
     }
 
 
@@ -401,7 +431,10 @@
             //クエリの実行
             $stmt->execute();
 
-    
+            $stmt = $db->prepare("UPDATE ac_comp_data_tb SET confirmation = 0 WHERE reference_number = :num");
+            $stmt->bindParam(':num', $ref_num, PDO::PARAM_STR);
+            $stmt->execute();
+            
             header('Location: req_data.php');
             exit();
 
