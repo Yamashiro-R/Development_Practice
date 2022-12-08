@@ -7,7 +7,7 @@
     $user = 'user';
     $password = 'test';
 
-    $num = 5;
+    $num = 10;
     $option_st = array(4);
     for ($i = 0; $i < 4; $i++) {
         $option_st[$i] = "";
@@ -23,29 +23,41 @@
         $page = $_GET['page'];
         $_SESSION['page'] = $_GET['page']; 
         header('Location: t_dvSearch.php#table_erea');
-    }else if(isset($_SESSION['page'])){
+    }else if(isset($_SESSION['page']) != 0){
         $page = $_SESSION['page'];
     } else{
         $page = 1;
+    }
+    
+    if(isset($_POST['reset'])){
+        unset($_SESSION['ps_val']);
+        $_POST = null;
+        $page = 1;
+
+        header('Location: t_dvSearch.php#dvS_contentu');
     }
 
 
     //検索が押されたかの判定と処理
     if($_POST){
-        header('Location: t_dvSearch.php#table_erea');
+        if(!isset($_POST['reset'])) {
 
-        $comp_name = $_POST['comp_name'];
-        $student_name = $_POST['student_name'];
-        $status = $_POST['status'];
-        $student_id = $_POST['student_id'];
-        $docmt = $_POST['docmt'];
-        $year = $_POST['year'];
+            $comp_name = $_POST['comp_name'];
+            $student_name = $_POST['student_name'];
+            $status = $_POST['status'];
+            $student_id = $_POST['student_id'];
+            $docmt = $_POST['docmt'];
+            $year = $_POST['year'];
+            $fn_number = $_POST['gakka'];
 
-        $_SESSION['ps_val'] = $_POST;
-        $page = 1;
-        $_SESSION['page'] = $page;
-        $boole = true;
-    }else if(!$_POST && isset($_SESSION['ps_val'])){
+
+            $_SESSION['ps_val'] = $_POST;
+            $page = 1;
+            $_SESSION['page'] = $page;
+            $boole = true;
+
+        }
+    }else if(!$_POST && (isset($_SESSION['ps_val']))){
         $_POST = $_SESSION['ps_val'];
 
         $comp_name = $_POST['comp_name'];
@@ -54,6 +66,8 @@
         $student_id = $_POST['student_id'];
         $docmt = $_POST['docmt'];
         $year = $_POST['year'];
+        $fn_number = $_POST['gakka'];
+
 
         $boole = true;
     } else{
@@ -63,6 +77,8 @@
         $student_id = false;
         $docmt = false;
         $year = false;
+        $fn_number = false;
+
 
 
         $boole = false;
@@ -82,6 +98,14 @@
         $select .=  " and  account_name LIKE '%". $student_name . "%'" ; 
     }
 
+    if($fn_number){
+        if($fn_number != 'defa'){
+            $select .=  " and fn_number = ". $fn_number; 
+        }else {
+            $fn_number = false;
+        }
+    }
+
     if($status){
         if($status != 5){
             $select .=  " and apply_status_tb.as_number = ". $status; 
@@ -95,7 +119,7 @@
 
     if($year){
         if($year != 'defa'){
-        $select .=  " and account_tb.act_id Like '". $year ."__'"; 
+        $select .=  " and account_tb.act_id Like '". $year % 1000 ."__'"; 
         }
     }
 
@@ -103,7 +127,6 @@
         if($docmt != 6 ){
             $docmts = array("本校の紹介","職安の紹介","縁故者の紹介","求人情報誌","その他");
             $select .=  " and how_to_apply LIKE '%". $docmts[$docmt-1] . "%'" ; 
-            var_dump($docmts[$docmt-1]);
         }
     }
 
@@ -208,7 +231,7 @@
                     </div>
                         <!-- <div class="dvStop">
                             <div class="dvSname"> -->
-                    <form class="dvSform" action="" method="POST">
+                    <form class="dvSform" action="t_dvSearch.php#table_erea" method="POST">
                         <div id="dvS_contentu" style="display: block;">
                             <div class="main_div">
                                 <p class="p_input">
@@ -221,13 +244,30 @@
                                     <label>生徒ID<br><input type="search" name="student_id" value="<?php echo $student_id ?>"> </label>
                                 </p>
                                 <p class="p_select">
-                                    <label>入校年度<br>
+                                    <label>学科名<br>
+                                        <select name="gakka" class="pull-down">
+                                            <option value="defa">全学科</option>
+                                            <?php
+                                                $gakka = array("造園ガーデニング科","電気システム科","自動車整備科","オフィスビジネス科","メディア・アート科","情報システム科","総合実務科");
+                                                for($i = 0  ; $i < count($gakka); $i++){
+                                                    echo '<option value="', $i + 1 ,'"';    
+                                                    if($i + 1 == $fn_number){
+                                                        echo 'selected';
+                                                    }
+                                                    echo '>', $gakka[$i] ,'</option>';
+                                                }
+                                            ?>
+                                        </select>
+                                    </label>
+                                </p>
+                                <p class="p_select">
+                                    <label>入校年度(過去10年分)<br>
                                         <select name="year" class="pull-down">
                                             <option value="defa">全年度</option>
                                             <?php
                                                 $j = 0;
                                                 $y = date('Y');
-                                                for($i = $y % 1000 ; $i > $y % 1000 - 10; $i--,$j++){
+                                                for($i = $y  ; $i > $y - 10; $i--,$j++){
                                                     echo '<option value="', $i ,'"';    
                                                     if($i == $year){
                                                         echo 'selected';
@@ -262,7 +302,10 @@
                                     </label>
                                 </p>
                             </div>
-                            <div class="button_d"><input type="submit" value="🔍検索"></div>
+                            <div class="t_dvSerach_btn">
+                                <div class="button_re"><input type="submit" name="reset" value="リセット"></div>
+                                <div class="button_d"><input type="submit" value="🔍検索"></div>
+                            </div>
                         </div>
                     </form>
                 </div>

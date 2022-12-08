@@ -2,7 +2,7 @@
 /*savedata.html↓*/
 body{
     /* viewと統一 */
-    background-color: #FFFFBB;
+    background-color: #ffdbed;
 }
 
 .big-div {
@@ -166,6 +166,7 @@ body{
 }
 
 .as_status {
+    display: block;
     margin-left: auto;
     text-align: center;
     border: 3px solid red;

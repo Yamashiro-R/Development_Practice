@@ -4,6 +4,7 @@
 
     $_SESSION['ps_val'] = null;
     $_SESSION['page'] = null;
+    $_SESSION['ap_status'] = null;
 ?>
 
 <!DOCTYPE html>

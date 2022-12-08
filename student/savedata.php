@@ -17,7 +17,6 @@
         if($_POST['CONFIRM'] == 1){
             delete_data($reference_number);
         }
-        $_POST['CONFIRM'] = null;
     }
 
 
@@ -75,6 +74,8 @@
         $as_name = $row['apply_status'];
         $remarks = $row['remarks'];
 
+        $confirmation =  $row['confirmation'];
+
 
 
         $param_p = json_encode($status);
@@ -82,6 +83,17 @@
 
     }catch (PDOException $e) {
         exit('エラー：' . $e->getMessage());
+    }
+
+
+    if($confirmation == false && ($status == 3 || $status == 4)){
+        $db = new PDO($dsn, $user, $password);
+        $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+
+        $stmt = $db->prepare("UPDATE ac_comp_data_tb SET confirmation = 1 WHERE reference_number = :num");
+        $stmt->bindParam(':num', $reference_number, PDO::PARAM_STR);
+        $stmt->execute();
+
     }
 
 ?>
@@ -194,7 +206,7 @@
 
             var  param_j = JSON.parse('<?php echo $param_p; ?>') ;
 
-            if(/*param_j == 2 || param_j == 3*/false){
+            if(param_j == 2 || param_j == 3){
                 var dele = document.getElementById('delete').style.display = 'none';
                 document.getElementById('edit').style.display = 'none';
             }

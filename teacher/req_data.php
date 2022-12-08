@@ -18,12 +18,10 @@
         if($_POST['CONFIRM_1'] == 1){
             ap_status_up($reference_number,0);
         }
-        $_POST['CONFIRM_1'] = null;
     }else if(isset($_POST['CONFIRM_2'])){
         if($_POST['CONFIRM_2'] == 1){
             ap_status_up($reference_number,1);
         }
-        $_POST['CONFIRM_2'] = null;
     }
 
 
@@ -80,7 +78,10 @@
         $person_charge_name = $row['person_charge_name']; //担当者名
         $impressions =$row['impressions'];
         $future_activities = $row['future_activities'];
+        $as_name = $row['apply_status'];
+        $status = $row['as_number'];
 
+        $param_p = json_encode($status);
 
 
     }catch (PDOException $e) {
@@ -103,6 +104,7 @@
             <title>就職活動報告依頼内容</title>
         </head>
         <body>
+        <?php include 'header.php' ?>
             <div class="return">    <!-- 犬の画像用戻るボタン -->
                 <a href="teach_req.php"><img src="../images/innu.jpeg"></a>
             </div>
@@ -159,13 +161,15 @@
                         </div>
                     </div>
                 </div>
-                <div class="button_d">
+                <p class="as_status">申請状況：<strong><span><?php echo $as_name ?></span></strong></p>
+
+                <div id="shounin" class="button_d">
                     <form method="POST" action="req_data.php" onsubmit="req_btn(0);">
                         <input type="submit" value="承認" id="delete">
                         <input type="hidden" name="CONFIRM_1" value="" >
                     </form>
 
-                    <form method="POST" action="req_data.php" onsubmit="req_btn(1);">
+                    <form  method="POST" action="req_data.php" onsubmit="req_btn(1);">
                         <input type="submit" value="却下" id="delete">
                         <input type="hidden" name="CONFIRM_2" value="" >
                     </form>
@@ -179,6 +183,12 @@
         </body>
 
         <script type="text/javascript">
+        var  param_j = JSON.parse('<?php echo $param_p; ?>') ;
+
+        if(param_j != 1 && param_j != 2){
+            document.getElementById('shounin').style.display = 'none';
+        }
+
         function req_btn(i){
             if(i == 0){
                 if(confirm("承認してもよろしいですか？")){
@@ -199,6 +209,9 @@
         }
 
         </script>
+
+        <script type="text/javascript" src="\DEVELOPMENT_PRACTICE/JS_files/methot.js"></script>
+
 
     </html>
 

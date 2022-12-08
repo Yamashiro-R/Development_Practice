@@ -413,20 +413,3 @@ function rog_out_js(){
 
 /*ログアウト処理　　↑*/
 
-// /*拡大、縮小処理 ↓*/
-//     function dvS_hidden(){
-//         document.getElementById('dvS_contentu').style.display = 'none';
-//         document.getElementById('btn_hid').style.display = 'none';
-//         document.getElementById('btn_blo').style.display = 'inline';
-//     }
-
-//     function dvS_block(){
-//         document.getElementById('dvS_contentu').style.display = 'block';
-//         document.getElementById('btn_hid').style.display = 'inline';
-//         document.getElementById('btn_blo').style.display = 'none';
-
-//     }
-
-// /*拡大、縮小処理 ↑*/
-
-
