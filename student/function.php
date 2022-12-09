@@ -299,7 +299,7 @@
     }
 
 
-
+    
     function delete_data($ref_num){
         $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';
         $user = 'user';
@@ -403,6 +403,237 @@
             exit('エラー：' . $e->getMessage());
         }
 
+    }
+
+    //Input_Formで使用する。
+
+    //リファレンスキーを貰って現在のデータ状態を取得する
+    function fetch_tests_tb($reference_number,$td_status){
+        // $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';
+        // $user = 'user';
+        // $password = 'test';
+       
+        
+        $dsn = 'mysql:host=localhost;dbname=job_hunt_manage;charset=utf8';
+        $user = 'root';
+        $password = '';
+
+        try{
+            //ここにリファレンスキーで現在データ状態を取得して表示する。
+            $db = new PDO($dsn, $user, $password);
+            $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+            //プリペアドステートメントを作成
+            //test_tbにデータがあるかチェック。
+            $stmt = $db->prepare("SELECT * FROM tests_tb where reference_number = :reference_number AND td_status = :td_status");
+            
+            //リファレンスナンバーバインド
+            $stmt->bindParam(':reference_number',$reference_number, PDO::PARAM_INT);
+            $stmt->bindParam(':td_status',$td_status, PDO::PARAM_INT);
+            //クエリの実行
+            $stmt->execute();
+            
+                $data_table = $stmt -> fetch();
+            
+            
+            return $data_table; 
+
+        }catch (PDOException $e) {
+            exit('エラー：' . $e->getMessage());
+        }
+
+    }
+
+    function fetch_test_detalis_tb($reference_number,$td_status){
+        // $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';
+        // $user = 'user';
+        // $password = 'test';
+
+        
+        $dsn = 'mysql:host=localhost;dbname=job_hunt_manage;charset=utf8';
+        $user = 'root';
+        $password = '';
+        
+        try{
+            //ここにリファレンスキーで現在データ状態を取得して表示する。
+            $db = new PDO($dsn, $user, $password);
+            $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+            //プリペアドステートメントを作成
+            //test_tbにデータがあるかチェック。
+            $stmt = $db->prepare("SELECT * FROM test_detalis_tb where reference_number = :reference_number AND td_status = :td_status ORDER BY sp_number");
+            
+            //リファレンスナンバーバインド
+            $stmt->bindParam(':reference_number',$reference_number, PDO::PARAM_INT);
+            $stmt->bindParam(':td_status',$td_status, PDO::PARAM_INT);
+            //クエリの実行
+            $stmt->execute();
+            
+            $data_table = $stmt -> fetchAll(PDO::FETCH_BOTH);
+            
+            
+            return $data_table; 
+
+        }catch (PDOException $e) {
+            exit('エラー：' . $e->getMessage());
+        }
+
+    }
+
+
+
+    //任意のtebleのDelete処理
+    //reference_numberと一次or二次or三次で削除するレコード特定
+    function Delete_tests_tb_data($reference_number,$interviewNo){
+        
+
+        // $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';
+        // $user = 'user';
+        // $password = 'test';
+        
+        $dsn = 'mysql:host=localhost;dbname=job_hunt_manage;charset=utf8';
+        $user = 'root';
+        $password = '';
+
+
+        try{
+            $db = new PDO($dsn, $user, $password);
+            $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+
+             //リペアドステートメントを作成  
+             $stmt = $db->prepare("DELETE FROM tests_tb WHERE reference_number = :reference_number AND td_status = :td_status");
+             $stmt->bindParam(':reference_number',$reference_number, PDO::PARAM_INT);
+             $stmt->bindParam(':td_status',$interviewNo, PDO::PARAM_INT);
+             //クエリの実行
+             $stmt->execute();
+        }catch (PDOException $e) {
+            exit('エラー：' . $e->getMessage());
+        }
+    }
+    
+    function Delete_test_detalis_tb_data($reference_number,$interviewNo){
+        // $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';
+        // $user = 'user';
+        // $password = 'test';
+
+        $dsn = 'mysql:host=localhost;dbname=job_hunt_manage;charset=utf8';
+        $user = 'root';
+        $password = '';
+        
+
+        try{
+            $db = new PDO($dsn, $user, $password);
+            $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+
+              //プリペアドステートメントを作成  
+              $stmt = $db->prepare("DELETE FROM test_detalis_tb WHERE reference_number = :reference_number AND td_status = :td_status");
+
+              $stmt->bindParam(':reference_number',$reference_number, PDO::PARAM_INT);
+              $stmt->bindParam(':td_status',$interviewNo, PDO::PARAM_INT);
+              //クエリの実行
+              $stmt->execute();
+              
+
+
+        }catch (PDOException $e) {
+            exit('エラー：' . $e->getMessage());
+        }
+
+    }
+
+
+    function Insert_tests_tb_data($reference_number,$interviewNo,$date_date,$start_time,$end_time){
+
+        // $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';
+        // $user = 'user';
+        // $password = 'test';
+
+        $dsn = 'mysql:host=localhost;dbname=job_hunt_manage;charset=utf8';
+        $user = 'root';
+        $password = '';
+        
+        try{
+            $db = new PDO($dsn, $user, $password);
+            $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+        
+            //リペアドステートメントを作成  
+            $stmt = $db->prepare("INSERT INTO tests_tb VALUE (:reference_number,:td_status,:date_data,:begin_time_data,:end_time_data)");
+        
+            $stmt->bindParam(':reference_number',$reference_number, PDO::PARAM_INT);
+            $stmt->bindParam(':td_status',$interviewNo, PDO::PARAM_INT);
+            $stmt->bindParam(':date_data',$date_date, PDO::PARAM_STR);
+            $stmt->bindParam(':begin_time_data',$start_time, PDO::PARAM_STR);
+            $stmt->bindParam(':end_time_data',$end_time, PDO::PARAM_STR);
+        
+            //クエリの実行
+            $stmt->execute();
+        
+        }catch (PDOException $e) {
+            exit('エラー：' . $e->getMessage());
+        }
+    }
+    function Insert_test_detalis_tb_data($reference_number,$interviewNo,$array_type_text){
+        // $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';
+        // $user = 'user';
+        // $password = 'test';
+
+        $dsn = 'mysql:host=localhost;dbname=job_hunt_manage;charset=utf8';
+        $user = 'root';
+        $password = '';
+       
+        try{
+            $db = new PDO($dsn, $user, $password);
+            $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+        
+            foreach($array_type_text as $Key => $Text){
+                        
+                $stmt = $db->prepare("INSERT INTO test_detalis_tb VALUE (:reference_number,:td_status,:sp_number,:details)");
+
+                $stmt->bindParam(':reference_number',$reference_number, PDO::PARAM_INT);
+                $stmt->bindParam(':td_status',$interviewNo, PDO::PARAM_INT);
+                $stmt->bindParam(':sp_number',$Key, PDO::PARAM_INT);
+                $stmt->bindParam(':details',$Text, PDO::PARAM_STR);
+
+                //クエリの実行
+                $stmt->execute();
+            }
+        }catch(PDOException $e){
+            exit('エラー：' . $e->getMessage());
+        }
+    }
+
+    //ac_comp_data_tbのタイムスタンプを更新する処理
+    function timestamp($reference_number){
+        // $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';
+        // $user = 'user';
+        // $password = 'test';
+
+        $dsn = 'mysql:host=localhost;dbname=job_hunt_manage;charset=utf8';
+        $user = 'root';
+        $password = '';
+
+        try{
+            $db = new PDO($dsn, $user, $password);
+            $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+
+            //プリリペアドステートメントを作成  
+            $db = new PDO($dsn, $user, $password);
+                    $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+
+                    //タイムスタンプを更新する直前で取得。
+                    $timestamp = new DateTimeImmutable('now',new DateTimeZone('Asia/Tokyo'));
+                    $timestamp = $timestamp->format("Y-m-d H:i:s");
+
+                    //プリペアドステートメントを作成
+                    $stmt = $db->prepare("UPDATE ac_comp_data_tb SET modified = :time_stamp WHERE reference_number = :reference_number");
+
+                    $stmt->bindParam(':time_stamp',$timestamp,PDO::PARAM_STR);
+                    $stmt->bindParam(':reference_number',$reference_number,PDO::PARAM_INT);
+
+
+                    //クエリの実行
+                    $stmt->execute();
+        }catch (PDOException $e) {
+            exit('エラー：' . $e->getMessage());
+        }
     }
 
 ?>
