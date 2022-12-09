@@ -13,6 +13,8 @@
         exit();
     }
 
+
+
     $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';
     $user = 'user';
     $password = 'test';
@@ -52,7 +54,7 @@
         //データの切り分け
         //  print_r($row_detalis);
         $family_name = $row['family_name']; //科名
-        $account_name = $_SESSION['name']; //アカウント名
+        $account_name = $row['account_name']; //アカウント名
         $attend_number = attend_number($row['act_id']); //出席番号
         $no_appli = $row['no_appli']; //応募件数
         $how_to_apply = $row['how_to_apply']; //応募方法
@@ -65,7 +67,6 @@
         $impressions =$row['impressions'];//反省
         $future_activities = $row['future_activities'];//今後の予定
         $as_name = $row['apply_status'];
-        $remarks = $row['remarks'];
 
 
     }catch (PDOException $e) {
@@ -75,27 +76,37 @@
 ?>
 
 
+
+
+
+
 <!DOCTYPE html>
     <html lang="ja">
         <head>
             <meta charset="UTF-8">
             <link rel="stylesheet" href="../cssfiles/style.css">
-            <link rel="stylesheet" href="cssfiles/style_pastdata.css">
-            <title>就職活動過去データ</title>
+            <link rel="stylesheet" href="cssfiles/style_t_pd.css">
+            <title>依頼内容</title>
         </head>
         <?php include 'header.php' ?>
 
         <body>
             <div class="return">    <!-- 犬の画像用戻るボタン -->
-                <a href="dvSearch.php#table_erea"><img src="../images/innu.jpeg"></a>
+                <a href="t_dvSearch.php#table_erea"><img src="../images/innu.jpeg"></a>
             </div>
             <div id="main_title">   <!-- 共通のタイトル部分 -->
-                <h1>就職活動<br class="br-sp">過去データ</h1>
+                <h1>就職活動<br class="br-sp">保存データ</h1>
             </div>
             <div class="big-div">
                 <div class="div-info">
                     <div class="divdiv">
                         <p class="p-info">科名：</p><p class="p-view"><?php check_null($family_name) ?></p>
+                    </div>
+                    <div class="divdiv">
+                        <p class="p-info">氏名：</p><p class="p-view"><?php check_null( $account_name) ?></p>
+                    </div>
+                    <div class="divdiv">
+                        <p class="p-info">番号：</p><p class="p-view"><?php check_null( $attend_number) ?></p>
                     </div>
                     <div class="divdiv">
                         <p class="p-info">応募方法：</p><p class="p-view"><?php check_null(change_format($how_to_apply))?></p>
@@ -104,10 +115,13 @@
                         <p class="p-info">書類選考：</p><p class="p-view"><?php check_null( $docmt_screening) ?></p>
                     </div>
                     <div class="divdiv">
+                        <p class="p-info">応募件数：</p><p class="p-view"><?php check_null( $no_appli) ?> </p>
+                    </div>
+                    <div class="divdiv">
                         <p class="p-info">応募先企業：</p><p class="p-view"><?php check_null( $comp_name )?></p>
                     </div>
                     <div class="divdiv">
-                        <p class="p-info" title="<?php check_null($comp_address)?>">応募先住所：</p><p class="p-view" title="<?php check_null($comp_address)?>"><?php address_check( $comp_address) ?></p>
+                        <p class="p-info" title="<?php check_null($comp_address)?>">応募先住所：</p><p class="p-view" title="<?php check_null($comp_address)?>"><?php address_check( $comp_address)  ?></p>
                     </div>
                     <div class="divdiv">
                         <p class="p-info">提出書類：</p><p class="p-view"><?php check_null(change_format($docmt_submit))?></p>
@@ -121,31 +135,30 @@
                 </div>
                 <div class="div-detail">
                     <?php print_data($row_day,$row_detalis) ?>
-                    
+
                     <div class="test">
                         <div>
-                            <p class="p-info">感想、反省点：</p><p class="p-view"><?php check_null($impressions) ?></p>
+                            <p class="p-info">感想、反省点：</p><p class="p-view"><?php check_null( $impressions )?></p>
                         </div>
                     </div>
                     <div class="test">
                         <div>
-                            <p class="p-info">今後の活動予定：</p><p class="p-view"><?php check_null($future_activities) ?></p>
-                        </div>
-                    </div>
-                    <div class="test">
-                        <div>
-                            <p class="p-info">備考：</p><p class="p-view"><?php check_null($remarks) ?></p>
+                            <p class="p-info">今後の活動予定：</p><p class="p-view"><?php check_null( $future_activities) ?></p>
                         </div>
                     </div>
                 </div>
+
                 <p class="as_status">申請状況：<strong><span><?php check_null($as_name) ?></span></strong></p>
+
                 <div class="page-top">
                     <a href="#"><img class="pg-top" src="../images/pagetop 1.png" alt="page-top"></a>
                 </div>
             </div>
 
+
+
+            <script type="text/javascript" src="\DEVELOPMENT_PRACTICE/JS_files/methot.js"></script>
         </body>
-        <script type="text/javascript" src="\DEVELOPMENT_PRACTICE/JS_files/methot.js"></script>
     </html>
 
 

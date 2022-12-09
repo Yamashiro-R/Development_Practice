@@ -16,6 +16,11 @@
 
 /*新規依頼画面↓*/
 
+body{
+    margin-bottom: 20px;
+    background-color: #FFFFBB;
+}
+
 #newreq-title,#now-req{
     text-align: center;
 }
@@ -33,6 +38,7 @@
     border: #0fffff 5px solid;
     margin-left: auto;
     margin-right: auto;
+    background-color: #DDFFFF;
 }
 
 .test_div {
@@ -84,8 +90,6 @@
 
 /*システムについて↑*/
 
-
-/*Page押したとき*/
 
 
 

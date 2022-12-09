@@ -1,26 +1,29 @@
 <?php
+    include '../includes/login.php';
+    include '../includes/function.php';
 
-    // include 'includes/login.php';
-
-    // $_SESSION['ps_val'] = null;
-    // $_SESSION['page'] = null;
+    $_SESSION['ps_val'] = null;
+    $_SESSION['page'] = null;
+    $_SESSION['ap_status'] = null;
 ?>
 
 <!DOCTYPE html>
     <html lang="ja">
         <head>
             <meta charset="UTF-8">
-            <link rel="stylesheet" href="\DEVELOPMENT_PRACTICE/cssfiles/style.css">
-            <link rel="stylesheet" href="\DEVELOPMENT_PRACTICE/cssfiles/style_prot.css">
+            <link rel="stylesheet" href="../cssfiles/style.css">
+            <link rel="stylesheet" href="../cssfiles/style_prot.css">
             <!-- アイコン用のkit -->
             <script src="https://kit.fontawesome.com/fd6da7ad7b.js" crossorigin="anonymous"></script>
 
             <title>ホーム画面</title>
         </head>
+
         <body class="home">
+        <?php include 'header.php' ?>
         <div id="main_title"> 
             <!-- 後で考える -->
-            <h1>ホーム画面</h1>     
+            <h1>ホーム画面</h1> 
         </div>
 
             <div class="prot_div">
@@ -46,14 +49,16 @@
                 </div>
             </div>
             
-            <script type="text/javascript" src="home.js"></script>
+            <script type="text/javascript" src="\DEVELOPMENT_PRACTICE/JS_files/home.js"></script>
+            <script type="text/javascript" src="\DEVELOPMENT_PRACTICE/JS_files/methot.js"></script>
+
             
 
         </body>
+       
 
 
 
-    
     </html>
 
 

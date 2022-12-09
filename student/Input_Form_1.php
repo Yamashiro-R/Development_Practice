@@ -1,7 +1,8 @@
 
 <?php
-    include 'includes/login.php';
-    
+    include '../includes/login.php';
+    include '../includes/function.php';
+
 ?>
 
 
@@ -118,13 +119,15 @@
     <html lang="ja">
         <head>
             <meta charset="UTF-8">
-            <link rel="stylesheet" href="\DEVELOPMENT_PRACTICE/cssfiles/style.css">
+            <link rel="stylesheet" href="../cssfiles/style.css">
             <link rel="stylesheet" href="cssfiles/style_Input_Form.css">
             <title>入力画面</title>
         </head>
+        <?php include 'header.php' ?>
+
         <body>
             <div class="return">
-                <a href="home_2.php"><img src="images/innu.jpeg"></a>
+                <a href="home_2.php"><img src="../images/innu.jpeg"></a>
             </div>
             <div id="main_title"> 
                 <h1>就職活動報告</h1>
@@ -132,16 +135,16 @@
             </div>
             <div class="big-div">   
                 <form action="Input_Form_1.php" method="post">
-                         <!--　ポストで送信 -->
+                        <!--　ポストで送信 -->
                     <div class="div-info">
-                         <div class="divdiv_col_1 divdiv">   
+                        <div class="divdiv_col_1 divdiv">   
                             <p class="p-info_col_1"><label for="company_name">応募先企業名：</label></p>
                             <div class="denger_field">
                                 <input type="text" class="input-view" name="company_name"  id="company_name">
                                 <!-- ここにエラー文を出力-->
                             </div>
                         </div>
-                         <div class="divdiv_col_1 divdiv">   
+                        <div class="divdiv_col_1 divdiv">   
                             <p class="p-info_col_1"><label for="company_address">応募先所在地：</label></p>
                             <div class="denger_field">
                                 <input type="text" class="input-view" name="company_address" id="company_address">
@@ -209,7 +212,7 @@
                     
                     </div>
                     <div class="button">
-                       <input type="reset"  class="btn_item" value="キャンセル" alt="キャンセル">
+                        <input type="reset"  class="btn_item" value="キャンセル" alt="キャンセル">
                         <input type="submit" class="btn_item" value="保存" alt="保存">
                         <input type="submit" class="btn_item" value="一次→" alt="一次→">
                     </div>
@@ -218,7 +221,8 @@
             <script type="text/javascript" src="methot.js"></script>
             <script>window.onload = validation_check()</script>
         </body>
-    
+        <script type="text/javascript" src="\DEVELOPMENT_PRACTICE/JS_files/methot.js"></script>
+
     </html>
 
 

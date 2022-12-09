@@ -1,6 +1,7 @@
 <?php
-    include 'includes/login.php';
-    include 'function.php';
+    include '../includes/login.php';
+    include '../includes/function.php';
+
 
     if(isset($_POST['no'])){
         $reference_number = $_POST['no'];
@@ -16,7 +17,6 @@
         if($_POST['CONFIRM'] == 1){
             delete_data($reference_number);
         }
-        $_POST['CONFIRM'] = null;
     }
 
 
@@ -72,6 +72,10 @@
         $future_activities = $row['future_activities'];
         $status = $row['as_number'];
         $as_name = $row['apply_status'];
+        $remarks = $row['remarks'];
+
+        $confirmation =  $row['confirmation'];
+
 
 
         $param_p = json_encode($status);
@@ -79,6 +83,17 @@
 
     }catch (PDOException $e) {
         exit('エラー：' . $e->getMessage());
+    }
+
+
+    if($confirmation == false && ($status == 3 || $status == 4)){
+        $db = new PDO($dsn, $user, $password);
+        $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+
+        $stmt = $db->prepare("UPDATE ac_comp_data_tb SET confirmation = 1 WHERE reference_number = :num");
+        $stmt->bindParam(':num', $reference_number, PDO::PARAM_STR);
+        $stmt->execute();
+
     }
 
 ?>
@@ -92,13 +107,15 @@
     <html lang="ja">
         <head>
             <meta charset="UTF-8">
-            <link rel="stylesheet" href="\DEVELOPMENT_PRACTICE/cssfiles/style.css">
+            <link rel="stylesheet" href="../cssfiles/style.css">
             <link rel="stylesheet" href="cssfiles/style_svdata.css">
-            <title>就職活動過去データ</title>
+            <title>保存データ</title>
         </head>
+        <?php include 'header.php' ?>
+
         <body>
             <div class="return">    <!-- 犬の画像用戻るボタン -->
-                <a href="dataView.php#table_erea"><img src="images/innu.jpeg"></a>
+                <a href="dataView.php#table_erea"><img src="../images/innu.jpeg"></a>
             </div>
             <div id="main_title">   <!-- 共通のタイトル部分 -->
                 <h1>就職活動<br class="br-sp">保存データ</h1>
@@ -152,6 +169,11 @@
                             <p class="p-info">今後の活動予定：</p><p class="p-view"><?php check_null( $future_activities) ?></p>
                         </div>
                     </div>
+                    <div class="test">
+                        <div>
+                            <p class="p-info">備考：</p><p class="p-view"><?php check_null($remarks) ?></p>
+                        </div>
+                    </div>
                 </div>
 
                 <p class="as_status">申請状況：<strong><span><?php check_null($as_name) ?></span></strong></p>
@@ -167,28 +189,29 @@
                     </form>
                 </div>
                 <div class="page-top">
-                    <a href="#"><img class="pg-top" src="images/pagetop 1.png" alt="page-top"></a>
+                    <a href="#"><img class="pg-top" src="../images/pagetop 1.png" alt="page-top"></a>
                 </div>
             </div>
 
 
 
-<script type="text/javascript">
-    function delete_btn(){
-        if(confirm("本当に削除してもよろしいですか？")){
-        document.forms[0].CONFIRM.value=1;//ＯＫの場合
-        }else{
-        document.forms[0].CONFIRM.value=0;//キャンセルの場合
-        }
-    }
+            <script type="text/javascript">
+            function delete_btn(){
+                if(confirm("本当に削除してもよろしいですか？")){
+                document.forms[0].CONFIRM.value=1;//ＯＫの場合
+                }else{
+                document.forms[0].CONFIRM.value=0;//キャンセルの場合
+                }
+            }
 
-    var  param_j = JSON.parse('<?php echo $param_p; ?>') ;
+            var  param_j = JSON.parse('<?php echo $param_p; ?>') ;
 
-    if(/*param_j == 2 || param_j == 3*/false){
-        var dele = document.getElementById('delete').style.display = 'none';
-        document.getElementById('edit').style.display = 'none';
-    }
-</script>
+            if(param_j == 2 || param_j == 3){
+                var dele = document.getElementById('delete').style.display = 'none';
+                document.getElementById('edit').style.display = 'none';
+            }
+        </script>
+        <script type="text/javascript" src="\DEVELOPMENT_PRACTICE/JS_files/methot.js"></script>
 
         </body>
     </html>

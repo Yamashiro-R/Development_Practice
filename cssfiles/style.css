@@ -207,7 +207,7 @@ p {
 } */
 
 /*グローバルメニュー↓*/
-/* .button {
+.button_header {
     -webkit-appearance: none;
     -moz-appearance: none;
             appearance: none;
@@ -218,19 +218,17 @@ p {
     border-radius: 5px;
     
     text-align: center;
-} */
+    text-decoration: none;
+} 
 
-@media (max-width: 760px) {
-    .button {
-    margin-right: 2.5rem;     
-    }
-}
-
-.brand {
+.brand{
     font-weight: bold;
     font-size: 20px; 
 }
-
+.brand a {
+    text-decoration: none;
+    color: inherit;
+}
 .site-header {
     position: relative;
     background-color: #def7ff; 
@@ -244,17 +242,23 @@ p {
 }
 
 /*項目*/
-li.nav__item {
+.item {
+    color: inherit;
+}
+li.nav__item{
     list-style-type: none;
 }
 .nav__item  {
     display: block;
     padding: 1rem;
+    color: inherit;
 }
 
 .nav__toggle {
     display: none; 
 }
+
+
 /**/
 
 
@@ -311,6 +315,25 @@ li.nav__item {
     top: 8px;
 }
 
+.sinki_header {
+    font-size: 85%;
+    display: inline;
+    border-radius: 50%;
+}
+
+.sinki_kensu_hd{
+    text-align: center;
+    font-size: 90%;
+    color: red;
+}
+
+.menu li:nth-of-type(3) p {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+
+
 /*ボタンがタップされたとき三本線を「×」マークにする*/
 
 #menu-btn-check:checked ~ .menu-btn span {
@@ -329,6 +352,20 @@ li.nav__item {
 
 
 /*メニューの装飾CSS*/
+.sinki_kensu_hg {
+    font-size: 90%;
+    font-weight: bolder;
+    color: yellow;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.hnberg_sinki {
+    display: inline;
+    position: relative;
+    top: -10px;
+    right: -10px;
+}
 
 .menu-content {
     width: 100%;
@@ -366,6 +403,10 @@ li.nav__item {
     position: absolute;
     right: 11px;
     top: 16px;
+}
+
+.menu-content li:nth-of-type(3) a{
+    padding-bottom: 0;
 }
 
 
@@ -415,7 +456,6 @@ li.nav__item {
     .hamburger-menu {
         display: block;
     }
-     
     .site-header__end {
         display: none;
     }
@@ -423,6 +463,9 @@ li.nav__item {
     .dropdown{
         display: none;
     }
+    .button {
+        margin-right: 2.5rem;     
+        }
 
     /* .nav__wrapper {
         position: absolute;
