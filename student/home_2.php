@@ -1,5 +1,5 @@
 <?php
-    include '../includes/login.php';
+   // include '../includes/login.php';
     include '../includes/function.php';
 
     $_SESSION['ps_val'] = null;
