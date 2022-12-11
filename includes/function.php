@@ -447,15 +447,12 @@
 
     //リファレンスキーを貰って現在のデータ状態を取得する
     function fetch_tests_tb($reference_number,$td_status){
-        // $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';
-        // $user = 'user';
-        // $password = 'test';
+        $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';
+        $user = 'user';
+        $password = 'test';
        
         
-        $dsn = 'mysql:host=localhost;dbname=job_hunt_manage;charset=utf8';
-        $user = 'root';
-        $password = '';
-
+      
         try{
             //ここにリファレンスキーで現在データ状態を取得して表示する。
             $db = new PDO($dsn, $user, $password);
@@ -482,15 +479,12 @@
     }
 
     function fetch_test_detalis_tb($reference_number,$td_status){
-        // $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';
-        // $user = 'user';
-        // $password = 'test';
+        $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';
+        $user = 'user';
+        $password = 'test';
 
         
-        $dsn = 'mysql:host=localhost;dbname=job_hunt_manage;charset=utf8';
-        $user = 'root';
-        $password = '';
-        
+     
         try{
             //ここにリファレンスキーで現在データ状態を取得して表示する。
             $db = new PDO($dsn, $user, $password);
@@ -523,14 +517,11 @@
     function Delete_tests_tb_data($reference_number,$interviewNo){
         
 
-        // $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';
-        // $user = 'user';
-        // $password = 'test';
+        $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';
+        $user = 'user';
+        $password = 'test';
         
-        $dsn = 'mysql:host=localhost;dbname=job_hunt_manage;charset=utf8';
-        $user = 'root';
-        $password = '';
-
+        
 
         try{
             $db = new PDO($dsn, $user, $password);
@@ -548,14 +539,9 @@
     }
     
     function Delete_test_detalis_tb_data($reference_number,$interviewNo){
-        // $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';
-        // $user = 'user';
-        // $password = 'test';
-
-        $dsn = 'mysql:host=localhost;dbname=job_hunt_manage;charset=utf8';
-        $user = 'root';
-        $password = '';
-        
+        $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';
+        $user = 'user';
+        $password = 'test';
 
         try{
             $db = new PDO($dsn, $user, $password);
@@ -580,13 +566,10 @@
 
     function Insert_tests_tb_data($reference_number,$interviewNo,$date_date,$start_time,$end_time){
 
-        // $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';
-        // $user = 'user';
-        // $password = 'test';
+        $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';
+        $user = 'user';
+        $password = 'test';
 
-        $dsn = 'mysql:host=localhost;dbname=job_hunt_manage;charset=utf8';
-        $user = 'root';
-        $password = '';
         
         try{
             $db = new PDO($dsn, $user, $password);
@@ -609,13 +592,11 @@
         }
     }
     function Insert_test_detalis_tb_data($reference_number,$interviewNo,$array_type_text){
-        // $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';
-        // $user = 'user';
-        // $password = 'test';
+        $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';
+        $user = 'user';
+        $password = 'test';
 
-        $dsn = 'mysql:host=localhost;dbname=job_hunt_manage;charset=utf8';
-        $user = 'root';
-        $password = '';
+       
        
         try{
             $db = new PDO($dsn, $user, $password);
@@ -640,13 +621,9 @@
 
     //ac_comp_data_tbのタイムスタンプを更新する処理
     function timestamp($reference_number){
-        // $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';
-        // $user = 'user';
-        // $password = 'test';
-
-        $dsn = 'mysql:host=localhost;dbname=job_hunt_manage;charset=utf8';
-        $user = 'root';
-        $password = '';
+        $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';
+        $user = 'user';
+        $password = 'test';
 
         try{
             $db = new PDO($dsn, $user, $password);
