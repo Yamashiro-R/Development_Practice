@@ -13,13 +13,11 @@
         //ログインしていないがユーザ名とパスワードが送信されたとき
 
         //比嘉さんのデータベースアクセス用
-        // $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';  
-        // $user = 'user';
-        // $password = 'test';
+        $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';  
+        $user = 'user';
+        $password = 'test';
 
-        $dsn = 'mysql:host=localhost;dbname=job_hunt_manage;charset=utf8';
-        $user = 'root';
-        $password = '';
+       
 
         try{
             $db = new PDO($dsn, $user, $password);
