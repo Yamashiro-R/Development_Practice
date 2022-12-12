@@ -649,33 +649,33 @@ function array_boolean(array){
 
 
 /*teach_reqのグローバルメニュー↓*/
-// なんかエラー
-// let navToggle = document.querySelector(".nav__toggle");
-// let navWrapper = document.querySelector(".nav__wrapper");
 
-// navToggle.addEventListener("click", function () {
-// if (navWrapper.classList.contains("active")) {
-//     this.setAttribute("aria-expanded", "false");
-//     this.setAttribute("aria-label", "menu");
-//     navWrapper.classList.remove("active");
-// } else {
-//     navWrapper.classList.add("active");
-//     this.setAttribute("aria-label", "close menu");
-//     this.setAttribute("aria-expanded", "true");
-// }
-// });
+let navToggle = document.querySelector(".nav__toggle");
+let navWrapper = document.querySelector(".nav__wrapper");
+
+navToggle.addEventListener("click", function () {
+if (navWrapper.classList.contains("active")) {
+    this.setAttribute("aria-expanded", "false");
+    this.setAttribute("aria-label", "menu");
+    navWrapper.classList.remove("active");
+} else {
+    navWrapper.classList.add("active");
+    this.setAttribute("aria-label", "close menu");
+    this.setAttribute("aria-expanded", "true");
+}
+});
 
 /*teach_reqのグローバルメニュー↑*/
 
 /*ハンバーガーメニューが押されたときの処理*/ 
-// function hamb_mn() {
-//     $checked = document.getElementById('menu-btn-check').checked
+function hamb_mn() {
+    $checked = document.getElementById('menu-btn-check').checked
 
-//     if($checked){
-//     alert('true');
-//         document.getElementsByClassName('req_form').style.pointerEvents.value = 'none';
-//     }
-// } 
+    if($checked){
+    alert('true');
+        document.getElementsByClassName('req_form').style.pointerEvents.value = 'none';
+    }
+} 
 
 
 

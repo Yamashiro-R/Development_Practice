@@ -215,10 +215,10 @@
                     </div>
                 </form>
             </div>
-            <script type="text/javascript" src="methot.js"></script>
+            <script type="text/javascript" src="\DEVELOPMENT_PRACTICE/JS_files/methot.js"></script>
             <script>window.onload = validation_check()</script>
         </body>
-        <script type="text/javascript" src="\DEVELOPMENT_PRACTICE/JS_files/methot.js"></script>
+        
 
     </html>
 

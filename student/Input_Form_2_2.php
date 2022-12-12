@@ -203,7 +203,7 @@
             <?php $test_json = json_encode($test_detalis_tb_data);?>
             
 
-            <script type="text/javascript" src="methot.js"></script>
+            <script type="text/javascript" src="\DEVELOPMENT_PRACTICE/JS_files/methot.js"></script>
           
             <script type="text/javascript">
 
