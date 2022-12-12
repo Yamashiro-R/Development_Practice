@@ -91,7 +91,7 @@
         $stmt = $db->prepare("SELECT * FROM ac_comp_data_tb join apply_status_tb
                             on ac_comp_data_tb.as_number = apply_status_tb.as_number
                              where ac_comp_data_tb.as_number = 3 
-                             ORDER by modified 
+                             ORDER by application_Date DESC 
                              LIMIT :page,:num ");
 
         if($boole){
@@ -122,7 +122,7 @@
          $stmt = $db->prepare("SELECT * FROM ac_comp_data_tb join apply_status_tb
                                 on ac_comp_data_tb.as_number = apply_status_tb.as_number
                                 where ac_comp_data_tb.as_number = 3 
-                                ORDER by modified ");
+                                ORDER by application_Date DESC ");
         
         if($boole){
             $stmt = $db->prepare($select);
@@ -199,7 +199,7 @@
                     <table class="dvtable" id="table_erea">
                         <thead>
                             <tr>
-                                <th scope="col">最終<br class="br-sp">更新日</th>
+                                <th scope="col">申請日</th>
                                 <th scope="col">企業名</th>
                                 <th scope="col">所在地</th>
                                 <th scope="col">職種</th>

@@ -16,6 +16,14 @@
         }
     }
 
+    function check_null_day ($value){
+        if($value == "" || $value == null || $value == 0){
+            echo "未申請";
+        }else{
+            echo $value;
+        }
+    }
+
 
 
 
@@ -93,7 +101,6 @@
     function create_tbody ($row,$page) {
         if($row != false){
             if($page == 'save'){
-                $modified = array_column($row, 'modified');
                 $comp_name = array_column($row, 'comp_name');
                 $comp_address = array_column($row, 'comp_address');
                 $job = array_column($row, 'job');
@@ -101,11 +108,12 @@
                 $reference_numbe = array_column($row,'reference_numbe');
                 $confirmation =  array_column($row,'confirmation');
                 $as_number = array_column($row,'as_number');
+                $application_Date = array_column($row,'application_Date');
         
                 $i = 0;
                 while($i < count($row)){
                     echo '<tr class="row', $i + 1 , '">
-                        <td class="day">', date_only($i ,$modified) ,'</td>
+                        <td class="day">',date_only($i ,$application_Date) ,'</td>
                         <td class="comp-name"><label>', orig_array_key_exists( $i ,$comp_name) , create_button($i,$row,$page)   ,'</lable></td>
                         <td class="address" title="', orig_array_key_exists($i,$comp_address) ,'">', address_key_exists($i,$comp_address) , '</td>
                         <td class="job">', orig_array_key_exists($i,$job) ,'</td>
@@ -119,7 +127,7 @@
 
                 }
             }else if($page == 'past'){
-                $modified = array_column($row, 'modified');
+                $application_Date = array_column($row,'application_Date');
                 $comp_name = array_column($row, 'comp_name');
                 $comp_address = array_column($row, 'comp_address');
                 $job = array_column($row, 'job');
@@ -131,7 +139,7 @@
                 $i = 0;
                 while($i < count($row)){
                     echo '<tr class="row', $i + 1 , '">
-                        <td class="day">', date_only($i ,$modified) ,'</td>
+                        <td class="day">', date_only($i ,$application_Date) ,'</td>
                         <td class="comp-name"><label>', orig_array_key_exists( $i ,$comp_name) , create_button($i,$row,$page)   ,'</lable></td>
                         <td class="address" title="', orig_array_key_exists($i,$comp_address) ,'">', address_key_exists($i,$comp_address) , '</td>
                         <td class="job">', orig_array_key_exists($i,$job) ,'</td>
@@ -153,7 +161,7 @@
         /*tableの中身を生成　管理者画面*/
         function t_create_tbody ($row,$page) {
             if($row != false){
-                $modified = array_column($row, 'modified');
+                $application_Date = array_column($row,'application_Date');
                 $comp_name = array_column($row, 'comp_name');
                 $student_name = array_column($row, 'account_name');
                 $apply_status = array_column($row, 'apply_status');
@@ -163,7 +171,7 @@
                 $i = 0;
                 while($i < count($row)){
                 echo '<tr class="row', $i + 1 , '">
-                    <td class="day">', date_only($i ,$modified) ,'</td>
+                    <td class="day">', date_only($i ,$application_Date) ,'</td>
                     <td class="comp-name"><label>', orig_array_key_exists( $i ,$comp_name) , create_button($i,$row,$page)   ,'</lable></td>
                     <td class="student_name">', orig_array_key_exists($i,$student_name) , '</td>
                     <td class="app_status">', orig_array_key_exists($i,$apply_status) ,'</td>
@@ -234,11 +242,9 @@
 
     /*日時の値で日付だけ出力したいとき*/
     function date_only($index,$date) {
-        $day = "";
         if (array_key_exists($index,$date)) {
-           check_null(date('Y年m月d日',strtotime($date[$index]))) ;
+           check_null_day($date[$index]) ;
         }
-
     }
 
 
@@ -387,7 +393,7 @@
     function teach_func($row) {
         if ($row != false) {
             $st_name = array_column($row,'account_name');
-            $st_date = array_column($row,'modified');
+            $st_date = array_column($row,'application_Date');
             $st_comp = array_column($row,'comp_name');
             $st_ref_number = array_column($row,'reference_number');
              
@@ -651,6 +657,32 @@
         }
     }
 
+
+
+    /*申請処理 request.php*/
+
+    function request_data($refarence) {
+
+        $day = date('Y-m-d');
+        $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';
+        $user = 'user';
+        $password = 'test';
+
+        try {
+            $db = new PDO($dsn, $user, $password);
+            $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+            
+            $stmt = $db->prepare("UPDATE ac_comp_data_tb SET as_number = 2 WHERE reference_number = $refarence");
+            $stmt->execute();
+            
+            $stmt = $db->prepare("UPDATE ac_comp_data_tb SET application_Date = :DATEs WHERE reference_number = $refarence");
+            $stmt->bindParam(':DATEs', $day, PDO::PARAM_STR);
+
+            $stmt->execute();
+        } catch (PDOException $e) {
+            exit('エラー：' . $e->getMessage());
+        }
+    }
 
 
 ?>

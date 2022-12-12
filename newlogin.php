@@ -1,7 +1,10 @@
 <?php
-    include 'includes/login.php';
+session_start();
 
-
+if(!isset($_SESSION['newlogID'])){
+    header('Location: login.php');
+    exit();
+}
 $select = "selected";
 $option = array(7);
 
@@ -16,8 +19,8 @@ if (!empty( $_POST['pass']) && !empty($_POST['re-pass'])) {
 
     if($_POST['department'] != 8){
 
-        $param_pass = json_encode($pass);
-        $param_re_pass = json_encode($re_pas);
+        // $param_pass = json_encode($pass);
+        // $param_re_pass = json_encode($re_pas);
 
 
 
@@ -72,7 +75,6 @@ if (!empty( $_POST['pass']) && !empty($_POST['re-pass'])) {
 
     }
 }else{
-    echo 'ii';
     $id = null;
     $pass = null;
     $re_pas = null;
@@ -97,8 +99,7 @@ if (!empty( $_POST['pass']) && !empty($_POST['re-pass'])) {
                 <form action="newlogin.php" class="roginform" method="POST">
                     <div class="ID-From">
                         <p class="p-title">ID</p>
-                            <input type="text" class="id rogin-input"  value="<?php echo $_SESSION['ID'] ?>" autocomplete="off"
->
+                            <span class="rogin-input" style="font-size: 150%;"><?php echo $_SESSION['newlogID'] ?></span>
                     </div>
                     <div class="infomation">
                         <p class="info">※パスワードを設定してください。</p>
