@@ -13,7 +13,6 @@
     $notice_shou = 0;
     $notice_kyakka = 0;
 
-
     if(isset($_GET['page'])){
         $page = $_GET['page'];
         $_SESSION['page'] = $_GET['page']; 
@@ -58,12 +57,12 @@
             $select .= " and ac_comp_data_tb.as_number = ". $status_num;
         }
 
-        $select .= " ORDER by modified LIMIT :page,:num;";
+        $select .= " ORDER by application_Date DESC LIMIT :page,:num;";
                              
 
          $stmt = $db->prepare($select);
        
-        //パラメータ割り当て
+        //パラメータ割り当て 
         $stmt->bindParam(':ID', $_SESSION['ID'], PDO::PARAM_STR);
         $limit = ($page-1) * $num;
         $stmt->bindParam(':page', $limit, PDO::PARAM_INT);
@@ -161,7 +160,7 @@
                     <table class="dvtable" id="table_erea">
                         <thead>
                             <tr>
-                                <th scope="col">最終<br class="br-sp">更新日</th>
+                                <th scope="col">申請日</th>
                                 <th scope="col">企業名</th>
                                 <th scope="col">所在地</th>
                                 <th scope="col">職種</th>

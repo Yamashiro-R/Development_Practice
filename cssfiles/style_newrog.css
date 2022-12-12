@@ -8,6 +8,7 @@
     display: flex;
 }
 
+
 .roginform div {
     width: 565px;
     margin-top: 25px;
@@ -23,6 +24,16 @@
     outline: none;
     text-align: center;
     border-bottom: 2px solid #000;
+}
+
+.ID-From .rogin-input {
+    border-bottom: none;
+}
+
+.ID-From span {
+    display: block;
+    vertical-align: middle;
+    padding-top: 12px;
 }
 
 /*ここまで↑*/

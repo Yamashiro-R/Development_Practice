@@ -132,7 +132,7 @@
 
 
     $select_limit = $select; 
-    $select_limit .= ' LIMIT :page , :num';
+    $select_limit .= '  ORDER by application_Date DESC LIMIT :page , :num';
 
 
     try{
@@ -142,7 +142,7 @@
         $stmt = $db->prepare("SELECT * FROM ac_comp_data_tb,apply_status_tb,account_tb 
                             where ac_comp_data_tb.as_number = apply_status_tb.as_number and
                             ac_comp_data_tb.act_id = account_tb.act_id
-                            ORDER by modified 
+                            ORDER by application_Date DESC 
                             LIMIT :page,:num ");
 
         if($boole){
@@ -174,7 +174,7 @@
          $stmt = $db->prepare("SELECT * FROM ac_comp_data_tb,apply_status_tb,account_tb 
                                 where ac_comp_data_tb.as_number = apply_status_tb.as_number and
                                 ac_comp_data_tb.act_id = account_tb.act_id
-                                ORDER by modified ");
+                                ORDER by application_Date DESC ");
         
         if($boole){
             $stmt = $db->prepare($select);
@@ -314,7 +314,7 @@
                     <table class="dvtable" id="table_erea">
                         <thead>
                             <tr>
-                                <th scope="col">最終<br class="br-sp">更新日</th>
+                                <th scope="col">申請日</th>
                                 <th scope="col">企業名</th>
                                 <th scope="col">生徒名</th>
                                 <th scope="col">申請<br class="br-sp">状況</th>

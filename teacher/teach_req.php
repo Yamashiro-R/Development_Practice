@@ -12,7 +12,8 @@
         $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
         //プリペアドステートメントを作成
         $stmt = $db->prepare("SELECT * FROM ac_comp_data_tb,account_tb
-                                WHERE ac_comp_data_tb.act_id = account_tb.act_id and ac_comp_data_tb.as_number = 2");
+                                WHERE ac_comp_data_tb.act_id = account_tb.act_id and ac_comp_data_tb.as_number = 2
+                                ORDER by application_Date");
         
         //クエリの実行
         $stmt->execute();

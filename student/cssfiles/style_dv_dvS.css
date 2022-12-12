@@ -200,7 +200,9 @@ input[type="search"] {
     height: 40px;   
 }
 
-
+.pull-down {
+    width: 224px;
+}
 
 /*dvSearch.html↑*/
 

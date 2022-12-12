@@ -5,14 +5,17 @@
 ?>
 
 <?php
+    echo date('Y年m月d日');
     $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';
     $user = 'user';
     $password = 'test';
 
+    $_SESSION['reference'] = 2;
+
     // $reference_number = 2;
     // $_SESSION['reference_number'] = $reference_number;
-    if(isset($_SESSION['reference_number'])){
-        $reference_number = $_SESSION['reference_number'];
+    if(isset($_SESSION['reference'])){
+        $reference_number = $_SESSION['reference'];
         if($_POST){
             try {
                 $db = new PDO($dsn, $user, $password);
@@ -47,7 +50,7 @@
                 if(isset($_POST['conf'])){
                     if(!empty($_POST['thoughts']) || !empty($_POST['schedule']) || !empty($_POST['remarks'])){
                         // header('Location: conf.php');
-                        header('Location: dvSearch.php');
+                        header('Location: result.php');
                     }
                 }
                 
@@ -157,14 +160,14 @@ try{
             var idname = 'thought';
                 for(let i = 0; i < 3; i++) {
                     var thought = document.getElementById(idname + (i + 1));
-                console.log(thought);
+//              console.log(thought);
                 thought.addEventListener('blur',() => {
                     input_jug();
                 });
             }
 
             function input_jug(){
-                alert('true');
+                // alert('true');
                 var idname = 'thought';
                 for(let i = 0; i < 3; i++) {
                     var thought = document.getElementById(idname + (i + 1));

@@ -1,9 +1,12 @@
 <?php
     session_start();    //セッション開始
+    $_SESSION['newlogID'] = null;
+
     if (isset($_SESSION['ID'])) {
         //セッションにユーザIDがある＝ログインしている
         //ログイン済みならトップページに遷移する
-        if($_SESSION['ID'] / 100 >= 99) {
+        // if($_SESSION['ID'] / 100 >= 99) 
+        if($_SESSION['ID'] / 100 >= 99){
             header('Location: teacher/home_2.php'); /*管理者ユーザ*/
         }else{
             header('Location: student/home_2.php');/*生徒ユーザ*/
@@ -16,6 +19,8 @@
         $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';  
         $user = 'user';
         $password = 'test';
+
+       
 
         try{
             $db = new PDO($dsn, $user, $password);
@@ -30,16 +35,19 @@
             $stmt->execute();
 
             if ($row = $stmt->fetch()) {
+                // if($_POST['pass'] == strval($_POST['ID'])){
+                //     $_SESSION['newlogID'] = $_POST['ID'];
+                //     header('Location: newlogin.php');
+                //     exit();
+                // }
                 //ユーザが存在していたら、セッションにユーザIDセット
+
                 $_SESSION['ID'] = $row['act_id'];
                 $_SESSION['pass'] = $row['password'];
                 $_SESSION['name'] = $row['account_name'];
 
-                if(strcmp($_POST['pass'],strval($_POST['ID'])) == 0){
-                    header('Location: newlogin.php');
-                    exit();
-                }
 
+                // if($_SESSION['ID'] / 100 >= 99) 
                 if($_SESSION['ID'] / 100 >= 99) {
                     header('Location: teacher/home_2.php');
                 }else{
