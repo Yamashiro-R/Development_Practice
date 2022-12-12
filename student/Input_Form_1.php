@@ -7,106 +7,108 @@
 
 
 <?php
-//     if($_POST == null){
-//         ;
-//     }else {
-//         if(isset ($_POST['hantei'])){
-//             if(toBoolean($_POST['hantei'])){
-//                 echo '成功';
-//                 //ポストされたデータを変数に格納
-//                 $id = intval($_SESSION['ID']);
-//                 $number = 1;
-//                 $company_name = $_POST['company_name'];
-//                 $company_address = $_POST['company_address'];
-
-//                 $total_number = intval($_POST['number_of_applications']);
-//                 $method = $_POST['application_method'];
-//                 $document_screening = $_POST['document_screening'];
-//                 $job = $_POST['occupation'];
-//                 $document_submitted = "";
-//                 $cntflag = 1;
-                
-//                 foreach($_POST['Documents_submitted'] as $value){
-//                     if($cntflag != count($_POST['Documents_submitted'])){
-//                         $document_submitted .= $value . ',' ;
-//                     }else{
-//                         $document_submitted .= $value;
-//                     }
-//                      $cntflag++;
-//                 }
-                
-                
-                //DBに接続
-                $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';
-                $user = 'user';
-                $password = 'test';
-                
-                // try{
-                //     $db = new PDO($dsn, $user, $password);
-                //     $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-                //     //プリペアドステートメントを作成
-                    
-                    
-                //     $stmt = $db->prepare("INSERT INTO ac_comp_data_tb(act_id,as_number,comp_name,comp_address,no_appli,
-                //                         how_to_apply,docmt_screening,job,docmt_submit) VALUE (:ID,:as_number,:comp_name,:comp_address,:no_appli,
-                //                         :how_to_apply,:docmt_screening,:job,:docmt_submit)");
-                    
-                    // modifiedのtimestamp方は
-                    // 自動初期化されたカラムは、カラムに値を指定しない挿入行に対して現在のタイムスタンプに設定されます。
-                    // 自動更新されたカラムは、行内のほかのカラムの値がその現在の値から変更されると、現在のタイムスタンプに自動的に更新されます。自動更新されたカラムは、ほかのすべてのカラムがその現在の値に設定されていれば、変更されないまま保持されます。
-                    //なので ステップ１は自動に任せます！
-
-                //     $stmt->bindParam(':ID',$id, PDO::PARAM_INT);
-                //     $stmt->bindParam(':as_number',$number,PDO::PARAM_INT);
-                //     $stmt->bindParam(':comp_name',$company_name,PDO::PARAM_STR);
-                //     $stmt->bindParam(':comp_address',$company_address,PDO::PARAM_STR);
-                //     $stmt->bindParam(':no_appli',$total_number,PDO::PARAM_INT);
-                //     $stmt->bindParam(':how_to_apply',$method,PDO::PARAM_STR);
-                    
-                    
-                //     $stmt->bindParam(':docmt_screening',$document_screening,PDO::PARAM_STR);
-                //     $stmt->bindParam(':job',$job,PDO::PARAM_STR);
-                    
-                //     $stmt->bindParam(':docmt_submit',$document_submitted,PDO::PARAM_STR);
-                //     //クエリの実行
-                //     $stmt->execute();
-                // }catch (PDOException $e) {
-                //     exit('エラー：' . $e->getMessage());
-                // }
-
-                try{
-                    $db = new PDO($dsn, $user, $password);
-                    $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-                    //プリペアドステートメントを作成
-                    $stmt = $db->prepare("SELECT reference_number FROM ac_comp_data_tb WHERE act_id = :ID AND comp_name =:company_name");
-
-                    $stmt->bindParam(':ID',$id, PDO::PARAM_INT);
-                    $stmt->bindParam(':company_name',$company_name, PDO::PARAM_INT);
-                    $stmt->execute();
-
-                    $row = $stmt ->fetch(PDO::FETCH_ASSOC);
-                    
-
-                }catch(PDOException $e){
-                    exit('エラー：' . $e->getMessage());
-                }
-                //入力したリファレンスnumber取得。
-                echo $row['reference_number'];  
-                $_SESSION['reference'] = $row['reference_number'];
-
-                //INSERT完了したらページ遷移
-                //header('Location: Input_Form_2_1.php');
+    if($_POST == null){
             
-//            }
+        if( !empty($_SESSION['reference']) ){
+            /*セッションidがセットされている時の処理をお願いします。*/
+            //アップデート文未実装！！！
+
+
+            // modifiedのtimestampは
+            // 自動初期化されたカラムは、カラムに値を指定しない挿入行に対して現在のタイムスタンプに設定されます。
+            // 自動更新されたカラムは、行内のほかのカラムの値がその現在の値から変更されると、現在のタイムスタンプに自動的に更新されます。
+            //自動更新されたカラムは、ほかのすべてのカラムがその現在の値に設定されていれば、変更されないまま保持されます。
+            // なので ステップ１は自動に任せます！
+
+        }
+    }else{
+
+        //ポストされたデータを変数に格納
+        $id = intval($_SESSION['ID']);
+        $number = 1;
+        $company_name = $_POST['company_name'];
+        $company_address = $_POST['company_address'];
+
+        $total_number = intval($_POST['number_of_applications']);
+        $method = $_POST['application_method'];
+        $document_screening = $_POST['document_screening'];
+        $job = $_POST['occupation'];
+        $document_submitted = "";
+        $cntflag = 1;
+        //データベースに格納できる様に書式を変更
+        //checkboxに複数チェックがあるとき
+        //例 履歴書,修了見込み証明書 に加工し1行で纏める。
+        $document_submitted = implode(",",$_POST['Documents_submitted']);
+        
+        
+        //DBに接続
+        $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';
+        $user = 'user';
+        $password = 'test';
+
+       
+
+        try{
+            $db = new PDO($dsn, $user, $password);
+            $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+            //プリペアドステートメントを作成
+            
+            
+            $stmt = $db->prepare("INSERT INTO ac_comp_data_tb(act_id,as_number,comp_name,comp_address,no_appli,
+                                how_to_apply,docmt_screening,job,docmt_submit) VALUE (:ID,:as_number,:comp_name,:comp_address,:no_appli,
+                                :how_to_apply,:docmt_screening,:job,:docmt_submit)");
+            
+            // modifiedのtimestampは
+            // 自動初期化されたカラムは、カラムに値を指定しない挿入行に対して現在のタイムスタンプに設定されます。
+            // 自動更新されたカラムは、行内のほかのカラムの値がその現在の値から変更されると、現在のタイムスタンプに自動的に更新されます。自動更新されたカラムは、ほかのすべてのカラムがその現在の値に設定されていれば、変更されないまま保持されます。
+            // なので ステップ１は自動に任せます！
+
+            $stmt->bindParam(':ID',$id, PDO::PARAM_INT);
+            $stmt->bindParam(':as_number',$number,PDO::PARAM_INT);
+            $stmt->bindParam(':comp_name',$company_name,PDO::PARAM_STR);
+            $stmt->bindParam(':comp_address',$company_address,PDO::PARAM_STR);
+            $stmt->bindParam(':no_appli',$total_number,PDO::PARAM_INT);
+            $stmt->bindParam(':how_to_apply',$method,PDO::PARAM_STR);
+            
+            
+            $stmt->bindParam(':docmt_screening',$document_screening,PDO::PARAM_STR);
+            $stmt->bindParam(':job',$job,PDO::PARAM_STR);
+            
+            $stmt->bindParam(':docmt_submit',$document_submitted,PDO::PARAM_STR);
+
+            //クエリの実行
+            $stmt->execute();
+        }catch (PDOException $e) {
+            exit('エラー：' . $e->getMessage());
+        }
+
+        try{
+            $db = new PDO($dsn, $user, $password);
+            $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+            //プリペアドステートメントを作成
+            $stmt = $db->prepare("SELECT reference_number FROM ac_comp_data_tb WHERE act_id = :ID AND comp_name =:company_name");
+
+            $stmt->bindParam(':ID',$id, PDO::PARAM_INT);
+            $stmt->bindParam(':company_name',$company_name, PDO::PARAM_INT);
+            $stmt->execute();
+
+            $row = $stmt ->fetch(PDO::FETCH_ASSOC);
+            
+
+        }catch(PDOException $e){
+            exit('エラー：' . $e->getMessage());
+        }
+        //入力したリファレンスnumber取得。
+        $_SESSION['reference'] = $row['reference_number'];
+
+        //INSERT完了したらページ遷移
+        header('Location: Input_Form_2_1.php');
     
-    
-?>
-<?php 
-    function toBoolean(string $str) {
-        return ($str === 'true');
     }
+
     
 ?>
+
 
 
 
@@ -151,11 +153,12 @@
                             <p class="p-info"><label for="application_method">応募方法：</label></p>
                             <div class="denger_field divsize">
                                 <select class="input-view select_box" name="application_method">
-                                    <option value="0">本校紹介</option>
-                                    <option value="1">職安の紹介</option>
-                                    <option value="2">縁故者の紹介</option>
-                                    <option value="3">求人情報誌等</option>
-                                    <option value="4">その他</option>
+                                    <option value="未選択">未選択</option>
+                                    <option value="本校紹介">本校紹介</option>
+                                    <option value="職安の紹介">職安の紹介</option>
+                                    <option value="縁故者の紹介">縁故者の紹介</option>
+                                    <option value="求人情報誌等">求人情報誌等</option>
+                                    <option value="その他">その他</option>
                                 </select>
                                 <!-- ここにエラー文を出力-->
                             </div>
