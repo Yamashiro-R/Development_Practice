@@ -477,6 +477,7 @@ function flag_confirmation(){
 
 
 function initial_value_Text(checkNo,text){
+    //checkNo = DBのsp_no = 試験詳細種別 text = 試験種別に対する詳細情報
     console.log("チェックボックス初期値イベント");
     const first_exam = document.querySelectorAll(`input[type='checkbox'][name='test_type[]']`);
     
@@ -501,6 +502,7 @@ function initial_value_Text(checkNo,text){
     
     //選択されたチェック欄の題名を出力
     para.textContent = exam_type;
+    //textにDBの詳細データが入っているのでそれをtextareaに反映
     area.textContent = text;
 
     //cssの為にclassをそれぞれ追加
