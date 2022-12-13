@@ -3,9 +3,15 @@
     include '../includes/login.php';
     include '../includes/function.php';
 
-    if(isset($_SESSION['reference'])){
-        $reference_edit = $_SESSION['reference'];
+    //DBに接続
+    $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';
+    $user = 'user';
+    $password = 'test';
 
+    $number = 1;
+
+    if(isset($_SESSION['reference'])){
+        $reference_number = $_SESSION['reference'];
         if($_POST){
             if(isset($_POST['cancel'])){
 
@@ -24,13 +30,6 @@
                 $document_submitted = implode(",",$_POST['Documents_submitted']);
                 
                 
-                //DBに接続
-                $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';
-                $user = 'user';
-                $password = 'test';
-
-            
-
                 try{
                     $db = new PDO($dsn, $user, $password);
                     $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
@@ -39,7 +38,7 @@
                     
                     $stmt = $db->prepare("UPDATE ac_comp_data_tb SET comp_name = :comp_name,comp_address = :comp_address,no_appli = :no_appli,
                                         how_to_apply = :how_to_apply,docmt_screening = :docmt_screening,job = :job,docmt_submit = :docmt_submit 
-                                        WHERE reference_number = $reference_edit");
+                                        WHERE reference_number = $reference_number");
                     
                     // modifiedのtimestampは
                     // 自動初期化されたカラムは、カラムに値を指定しない挿入行に対して現在のタイムスタンプに設定されます。
@@ -56,8 +55,91 @@
 
                     //クエリの実行
                     $stmt->execute();
-
                     
+                }catch (PDOException $e) {
+                    exit('エラー：' . $e->getMessage());
+                }
+
+                
+                //INSERT完了したらページ遷移
+                if(isset($_POST['commit'])){
+                    header('Location: Input_Form_2_1.php');
+                }
+                
+            }
+        }else{
+            try{
+        
+                $db = new PDO($dsn, $user, $password);
+                $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+                //プリペアドステートメントを作成
+                
+                
+                $stmt = $db->prepare("SELECT * FROM  ac_comp_data_tb WHERE reference_number = $reference_number");
+                
+                //クエリの実行
+                $stmt->execute();
+        
+                $row = $stmt->fetch();
+        
+                    $company_name = $row['comp_name'];
+                    $company_address = $row['comp_address'];
+                    $total_number = $row['no_appli'];
+                    $method = $row['how_to_apply'];
+                    $document_screening = $row['docmt_screening'];
+                    $job = $row['job'];
+                    //データベースに格納できる様に書式を変更
+                    //checkboxに複数チェックがあるとき
+                    //例 履歴書,修了見込み証明書 に加工し1行で纏める。
+                    $document_submitted = $row['docmt_submit'];
+                    var_dump($document_submitted);
+            }catch (PDOException $e) {
+                exit('エラー：' . $e->getMessage());
+            }
+        
+        }
+    }else{
+        if($_POST){
+            if(isset($_POST['cancel'])){
+
+            }else{
+                $id = intval($_SESSION['ID']);
+                $company_name = $_POST['company_name'];
+                $company_address = $_POST['company_address'];
+                $total_number = intval($_POST['number_of_applications']);
+                $method = $_POST['application_method'];
+                $document_screening = $_POST['document_screening'];
+                $job = $_POST['occupation'];
+                //データベースに格納できる様に書式を変更
+                //checkboxに複数チェックがあるとき
+                //例 履歴書,修了見込み証明書 に加工し1行で纏める。
+                $document_submitted = implode(",",$_POST['Documents_submitted']);
+
+                try{
+                    $db = new PDO($dsn, $user, $password);
+                    $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+                    //プリペアドステートメントを作成
+                    
+                    
+                    $stmt = $db->prepare("INSERT INTO ac_comp_data_tb(act_id,as_number,comp_name,comp_address,no_appli,
+                                        how_to_apply,docmt_screening,job,docmt_submit) VALUE (:ID,:as_number,:comp_name,:comp_address,:no_appli,
+                                        :how_to_apply,:docmt_screening,:job,:docmt_submit)");
+                    
+                    
+                    $stmt->bindParam(':ID',$id, PDO::PARAM_INT);
+                    $stmt->bindParam(':as_number',$number,PDO::PARAM_INT);
+                    $stmt->bindParam(':comp_name',$company_name,PDO::PARAM_STR);
+                    $stmt->bindParam(':comp_address',$company_address,PDO::PARAM_STR);
+                    $stmt->bindParam(':no_appli',$total_number,PDO::PARAM_INT);
+                    $stmt->bindParam(':how_to_apply',$method,PDO::PARAM_STR);
+                    
+                    
+                    $stmt->bindParam(':docmt_screening',$document_screening,PDO::PARAM_STR);
+                    $stmt->bindParam(':job',$job,PDO::PARAM_STR);
+                    
+                    $stmt->bindParam(':docmt_submit',$document_submitted,PDO::PARAM_STR);
+                    //クエリの実行
+                    $stmt->execute();
                 }catch (PDOException $e) {
                     exit('エラー：' . $e->getMessage());
                 }
@@ -81,58 +163,165 @@
                 }
                 //入力したリファレンスnumber取得。
                 $_SESSION['reference'] = $row['reference_number'];
-
+                $reference_number = $_SESSION['reference'];
                 //INSERT完了したらページ遷移
                 if(isset($_POST['commit'])){
-                    header('Location: edit_Form_2_1.php');
+                    header('Location: Input_Form_2_1.php');
                 }
+    
+
+                try{
+        
+                    $db = new PDO($dsn, $user, $password);
+                    $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+                    //プリペアドステートメントを作成
+                    
+                    
+                    $stmt = $db->prepare("SELECT * FROM  ac_comp_data_tb WHERE reference_number = $reference_number");
+                    
+                    //クエリの実行
+                    $stmt->execute();
             
+                    $row = $stmt->fetch();
+            
+                        $company_name = $row['comp_name'];
+                        $company_address = $row['comp_address'];
+                        $total_number = $row['no_appli'];
+                        $method = $row['how_to_apply'];
+                        $document_screening = $row['docmt_screening'];
+                        $job = $row['job'];
+                        //データベースに格納できる様に書式を変更
+                        //checkboxに複数チェックがあるとき
+                        //例 履歴書,修了見込み証明書 に加工し1行で纏める。
+                        $document_submitted = $row['docmt_submit'];
+                        var_dump($document_submitted);
+                }catch (PDOException $e) {
+                    exit('エラー：' . $e->getMessage());
+                }
+    
             }
 
-        } 
-
-        try{
-            //DBに接続
-            $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';
-            $user = 'user';
-            $password = 'test';
-
-            $db = new PDO($dsn, $user, $password);
-            $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-            //プリペアドステートメントを作成
-            
-            
-            $stmt = $db->prepare("SELECT * FROM  ac_comp_data_tb WHERE reference_number = $reference_edit");
-            
-            //クエリの実行
-            $stmt->execute();
-
-            $row = $stmt->fetch();
-
-            $company_name = $row['comp_name'];
-            $company_address = $row['comp_address'];
-            $total_number = $row['no_appli'];
-            $method = $row['how_to_apply'];
-            $document_screening = $row['docmt_screening'];
-            $job = $row['job'];
+        }else{
+            $id = null;
+            $company_name = null;
+            $company_address = null;
+            $total_number = null;
+            $method = null;
+            $document_screening = null;
+            $job = $_POST['occupation'] = null;
             //データベースに格納できる様に書式を変更
             //checkboxに複数チェックがあるとき
             //例 履歴書,修了見込み証明書 に加工し1行で纏める。
-            $document_submitted = $row['docmt_submit'];
-            var_dump($document_submitted);
+            $document_submitted = null;
+        }
+    }
     
+    
+
+       
+    //         $db = new PDO($dsn, $user, $password);
+    //         $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+    //         //プリペアドステートメントを作成
+            
+            
+    //         $stmt = $db->prepare("SELECT * FROM  ac_comp_data_tb WHERE reference_number = $reference_number");
+            
+    //         //クエリの実行
+    //         $stmt->execute();
+
+
+
+
+
+
             
 
-        }catch (PDOException $e) {
-            exit('エラー：' . $e->getMessage());
-        }
+            
+
+
+            // try{
+            //     $db = new PDO($dsn, $user, $password);
+            //     $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+            //     //プリペアドステートメントを作成
+            //     $stmt = $db->prepare("SELECT reference_number FROM ac_comp_data_tb WHERE act_id = :ID AND comp_name =:company_name");
+    
+            //     $stmt->bindParam(':ID',$id, PDO::PARAM_INT);
+            //     $stmt->bindParam(':company_name',$company_name, PDO::PARAM_INT);
+            //     $stmt->execute();
+    
+            //     $row = $stmt ->fetch(PDO::FETCH_ASSOC);
+                
+    
+            // }catch(PDOException $e){
+            //     exit('エラー：' . $e->getMessage());
+            // }
+            // //入力したリファレンスnumber取得。
+            // $_SESSION['reference'] = $row['reference_number'];
+
+            // //INSERT完了したらページ遷移
+            // if(isset($_POST['commit'])){
+            //     header('Location: Input_Form_2_1.php');
+            // }
+        
+    //     }
+
+    // } 
+
+    // try{
+    //     //DBに接続
+    //     $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';
+    //     $user = 'user';
+    //     $password = 'test';
+
+    //     $db = new PDO($dsn, $user, $password);
+    //     $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+    //     //プリペアドステートメントを作成
+        
+        
+    //     $stmt = $db->prepare("SELECT * FROM  ac_comp_data_tb WHERE reference_number = $reference_number");
+        
+    //     //クエリの実行
+    //     $stmt->execute();
+
+    //     if($row = $stmt->fetch()){
+
+    //         $company_name = $row['comp_name'];
+    //         $company_address = $row['comp_address'];
+    //         $total_number = $row['no_appli'];
+    //         $method = $row['how_to_apply'];
+    //         $document_screening = $row['docmt_screening'];
+    //         $job = $row['job'];
+    //         //データベースに格納できる様に書式を変更
+    //         //checkboxに複数チェックがあるとき
+    //         //例 履歴書,修了見込み証明書 に加工し1行で纏める。
+    //         $document_submitted = $row['docmt_submit'];
+    //         var_dump($document_submitted);
+    //     }else{
+    //         $id = null;
+    //         $company_name = null;
+    //         $company_address = null;
+    //         $total_number = null;
+    //         $method = null;
+    //         $document_screening = null;
+    //         $job = $_POST['occupation'] = null;
+    //         //データベースに格納できる様に書式を変更
+    //         //checkboxに複数チェックがあるとき
+    //         //例 履歴書,修了見込み証明書 に加工し1行で纏める。
+    //         $document_submitted = null;
+    //     }
+            
+
+    //     }catch (PDOException $e) {
+    //         exit('エラー：' . $e->getMessage());
+    //     }
 
 
 
-    }else{
-        header('Location: home_2.php');
 
-    }
+
+
+
+
     
 ?>
 
@@ -151,11 +340,11 @@
 
         <body>
             <div id="main_title"> 
-                <h1>就職活動報告(編集)</h1>
+                <h1>就職活動報告</h1>
                 <h2>ステップ１</h2>
             </div>
             <div class="big-div">   
-                <form action="edit_Form_1.php" method="post">
+                <form action="Input_Form_1.php" method="post">
                         <!--　ポストで送信 -->
                     <div class="div-info">
                         <div class="divdiv_col_1 divdiv">   

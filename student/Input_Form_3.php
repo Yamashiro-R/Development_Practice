@@ -10,7 +10,6 @@
     $user = 'user';
     $password = 'test';
 
-    $_SESSION['reference'];
 
     // $reference_number = 2;
     // $_SESSION['reference_number'] = $reference_number;
@@ -104,6 +103,7 @@ try{
 
 
 // }
+echo $reference_number;
 ?>
 
 

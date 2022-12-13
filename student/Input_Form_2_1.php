@@ -2,10 +2,9 @@
     include '../includes/login.php';
     include '../includes/function.php';
 ?>
-
+    
 <?php 
     if( empty($_SESSION['reference']) ){
-        echo "何もしない";
         //空だった場合はなにもしない
         ;
     }else{
@@ -125,7 +124,7 @@
             }   
         }
     }
-
+    
 ?>
 
 <!DOCTYPE html>
@@ -201,12 +200,14 @@
             <!-- JSで操作するために値渡し -->
             <?php $test_json = json_encode($test_detalis_tb_data);?>
             
+            
 
             <script type="text/javascript" src="\DEVELOPMENT_PRACTICE/JS_files/methot.js"></script>
           
             <script type="text/javascript">
 
-                let json_data = JSON.parse('<?php echo $test_json; ?>');
+                let json_data = parseJson('<?php echo $test_json; ?>');
+                
                 let sp_data = json_data.map(item => item['sp_number']);
                 let text_data = json_data.map(item => item['details']);
                 

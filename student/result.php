@@ -3,9 +3,10 @@
     include '../includes/function.php';
 
     //$_SESSION['reference'] = 1;
-
+    echo "リファレンス".$_SESSION['reference'];
     if(isset($_SESSION['reference'])){
         $reference_number = $_SESSION['reference'];
+        echo "リファレンス".$_SESSION['reference'];
     }else{
         header('Location: Input_Form_3.php');
         exit();
@@ -30,7 +31,8 @@
                             where ac_comp_data_tb.act_id = :ID and 
                             ac_comp_data_tb.as_number = apply_status_tb.as_number and
                             ac_comp_data_tb.act_id = account_tb.act_id and
-                            account_tb.fn_number = family_name_tb.fn_number");
+                            account_tb.fn_number = family_name_tb.fn_number and
+                            reference_number = $reference_number");
 
         $stmt_day = $db->prepare("SELECT * FROM tests_tb
                                 where reference_number = :num1
@@ -74,6 +76,7 @@
 
         $confirmation =  $row['confirmation'];
 
+        var_dump($row);
 
 
         $param_p = json_encode($status);
@@ -94,6 +97,7 @@
 
     }
 
+    echo $row['future_activities'];
 ?>
 
 
