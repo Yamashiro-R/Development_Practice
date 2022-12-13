@@ -37,7 +37,8 @@
                              where ac_comp_data_tb.act_id = :ID and 
                              ac_comp_data_tb.as_number = apply_status_tb.as_number and
                              ac_comp_data_tb.act_id = account_tb.act_id and
-                             account_tb.fn_number = family_name_tb.fn_number");
+                             account_tb.fn_number = family_name_tb.fn_number and
+                            reference_number = $reference_number");
 
         $stmt_day = $db->prepare("SELECT * FROM tests_tb
                                  where reference_number = :num1

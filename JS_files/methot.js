@@ -414,6 +414,20 @@ function Input_Form_1_judeg_flag(activecompany,activeaddress,activemethot,active
 
 /*Input_Form_2_1 ～ 3の色々ここから*/
 
+var parseJson = function(jsonString) {
+    var converted = convertNl(jsonString);
+    return JSON.parse(converted);
+  };
+  
+  var convertNl = function(jsonString) {
+    return jsonString
+      .replace(/(\r\n)/g, '\n')
+      .replace(/(\r)/g,   '\n')
+      .replace(/(\n)/g,  '\\n');
+  };
+
+
+
 function Input_Form_2_monitoring(sp_no,text_data){
     
     const checkbox_data = document.querySelectorAll(`input[type='checkbox'][name='test_type[]']`);

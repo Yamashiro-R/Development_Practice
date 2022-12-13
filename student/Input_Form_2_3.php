@@ -33,7 +33,7 @@
 
 <?php
     if($_POST){
-        var_dump($_POST);
+        
         //ここでテキストエリアの文字が入力されているかチェックして
         if( empty($_POST['textarea']) ){
             //テキストのエリアが無い = 入力してない or 入力してある項目すべて削除した
@@ -210,7 +210,7 @@
           
             <script type="text/javascript">
 
-                let json_data = JSON.parse('<?php echo $test_json; ?>');
+                let json_data = parseJson('<?php echo $test_json; ?>');
                 let sp_data = json_data.map(item => item['sp_number']);
                 let text_data = json_data.map(item => item['details']);
                 
