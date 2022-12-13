@@ -1,7 +1,7 @@
 /*dataView.html↓*/
 .view_back-color{
     /* saveと統一 */
-    background-color: #99ffcc;
+    background-color: #CCFFCC;
 }
 
 
@@ -190,6 +190,9 @@ input[type="search"] {
     justify-content: flex-end;
 }
 
+.search:active {
+    background-color: gray;
+}
 
 .button_d form {
     padding-left: 10px;

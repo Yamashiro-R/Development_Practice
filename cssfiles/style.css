@@ -210,16 +210,30 @@ p {
 .button_header {
     -webkit-appearance: none;
     -moz-appearance: none;
-            appearance: none;
+    appearance: none;
     color: #fff;
     background-color: red;
     min-width: 120px;
     padding: 0.5rem 1rem;
     border-radius: 5px;
-    
-    text-align: center;
+    /* text-align: center; */
     text-decoration: none;
-} 
+    font-weight: bold;
+}
+
+.button_rogout {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    color: red !important;
+    /* background-color: red; */
+    min-width: 120px;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
 
 .brand{
     font-weight: bold;
@@ -295,7 +309,8 @@ li.nav__item{
     justify-content: center;
     align-items: center;
     z-index: 90;
-    background-color: #3584bb;
+    background-color: #5D99FF;
+    /* background-color: #3584bb; */
 }
 .menu-btn span,
 .menu-btn span:before,
@@ -405,9 +420,9 @@ li.nav__item{
     top: 16px;
 }
 
-.menu-content li:nth-of-type(3) a{
+/* .menu-content li:nth-of-type(3) a{
     padding-bottom: 0;
-}
+} */
 
 
 /*ボタンを押したらメニューが出てくるように記述を追加・変更*/
@@ -419,7 +434,8 @@ li.nav__item{
     top: 0;
     left: 100%;/*leftの値を変更してメニューを画面外へ*/
     z-index: 80;
-    background-color: #3584bb;
+    background-color: #5D99FF;
+    /* background-color: #3584bb; */
     transition: all 0.5s;/*アニメーション設定*/
 }
 

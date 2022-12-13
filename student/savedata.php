@@ -180,12 +180,12 @@
 
                 <div class="button_d">
                     <form method="POST" action="savedata.php" onsubmit="delete_btn();">
-                        <input type="submit" value="削除" id="delete">
+                        <input type="submit" class="button-delete" value="削除" id="delete">
                         <input type="hidden" name="CONFIRM" value="" >
                     </form>
 
                     <form action="">
-                        <input type="submit" value="編集" id="edit">
+                        <input type="submit" class="button-edit" value="編集" id="edit">
                     </form>
                 </div>
                 <div class="page-top">

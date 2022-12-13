@@ -32,7 +32,7 @@
             menu
             </button>
             <ul class="nav__wrapper">
-                <li class="nav__item" title="ID:1224">👤<?php echo $_SESSION['name'] ?></li>
+                <li class="nav__item" title="ID:<?php echo $_SESSION['ID']?>">👤<?php echo $_SESSION['name'] ?></li>
                 <li class="nav__item">
                     <div class="dropdown" id="la">
                         <input id="tg" class="dropInput" type="checkbox">

@@ -52,16 +52,15 @@
 
         $select = "SELECT * FROM ac_comp_data_tb join apply_status_tb
                             on ac_comp_data_tb.as_number = apply_status_tb.as_number
-                             where act_id = :ID";
+                            where act_id = :ID";
         if($status_num){
             $select .= " and ac_comp_data_tb.as_number = ". $status_num;
         }
 
         $select .= " ORDER by application_Date DESC LIMIT :page,:num;";
-                             
 
-         $stmt = $db->prepare($select);
-       
+        $stmt = $db->prepare($select);
+
         //パラメータ割り当て 
         $stmt->bindParam(':ID', $_SESSION['ID'], PDO::PARAM_STR);
         $limit = ($page-1) * $num;
@@ -97,9 +96,9 @@
 
     try{
         $stmt = $db->prepare("SELECT * FROM ac_comp_data_tb join apply_status_tb
-                            on ac_comp_data_tb.as_number = apply_status_tb.as_number
-                             where act_id = :ID
-                             ORDER by modified ");
+                    on ac_comp_data_tb.as_number = apply_status_tb.as_number
+                    where act_id = :ID
+                    ORDER by modified ");
     
         //パラメータ割り当て
         $stmt->bindParam(':ID', $_SESSION['ID'], PDO::PARAM_STR);
@@ -107,15 +106,14 @@
         $stmt->execute();
 
 
-       $data = $stmt->fetchAll();
-       $records = count($data);
+        $data = $stmt->fetchAll();
+        $records = count($data);
+        //var_dump($data[0]['modified']);
 
+    }catch (PDOException $e){
+        exit('エラー：' . $e->getMessage());
+    }
 
-   }catch (PDOException $e){
-       exit('エラー：' . $e->getMessage());
-   }
-
-    
 
 ?>
 

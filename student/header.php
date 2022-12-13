@@ -18,6 +18,7 @@
                             <li><a class="item" href="home_2.php">ホーム</a></li>
                             <li><a class="item" href="dvSearch.php">閲覧検索</a></li>
                             <li><a class="item" href="Input_Form_1.php">報告書新規作成</a></li>
+                            <li><a class="item" href="dataView.php">保存データ</a></li>
                         </ul>
                     </div>
                 </li>
@@ -42,14 +43,17 @@
                         <a href="Input_Form_1.php">報告書新規作成</a>
                     </li>
                     <li>
-                    <a class="button_header" href="#" onclick="rog_out_js(); return false;">ログアウト</a>
+                        <a href="dataView.php">保存データ</a>
                     </li>
+                    <li>
+                    <a class="button_rogout" href="#" onclick="rog_out_js(); return false;">ログアウト</a>
+                    </li>
+                    
                 </ul>
             </div>
         </div>
     </div>
 </header>
-
 
 <script>
     const la =  document.getElementById('la');
