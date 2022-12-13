@@ -322,13 +322,19 @@ function validation_check(){
     }
 
    
-} 
+}
+
+
+
 
 function Input_Form_1_judeg_flag(activecompany,activeaddress,activemethot,activedocument_radio,
         activejob,activenumber,activedocuments_checkbox){
     let formElements = document.forms[0];
+
     let savebtn = formElements.elements[15]; 
     let submitbtn = formElements.elements[16]; 
+
+
     if(activecompany && activeaddress && activemethot  &&
         activedocument_radio && activejob && activenumber  &&
         activedocuments_checkbox){

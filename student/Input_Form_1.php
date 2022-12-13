@@ -99,6 +99,7 @@
             exit('エラー：' . $e->getMessage());
         }
         //入力したリファレンスnumber取得。
+        echo $row['reference_number'];
         $_SESSION['reference'] = $row['reference_number'];
 
         //INSERT完了したらページ遷移
@@ -118,7 +119,7 @@
             <meta charset="UTF-8">
             <link rel="stylesheet" href="../cssfiles/style.css">
             <link rel="stylesheet" href="cssfiles/style_Input_Form.css">
-            <title>入力画面</title>
+            <title>就職活動報告書_ステップ１</title>
         </head>
         <?php include 'header.php' ?>
 
@@ -197,7 +198,7 @@
                                 <div><label><input type="checkbox" name="Documents_submitted[]" value="作品">作品</label></div>
                                 <div>
                                     <label>
-                                        <input type="checkbox" name="Documents_submitted" value="その他" id="">その他：
+                                        <input type="checkbox" name="Documents_submitted[]" value="その他">その他：
                                     </label>
                                     <!--<input type="text" name="Documents_submitted">
                                     </label>-->
