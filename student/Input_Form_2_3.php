@@ -1,14 +1,15 @@
 <?php
-    include 'includes/login.php';
-    require_once 'function.php';
+    include '../includes/login.php';
+    include '../includes/function.php';
 ?>
 <?php 
     //前頁で入力して自動生成したリファレンスナンバー
-    $_SESSION['reference'] = 2;
+    $_SESSION['reference'];
     $reference_number = $_SESSION['reference'];
     //一次試験格納用
     $third = 3;
 ?>
+
 
 
 <?php 
@@ -137,13 +138,14 @@
             <meta charset="UTF-8">
             <link rel="stylesheet" href="../cssfiles/style.css">
             <link rel="stylesheet" href="cssfiles/style_Input_Form.css">
-            <title>入力画面</title>
+            <title>就職活動報告書_ステップ２_３</title>
         </head>
         <?php include 'header.php' ?>
 
         <body>
             <div class="return">
-                <a href="Input_Form_2_2.php"><img src="images/innu.jpeg"></a>
+                <a href="Input_Form_2_2.php"><img src="../images/innu.jpeg
+                "></a>
             </div>
             <div id="main_title"> 
                 <h1>就職活動報告</h1>
@@ -192,7 +194,8 @@
                     </div>
                     
                     <div class="button">
-                        <input type="reset"  class="btn_item" value="キャンセル" alt="キャンセル">
+                         <!-- cancel押されたらページを再度読み直して元の状態(編集前に戻す) -->
+                        <input type="reset"  class="btn_item" value="キャンセル" alt="キャンセル" onclick="location.href='./Input_Form_2_3.php'">
                         <input type="submit" class="btn_item" name="save" value="保存" alt="保存">
                         <input type="submit" class="btn_item" name="next" value="次のステップ→" alt="次のステップへ" disabled>
                     </div>

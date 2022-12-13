@@ -4,13 +4,13 @@
 
 ?>
 
+
 <?php
-    echo date('Y年m月d日');
     $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';
     $user = 'user';
     $password = 'test';
 
-    $_SESSION['reference'] = 2;
+    $_SESSION['reference'];
 
     // $reference_number = 2;
     // $_SESSION['reference_number'] = $reference_number;
@@ -115,7 +115,7 @@ try{
             <meta charset="UTF-8">
             <link rel="stylesheet" href="../cssfiles/style.css">
             <link rel="stylesheet" href="cssfiles/style_Input_Form.css">
-            <title>入力画面</title>
+            <title>就職活動報告書_ステップ３</title>
         </head>
         <?php include 'header.php' ?>
 

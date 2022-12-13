@@ -145,7 +145,7 @@
             <meta charset="UTF-8">
             <link rel="stylesheet" href="../cssfiles/style.css">
             <link rel="stylesheet" href="cssfiles/style_Input_Form.css">
-            <title>編集画面</title>
+            <title>就職活動報告書_ステップ１</title>
         </head>
         <?php include 'header.php' ?>
 

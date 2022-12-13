@@ -125,7 +125,7 @@
             <meta charset="UTF-8">
             <link rel="stylesheet" href="../cssfiles/style.css">
             <link rel="stylesheet" href="cssfiles/style_dv_dvS.css">
-            <title>データ一覧</title>
+            <title>保存データ一覧</title>
         </head>
         <?php include 'header.php' ?>
 

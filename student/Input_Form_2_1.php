@@ -1,20 +1,19 @@
 <?php
     include '../includes/login.php';
-    require_once '../includes/function.php';
+    include '../includes/function.php';
 ?>
-<?php 
-    //前頁で入力して自動生成したリファレンスナンバー
-    $reference_number = $_SESSION['reference'];
-    //一次試験格納用
-    $once = 1;
-?>
-
 
 <?php 
     if( empty($_SESSION['reference']) ){
+        echo "何もしない";
         //空だった場合はなにもしない
         ;
     }else{
+        //前頁で入力して自動生成したリファレンスナンバー
+        $_SESSION['reference'];
+        $reference_number = $_SESSION['reference'];
+        //一次試験格納用
+        $once = 1;
         //設定されている場合はDBを探索しデータを表示したい。
 
         $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';
@@ -135,7 +134,7 @@
             <meta charset="UTF-8">
             <link rel="stylesheet" href="../cssfiles/style.css">
             <link rel="stylesheet" href="cssfiles/style_Input_Form.css">
-            <title>入力画面</title>
+            <title>就職活動報告書_ステップ２_１</title>
         </head>
         <?php include 'header.php' ?>
 
@@ -190,9 +189,11 @@
                     </div>
                     
                     <div class="button">
-                        <input type="reset"  class="btn_item" value="キャンセル" alt="キャンセル">
+                        <!-- cancel押されたらページを再度読み直して元の状態(編集前に戻す) -->
+                        <input type="reset"  class="btn_item" value="キャンセル" alt="キャンセル" onclick="location.href='./Input_Form_2_1.php'">
                         <input type="submit" class="btn_item" name="save" value="保存" alt="保存">
                         <input type="submit" class="btn_item" name="next" value="二次→" alt="二次へ" disabled>
+                        <input type="submit" class="btn_item" name="Input_1" value="step_3→" alt="step_3へ" disabled>
                     </div>
                 </form>
             </div>
