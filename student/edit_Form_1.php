@@ -65,6 +65,11 @@
                 //INSERT完了したらページ遷移
                 if(isset($_POST['commit'])){
                     header('Location: edit_Form_2_1.php');
+                    exit();
+                }else if(isset($_POST['Input_3'])){
+                    $_SESSION['Input_3'] = 1;
+                    header('Location: edit_Form_3.php');
+                    exit();
                 }
             
             }
@@ -226,6 +231,7 @@
                         <input type="reset"  class="btn_item" name="cancel" value="キャンセル" alt="キャンセル">
                         <input type="submit" class="btn_item" name="save" value="保存" alt="保存">
                         <input type="submit" class="btn_item" name="commit" value="一次→" alt="一次→">
+                        <input type="submit" class="btn_item" name="Input_3" value="step_3→" alt="step_3へ" disabled>
                     </div>
                 </form>
             </div>
@@ -274,8 +280,10 @@
 
                     if(bool){
                         forms.elements[16].disabled = false;
+                        forms.elements[17].disabled = false;
                     }else{
                         forms.elements[16].disabled = true;
+                        forms.elements[17].disabled = true;
                     }
             </script>
         </body>

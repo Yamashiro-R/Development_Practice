@@ -43,6 +43,11 @@
 
             if(isset($_POST['next'])){
                 header('Location: edit_Form_2_2.php');
+                exit();
+            }else if(isset($_POST['Input_3'])){
+                $_SESSION['Input_3'] = 1;
+                header('Location: edit_Form_3.php');
+                exit();
             }
         }
         //設定されている場合はDBを探索しデータを表示したい。
@@ -202,6 +207,7 @@
                         <input type="button"  class="btn_item" value="キャンセル" alt="キャンセル" onclick="location.href=''">
                         <input type="submit" class="btn_item" name="save" value="保存" alt="保存">
                         <input type="submit" class="btn_item" name="next" value="二次→" alt="二次へ" disabled>
+                        <input type="submit" class="btn_item" name="Input_3" value="step_3→" alt="step_3へ" disabled>
                     </div>
                 </form>
             </div>
@@ -214,7 +220,7 @@
           
             <script type="text/javascript">
 
-                let json_data = JSON.parse('<?php echo $test_json; ?>');
+                let json_data = parseJson('<?php echo $test_json; ?>');
                 let sp_data = json_data.map(item => item['sp_number']);
                 let text_data = json_data.map(item => item['details']);
                 
