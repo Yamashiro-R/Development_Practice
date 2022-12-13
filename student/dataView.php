@@ -7,7 +7,7 @@
     $password = 'test';
     $status_num = false;
 
-    $num = 5;
+    $num = 10;
     $status = ["未申請"=>"1","申請中"=>"2","承認済"=>"3","却下"=>"4"];
 
     $notice_shou = 0;
@@ -96,10 +96,10 @@
 
 
     try{
-        $stmt = $db->prepare("SELECT * FROM ac_comp_data_tb join apply_status_tb
-                            on ac_comp_data_tb.as_number = apply_status_tb.as_number
-                             where act_id = :ID
-                             ORDER by modified ");
+        $stmt = $db->prepare("SELECT * FROM ac_comp_data_tb,apply_status_tb
+                            Where ac_comp_data_tb.as_number = apply_status_tb.as_number
+                             and act_id = :ID
+                             ORDER by application_Date ");
     
         //パラメータ割り当て
         $stmt->bindParam(':ID', $_SESSION['ID'], PDO::PARAM_STR);

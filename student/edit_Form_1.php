@@ -2,9 +2,9 @@
 <?php
     include '../includes/login.php';
     include '../includes/function.php';
-
-    if(isset($_SESSION['reference'])){
-        $reference_edit = $_SESSION['reference'];
+    
+    if(isset($_SESSION['reference_edit'])){
+        $reference_edit = $_SESSION['reference_edit'];
 
         if($_POST){
             if(isset($_POST['cancel'])){
@@ -62,26 +62,6 @@
                     exit('エラー：' . $e->getMessage());
                 }
 
-
-                try{
-                    $db = new PDO($dsn, $user, $password);
-                    $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-                    //プリペアドステートメントを作成
-                    $stmt = $db->prepare("SELECT reference_number FROM ac_comp_data_tb WHERE act_id = :ID AND comp_name =:company_name");
-        
-                    $stmt->bindParam(':ID',$id, PDO::PARAM_INT);
-                    $stmt->bindParam(':company_name',$company_name, PDO::PARAM_INT);
-                    $stmt->execute();
-        
-                    $row = $stmt ->fetch(PDO::FETCH_ASSOC);
-                    
-        
-                }catch(PDOException $e){
-                    exit('エラー：' . $e->getMessage());
-                }
-                //入力したリファレンスnumber取得。
-                $_SESSION['reference'] = $row['reference_number'];
-
                 //INSERT完了したらページ遷移
                 if(isset($_POST['commit'])){
                     header('Location: edit_Form_2_1.php');
@@ -128,11 +108,14 @@
         }
 
 
-
     }else{
         header('Location: home_2.php');
 
     }
+    
+
+
+
     
 ?>
 
@@ -248,7 +231,8 @@
             </div>
             <script type="text/javascript" src="\DEVELOPMENT_PRACTICE/JS_files/methot.js"></script>
             <script>
-                window.onload = validation_check()
+                validation_check();
+            
                 var bool = true;
                 var forms = document.forms[0];
                     if(forms.company_name.value == null || forms.company_name.value == ""){
@@ -293,7 +277,6 @@
                     }else{
                         forms.elements[16].disabled = true;
                     }
-
             </script>
         </body>
         

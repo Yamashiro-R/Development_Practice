@@ -1,12 +1,13 @@
 <?php
-    include '../includes/login.php';
-    require_once '../includes/function.php';
+    include 'includes/login.php';
+    require_once 'function.php';
 ?>
 <?php 
     //前頁で入力して自動生成したリファレンスナンバー
+    $_SESSION['reference'] = 2;
     $reference_number = $_SESSION['reference'];
     //一次試験格納用
-    $once = 1;
+    $third = 3;
 ?>
 
 
@@ -21,8 +22,8 @@
         $user = 'user';
         $password = 'test';
 
-        $tests_tb_data = fetch_tests_tb($reference_number,$once);
-        $test_detalis_tb_data = fetch_test_detalis_tb($reference_number,$once);
+        $tests_tb_data = fetch_tests_tb($reference_number,$third);
+        $test_detalis_tb_data = fetch_test_detalis_tb($reference_number,$third);
     }
 
         
@@ -31,30 +32,31 @@
 
 <?php
     if($_POST){
+        var_dump($_POST);
         //ここでテキストエリアの文字が入力されているかチェックして
         if( empty($_POST['textarea']) ){
             //テキストのエリアが無い = 入力してない or 入力してある項目すべて削除した
             //なので消す動作を入れている 
-            Delete_test_detalis_tb_data($reference_number,$once);
+            Delete_test_detalis_tb_data($reference_number,$third);
             //そして、tests_tbに入力するデータがあるかチェックする。
 
             //ポストされた値が入っているか其々チェック
-            if( empty($_POST['once_date']) && empty($_POST['start_time']) &&
+            if( empty($_POST['third_date']) && empty($_POST['start_time']) &&
             empty($_POST['end_time']) ) {
             //空の時何もしない
             ;
             }else{
                 //値を変数に格納。
-                $once_date = $_POST['once_date'];
+                $third_date = $_POST['third_date'];
                 $start_time = $_POST['start_time'];
                 $end_time = $_POST['end_time'];
 
                 //値がある時
                 //tests_tbのデータをDeleteして
-                Delete_tests_tb_data($reference_number,$once);
+                Delete_tests_tb_data($reference_number,$third);
             
                 //ポストされた値をINSERTする。
-                Insert_tests_tb_data($reference_number,$once,$once_date,$start_time,$end_time);
+                Insert_tests_tb_data($reference_number,$third,$third_date,$start_time,$end_time);
 
                 //タイムスタンプでデータを更新する処理
                 timestamp($reference_number); 
@@ -89,27 +91,27 @@
                     //$array_type_text[$value] = $_POST['textarea_'.$value];
                     $array_type_text[$test_type[$tmp]] = $textareas[$tmp];                 
                 }
-                    Delete_test_detalis_tb_data($reference_number,$once);
+                    Delete_test_detalis_tb_data($reference_number,$third);
             }
             //ポストされた値が入っているか其々チェック
-            if( empty($_POST['once_date']) && empty($_POST['start_time']) &&
+            if( empty($_POST['third_date']) && empty($_POST['start_time']) &&
             empty($_POST['end_time']) ) {
             echo "date_dataと開始時間、終了時間の３つが空だったら何もしない。"
             ;
             }else{
                 //値を変数に格納。
-                $once_date = $_POST['once_date'];
+                $third_date = $_POST['third_date'];
                 $start_time = $_POST['start_time'];
                 $end_time = $_POST['end_time'];
 
                 //値がある時
                 //tests_tbのデータをDeleteして
-                Delete_tests_tb_data($reference_number,$once);
+                Delete_tests_tb_data($reference_number,$third);
             
                 //ポストされた値をINSERTする。
-                Insert_tests_tb_data($reference_number,$once,$once_date,$start_time,$end_time);
+                Insert_tests_tb_data($reference_number,$third,$third_date,$start_time,$end_time);
 
-                Insert_test_detalis_tb_data($reference_number,$once,$array_type_text);
+                Insert_test_detalis_tb_data($reference_number,$third,$array_type_text);
 
             }
             
@@ -117,12 +119,12 @@
             timestamp($reference_number); 
         
 
-            $tests_tb_data = fetch_tests_tb($reference_number,$once);
-            $test_detalis_tb_data = fetch_test_detalis_tb($reference_number,$once);
+            $tests_tb_data = fetch_tests_tb($reference_number,$third);
+            $test_detalis_tb_data = fetch_test_detalis_tb($reference_number,$third);
 
             //二次へのボタンが押されてたら次のページへ遷移。保存なら何もしない。
             if( !empty( $_POST['next'] ) ){
-                header('Location:Input_Form_2_2.php');
+                header('Location:Input_Form_3.php');
             }   
         }
     }
@@ -141,20 +143,20 @@
 
         <body>
             <div class="return">
-                <a href="Input_Form_1.php"><img src="../images/innu.jpeg"></a>
+                <a href="Input_Form_2_2.php"><img src="images/innu.jpeg"></a>
             </div>
             <div id="main_title"> 
                 <h1>就職活動報告</h1>
                 <h2>ステップ２</h2>
-                <h3>一次試験</h3>
+                <h3>三次試験</h3>
             </div>
 
             <div class="big-div">   
-                <form action="Input_Form_2_1.php" method="post" name="test">
+                <form action="Input_Form_2_3.php" method="post" name="test">
                     <div class="div-info">
                         <div class="divdiv_col_1 divdiv input_width"> 
-                            <p class="p-info p-width_1"><label for="test_day">一次試験日付：</label></p>
-                            <input type="date" class="input-view" name="once_date" id="test_day" value="<?php echo $tests_tb_data['date_data']; ?>">
+                            <p class="p-info p-width_1"><label for="test_day">三次試験日付：</label></p>
+                            <input type="date" class="input-view" name="third_date" id="test_day" value="<?php echo $tests_tb_data['date_data']; ?>">
                         </div>      
                         <div class="divdiv"> 
                             <p class="p-info p-width_2"><label for="start_time">開始日時：</label></p>
@@ -167,7 +169,7 @@
 
 
                         <div class="divdiv_width_all">
-                            <p class="p-info">一次試験内容：</p>
+                            <p class="p-info">三次試験内容：</p>
                             
                             <div class="Input_Form_2_1_area_div">
                                 <div class="exam_test"><label><input type="checkbox" name="test_type[]" value="1">筆記(専門)</label></div>
@@ -192,7 +194,7 @@
                     <div class="button">
                         <input type="reset"  class="btn_item" value="キャンセル" alt="キャンセル">
                         <input type="submit" class="btn_item" name="save" value="保存" alt="保存">
-                        <input type="submit" class="btn_item" name="next" value="二次→" alt="二次へ" disabled>
+                        <input type="submit" class="btn_item" name="next" value="次のステップ→" alt="次のステップへ" disabled>
                     </div>
                 </form>
             </div>
