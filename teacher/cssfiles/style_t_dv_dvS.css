@@ -180,6 +180,10 @@ input[type="search"] {
     margin-left: 10px;
 }
 
+.reset_d:active {
+    background-color: gray;
+}
+
 .button_d{
     margin-top: 20px;
     margin-bottom: 20px;
@@ -187,6 +191,9 @@ input[type="search"] {
     justify-content: flex-end;
 }
 
+.search_d:active {
+    background-color: gray;
+}
 
 .button_d form {
     padding-left: 10px;

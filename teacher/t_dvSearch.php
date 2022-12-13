@@ -303,8 +303,8 @@
                                 </p>
                             </div>
                             <div class="t_dvSerach_btn">
-                                <div class="button_re"><input type="submit" name="reset" value="リセット"></div>
-                                <div class="button_d"><input type="submit" value="🔍検索"></div>
+                                <div class="button_re"><input class="reset_d" type="submit" name="reset" value="リセット"></div>
+                                <div class="button_d"><input class="search_d" type="submit" value="🔍検索"></div>
                             </div>
                         </div>
                     </form>

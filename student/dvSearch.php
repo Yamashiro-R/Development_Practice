@@ -189,7 +189,7 @@
                             </p>
                             <p>
                                 <label>職種で検索<br><input type="search" name="job" value="<?php echo $job ?>"> </label>
-                                <div class="button_d"><input type="submit" value="🔍検索"></div> 
+                                <div class="button_d"><input type="submit" class="search" value="🔍検索"></div> 
                             </p>
                         </div>
                     </form>
