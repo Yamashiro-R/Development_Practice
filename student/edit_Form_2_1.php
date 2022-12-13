@@ -220,7 +220,7 @@
           
             <script type="text/javascript">
 
-                let json_data = JSON.parse('<?php echo $test_json; ?>');
+                let json_data = parseJson('<?php echo $test_json; ?>');
                 let sp_data = json_data.map(item => item['sp_number']);
                 let text_data = json_data.map(item => item['details']);
                 

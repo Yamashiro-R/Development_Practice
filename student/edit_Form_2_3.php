@@ -1,21 +1,49 @@
 <?php
     include 'includes/login.php';
     require_once 'function.php';
-?>
-<?php 
-    //前頁で入力して自動生成したリファレンスナンバー
-    $_SESSION['reference'] = 2;
-    $reference_number = $_SESSION['reference'];
+
+    $reference_number = $_SESSION['reference_edit'];
     //一次試験格納用
     $third = 3;
-?>
 
-
-<?php 
-    if( empty($_SESSION['reference']) ){
+    if( empty($_SESSION['reference_edit']) ){
         //空だった場合はなにもしない
-        ;
+        header('Location: edit_Form_2_2.php');
+
     }else{
+        $reference_number = $_SESSION['reference_edit'];
+
+       if($_POST){
+            Delete_test_detalis_tb_data($reference_number,$once);
+            Delete_tests_tb_data($reference_number,$once);
+
+            //値を変数に格納。
+            $once_date = $_POST['once_date'];
+            $start_time = $_POST['start_time'];
+            $end_time = $_POST['end_time'];
+            Insert_tests_tb_data($reference_number,$once,$once_date,$start_time,$end_time);
+
+
+            //数があっていたらDBの処理に移行する。
+            //ポストされたデータを配列に格納
+            $test_type = $_POST['test_type'];
+            $textareas = $_POST['textarea'];
+            $array_type_text;
+            for($tmp =0 ; $tmp < count($test_type) ; $tmp++){
+                //チェックが入っている場所をkey値として、textを代入する予定。key値は1～10で指定されている。
+                //key = textデータとして入力された分のみ其々を結びつけ連想配列化。
+                //$array_type_text[$value] = $_POST['textarea_'.$value];
+                $array_type_text[$test_type[$tmp]] = $textareas[$tmp];                 
+            }
+
+            Insert_test_detalis_tb_data($reference_number,$once,$array_type_text);
+            //タイムスタンプでデータを更新する処理
+            timestamp($reference_number); 
+
+            if(isset($_POST['next'])){
+                header('Location: edit_Form_2_3.php');
+            }
+        }
         //設定されている場合はDBを探索しデータを表示したい。
 
         $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';
@@ -26,108 +54,122 @@
         $test_detalis_tb_data = fetch_test_detalis_tb($reference_number,$third);
     }
 
-        
-?>
 
 
-<?php
-    if($_POST){
-        var_dump($_POST);
-        //ここでテキストエリアの文字が入力されているかチェックして
-        if( empty($_POST['textarea']) ){
-            //テキストのエリアが無い = 入力してない or 入力してある項目すべて削除した
-            //なので消す動作を入れている 
-            Delete_test_detalis_tb_data($reference_number,$third);
-            //そして、tests_tbに入力するデータがあるかチェックする。
+    // if( empty($_SESSION['reference_edit']) ){
+    //     //空だった場合はなにもしない
+    //     ;
+    // }else{
+    //     //設定されている場合はDBを探索しデータを表示したい。
 
-            //ポストされた値が入っているか其々チェック
-            if( empty($_POST['third_date']) && empty($_POST['start_time']) &&
-            empty($_POST['end_time']) ) {
-            //空の時何もしない
-            ;
-            }else{
-                //値を変数に格納。
-                $third_date = $_POST['third_date'];
-                $start_time = $_POST['start_time'];
-                $end_time = $_POST['end_time'];
+    //     $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';
+    //     $user = 'user';
+    //     $password = 'test';
 
-                //値がある時
-                //tests_tbのデータをDeleteして
-                Delete_tests_tb_data($reference_number,$third);
+    //     $tests_tb_data = fetch_tests_tb($reference_number,$third);
+    //     $test_detalis_tb_data = fetch_test_detalis_tb($reference_number,$third);
+    // }
+
+    
+
+
+    // if($_POST){
+    //     var_dump($_POST);
+    //     //ここでテキストエリアの文字が入力されているかチェックして
+    //     if( empty($_POST['textarea']) ){
+    //         //テキストのエリアが無い = 入力してない or 入力してある項目すべて削除した
+    //         //なので消す動作を入れている 
+    //         Delete_test_detalis_tb_data($reference_number,$third);
+    //         //そして、tests_tbに入力するデータがあるかチェックする。
+
+    //         //ポストされた値が入っているか其々チェック
+    //         if( empty($_POST['third_date']) && empty($_POST['start_time']) &&
+    //         empty($_POST['end_time']) ) {
+    //         //空の時何もしない
+    //         ;
+    //         }else{
+    //             //値を変数に格納。
+    //             $third_date = $_POST['third_date'];
+    //             $start_time = $_POST['start_time'];
+    //             $end_time = $_POST['end_time'];
+
+    //             //値がある時
+    //             //tests_tbのデータをDeleteして
+    //             Delete_tests_tb_data($reference_number,$third);
             
-                //ポストされた値をINSERTする。
-                Insert_tests_tb_data($reference_number,$third,$third_date,$start_time,$end_time);
+    //             //ポストされた値をINSERTする。
+    //             Insert_tests_tb_data($reference_number,$third,$third_date,$start_time,$end_time);
 
-                //タイムスタンプでデータを更新する処理
-                timestamp($reference_number); 
+    //             //タイムスタンプでデータを更新する処理
+    //             timestamp($reference_number); 
                 
-            }
+    //         }
 
             
-        }else{
-            //どれかに値が入っていたら
-            $i=0;
+    //     }else{
+    //         //どれかに値が入っていたら
+    //         $i=0;
             
-            foreach($_POST['textarea'] as  $key => $value){
-                if( empty($value) ){
-                    continue;
-                }else{
-                    $i++;
-                } 
-            }
+    //         foreach($_POST['textarea'] as  $key => $value){
+    //             if( empty($value) ){
+    //                 continue;
+    //             }else{
+    //                 $i++;
+    //             } 
+    //         }
 
-            //チェックボタンと入力されているテキストエリアの数を照合
-            if( count($_POST['test_type']) != $i ){
-                echo 'データとカウントが一致しない。';
-            }else{
-                //数があっていたらDBの処理に移行する。
-                //ポストされたデータを配列に格納
-                $test_type = $_POST['test_type'];
-                $textareas = $_POST['textarea'];
-                $array_type_text;
-                for($tmp =0 ; $tmp < count($test_type) ; $tmp++){
-                    //チェックが入っている場所をkey値として、textを代入する予定。key値は1～10で指定されている。
-                    //key = textデータとして入力された分のみ其々を結びつけ連想配列化。
-                    //$array_type_text[$value] = $_POST['textarea_'.$value];
-                    $array_type_text[$test_type[$tmp]] = $textareas[$tmp];                 
-                }
-                    Delete_test_detalis_tb_data($reference_number,$third);
-            }
-            //ポストされた値が入っているか其々チェック
-            if( empty($_POST['third_date']) && empty($_POST['start_time']) &&
-            empty($_POST['end_time']) ) {
-            echo "date_dataと開始時間、終了時間の３つが空だったら何もしない。"
-            ;
-            }else{
-                //値を変数に格納。
-                $third_date = $_POST['third_date'];
-                $start_time = $_POST['start_time'];
-                $end_time = $_POST['end_time'];
+    //         //チェックボタンと入力されているテキストエリアの数を照合
+    //         if( count($_POST['test_type']) != $i ){
+    //             echo 'データとカウントが一致しない。';
+    //         }else{
+    //             //数があっていたらDBの処理に移行する。
+    //             //ポストされたデータを配列に格納
+    //             $test_type = $_POST['test_type'];
+    //             $textareas = $_POST['textarea'];
+    //             $array_type_text;
+    //             for($tmp =0 ; $tmp < count($test_type) ; $tmp++){
+    //                 //チェックが入っている場所をkey値として、textを代入する予定。key値は1～10で指定されている。
+    //                 //key = textデータとして入力された分のみ其々を結びつけ連想配列化。
+    //                 //$array_type_text[$value] = $_POST['textarea_'.$value];
+    //                 $array_type_text[$test_type[$tmp]] = $textareas[$tmp];                 
+    //             }
+    //                 Delete_test_detalis_tb_data($reference_number,$third);
+    //         }
+    //         //ポストされた値が入っているか其々チェック
+    //         if( empty($_POST['third_date']) && empty($_POST['start_time']) &&
+    //         empty($_POST['end_time']) ) {
+    //         echo "date_dataと開始時間、終了時間の３つが空だったら何もしない。"
+    //         ;
+    //         }else{
+    //             //値を変数に格納。
+    //             $third_date = $_POST['third_date'];
+    //             $start_time = $_POST['start_time'];
+    //             $end_time = $_POST['end_time'];
 
-                //値がある時
-                //tests_tbのデータをDeleteして
-                Delete_tests_tb_data($reference_number,$third);
+    //             //値がある時
+    //             //tests_tbのデータをDeleteして
+    //             Delete_tests_tb_data($reference_number,$third);
             
-                //ポストされた値をINSERTする。
-                Insert_tests_tb_data($reference_number,$third,$third_date,$start_time,$end_time);
+    //             //ポストされた値をINSERTする。
+    //             Insert_tests_tb_data($reference_number,$third,$third_date,$start_time,$end_time);
 
-                Insert_test_detalis_tb_data($reference_number,$third,$array_type_text);
+    //             Insert_test_detalis_tb_data($reference_number,$third,$array_type_text);
 
-            }
+    //         }
             
-            //タイムスタンプでデータを更新する処理
-            timestamp($reference_number); 
+    //         //タイムスタンプでデータを更新する処理
+    //         timestamp($reference_number); 
         
 
-            $tests_tb_data = fetch_tests_tb($reference_number,$third);
-            $test_detalis_tb_data = fetch_test_detalis_tb($reference_number,$third);
+    //         $tests_tb_data = fetch_tests_tb($reference_number,$third);
+    //         $test_detalis_tb_data = fetch_test_detalis_tb($reference_number,$third);
 
-            //二次へのボタンが押されてたら次のページへ遷移。保存なら何もしない。
-            if( !empty( $_POST['next'] ) ){
-                header('Location:Input_Form_3.php');
-            }   
-        }
-    }
+    //         //二次へのボタンが押されてたら次のページへ遷移。保存なら何もしない。
+    //         if( !empty( $_POST['next'] ) ){
+    //             header('Location:Input_Form_3.php');
+    //         }   
+    //     }
+    // }
 
 ?>
 
@@ -207,7 +249,7 @@
           
             <script type="text/javascript">
 
-                let json_data = JSON.parse('<?php echo $test_json; ?>');
+                let json_data = parseJson('<?php echo $test_json; ?>');
                 let sp_data = json_data.map(item => item['sp_number']);
                 let text_data = json_data.map(item => item['details']);
                 
