@@ -245,6 +245,9 @@
     padding-left: 5%;
 }
 
+.cancel:active,.keep:active,.confirmation:active {
+    background-color: gray;
+}
 
 
 /* Input_Form_2_1～3用 ここまで↑*/

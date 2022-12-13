@@ -675,11 +675,12 @@
             
             $stmt = $db->prepare("UPDATE ac_comp_data_tb SET as_number = 2 WHERE reference_number = $refarence");
             $stmt->execute();
-            
+            header('location: home_2.php');
             $stmt = $db->prepare("UPDATE ac_comp_data_tb SET application_Date = :DATEs WHERE reference_number = $refarence");
             $stmt->bindParam(':DATEs', $day, PDO::PARAM_STR);
 
             $stmt->execute();
+            
         } catch (PDOException $e) {
             exit('エラー：' . $e->getMessage());
         }
