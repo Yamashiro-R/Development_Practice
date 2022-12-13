@@ -1,10 +1,10 @@
 <?php
-    include '../includes/login.php';
-    include '../includes/function.php';
+    include 'includes/login.php';
+    require_once 'function.php';
 ?>
 <?php 
     //前頁で入力して自動生成したリファレンスナンバー
-    $_SESSION['reference'];
+    $_SESSION['reference'] = 2;
     $reference_number = $_SESSION['reference'];
     //一次試験格納用
     $second = 2;
@@ -32,7 +32,7 @@
 
 <?php
     if($_POST){
-        
+        var_dump($_POST);
         //ここでテキストエリアの文字が入力されているかチェックして
         if( empty($_POST['textarea']) ){
             //テキストのエリアが無い = 入力してない or 入力してある項目すべて削除した
@@ -63,8 +63,6 @@
                 
             }
 
-           
-            
             
         }else{
             //どれかに値が入っていたら
@@ -102,7 +100,7 @@
             ;
             }else{
                 //値を変数に格納。
-                $second_date = $_POST['second_date'];
+                $second_date = $_POST['$second_date'];
                 $start_time = $_POST['start_time'];
                 $end_time = $_POST['end_time'];
 
@@ -117,7 +115,7 @@
 
             }
             
-            //タイムスタンプで最終更新日のデータを更新する処理
+            //タイムスタンプでデータを更新する処理
             timestamp($reference_number); 
         
 
@@ -127,12 +125,7 @@
             //二次へのボタンが押されてたら次のページへ遷移。保存なら何もしない。
             if( !empty( $_POST['next'] ) ){
                 header('Location:Input_Form_2_3.php');
-            //step_3が押されたらSESSIONに値をセットしてstep_3へ飛ぶ。
-            }else if(isset($_POST['Input_3'])){
-                $_SESSION['Input_3'] = 2;
-                header('Location: Input_Form_3.php');
-            
-            }
+            }   
         }
     }
 
@@ -144,7 +137,7 @@
             <meta charset="UTF-8">
             <link rel="stylesheet" href="../cssfiles/style.css">
             <link rel="stylesheet" href="cssfiles/style_Input_Form.css">
-            <title>就職活動報告書_ステップ２_２</title>
+            <title>入力画面</title>
         </head>
         <?php include 'header.php' ?>
 
@@ -199,26 +192,22 @@
                     </div>
                     
                     <div class="button">
-                         <!-- cancel押されたらページを再度読み直して元の状態(編集前に戻す) -->
-                        <input type="reset"  class="btn_item" value="キャンセル" alt="キャンセル" onclick="location.href='./Input_Form_2_2.php'">
+                        <input type="reset"  class="btn_item" value="キャンセル" alt="キャンセル">
                         <input type="submit" class="btn_item" name="save" value="保存" alt="保存">
-                        <input type="submit" class="btn_item" name="next" value="三次→" alt="三次へ" disabled>
-                        <input type="submit" class="btn_item" name="Input_3" value="step_3→" alt="step_3へ" disabled>
+                        <input type="submit" class="btn_item" name="next" value="二次→" alt="二次へ" disabled>
                     </div>
                 </form>
             </div>
 
             <!-- JSで操作するために値渡し -->
-            <?php $test_json = json_encode($test_detalis_tb_data);
-            ?>
+            <?php $test_json = json_encode($test_detalis_tb_data);?>
             
 
             <script type="text/javascript" src="\DEVELOPMENT_PRACTICE/JS_files/methot.js"></script>
           
             <script type="text/javascript">
 
-
-                let json_data = parseJson('<?php echo $test_json; ?>');
+                let json_data = JSON.parse('<?php echo $test_json; ?>');
                 let sp_data = json_data.map(item => item['sp_number']);
                 let text_data = json_data.map(item => item['details']);
                 

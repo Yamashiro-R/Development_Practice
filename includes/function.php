@@ -597,6 +597,7 @@
             exit('エラー：' . $e->getMessage());
         }
     }
+    
     function Insert_test_detalis_tb_data($reference_number,$interviewNo,$array_type_text){
         $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';
         $user = 'user';

@@ -19,6 +19,11 @@
         }
     }
 
+    if(isset($_POST['EDIT'])){
+        $_SESSION['reference_edit'] = $reference_number;
+        header('Location: edit_Form_1.php');
+    }
+
 
     $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';
     $user = 'user';
@@ -32,7 +37,8 @@
                              where ac_comp_data_tb.act_id = :ID and 
                              ac_comp_data_tb.as_number = apply_status_tb.as_number and
                              ac_comp_data_tb.act_id = account_tb.act_id and
-                             account_tb.fn_number = family_name_tb.fn_number");
+                             account_tb.fn_number = family_name_tb.fn_number and
+                            reference_number = $reference_number");
 
         $stmt_day = $db->prepare("SELECT * FROM tests_tb
                                  where reference_number = :num1
@@ -184,8 +190,8 @@
                         <input type="hidden" name="CONFIRM" value="" >
                     </form>
 
-                    <form action="">
-                        <input type="submit" class="button-edit" value="編集" id="edit">
+                    <form action="savedata.php" method="POST">
+                        <input type="submit" name="EDIT" value="編集" id="edit">
                     </form>
                 </div>
                 <div class="page-top">

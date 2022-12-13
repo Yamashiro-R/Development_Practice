@@ -1,13 +1,13 @@
 <?php
-    include '../includes/login.php';
-    include '../includes/function.php';
+    include 'includes/login.php';
+    require_once 'function.php';
 ?>
 <?php 
     //前頁で入力して自動生成したリファレンスナンバー
-    $_SESSION['reference'];
+    $_SESSION['reference'] = 2;
     $reference_number = $_SESSION['reference'];
     //一次試験格納用
-    $second = 2;
+    $third = 3;
 ?>
 
 
@@ -22,8 +22,8 @@
         $user = 'user';
         $password = 'test';
 
-        $tests_tb_data = fetch_tests_tb($reference_number,$second);
-        $test_detalis_tb_data = fetch_test_detalis_tb($reference_number,$second);
+        $tests_tb_data = fetch_tests_tb($reference_number,$third);
+        $test_detalis_tb_data = fetch_test_detalis_tb($reference_number,$third);
     }
 
         
@@ -32,39 +32,37 @@
 
 <?php
     if($_POST){
-        
+        var_dump($_POST);
         //ここでテキストエリアの文字が入力されているかチェックして
         if( empty($_POST['textarea']) ){
             //テキストのエリアが無い = 入力してない or 入力してある項目すべて削除した
             //なので消す動作を入れている 
-            Delete_test_detalis_tb_data($reference_number,$second);
+            Delete_test_detalis_tb_data($reference_number,$third);
             //そして、tests_tbに入力するデータがあるかチェックする。
 
             //ポストされた値が入っているか其々チェック
-            if( empty($_POST['second_date']) && empty($_POST['start_time']) &&
+            if( empty($_POST['third_date']) && empty($_POST['start_time']) &&
             empty($_POST['end_time']) ) {
             //空の時何もしない
             ;
             }else{
                 //値を変数に格納。
-                $second_date = $_POST['second_date'];
+                $third_date = $_POST['third_date'];
                 $start_time = $_POST['start_time'];
                 $end_time = $_POST['end_time'];
 
                 //値がある時
                 //tests_tbのデータをDeleteして
-                Delete_tests_tb_data($reference_number,$second);
+                Delete_tests_tb_data($reference_number,$third);
             
                 //ポストされた値をINSERTする。
-                Insert_tests_tb_data($reference_number,$second,$second_date,$start_time,$end_time);
+                Insert_tests_tb_data($reference_number,$third,$third_date,$start_time,$end_time);
 
                 //タイムスタンプでデータを更新する処理
                 timestamp($reference_number); 
                 
             }
 
-           
-            
             
         }else{
             //どれかに値が入っていたら
@@ -93,46 +91,41 @@
                     //$array_type_text[$value] = $_POST['textarea_'.$value];
                     $array_type_text[$test_type[$tmp]] = $textareas[$tmp];                 
                 }
-                    Delete_test_detalis_tb_data($reference_number,$second);
+                    Delete_test_detalis_tb_data($reference_number,$third);
             }
             //ポストされた値が入っているか其々チェック
-            if( empty($_POST['second_date']) && empty($_POST['start_time']) &&
+            if( empty($_POST['third_date']) && empty($_POST['start_time']) &&
             empty($_POST['end_time']) ) {
             echo "date_dataと開始時間、終了時間の３つが空だったら何もしない。"
             ;
             }else{
                 //値を変数に格納。
-                $second_date = $_POST['second_date'];
+                $third_date = $_POST['third_date'];
                 $start_time = $_POST['start_time'];
                 $end_time = $_POST['end_time'];
 
                 //値がある時
                 //tests_tbのデータをDeleteして
-                Delete_tests_tb_data($reference_number,$second);
+                Delete_tests_tb_data($reference_number,$third);
             
                 //ポストされた値をINSERTする。
-                Insert_tests_tb_data($reference_number,$second,$second_date,$start_time,$end_time);
+                Insert_tests_tb_data($reference_number,$third,$third_date,$start_time,$end_time);
 
-                Insert_test_detalis_tb_data($reference_number,$second,$array_type_text);
+                Insert_test_detalis_tb_data($reference_number,$third,$array_type_text);
 
             }
             
-            //タイムスタンプで最終更新日のデータを更新する処理
+            //タイムスタンプでデータを更新する処理
             timestamp($reference_number); 
         
 
-            $tests_tb_data = fetch_tests_tb($reference_number,$second);
-            $test_detalis_tb_data = fetch_test_detalis_tb($reference_number,$second);
+            $tests_tb_data = fetch_tests_tb($reference_number,$third);
+            $test_detalis_tb_data = fetch_test_detalis_tb($reference_number,$third);
 
             //二次へのボタンが押されてたら次のページへ遷移。保存なら何もしない。
             if( !empty( $_POST['next'] ) ){
-                header('Location:Input_Form_2_3.php');
-            //step_3が押されたらSESSIONに値をセットしてstep_3へ飛ぶ。
-            }else if(isset($_POST['Input_3'])){
-                $_SESSION['Input_3'] = 2;
-                header('Location: Input_Form_3.php');
-            
-            }
+                header('Location:Input_Form_3.php');
+            }   
         }
     }
 
@@ -144,26 +137,26 @@
             <meta charset="UTF-8">
             <link rel="stylesheet" href="../cssfiles/style.css">
             <link rel="stylesheet" href="cssfiles/style_Input_Form.css">
-            <title>就職活動報告書_ステップ２_２</title>
+            <title>入力画面</title>
         </head>
         <?php include 'header.php' ?>
 
         <body>
             <div class="return">
-                <a href="Input_Form_2_1.php"><img src="../images/innu.jpeg"></a>
+                <a href="Input_Form_2_2.php"><img src="images/innu.jpeg"></a>
             </div>
             <div id="main_title"> 
                 <h1>就職活動報告</h1>
                 <h2>ステップ２</h2>
-                <h3>二次試験</h3>
+                <h3>三次試験</h3>
             </div>
 
             <div class="big-div">   
-                <form action="Input_Form_2_2.php" method="post" name="test">
+                <form action="Input_Form_2_3.php" method="post" name="test">
                     <div class="div-info">
                         <div class="divdiv_col_1 divdiv input_width"> 
-                            <p class="p-info p-width_1"><label for="test_day">二次試験日付：</label></p>
-                            <input type="date" class="input-view" name="second_date" id="test_day" value="<?php echo $tests_tb_data['date_data']; ?>">
+                            <p class="p-info p-width_1"><label for="test_day">三次試験日付：</label></p>
+                            <input type="date" class="input-view" name="third_date" id="test_day" value="<?php echo $tests_tb_data['date_data']; ?>">
                         </div>      
                         <div class="divdiv"> 
                             <p class="p-info p-width_2"><label for="start_time">開始日時：</label></p>
@@ -176,7 +169,7 @@
 
 
                         <div class="divdiv_width_all">
-                            <p class="p-info">二次試験内容：</p>
+                            <p class="p-info">三次試験内容：</p>
                             
                             <div class="Input_Form_2_1_area_div">
                                 <div class="exam_test"><label><input type="checkbox" name="test_type[]" value="1">筆記(専門)</label></div>
@@ -199,26 +192,22 @@
                     </div>
                     
                     <div class="button">
-                         <!-- cancel押されたらページを再度読み直して元の状態(編集前に戻す) -->
-                        <input type="reset"  class="btn_item" value="キャンセル" alt="キャンセル" onclick="location.href='./Input_Form_2_2.php'">
+                        <input type="reset"  class="btn_item" value="キャンセル" alt="キャンセル">
                         <input type="submit" class="btn_item" name="save" value="保存" alt="保存">
-                        <input type="submit" class="btn_item" name="next" value="三次→" alt="三次へ" disabled>
-                        <input type="submit" class="btn_item" name="Input_3" value="step_3→" alt="step_3へ" disabled>
+                        <input type="submit" class="btn_item" name="next" value="次のステップ→" alt="次のステップへ" disabled>
                     </div>
                 </form>
             </div>
 
             <!-- JSで操作するために値渡し -->
-            <?php $test_json = json_encode($test_detalis_tb_data);
-            ?>
+            <?php $test_json = json_encode($test_detalis_tb_data);?>
             
 
             <script type="text/javascript" src="\DEVELOPMENT_PRACTICE/JS_files/methot.js"></script>
           
             <script type="text/javascript">
 
-
-                let json_data = parseJson('<?php echo $test_json; ?>');
+                let json_data = JSON.parse('<?php echo $test_json; ?>');
                 let sp_data = json_data.map(item => item['sp_number']);
                 let text_data = json_data.map(item => item['details']);
                 

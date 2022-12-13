@@ -210,6 +210,14 @@
     margin-left: auto;
     margin-right: auto;
 }
+.text-tests:focus-within {
+    border-radius: 0.67em;   /* 角丸 */
+    padding: 0.5em;          /* 内側の余白量 */
+    background-color: #fff;  /* 背景色 */
+    height: 5em;             /* 高さ */
+
+
+}
 .divdiv_width_all_ex {
     width: 100%;
 }
