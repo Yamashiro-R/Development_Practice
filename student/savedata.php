@@ -19,6 +19,11 @@
         }
     }
 
+    if(isset($_POST['EDIT'])){
+        $_SESSION['reference_edit'] = $reference_number;
+        header('Location: edit_Form_1.php');
+    }
+
 
     $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';
     $user = 'user';
@@ -184,8 +189,8 @@
                         <input type="hidden" name="CONFIRM" value="" >
                     </form>
 
-                    <form action="">
-                        <input type="submit" value="編集" id="edit">
+                    <form action="savedata.php" method="POST">
+                        <input type="submit" name="EDIT" value="編集" id="edit">
                     </form>
                 </div>
                 <div class="page-top">

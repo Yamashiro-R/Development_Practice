@@ -48,17 +48,54 @@ function validation_check(){
   
     
     //エラー出力先を配列で取得
+    let activecompany = true;
+    let activeaddress = true;
+    let activemethot = true;
+    let activedocument_radio = true;
+    let activejob = true;
+    let activenumber = true;
+    let activedocuments_checkbox = true;
+
     let denger = formElements.getElementsByClassName('denger_field');
     
     
     //其々の入力が正常化判断する為の boolean値を格納する為の変数
-    let activecompany = false;
-    let activeaddress = false;
-    let activemethot = false;
-    let activedocument_radio = false;
-    let activejob = false;
-    let activenumber = false;
-    let activedocuments_checkbox = false;
+    var forms = document.forms[0];
+    if(forms.company_name.value == null || forms.company_name.value == ""){
+            activecompany = false;
+    }
+   
+    if(forms.company_address.value == null || forms.company_address.value == ""){
+        activeaddress = false;
+    }
+
+    if(forms.application_method.value == null || forms.application_method.value == "" || forms.application_method.value == "未選択"){
+        activemethot = false;
+    }
+
+    if(forms.document_screening.value == null || forms.document_screening.value == ""){
+        activedocument_radio = false;
+    }
+
+    if(forms.occupation.value == null || forms.occupation.value == ""){
+        bool = false;
+    }
+
+    if(forms.number_of_applications.value == null || forms.number_of_applications.value == ""){
+        activenumber = false;
+    }
+
+    var checkboxs = document.querySelectorAll("input[type='checkbox']");
+    var chk;
+    for(chk = 0; chk < checkboxs.length; chk++){
+        if(checkboxs[chk].checked == true){
+            break;
+        }
+    }
+    if(chk >= checkboxs.length){
+        activedocuments_checkbox = false;
+    }
+
     
     //チェックボックス用の配列とカウント
     let array_checkbox = Array(documents_checkbox.length);
@@ -81,7 +118,7 @@ function validation_check(){
 
 
     //保存ボタンをデフォルトで無効化
-    savebtn.disabled = true; 
+    // savebtn.disabled = true; 
     //一次→ボタンをデフォルトで無効化
     submitbtn.disabled = true;
 
@@ -123,6 +160,8 @@ function validation_check(){
             Input_Form_1_judeg_flag(activecompany,activeaddress,activemethot,activedocument_radio,
                 activejob,activenumber,activedocuments_checkbox);
         }
+
+        hantei();
     });
     //企業の住所入力欄
     address.addEventListener("input",()=>{
@@ -174,13 +213,14 @@ function validation_check(){
                 activejob,activenumber,activedocuments_checkbox);
         }
         
+        hantei();
 
     });
     //応募方法入力欄
     methot.addEventListener("input",()=>{
         switch (methot.value){
             case "0":  //未選択の時
-                console.log("テスト");
+               
                 methotpara.textContent = "応募方法を選択してください。";
                 methotpara.id = "row_1_para";
                 denger[2].appendChild(methotpara);
@@ -196,7 +236,8 @@ function validation_check(){
                 Input_Form_1_judeg_flag(activecompany,activeaddress,activemethot,activedocument_radio,
                     activejob,activenumber,activedocuments_checkbox);
         }
-        
+        hantei();
+
     });
     //書類選考の有無チェック欄
     document_radio.addEventListener("change",()=>{
@@ -223,6 +264,7 @@ function validation_check(){
             Input_Form_1_judeg_flag(activecompany,activeaddress,activemethot,activedocument_radio,
                 activejob,activenumber,activedocuments_checkbox);
         }
+        hantei();
 
     });
     //応募件数入力欄
@@ -253,7 +295,7 @@ function validation_check(){
                 activejob,activenumber,activedocuments_checkbox);
         }else if(number.value > 10){
             //10件以上の時
-            console.log("テスト");
+         
             numberpara.textContent = "10件以上はエラーとみなす。";
             numberpara.id = "row_1_para";
             denger[5].appendChild(numberpara);
@@ -268,7 +310,23 @@ function validation_check(){
             Input_Form_1_judeg_flag(activecompany,activeaddress,activemethot,activedocument_radio,
                 activejob,activenumber,activedocuments_checkbox);
         }
+        hantei();
+
     });
+
+
+    function hantei(){
+    if(activecompany && activeaddress && activemethot  &&
+        activedocument_radio && activejob && activenumber  &&
+        activedocuments_checkbox){
+        // savebtn.disabled = false;
+        submitbtn.disabled = false;
+    }else{
+        // savebtn.disabled = true;
+        submitbtn.disabled = true;
+    }
+}
+;
 
     //提出書類チェック欄
     for(let i=0;i<documents_checkbox.length;i++){
@@ -316,6 +374,8 @@ function validation_check(){
                         activejob,activenumber,activedocuments_checkbox);
                 }    
             }
+            hantei();
+
         });
 
     
@@ -372,6 +432,7 @@ function Input_Form_2_monitoring(sp_no,text_data){
 
     //初期値のフラッグを格納する。
     let array_flag = flag_confirmation();
+    
     flagCnt = 0;
 
     for( ; flagCnt < array_flag.length ; flagCnt++){
@@ -397,7 +458,6 @@ function Input_Form_2_monitoring(sp_no,text_data){
 
     //どれかに変更が起きたらflagの状態をチェックしてボタンの状態を遷移させる。
     let formElements = document.forms[0];
-    console.log(formElements);
    
     formElements.addEventListener('input',()=>{
         array_flag = flag_confirmation();
@@ -425,16 +485,19 @@ function Input_Form_2_monitoring(sp_no,text_data){
         for(let cnt=0;cnt<checkbox_data.length;cnt++){
             exam_check(cnt);
         }
+
+
+
     }else{
-        for(let i in sp_no){
-            for(let cnt=0;cnt<checkbox_data.length;cnt++){
-                if(( sp_no[i] -1 ) == cnt){
-                    console.log("チェックボックスのイベント作らない");
-                    continue;
-                }else{
-                    console.log("チェックボックスのイベント作る");
-                    exam_check(cnt);
+        for(let cnt=0;cnt<checkbox_data.length;cnt++){
+            var bool = false;
+            for(let i in sp_no){ 
+                if(( sp_no[i] -1) == cnt){
+                    bool = true;
                 }
+            }
+            if(!bool){
+                exam_check(cnt);
             }
         }
     }
@@ -474,7 +537,7 @@ function flag_confirmation(){
     //初期化
     for(let i = 0; i < array_flag.length;i++){
         array_flag[i] = false;
-        console.log("初期化" + array_flag[i]);
+       
     }
     //array_flagに 日付,開始日時,終了日時,チェックボックス,テキストエリア の順番でflagの状態を格納。
     
@@ -485,7 +548,7 @@ function flag_confirmation(){
         //date_dataがある時
         array_flag[0] = true;
     }
-    console.log("date_dataのフラグ" + array_flag[0]);
+  
     
     for(let tmp = 0;tmp < time_data.length;tmp++){
         if(time_data[tmp].value != null){ 
@@ -502,14 +565,11 @@ function flag_confirmation(){
         }
         
     }
-    console.log("first_timeのフラグ" + array_flag[1]);
-    console.log("end_timeのフラグ" + array_flag[2]);
-    console.log("array_flagのフラグ数" + array_flag.length);
-
+    
     //チェックがtrueの数をカウント
     let checkCnt = check_checkboxs(checkbox_data);
     
-    console.log("テストレングス" + checkCnt);
+   
 
     if( checkCnt > 0 ){
         array_flag[3] = true;
@@ -623,6 +683,7 @@ function initial_value_Text(checkNo,text){
 }
 
 function exam_check(cnt){
+    console.log("cnt" +cnt);
     const first_exam = document.querySelectorAll(`input[type='checkbox'][name='test_type[]']`);
     const div_class = document.getElementsByClassName('exam_test');
     //詳細欄出力場所
