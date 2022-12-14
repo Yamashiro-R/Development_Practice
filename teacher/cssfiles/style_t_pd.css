@@ -162,7 +162,8 @@ body{
 
 .button_d input ,.button button{
     width: 120px;
-    height: 40px;   
+    height: 40px; 
+    cursor: pointer;
 }
 
 .as_status {

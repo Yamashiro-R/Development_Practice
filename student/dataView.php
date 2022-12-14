@@ -97,8 +97,8 @@
     try{
         $stmt = $db->prepare("SELECT * FROM ac_comp_data_tb,apply_status_tb
                             Where ac_comp_data_tb.as_number = apply_status_tb.as_number
-                             and act_id = :ID
-                             ORDER by application_Date ");
+                            and act_id = :ID
+                            ORDER by application_Date ");
     
         //パラメータ割り当て
         $stmt->bindParam(':ID', $_SESSION['ID'], PDO::PARAM_STR);
@@ -137,17 +137,17 @@
                 </div>
                 <div>
                     <form id="dv_search" action="dataView.php#table_erea" method="POST">
-                        <label><input  type="submit" name="ap_status" value="全データ" hidden><span id="dv_s_inp">全データ</span></label>
-                        <label><input  type="submit" name="ap_status" value="未申請" hidden><span id="dv_s_inp1">未申請</span></label>
-                        <label><input  type="submit" name="ap_status" value="申請中" hidden><span id="dv_s_inp2">申請中</span></label>
-                        <label><input  type="submit" name="ap_status" value="承認済" hidden><span id="dv_s_inp3">承認済
+                        <label><input type="submit" name="ap_status" value="全データ" hidden><span class="input-hover" id="dv_s_inp">全データ</span></label>
+                        <label><input type="submit" name="ap_status" value="未申請" hidden><span class="input-hover" id="dv_s_inp1">未申請</span></label>
+                        <label><input type="submit" name="ap_status" value="申請中" hidden><span class="input-hover" id="dv_s_inp2">申請中</span></label>
+                        <label><input type="submit" name="ap_status" value="承認済" hidden><span class="input-hover" id="dv_s_inp3">承認済
                             <?PHP 
                                 if($notice_shou > 0){
                                     echo '<span class="bic">!</span>';
                                 }
                             ?>
                         </span></label>
-                        <label><input  type="submit" name="ap_status" value="却下" hidden><span id="dv_s_inp4">却下
+                        <label><input  type="submit" name="ap_status" value="却下" hidden><span class="input-hover" id="dv_s_inp4">却下
                             <?PHP 
                                 if($notice_kyakka > 0){
                                     echo '<span class="bic">!</span>';

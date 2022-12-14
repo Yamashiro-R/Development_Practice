@@ -85,12 +85,13 @@ body {
     display: block;
     margin-left: auto;
     margin-right: auto;
+    cursor: pointer;
 }
 
 .btn-border:active {
     background-color: gray;
 }
- 
+
 /*フレキシブル設定↓*/
 
 @media screen and (min-width: 768px){
