@@ -42,13 +42,13 @@ include '../includes/function.php';
                     </div>
                 </div>
                 <div class="prot_body1">
-                    <button onclick="location.href='t_dvSearch.php'">
+                    <button class="p-body1" onclick="location.href='t_dvSearch.php'">
                         <i class="fa-solid fa-magnifying-glass"></i><br>
                         検索
                     </button>
                 </div>
                 <div class="prot_body2">
-                    <button onclick="location.href='teach_req.php'">
+                    <button class="p-body2" onclick="location.href='teach_req.php'">
                         <i class="fa-solid fa-pen-to-square"></i><br>
                         依頼を確認
                         <p class="sinki_kensu">

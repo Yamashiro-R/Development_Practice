@@ -103,6 +103,7 @@
 
 .select_box {
     width: 84%;
+    cursor: pointer;
 }
 
 .divdiv_col_1 {
@@ -245,8 +246,16 @@
     padding-left: 5%;
 }
 
+.cancel:active,.keep:active,.confirmation {
+    cursor: pointer;
+}
+
 .cancel:active,.keep:active,.confirmation:active {
     background-color: gray;
+}
+
+.btn_item {
+    cursor: pointer;
 }
 
 

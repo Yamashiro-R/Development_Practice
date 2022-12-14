@@ -81,6 +81,7 @@ td{
 
 .dvtable-view {
     vertical-align: middle;
+    cursor: pointer;
 }
 
 .comp-name button{
@@ -126,6 +127,10 @@ td{
 .p_select,
 .p_select select {
     width: 230px;
+}
+
+.pull-down {
+    cursor: pointer;
 }
 
 
@@ -180,6 +185,10 @@ input[type="search"] {
     margin-left: 10px;
 }
 
+.reset_d {
+    cursor: pointer;
+}
+
 .reset_d:active {
     background-color: gray;
 }
@@ -189,6 +198,10 @@ input[type="search"] {
     margin-bottom: 20px;
     padding-right: 10px;
     justify-content: flex-end;
+}
+
+.search_d {
+    cursor: pointer;
 }
 
 .search_d:active {
