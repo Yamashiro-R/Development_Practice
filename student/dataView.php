@@ -8,6 +8,13 @@
         unset($_SESSION['reference']);
     }
 
+    $_SESSION['ps_val'] = null;
+    $_SESSION['page_dvs'] = null;
+    $_SESSION['reference'] = null;
+    $_SESSION['reference_edit'] = null;
+    $_SESSION['Input_3'] = null;
+    $_SESSION['back_page'] = null;
+
     $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';
     $user = 'user';
     $password = 'test';
@@ -21,10 +28,10 @@
 
     if(isset($_GET['page'])){
         $page = $_GET['page'];
-        $_SESSION['page'] = $_GET['page']; 
+        $_SESSION['page_dv'] = $_GET['page']; 
         header('Location: dataView.php#table_erea');
-    }else if(isset($_SESSION['page'])){
-        $page = $_SESSION['page'];
+    }else if(isset($_SESSION['page_dv'])){
+        $page = $_SESSION['page_dv'];
     } else{
         $page = 1;
     }
@@ -103,8 +110,8 @@
     try{
         $stmt = $db->prepare("SELECT * FROM ac_comp_data_tb,apply_status_tb
                             Where ac_comp_data_tb.as_number = apply_status_tb.as_number
-                             and act_id = :ID
-                             ORDER by application_Date ");
+                            and act_id = :ID
+                            ORDER by application_Date ");
     
         //パラメータ割り当て
         $stmt->bindParam(':ID', $_SESSION['ID'], PDO::PARAM_STR);
@@ -146,6 +153,7 @@
                         <label><input  type="submit" name="ap_status" value="全データ" hidden><span id="dv_s_inp">全データ</span></label>
                         <label><input  type="submit" name="ap_status" value="未申請" hidden><span id="dv_s_inp1">未申請</span></label>
                         <label><input  type="submit" name="ap_status" value="申請中" hidden><span id="dv_s_inp2">申請中</span></label>
+                        <br class="br-sp">
                         <label><input  type="submit" name="ap_status" value="承認済" hidden><span id="dv_s_inp3">承認済
                             <?PHP 
                                 if($notice_shou > 0){
@@ -153,7 +161,7 @@
                                 }
                             ?>
                         </span></label>
-                        <label><input  type="submit" name="ap_status" value="却下" hidden><span id="dv_s_inp4">却下
+                        <label><input  type="submit" name="ap_status" value="却下" hidden><span class="input-hover" id="dv_s_inp4">却下
                             <?PHP 
                                 if($notice_kyakka > 0){
                                     echo '<span class="bic">!</span>';

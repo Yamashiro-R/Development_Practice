@@ -72,7 +72,7 @@
 
 
                 if(isset($_POST['conf'])){
-                    if(!empty($_POST['thoughts']) || !empty($_POST['schedule']) || !empty($_POST['remarks'])){
+                    if(!empty($_POST['thoughts']) || !empty($_POST['schedule'])){
                         // header('Location: conf.php');
                         header('Location: result.php');
                     }
@@ -184,7 +184,7 @@ try{
             function input_jug(){
                 // alert('true');
                 var idname = 'thought';
-                for(let i = 0; i < 3; i++) {
+                for(let i = 0; i < 2; i++) {
                     var thought = document.getElementById(idname + (i + 1));
                     if(thought.value == "" || thought.value == null){
                         document.getElementById('conf').disabled  = true;

@@ -9,6 +9,14 @@
         if($_POST){
             if(isset($_POST['cancel'])){
 
+            }else if(isset($_POST['fin'])) {
+                if($_SESSION['back_page'] == 'save'){
+                    header('Location: savedata.php');
+                    exit();
+                }else if($_SESSION['back_page'] == 'result'){
+                    header('Location: result.php');
+                    exit();
+                }
             }else{
 
                 $id = intval($_SESSION['ID']);
@@ -66,10 +74,6 @@
                 if(isset($_POST['commit'])){
                     header('Location: edit_Form_2_1.php');
                     exit();
-                }else if(isset($_POST['edit_Form_3'])){
-                    $_SESSION['edit_Form_3'] = 0;
-                    header('Location: edit_Form_3.php');
-                    exit();
                 }
             
             }
@@ -100,9 +104,6 @@
             $method = $row['how_to_apply'];
             $document_screening = $row['docmt_screening'];
             $job = $row['job'];
-            //データベースに格納できる様に書式を変更
-            //checkboxに複数チェックがあるとき
-            //例 履歴書,修了見込み証明書 に加工し1行で纏める。
             $document_submitted = $row['docmt_submit'];
              
     
@@ -137,10 +138,10 @@
         </head>
         <?php include 'header.php' ?>
 
-        <body>
+        <body class="edit_body">
             <div id="main_title"> 
-                <h1>就職活動報告(編集)</h1>
-                <h2>ステップ１</h2>
+                <h1 class="edit_h1">就職活動報告(編集)</h1>
+                <h2 class="edit_h2">ステップ１</h2>
             </div>
             <div class="big-div">   
                 <form action="edit_Form_1.php" method="post">
@@ -232,10 +233,12 @@
                     
                     </div>
                     <div class="button">
-                        <input type="reset"  class="btn_item" name="cancel" value="キャンセル" alt="キャンセル">
-                        <input type="submit" class="btn_item" name="save" value="保存" alt="保存">
+                        <input type="submit"  class="btn_item" name="cancel" value="キャンセル" alt="キャンセル">
+                        <input type="submit" class="btn_item" name="save" value="保存" alt="保存" onclick="save_alert()">
                         <input type="submit" class="btn_item" name="commit" value="一次→" alt="一次→">
-                        <input type="submit" class="btn_item" name="edit_Form_3" value="step_3→" alt="step_3へ" disabled>
+                    </div>
+                    <div class="button">
+                        <input type="submit"  class="btn_item fin_btn" name="fin" value="編集終了" alt="編集終了">
                     </div>
                 </form>
             </div>
@@ -284,10 +287,8 @@
 
                     if(bool){
                         forms.elements[16].disabled = false;
-                        forms.elements[17].disabled = false;
                     }else{
                         forms.elements[16].disabled = true;
-                        forms.elements[17].disabled = true;
                     }
             </script>
         </body>

@@ -433,10 +433,23 @@ function Input_Form_2_monitoring(sp_no,text_data){
     
     const checkbox_data = document.querySelectorAll(`input[type='checkbox'][name='test_type[]']`);
     let btn = document.querySelectorAll('input[type=submit]');
-    let next_btn = btn[1];//二次→のボタン
-    //step_3→のボタンがあるなら要素入れて無ければnull値を入れる以後それを判定してボタンの数を合わせる。
-    let step_3_btn = btn[2] == null ? null : btn[2];    
-        
+    let next_btn;
+    let step_3_btn;
+
+
+    if(btn.length < 4){
+        next_btn = btn[1];//二次→のボタン
+        //step_3→のボタンがあるなら要素入れて無ければnull値を入れる以後それを判定してボタンの数を合わせる。
+
+        step_3_btn = btn[2] == null ? null : btn[2]; 
+    }else{
+        next_btn = btn[2];//二次→のボタン
+        //step_3→のボタンがあるなら要素入れて無ければnull値を入れる以後それを判定してボタンの数を合わせる。
+
+        step_3_btn = btn[3] == null ? null : btn[3]; 
+    }
+    
+    
     fetch_sp_number(sp_no,text_data);
 
     //初期値のフラッグを格納する。
@@ -848,3 +861,12 @@ function rog_out_js(){
 }
 
 /*ログアウト処理　　↑*/
+
+
+/*データ保存時のalert↓*/
+
+function save_alert() {
+    alert('データを保存しました。');
+}
+
+/*データ保存時のalert↑*/

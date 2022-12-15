@@ -3,6 +3,9 @@
     include '../includes/function.php';
 
 
+    $_SESSION['reference_edit'] = null;
+    $_SESSION['back_page'] = null;
+
     if(isset($_POST['no'])){
         $reference_number = $_POST['no'];
         $_SESSION['s_no'] = $_POST['no'];
@@ -19,8 +22,16 @@
         }
     }
 
+    if(isset($_POST['REQUEST'])){
+        if($_POST['REQUEST'] == 1 || $_POST['REQUEST'] == 4){
+            request_data($reference_number);
+        }
+    }
+
+
     if(isset($_POST['EDIT'])){
         $_SESSION['reference_edit'] = $reference_number;
+        $_SESSION['back_page'] = 'save';
         header('Location: edit_Form_1.php');
     }
 
@@ -44,8 +55,8 @@
                                  where reference_number = :num1
                                  ORDER BY td_status,date_data");
 
-        $stmt_detalis = $db->prepare("SELECT * FROM test_detalis_tb,select_process_tb
-                                where test_detalis_tb.sp_number = select_process_tb.sp_number and
+        $stmt_detalis = $db->prepare("SELECT * FROM test_details_tb,select_process_tb
+                                where test_details_tb.sp_number = select_process_tb.sp_number and
                                 reference_number = :num2
                                 ORDER BY td_status");
 
@@ -167,12 +178,12 @@
 
                     <div class="test">
                         <div>
-                            <p class="p-info">感想、反省点：</p><p class="p-view"><?php check_null( $impressions )?></p>
+                            <p class="p-info">感想、反省点：</p><p class="p-view" id="imp"><?php check_null( $impressions )?></p>
                         </div>
                     </div>
                     <div class="test">
                         <div>
-                            <p class="p-info">今後の活動予定：</p><p class="p-view"><?php check_null( $future_activities) ?></p>
+                            <p class="p-info">今後の活動予定：</p><p class="p-view" id="fut"><?php check_null( $future_activities) ?></p>
                         </div>
                     </div>
                     <div class="test">
@@ -194,6 +205,12 @@
                         <input type="submit" name="EDIT" value="編集" id="edit">
                     </form>
                 </div>
+                <div class="button_d">
+                    <form method="POST" action="" onsubmit="request_btn();" >
+                        <input type="submit" value="申請" id="request" disabled>
+                        <input type="hidden" name="REQUEST" value="" >
+                    </form>
+                </div>
                 <div class="page-top">
                     <a href="#"><img class="pg-top" src="../images/pagetop 1.png" alt="page-top"></a>
                 </div>
@@ -210,12 +227,32 @@
                 }
             }
 
+            function request_btn(){
+                if(confirm("本当に申請してもよろしいですか？")){
+                    document.forms[2].REQUEST.value=1;//ＯＫの場合
+                    alert("申請しました。")
+                }else{
+                    document.forms[2].REQUEST.value=0;//キャンセルの場合
+                    alert("申請をキャンセルしました。")
+                }
+            }
+
+
+
             var  param_j = JSON.parse('<?php echo $param_p; ?>') ;
 
             if(param_j == 2 || param_j == 3){
-                var dele = document.getElementById('delete').style.display = 'none';
+                document.getElementById('delete').style.display = 'none';
                 document.getElementById('edit').style.display = 'none';
+                document.getElementById('request').style.display = 'none';
             }
+
+
+           var hantei1 = document.getElementById('imp').textContent;
+           var hantei2 = document.getElementById('fut').textContent;
+           if(!(hantei1 == '無回答' || hantei2 == "無回答")){
+                   document.getElementById('request').disabled = false;        
+           }
         </script>
         <script type="text/javascript" src="\DEVELOPMENT_PRACTICE/JS_files/methot.js"></script>
 

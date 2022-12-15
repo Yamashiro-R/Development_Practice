@@ -1,6 +1,6 @@
 <?php
     session_start();    //セッション開始
-    $_SESSION['newlogID'] = null;
+    $_SESSION = array();
 
     if (isset($_SESSION['ID'])) {
         //セッションにユーザIDがある＝ログインしている
@@ -20,7 +20,6 @@
         $user = 'user';
         $password = 'test';
 
-       
 
         try{
             $db = new PDO($dsn, $user, $password);

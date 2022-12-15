@@ -6,9 +6,15 @@
     
     //Input_Form編集中に飛んだらreferenceを破棄させて新規にさせる。
     //元々を編集するときは保存済みデータから編集させる!!
-    if(isset(($_SESSION['reference']))){
+    if(isset(($_SESSION['reference'])){
         unset($_SESSION['reference']);
     }
+
+    $_SESSION['ap_status'] = null;
+    $_SESSION['reference'] = null;
+    $_SESSION['reference_edit'] = null;
+    $_SESSION['Input_3'] = null;
+    $_SESSION['back_page'] = null;
 
     $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';
     $user = 'user';
@@ -19,10 +25,10 @@
 
     if(isset($_GET['page'])){
         $page = $_GET['page'];
-        $_SESSION['page'] = $_GET['page']; 
+        $_SESSION['page_dvs'] = $_GET['page']; 
         header('Location: dvSearch.php#table_erea');
-    }else if(isset($_SESSION['page'])){
-        $page = $_SESSION['page'];
+    }else if(isset($_SESSION['page_dvs'])){
+        $page = $_SESSION['page_dvs'];
     } else{
         $page = 1;
     }
@@ -35,7 +41,7 @@
         $fn_number = $_POST['gakka'];
 
         $page = 1;
-        $_SESSION['page'] = $page;
+        $_SESSION['page_dvs'] = $page;
         $_SESSION['ps_val'] = $_POST;
         $boole = true;
 

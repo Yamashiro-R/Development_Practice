@@ -1,7 +1,7 @@
 /*dataView.html↓*/
 .view_back-color{
     /* saveと統一 */
-    background-color: #CCFFCC;
+    background-color: #99ffcc;
 }
 
 
@@ -67,8 +67,6 @@ td{
 #dv_search span {
     margin-right: 20px;
     font-size: 30px;
-    /* border: none;
-    background: transparent; */
 }
 
 #dv_search span:hover {
@@ -91,6 +89,10 @@ td{
     padding: 0;
 }
 
+.input-hover {
+    cursor: pointer;
+}
+
 .dvtable tbody tr:nth-of-type(2n+1) {
     background-color: #D9D9D9;
 }
@@ -111,6 +113,7 @@ td{
 
 .dvtable-view {
     vertical-align: middle;
+    cursor: pointer;
 }
 
 .comp-name button{
@@ -190,6 +193,10 @@ input[type="search"] {
     justify-content: flex-end;
 }
 
+.search {
+    cursor: pointer;
+}
+
 .search:active {
     background-color: gray;
 }
@@ -205,6 +212,7 @@ input[type="search"] {
 
 .pull-down {
     width: 224px;
+    cursor: pointer;
 }
 
 /*dvSearch.html↑*/

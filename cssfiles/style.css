@@ -136,7 +136,7 @@ p {
 
 #tg {
     display: none;
-    }
+}
 
 .menu {
     position: relative;
@@ -146,7 +146,7 @@ p {
     list-style: none;
     width: 120px;
     text-align-last: center;
-    }
+}
 
 .menu li {
     border-bottom: solid 1px rgb(141, 141, 252);
@@ -169,25 +169,28 @@ p {
     opacity: 1;
     top: 0;
     background-color: rgb(213, 213, 253);
-     border: solid 1px rgb(141, 141, 252);
-    }
+    border: solid 1px rgb(141, 141, 252);
+}
 
 .dropdown {
     width: auto;
     height: 24px;
 }
 
-  
-  .dropLabel:hover, .dropInput:checked + label {
+.dropLabel {
+    cursor: pointer;
+}
+
+.dropLabel:hover, .dropInput:checked + label {
     color: blue;
-    }
-  
-  .animation {
+}
+
+.animation {
     -webkit-transition: all .3s;
     -moz-transition: all .3s;
     -ms-transition: all .3s;
     transition: all .3s;
-    }
+}
 
 /* .change {
     text-align: center;
@@ -266,6 +269,7 @@ li.nav__item{
     display: block;
     padding: 1rem;
     color: inherit;
+    cursor: default;
 }
 
 .nav__toggle {
@@ -309,6 +313,7 @@ li.nav__item{
     justify-content: center;
     align-items: center;
     z-index: 90;
+    cursor: pointer;
     background-color: #5D99FF;
     /* background-color: #3584bb; */
 }
