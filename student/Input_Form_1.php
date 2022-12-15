@@ -3,6 +3,14 @@
     include '../includes/login.php';
     include '../includes/function.php';
 
+    $_SESSION['ps_val'] = null;
+    $_SESSION['page_dvs'] = null;
+    $_SESSION['page_dv'] = null;
+    $_SESSION['ap_status'] = null;
+    $_SESSION['reference_edit'] = null;
+    $_SESSION['Input_3'] = null;
+    $_SESSION['back_page'] = null;
+
     //DBに接続
     $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';
     $user = 'user';
@@ -149,7 +157,7 @@
                     $db = new PDO($dsn, $user, $password);
                     $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
                     //プリペアドステートメントを作成
-                    $stmt = $db->prepare("SELECT reference_number FROM ac_comp_data_tb WHERE act_id = :ID AND comp_name =:company_name");
+                    $stmt = $db->prepare("SELECT reference_number FROM ac_comp_data_tb WHERE act_id = :ID AND comp_name =:company_name ORDER by reference_number DESC");
         
                     $stmt->bindParam(':ID',$id, PDO::PARAM_INT);
                     $stmt->bindParam(':company_name',$company_name, PDO::PARAM_INT);
@@ -419,8 +427,6 @@
                                         echo '>' . $docmt_submits[$j] . '</label></div>';
                                     }
                                 ?>
-                                    <!--<input type="text" name="Documents_submitted">
-                                    </label>-->
                                 
                                 <div class="denger_field"><!-- ここにエラー文を出力--></div>
                             </div>

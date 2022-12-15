@@ -3,8 +3,13 @@
     include '../includes/function.php';
 
     $_SESSION['ps_val'] = null;
-    $_SESSION['page'] = null;
+    $_SESSION['page_dvs'] = null;
+    $_SESSION['page_dv'] = null;
     $_SESSION['ap_status'] = null;
+    $_SESSION['reference'] = null;
+    $_SESSION['reference_edit'] = null;
+    $_SESSION['Input_3'] = null;
+    $_SESSION['back_page'] = null;
 ?>
 
 <!DOCTYPE html>

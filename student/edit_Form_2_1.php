@@ -2,9 +2,6 @@
     include '../includes/login.php';
     require_once '../includes/function.php';
     
-    //前頁で入力して自動生成したリファレンスナンバー
-    $reference_number = $_SESSION['reference_edit'];
-    var_dump($reference_number);
 
 
     //一次試験格納用
@@ -14,40 +11,54 @@
         //空だった場合はなにもしない
         ;
     }else{
+    $reference_number = $_SESSION['reference_edit'];
         if($_POST){
-            Delete_test_detalis_tb_data($reference_number,$once);
-            Delete_tests_tb_data($reference_number,$once);
+            if(isset($_POST['cancel'])){
 
-            //値を変数に格納。
-            $once_date = $_POST['once_date'];
-            $start_time = $_POST['start_time'];
-            $end_time = $_POST['end_time'];
-            Insert_tests_tb_data($reference_number,$once,$once_date,$start_time,$end_time);
+            }else{
+
+                Delete_test_detalis_tb_data($reference_number,$once);
+                Delete_tests_tb_data($reference_number,$once);
+
+                //値を変数に格納。
+                $once_date = $_POST['once_date'];
+                $start_time = $_POST['start_time'];
+                $end_time = $_POST['end_time'];
+                Insert_tests_tb_data($reference_number,$once,$once_date,$start_time,$end_time);
 
 
-            //数があっていたらDBの処理に移行する。
-            //ポストされたデータを配列に格納
-            $test_type = $_POST['test_type'];
-            $textareas = $_POST['textarea'];
-            $array_type_text;
-            for($tmp =0 ; $tmp < count($test_type) ; $tmp++){
-                //チェックが入っている場所をkey値として、textを代入する予定。key値は1～10で指定されている。
-                //key = textデータとして入力された分のみ其々を結びつけ連想配列化。
-                //$array_type_text[$value] = $_POST['textarea_'.$value];
-                $array_type_text[$test_type[$tmp]] = $textareas[$tmp];                 
-            }
+                //数があっていたらDBの処理に移行する。
+                //ポストされたデータを配列に格納
+                $test_type = $_POST['test_type'];
+                $textareas = $_POST['textarea'];
+                $array_type_text;
+                for($tmp =0 ; $tmp < count($test_type) ; $tmp++){
+                    //チェックが入っている場所をkey値として、textを代入する予定。key値は1～10で指定されている。
+                    //key = textデータとして入力された分のみ其々を結びつけ連想配列化。
+                    //$array_type_text[$value] = $_POST['textarea_'.$value];
+                    $array_type_text[$test_type[$tmp]] = $textareas[$tmp];                 
+                }
 
-            Insert_test_detalis_tb_data($reference_number,$once,$array_type_text);
-            //タイムスタンプでデータを更新する処理
-            timestamp($reference_number); 
+                Insert_test_detalis_tb_data($reference_number,$once,$array_type_text);
+                //タイムスタンプでデータを更新する処理
+                timestamp($reference_number); 
 
-            if(isset($_POST['next'])){
-                header('Location: edit_Form_2_2.php');
-                exit();
-            }else if(isset($_POST['Input_3'])){
-                $_SESSION['Input_3'] = 1;
-                header('Location: edit_Form_3.php');
-                exit();
+                if(isset($_POST['next'])){
+                    header('Location: edit_Form_2_2.php');
+                    exit();
+                }else if(isset($_POST['Input_3'])){
+                    $_SESSION['Input_3'] = 0;
+                    header('Location: edit_Form_3.php');
+                    exit();
+                }else if(isset($_POST['fin'])) {
+                    if($_SESSION['back_page'] == 'save'){
+                        header('Location: savedata.php');
+                        exit();
+                    }else if($_SESSION['back_page'] == 'result'){
+                        header('Location: result.php');
+                        exit();
+                    }
+                }
             }
         }
         //設定されている場合はDBを探索しデータを表示したい。
@@ -61,84 +72,6 @@
     }
 
         
-?>
-
-
-<?php
-
-        // //ここでテキストエリアの文字が入力されているかチェックして
-        // if( empty($_POST['textarea']) ){
-        //     //テキストのエリアが無い = 入力してない or 入力してある項目すべて削除した
-        //     //なので消す動作を入れている 
-        //     //そして、tests_tbに入力するデータがあるかチェックする。
-
-        //     //ポストされた値が入っているか其々チェック
-        //     if( empty($_POST['once_date']) && empty($_POST['start_time']) &&
-        //     empty($_POST['end_time']) ) {
-        //     //空の時何もしない
-        //     ;
-        //     }else{
-        //         //値がある時
-        //         //tests_tbのデータをDeleteして
-            
-        //         //ポストされた値をINSERTする。
-
-        //         //タイムスタンプでデータを更新する処理
-        //         timestamp($reference_number); 
-                
-        //     }
-
-            
-        // }else{
-        //     //どれかに値が入っていたら
-        //     $i=0;
-            
-        //     foreach($_POST['textarea'] as  $key => $value){
-        //         if( empty($value) ){
-        //             continue;
-        //         }else{
-        //             $i++;
-        //         } 
-        //     }
-
-        //     //チェックボタンと入力されているテキストエリアの数を照合
-        //     if( count($_POST['test_type']) != $i ){
-        //         echo 'データとカウントが一致しない。';
-        //     }else{
-        //             Delete_test_detalis_tb_data($reference_number,$once);
-        //     }
-        //     //ポストされた値が入っているか其々チェック
-        //     if( empty($_POST['once_date']) && empty($_POST['start_time']) &&
-        //     empty($_POST['end_time']) ) {
-        //     echo "date_dataと開始時間、終了時間の３つが空だったら何もしない。"
-        //     ;
-        //     }else{
-        //         //値を変数に格納。
-        //         $once_date = $_POST['once_date'];
-        //         $start_time = $_POST['start_time'];
-        //         $end_time = $_POST['end_time'];
-
-        //         //値がある時
-        //         //tests_tbのデータをDeleteして
-        //         Delete_tests_tb_data($reference_number,$once);
-            
-        //         //ポストされた値をINSERTする。
-        //         Insert_tests_tb_data($reference_number,$once,$once_date,$start_time,$end_time);
-
-
-        //     }
-            
-        
-
-            // $tests_tb_data = fetch_tests_tb($reference_number,$once);
-            // $test_detalis_tb_data = fetch_test_detalis_tb($reference_number,$once);
-
-            // //二次へのボタンが押されてたら次のページへ遷移。保存なら何もしない。
-            // if( !empty( $_POST['next'] ) ){
-            //     // header('Location:Input_Form_2_2.php');
-            // }   
-        // }
-    // }
 
 ?>
 
@@ -158,8 +91,8 @@
             </div>
 
             <div id="main_title"> 
-                <h1>就職活動報告</h1>
-                <h2>ステップ２</h2>
+                <h1 class="edit_h1">就職活動報告(編集)</h1>
+                <h2 class="edit_h2">ステップ２</h2>
                 <h3>一次試験</h3>
             </div>
 
@@ -194,7 +127,6 @@
                                 <div class="exam_test"><label><input type="checkbox" name="test_type[]" value="8">作文</label></div>
                                 <div class="exam_test"><label><input type="checkbox" name="test_type[]" value="9">実技</label></div>
                                 <div class="exam_test"><label><input type="checkbox" name="test_type[]" value="10">その他</label></div>
-                                <?php //fetch_sp_number($test_detalis_tb_data,10);?>
                             </div>
                         </div>
                         <div class="divdiv_width_all_ex" id="text_info">
@@ -204,10 +136,13 @@
                     </div>
                     
                     <div class="button">
-                        <input type="button"  class="btn_item" value="キャンセル" alt="キャンセル" onclick="location.href=''">
-                        <input type="submit" class="btn_item" name="save" value="保存" alt="保存">
+                        <input type="submit"  class="btn_item" name="cancel" value="キャンセル" alt="キャンセル">
+                        <input type="submit" class="btn_item" name="save" value="保存" alt="保存" onclick="save_alert()">
                         <input type="submit" class="btn_item" name="next" value="二次→" alt="二次へ" disabled>
-                        <input type="submit" class="btn_item" name="Input_3" value="step_3→" alt="step_3へ" disabled>
+                        <input type="submit" class="btn_item step3" name="Input_3" value="step_3→" alt="step_3へ" disabled>
+                    </div>
+                    <div class="button">
+                        <input type="submit"  class="btn_item fin_btn" name="fin" value="編集終了" alt="編集終了">
                     </div>
                 </form>
             </div>

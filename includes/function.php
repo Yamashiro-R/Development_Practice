@@ -281,6 +281,7 @@
             $status = 1;
 
 
+
             /*試験名を格納する配列*/
             $datalis = "";
             $test_data_no = 0;
@@ -290,12 +291,12 @@
 
 
 
-            for($i=0;$i < count($day) ;$i++){
+            for($i=0;$i < count($day)  && $status == $data[$test_data_no]['td_status'] ;$i++){
                 $datalis .= 
                 '<div class="test">
                     <div>
                         <p>'. $status .'次：</p><p>日付('.
-                        date('m月d日',strtotime($youbi[$i])) .' ' . $begin_time_data[$i] . '～' . $end_time_data[$i] .')</p></div>';
+                        date('m月d日',strtotime($youbi[$i])) .' ' .  date('H:i', strtotime($begin_time_data[$i]))  . '～' .  date('H:i',strtotime($end_time_data[$i])) .')</p></div>';
                         
                 if($data){
                     /*$data*/
@@ -675,16 +676,18 @@
             
             $stmt = $db->prepare("UPDATE ac_comp_data_tb SET as_number = 2 WHERE reference_number = $refarence");
             $stmt->execute();
-            header('location: home_2.php');
             $stmt = $db->prepare("UPDATE ac_comp_data_tb SET application_Date = :DATEs WHERE reference_number = $refarence");
             $stmt->bindParam(':DATEs', $day, PDO::PARAM_STR);
 
             $stmt->execute();
+            header('location: home_2.php');
             
         } catch (PDOException $e) {
             exit('エラー：' . $e->getMessage());
         }
     }
+
+
 
 
 ?>

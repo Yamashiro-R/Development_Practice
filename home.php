@@ -4,6 +4,8 @@
 
      $_SESSION['ps_val'] = null;
      $_SESSION['page'] = null;
+     $_SESSION['reference'] = null;
+
 ?>
 
 <!DOCTYPE html>

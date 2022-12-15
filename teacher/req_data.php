@@ -46,8 +46,8 @@
                                  where reference_number = :num2
                                  ORDER BY td_status,date_data");
 
-        $stmt_detalis = $db->prepare("SELECT * FROM test_detalis_tb,select_process_tb
-                                where test_detalis_tb.sp_number = select_process_tb.sp_number and
+        $stmt_detalis = $db->prepare("SELECT * FROM test_details_tb,select_process_tb
+                                where test_details_tb.sp_number = select_process_tb.sp_number and
                                 reference_number = :num3
                                 ORDER BY td_status");
 

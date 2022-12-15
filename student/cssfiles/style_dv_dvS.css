@@ -1,7 +1,7 @@
 /*dataView.html↓*/
 .view_back-color{
     /* saveと統一 */
-    background-color: #CCFFCC;
+    background-color: #99ffcc;
 }
 
 
@@ -67,8 +67,6 @@ td{
 #dv_search span {
     margin-right: 20px;
     font-size: 30px;
-    /* border: none;
-    background: transparent; */
 }
 
 #dv_search span:hover {
