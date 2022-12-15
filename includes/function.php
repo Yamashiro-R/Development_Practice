@@ -351,7 +351,7 @@
             $db = new PDO($dsn, $user, $password);
             $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
             //プリペアドステートメントを作成
-            $stmt = $db->prepare("delete from test_detalis_tb where reference_number = :num;");
+            $stmt = $db->prepare("delete from test_details_tb where reference_number = :num;");
             //パラメータ割り当て
             $stmt->bindParam(':num', $ref_num, PDO::PARAM_STR);
             //クエリの実行
@@ -456,6 +456,7 @@
         $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';
         $user = 'user';
         $password = 'test';
+        
        
         
       
@@ -484,11 +485,13 @@
 
     }
 
-    function fetch_test_detalis_tb($reference_number,$td_status){
+    function fetch_test_details_tb($reference_number,$td_status){
         $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';
         $user = 'user';
         $password = 'test';
-
+       
+       
+        
         
      
         try{
@@ -497,7 +500,7 @@
             $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
             //プリペアドステートメントを作成
             //test_tbにデータがあるかチェック。
-            $stmt = $db->prepare("SELECT * FROM test_detalis_tb where reference_number = :reference_number AND td_status = :td_status ORDER BY sp_number");
+            $stmt = $db->prepare("SELECT * FROM test_details_tb where reference_number = :reference_number AND td_status = :td_status ORDER BY sp_number");
             
             //リファレンスナンバーバインド
             $stmt->bindParam(':reference_number',$reference_number, PDO::PARAM_INT);
@@ -526,7 +529,7 @@
         $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';
         $user = 'user';
         $password = 'test';
-        
+       
         
 
         try{
@@ -544,17 +547,20 @@
         }
     }
     
-    function Delete_test_detalis_tb_data($reference_number,$interviewNo){
+    function Delete_test_details_tb_data($reference_number,$interviewNo){
         $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';
         $user = 'user';
         $password = 'test';
+        
+       
+        
 
         try{
             $db = new PDO($dsn, $user, $password);
             $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 
               //プリペアドステートメントを作成  
-              $stmt = $db->prepare("DELETE FROM test_detalis_tb WHERE reference_number = :reference_number AND td_status = :td_status");
+              $stmt = $db->prepare("DELETE FROM test_details_tb WHERE reference_number = :reference_number AND td_status = :td_status");
 
               $stmt->bindParam(':reference_number',$reference_number, PDO::PARAM_INT);
               $stmt->bindParam(':td_status',$interviewNo, PDO::PARAM_INT);
@@ -575,6 +581,9 @@
         $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';
         $user = 'user';
         $password = 'test';
+        
+       
+        
 
         
         try{
@@ -598,11 +607,11 @@
         }
     }
     
-    function Insert_test_detalis_tb_data($reference_number,$interviewNo,$array_type_text){
+    function Insert_test_details_tb_data($reference_number,$interviewNo,$array_type_text){
         $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';
         $user = 'user';
         $password = 'test';
-
+        
        
        
         try{
@@ -611,7 +620,7 @@
         
             foreach($array_type_text as $Key => $Text){
                         
-                $stmt = $db->prepare("INSERT INTO test_detalis_tb VALUE (:reference_number,:td_status,:sp_number,:details)");
+                $stmt = $db->prepare("INSERT INTO test_details_tb VALUE (:reference_number,:td_status,:sp_number,:details)");
 
                 $stmt->bindParam(':reference_number',$reference_number, PDO::PARAM_INT);
                 $stmt->bindParam(':td_status',$interviewNo, PDO::PARAM_INT);

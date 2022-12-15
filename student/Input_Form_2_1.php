@@ -20,7 +20,7 @@
         $password = 'test';
 
         $tests_tb_data = fetch_tests_tb($reference_number,$once);
-        $test_detalis_tb_data = fetch_test_detalis_tb($reference_number,$once);
+        $test_details_tb_data = fetch_test_details_tb($reference_number,$once);
     }
 
         
@@ -33,7 +33,7 @@
         if( empty($_POST['textarea']) ){
             //テキストのエリアが無い = 入力してない or 入力してある項目すべて削除した
             //なので消す動作を入れている 
-            Delete_test_detalis_tb_data($reference_number,$once);
+            Delete_test_details_tb_data($reference_number,$once);
             //そして、tests_tbに入力するデータがあるかチェックする。
 
             //ポストされた値が入っているか其々チェック
@@ -74,7 +74,7 @@
 
             //チェックボタンと入力されているテキストエリアの数を照合
             if( count($_POST['test_type']) != $i ){
-                echo 'データとカウントが一致しない。';
+                //データとカウントが一致しないので何もやらない。
             }else{
                 //数があっていたらDBの処理に移行する。
                 //ポストされたデータを配列に格納
@@ -87,7 +87,7 @@
                     //$array_type_text[$value] = $_POST['textarea_'.$value];
                     $array_type_text[$test_type[$tmp]] = $textareas[$tmp];                 
                 }
-                    Delete_test_detalis_tb_data($reference_number,$once);
+                    Delete_test_details_tb_data($reference_number,$once);
             }
             //ポストされた値が入っているか其々チェック
             if( empty($_POST['once_date']) && empty($_POST['start_time']) &&
@@ -107,7 +107,7 @@
                 //ポストされた値をINSERTする。
                 Insert_tests_tb_data($reference_number,$once,$once_date,$start_time,$end_time);
 
-                Insert_test_detalis_tb_data($reference_number,$once,$array_type_text);
+                Insert_test_details_tb_data($reference_number,$once,$array_type_text);
 
             }
             
@@ -116,11 +116,15 @@
         
 
             $tests_tb_data = fetch_tests_tb($reference_number,$once);
-            $test_detalis_tb_data = fetch_test_detalis_tb($reference_number,$once);
+            $test_details_tb_data = fetch_test_details_tb($reference_number,$once);
 
             //二次へのボタンが押されてたら次のページへ遷移。保存なら何もしない。
             if( !empty( $_POST['next'] ) ){
                 header('Location:Input_Form_2_2.php');
+            }else if(isset($_POST['Input_3'])){
+                $_SESSION['Input_3'] = 1;
+                header('Location: Input_Form_3.php');
+            
             }   
         }
     }
@@ -178,7 +182,7 @@
                                 <div class="exam_test"><label><input type="checkbox" name="test_type[]" value="8">作文</label></div>
                                 <div class="exam_test"><label><input type="checkbox" name="test_type[]" value="9">実技</label></div>
                                 <div class="exam_test"><label><input type="checkbox" name="test_type[]" value="10">その他</label></div>
-                                <?php //fetch_sp_number($test_detalis_tb_data,10);?>
+                                <?php //fetch_sp_number($test_details_tb_data,10);?>
                             </div>
                         </div>
                         <div class="divdiv_width_all_ex" id="text_info">
@@ -192,13 +196,13 @@
                         <input type="reset"  class="btn_item" value="キャンセル" alt="キャンセル" onclick="location.href='./Input_Form_2_1.php'">
                         <input type="submit" class="btn_item" name="save" value="保存" alt="保存">
                         <input type="submit" class="btn_item" name="next" value="二次→" alt="二次へ" disabled>
-                        <input type="submit" class="btn_item" name="Input_1" value="step_3→" alt="step_3へ" disabled>
+                        <input type="submit" class="btn_item" name="Input_3" value="step_3→" alt="step_3へ" disabled>
                     </div>
                 </form>
             </div>
 
             <!-- JSで操作するために値渡し -->
-            <?php $test_json = json_encode($test_detalis_tb_data);?>
+            <?php $test_json = json_encode($test_details_tb_data);?>
             
             
 

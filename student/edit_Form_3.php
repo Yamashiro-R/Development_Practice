@@ -4,13 +4,43 @@
 
 ?>
 
+<?php 
+    
+    //戻るボタン用のURLを設定する。
+    $return_URL;
+    if( isset( $_SESSION['edit_Form_3'] ) ){
+        //$_SESSION['edit_Form_3']がある時
+        switch($_SESSION['edit_Form_3']){
+            case 0:
+                $return_URL = "edit_Form_1.php";
+                break;
+            case 1:
+                $return_URL = "edit_Form_2_1.php";
+                break;
+            case 2:
+                $return_URL = "edit_Form_2_2.php";
+                break;
+            default:
+                $return_URL = "edit_Form_2_3.php";
+            
+        }
+        //リンクをセットしたらセッションを破棄する。
+        unset($_SESSION['edit_Form_3']);
+    }else{
+        $return_URL = "edit_Form_2_3.php";
+        
+    }
+   
+?>
+
+
 <?php
-    echo date('Y年m月d日');
+    
     $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';
     $user = 'user';
     $password = 'test';
 
-    $_SESSION['reference'] = 2;
+    
 
     // $reference_number = 2;
     // $_SESSION['reference_number'] = $reference_number;
@@ -87,23 +117,12 @@ try{
         $remarks = null;
     }
 
-    // var_dump($row_catch);
-    // echo '  <br> ';
-    // echo '  <br> ';
     
 }catch (PDOException $e) {
     exit('エラー：' . $e->getMessage());
 }
 
 
-//                 echo '成功';
-//                 //ポストされたデータを変数に格納
-//                 $id = intval($_SESSION['ID']);
-
-
-
-
-// }
 ?>
 
 
@@ -121,7 +140,7 @@ try{
 
         <body>
             <div class="return">    <!-- 犬の画像用戻るボタン -->
-                <a href="Input_Form_1.php"><img src="../images/innu.jpeg"></a>
+                <a href= "<?php echo $return_URL ?>"><img src="../images/innu.jpeg"></a>
             </div>
             <div id="main_title">   <!-- 共通のタイトル部分 -->
                 <h1>就職活動報告</h1>

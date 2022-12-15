@@ -24,6 +24,10 @@
 .divdiv p {
     margin-top: 0;
 }
+.BitweenBlank {
+    width: 22.5%;
+    text-align-last: justify;
+}
 .divdiv .p-info, .p-info_col_1, .divdiv_width_all .p-info  {
     text-align-last: justify;
 }
@@ -103,6 +107,10 @@
 
 .select_box {
     width: 84%;
+}
+
+.select_box:invalid{
+    color: #ea1515;
 }
 
 .divdiv_col_1 {

@@ -2,6 +2,12 @@
     include '../includes/login.php';
     include '../includes/function.php';
 
+    //Input_Form編集中に飛んだらreferenceを破棄させて新規にさせる。
+    //元々を編集するときは保存済みデータから編集させる!!
+    if(isset(($_SESSION['reference']))){
+        unset($_SESSION['reference']);
+    }
+
     $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';
     $user = 'user';
     $password = 'test';
@@ -40,7 +46,7 @@
     }else{
         $status_num = false;
     }
-        // var_dump($status_num);
+        
 
     $param_p = json_encode($status_num);
 
@@ -77,7 +83,7 @@
         $as_number = array_column($row,'as_number');
 
         for($i = 0; $i < count($row); $i++){
-    // var_dump($$confirmation[$i]);
+    
             if($confirmation[$i] == false && $as_number[$i] == 3){
                 $notice_shou++;
             }
@@ -108,7 +114,7 @@
 
         $data = $stmt->fetchAll();
         $records = count($data);
-        //var_dump($data[0]['modified']);
+        
 
     }catch (PDOException $e){
         exit('エラー：' . $e->getMessage());

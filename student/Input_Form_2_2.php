@@ -4,7 +4,7 @@
 ?>
 <?php 
     //前頁で入力して自動生成したリファレンスナンバー
-    $_SESSION['reference'];
+    $_SESSION['reference'] = 5;
     $reference_number = $_SESSION['reference'];
     //一次試験格納用
     $second = 2;
@@ -21,9 +21,12 @@
         $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';
         $user = 'user';
         $password = 'test';
+        
+       
+        
 
         $tests_tb_data = fetch_tests_tb($reference_number,$second);
-        $test_detalis_tb_data = fetch_test_detalis_tb($reference_number,$second);
+        $test_details_tb_data = fetch_test_details_tb($reference_number,$second);
     }
 
         
@@ -37,7 +40,7 @@
         if( empty($_POST['textarea']) ){
             //テキストのエリアが無い = 入力してない or 入力してある項目すべて削除した
             //なので消す動作を入れている 
-            Delete_test_detalis_tb_data($reference_number,$second);
+            Delete_test_details_tb_data($reference_number,$second);
             //そして、tests_tbに入力するデータがあるかチェックする。
 
             //ポストされた値が入っているか其々チェック
@@ -80,7 +83,7 @@
 
             //チェックボタンと入力されているテキストエリアの数を照合
             if( count($_POST['test_type']) != $i ){
-                echo 'データとカウントが一致しない。';
+                //データとカウントが一致しないので何もやらない。
             }else{
                 //数があっていたらDBの処理に移行する。
                 //ポストされたデータを配列に格納
@@ -93,13 +96,13 @@
                     //$array_type_text[$value] = $_POST['textarea_'.$value];
                     $array_type_text[$test_type[$tmp]] = $textareas[$tmp];                 
                 }
-                    Delete_test_detalis_tb_data($reference_number,$second);
+                    Delete_test_details_tb_data($reference_number,$second);
             }
             //ポストされた値が入っているか其々チェック
             if( empty($_POST['second_date']) && empty($_POST['start_time']) &&
             empty($_POST['end_time']) ) {
-            echo "date_dataと開始時間、終了時間の３つが空だったら何もしない。"
-            ;
+            //date_dataと開始時間、終了時間の３つが空だったら何もしない。saveできるデータ無し。
+                ;
             }else{
                 //値を変数に格納。
                 $second_date = $_POST['second_date'];
@@ -113,7 +116,7 @@
                 //ポストされた値をINSERTする。
                 Insert_tests_tb_data($reference_number,$second,$second_date,$start_time,$end_time);
 
-                Insert_test_detalis_tb_data($reference_number,$second,$array_type_text);
+                Insert_test_details_tb_data($reference_number,$second,$array_type_text);
 
             }
             
@@ -122,7 +125,7 @@
         
 
             $tests_tb_data = fetch_tests_tb($reference_number,$second);
-            $test_detalis_tb_data = fetch_test_detalis_tb($reference_number,$second);
+            $test_details_tb_data = fetch_test_details_tb($reference_number,$second);
 
             //二次へのボタンが押されてたら次のページへ遷移。保存なら何もしない。
             if( !empty( $_POST['next'] ) ){
@@ -146,7 +149,7 @@
             <link rel="stylesheet" href="cssfiles/style_Input_Form.css">
             <title>就職活動報告書_ステップ２_２</title>
         </head>
-        <?php include 'header.php' ?>
+        <?php //include 'header.php' ?>
 
         <body>
             <div class="return">
@@ -189,7 +192,7 @@
                                 <div class="exam_test"><label><input type="checkbox" name="test_type[]" value="8">作文</label></div>
                                 <div class="exam_test"><label><input type="checkbox" name="test_type[]" value="9">実技</label></div>
                                 <div class="exam_test"><label><input type="checkbox" name="test_type[]" value="10">その他</label></div>
-                                <?php //fetch_sp_number($test_detalis_tb_data,10);?>
+                                <?php //fetch_sp_number($test_details_tb_data,10);?>
                             </div>
                         </div>
                         <div class="divdiv_width_all_ex" id="text_info">
@@ -209,8 +212,7 @@
             </div>
 
             <!-- JSで操作するために値渡し -->
-            <?php $test_json = json_encode($test_detalis_tb_data);
-            ?>
+            <?php $test_json = json_encode($test_details_tb_data);?>
             
 
             <script type="text/javascript" src="\DEVELOPMENT_PRACTICE/JS_files/methot.js"></script>

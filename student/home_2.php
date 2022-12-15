@@ -5,6 +5,13 @@
     $_SESSION['ps_val'] = null;
     $_SESSION['page'] = null;
     $_SESSION['ap_status'] = null;
+
+    
+    //Input_Form編集中に飛んだらreferenceを破棄させて新規にさせる。
+    //元々を編集するときは保存済みデータから編集させる!!
+    if(isset(($_SESSION['reference']))){
+        unset($_SESSION['reference']);
+    }
 ?>
 
 <!DOCTYPE html>

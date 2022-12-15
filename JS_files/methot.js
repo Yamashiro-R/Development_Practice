@@ -412,6 +412,7 @@ function Input_Form_1_judeg_flag(activecompany,activeaddress,activemethot,active
 
 /*Input_Form_1バリデーションチェック ここまで*/
 
+
 /*Input_Form_2_1 ～ 3の色々ここから*/
 
 var parseJson = function(jsonString) {
@@ -435,14 +436,8 @@ function Input_Form_2_monitoring(sp_no,text_data){
     let next_btn = btn[1];//二次→のボタン
     //step_3→のボタンがあるなら要素入れて無ければnull値を入れる以後それを判定してボタンの数を合わせる。
     let step_3_btn = btn[2] == null ? null : btn[2];    
-    
-
-    
-
-    
-    
+        
     fetch_sp_number(sp_no,text_data);
-
 
     //初期値のフラッグを格納する。
     let array_flag = flag_confirmation();
@@ -475,6 +470,7 @@ function Input_Form_2_monitoring(sp_no,text_data){
    
     formElements.addEventListener('input',()=>{
         array_flag = flag_confirmation();
+        console.log("formイベント");
         flagCnt = 0;
         for( ; flagCnt < array_flag.length ; flagCnt++){
             if(!array_flag[flagCnt]){
@@ -492,7 +488,7 @@ function Input_Form_2_monitoring(sp_no,text_data){
         }
         
         
-    });
+    },false);
     
 
     if(sp_no.length == 0){
@@ -544,6 +540,7 @@ function flag_confirmation(){
     const date_data = document.querySelector(`input[type='date']`);
     const time_data = document.querySelectorAll(`input[type='time']`);
     const checkbox_data = document.querySelectorAll(`input[type='checkbox'][name='test_type[]']`);
+    
 
     //flag数だけ作成。
     let array_flag = new Array(5);
@@ -582,22 +579,25 @@ function flag_confirmation(){
     
     //チェックがtrueの数をカウント
     let checkCnt = check_checkboxs(checkbox_data);
-    
-   
 
+    console.log(checkCnt);
     if( checkCnt > 0 ){
         array_flag[3] = true;
 
         let area = document.querySelectorAll('textarea');
+        console.log(area);
+
         
         //チェックボックスのチェック数とテキストエリアの数が合って入ればflagをtrueにする。
         //テキストエリアがある == 何かしらの値がセットされている。
-
+        console.log("チェックボックスの数" +checkCnt);
         let areaCnt = new Array(checkCnt);
 
         //作られたテキストエリアの状態を配列areaCntに格納する。
-       
+       console.log("テキストエリアの数" + area.length);
         for(let i = 0; i < area.length ; i++){
+
+
             if( area[i].value == "" ){
                 areaCnt[i] = false;
             }else{
@@ -605,14 +605,10 @@ function flag_confirmation(){
             }
         }
 
-        console.log(area.length + "エリアlength");
-        for(let i =0 ; i < area.length; i++){
-            console.log(i + "番目" + areaCnt[i]);
-        }
-        
-        
-        
+        console.log("エリアフラグ" + areaCnt);
         array_flag[4] = array_boolean(areaCnt);
+
+        console.log(array_flag);
     }else{
       array_flag[3] = false;  
     } 
@@ -679,6 +675,12 @@ function initial_value_Text(checkNo,text){
         }else{
             if( area.value == ""){
                 div.remove();
+                //ここでformのイベントを発生させてフラグの判定を消した後に発生させている。
+                //タイミングを合せるため。
+                let e = new Event('input');
+                let formElements = document.forms[0];
+                formElements.dispatchEvent(e);
+
             }else{
                 //textareaに入力が有る時
                 //windowで　はい(true) or いいえ(false)を保持
@@ -693,11 +695,11 @@ function initial_value_Text(checkNo,text){
                 }
             }
         }
-    });
+    },true);
 }
 
 function exam_check(cnt){
-    console.log("cnt" +cnt);
+    
     const first_exam = document.querySelectorAll(`input[type='checkbox'][name='test_type[]']`);
     const div_class = document.getElementsByClassName('exam_test');
     //詳細欄出力場所
@@ -725,6 +727,9 @@ function exam_check(cnt){
     area.classList.add('text-tests');
     area.name = 'details';
 
+    
+    
+
     place.addEventListener('change',()=>{
         
         if(place.checked){
@@ -740,7 +745,12 @@ function exam_check(cnt){
             //textareaに入力が無い時
             if( area.value == ""){
                 div.remove();
-                
+                //ここでformのイベントを発生させてフラグの判定を消した後に発生させている。
+                //タイミングを合せるため。
+                let e = new Event('input');
+                let formElements = document.forms[0];
+                formElements.dispatchEvent(e);
+
             }else{
                 //textareaに入力が有る時
                 //windowで　はい(true) or いいえ(false)を保持
@@ -757,7 +767,7 @@ function exam_check(cnt){
                 }
             }
         }
-    });
+    },true);
 
 }
 
@@ -772,7 +782,7 @@ function check_checkboxs(checkboxs){
     }
     return cnt;
 }   
-//
+
 function array_boolean(array){
     let cnt = 0;
     for(let i in array){
@@ -838,4 +848,3 @@ function rog_out_js(){
 }
 
 /*ログアウト処理　　↑*/
-

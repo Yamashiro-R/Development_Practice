@@ -66,8 +66,8 @@
                 if(isset($_POST['commit'])){
                     header('Location: edit_Form_2_1.php');
                     exit();
-                }else if(isset($_POST['Input_3'])){
-                    $_SESSION['Input_3'] = 1;
+                }else if(isset($_POST['edit_Form_3'])){
+                    $_SESSION['edit_Form_3'] = 0;
                     header('Location: edit_Form_3.php');
                     exit();
                 }
@@ -104,7 +104,7 @@
             //checkboxに複数チェックがあるとき
             //例 履歴書,修了見込み証明書 に加工し1行で纏める。
             $document_submitted = $row['docmt_submit'];
-            var_dump($document_submitted);
+             
     
             
 
@@ -154,7 +154,7 @@
                             </div>
                         </div>
                         <div class="divdiv_col_1 divdiv">   
-                            <p class="p-info_col_1"><label for="company_address">応募先住所：</label></p>
+                            <p class="p-info_col_1 BitweenBlank"><label for="company_address">応募先住所：</label></p>
                             <div class="denger_field">
                                 <input type="text" class="input-view" name="company_address" id="company_address" value="<?PHP echo $company_address ?>">
                                 <!-- ここにエラー文を出力-->
@@ -164,10 +164,14 @@
                         <div class="divdiv" >   
                             <p class="p-info"><label for="application_method">応募方法：</label></p>
                             <div class="denger_field divsize">
-                                <select class="input-view select_box" name="application_method">
+                                <select required class="input-view select_box" name="application_method">
                                     <?PHP 
                                         $methods = ["未選択","本校の紹介","職安の紹介","縁故者の紹介","求人情報誌等","その他"];
                                         for($i = 0; $i < count($methods); $i++){
+                                            if($i == 0){
+                                                echo '<option value="">'. $methods[$i].'</option>';
+                                                continue;
+                                            }
                                             echo '<option value="'. $methods[$i] . '"';
                                             if($methods[$i] == $method){
                                                 echo 'selected';
@@ -231,7 +235,7 @@
                         <input type="reset"  class="btn_item" name="cancel" value="キャンセル" alt="キャンセル">
                         <input type="submit" class="btn_item" name="save" value="保存" alt="保存">
                         <input type="submit" class="btn_item" name="commit" value="一次→" alt="一次→">
-                        <input type="submit" class="btn_item" name="Input_3" value="step_3→" alt="step_3へ" disabled>
+                        <input type="submit" class="btn_item" name="edit_Form_3" value="step_3→" alt="step_3へ" disabled>
                     </div>
                 </form>
             </div>

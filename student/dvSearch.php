@@ -3,6 +3,13 @@
     include '../includes/function.php';
 
 
+    
+    //Input_Form編集中に飛んだらreferenceを破棄させて新規にさせる。
+    //元々を編集するときは保存済みデータから編集させる!!
+    if(isset(($_SESSION['reference']))){
+        unset($_SESSION['reference']);
+    }
+
     $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';
     $user = 'user';
     $password = 'test';
@@ -80,7 +87,7 @@
     $select_limit = $select; 
     $select_limit .= ' LIMIT :page , :num';
 
-    // var_dump($select_limit);
+    
 
 
 
