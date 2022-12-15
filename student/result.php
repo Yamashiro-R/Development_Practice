@@ -2,20 +2,29 @@
     include '../includes/login.php';
     include '../includes/function.php';
 
+
+
+    $_SESSION['reference_edit'] = null;
+    $_SESSION['back_page'] = null;
+
     //$_SESSION['reference'] = 1;
-    echo "リファレンス".$_SESSION['reference'];
     if(isset($_SESSION['reference'])){
         $reference_number = $_SESSION['reference'];
-        echo "リファレンス".$_SESSION['reference'];
     }else{
         header('Location: Input_Form_3.php');
         exit();
     }
 
     if(isset($_POST['REQUEST'])){
-        if($_POST['REQUEST'] == 1){
+        if($_POST['REQUEST'] == 1 || $_POST['REQUEST'] == 4){
             request_data($reference_number);
         }
+    }
+
+    if(isset($_SESSION['EDIT'])){
+        $_SESSION['reference_edit'] = $reference_number;
+        $_SESSION['back_page'] = 'result';
+        header('Location: edit_Form_1.php');
     }
 
 
@@ -38,8 +47,8 @@
                                 where reference_number = :num1
                                 ORDER BY td_status,date_data");
 
-        $stmt_detalis = $db->prepare("SELECT * FROM test_detalis_tb,select_process_tb
-                                where test_detalis_tb.sp_number = select_process_tb.sp_number and
+        $stmt_detalis = $db->prepare("SELECT * FROM test_details_tb,select_process_tb
+                                where test_details_tb.sp_number = select_process_tb.sp_number and
                                 reference_number = :num2
                                 ORDER BY td_status");
 
@@ -76,7 +85,6 @@
 
         $confirmation =  $row['confirmation'];
 
-        var_dump($row);
 
 
         $param_p = json_encode($status);
@@ -97,7 +105,6 @@
 
     }
 
-    echo $row['future_activities'];
 ?>
 
 
@@ -116,9 +123,6 @@
         <?php include 'header.php' ?>
 
         <body>
-            <div class="return">    <!-- 犬の画像用戻るボタン -->
-                <a href="Input_Form_3.php"><img src="../images/innu.jpeg"></a>
-            </div>
             <div id="main_title">   <!-- 共通のタイトル部分 -->
                 <h1>就職活動<br class="br-sp">保存データ</h1>
             </div>
@@ -182,8 +186,7 @@
 
                 <div class="button_d">
                     <form action="">
-                        <input type="submit" value="編集" id="edit" onsubmit="request_btn();" disabled>
-                        <input type="hidden" name="CONFIRM" value="" >
+                        <input type="submit" name="EDIT" value="編集" id="edit">
                     </form>
                     <form method="POST" action="" onsubmit="request_btn();">
                         <input type="submit" value="申請" id="request">

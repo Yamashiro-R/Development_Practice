@@ -31,7 +31,7 @@ include '../includes/function.php';
             <div class="prot_div">
                 <div class="new_title"> 
                     <div class="title" onclick="TOP()">TOP</div>
-                    <div class="title" onclick="CreateReport()">申請依頼
+                    <div class="title title_t" onclick="CreateReport()">申請依頼
                         <p class="sinki">
                             <?PHP 
                                 if(count($row_header) > 0){
@@ -47,8 +47,8 @@ include '../includes/function.php';
                         検索
                     </button>
                 </div>
-                <div class="prot_body2">
-                    <button class="p-body2" onclick="location.href='teach_req.php'">
+                <div class="prot_body2 prot_body2_t">
+                    <button onclick="location.href='teach_req.php'">
                         <i class="fa-solid fa-pen-to-square"></i><br>
                         依頼を確認
                         <p class="sinki_kensu">

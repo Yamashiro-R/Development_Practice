@@ -163,17 +163,15 @@
     background-color: #f6f6f6;
 }
 
-/* .thoughts-text {
-    text-align: center;
-    padding: 0.5em;
-    width: 850px;
-    height: 100px;
-} */
 
 .thoughts-text {
     width: 100%;
     height: 150px;
     margin-top: 30px;
+}
+
+.next_step{
+    font-size: 90%;
 }
 
 
@@ -251,7 +249,7 @@
 }
 
 .cancel:active,.keep:active,.confirmation:active {
-    background-color: gray;
+    background-color: rgb(128, 128, 128);
 }
 
 .btn_item {
@@ -261,6 +259,17 @@
 
 /* Input_Form_2_1～3用 ここまで↑*/
 
+/*edit_Form↓*/
+
+.fin_btn{
+    background:  rgba(0, 193, 207, 0.636);
+}
+
+.edit_body{
+    margin-top: 10px;
+}
+
+/*edit_Form↑*/
 
  
 /*フレキシブル設定↓*/
@@ -351,7 +360,20 @@
     }
     .input_width input {
         width: 40%;
-}
+    }
+
+    .step3 {
+        margin-top: 10px;
+    }
+
+    .edit_h1 {
+        font-size: 300%;
+    }
+
+    .edit_h2 {
+        font-size: 200%;
+    }
+
    /*2行ぞろえの時 7番目の要素だけ一列ぞろえにする設定
     .Input_Form_2_1_area_div div:nth-of-type(7) {
         width: 100%;

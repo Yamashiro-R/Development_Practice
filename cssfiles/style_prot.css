@@ -64,6 +64,12 @@ body{
     display: none;
     box-shadow: 2px 2px 4px;
 }
+
+.prot_body2_t,
+.title_t {
+    background-color: #FFFFBB !important;
+}
+
 .prot_body1 button, .prot_body2 button{
     width: 100px;
     height: 100px;

@@ -2,6 +2,10 @@
 /*savedata.html↓*/
 body{
     /* viewと統一 */
+    background-color: #FFFFBB;
+}
+
+.t_pd_body{
     background-color: #ffdbed;
 }
 
