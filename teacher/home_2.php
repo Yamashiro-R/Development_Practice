@@ -42,7 +42,7 @@ include '../includes/function.php';
                     </div>
                 </div>
                 <div class="prot_body1">
-                    <button onclick="location.href='t_dvSearch.php'">
+                    <button class="p-body1" onclick="location.href='t_dvSearch.php'">
                         <i class="fa-solid fa-magnifying-glass"></i><br>
                         検索
                     </button>

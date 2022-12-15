@@ -20,7 +20,6 @@
         $user = 'user';
         $password = 'test';
 
-       
 
         try{
             $db = new PDO($dsn, $user, $password);

@@ -102,8 +102,8 @@
     try{
         $stmt = $db->prepare("SELECT * FROM ac_comp_data_tb,apply_status_tb
                             Where ac_comp_data_tb.as_number = apply_status_tb.as_number
-                             and act_id = :ID
-                             ORDER by application_Date ");
+                            and act_id = :ID
+                            ORDER by application_Date ");
     
         //パラメータ割り当て
         $stmt->bindParam(':ID', $_SESSION['ID'], PDO::PARAM_STR);
@@ -152,7 +152,7 @@
                                 }
                             ?>
                         </span></label>
-                        <label><input  type="submit" name="ap_status" value="却下" hidden><span id="dv_s_inp4">却下
+                        <label><input  type="submit" name="ap_status" value="却下" hidden><span class="input-hover" id="dv_s_inp4">却下
                             <?PHP 
                                 if($notice_kyakka > 0){
                                     echo '<span class="bic">!</span>';
