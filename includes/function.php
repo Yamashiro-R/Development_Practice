@@ -288,9 +288,9 @@
             $sp_no = 0;
             $max = 0;
 
-
-
-
+            if(!array_key_exists($test_data_no,$data)){
+                return;
+            }
             for($i=0;$i < count($day)  && $status == $data[$test_data_no]['td_status'] ;$i++){
                 $datalis .= 
                 '<div class="test">
