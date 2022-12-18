@@ -19,7 +19,7 @@
 
             }else{
 
-                Delete_test_detalis_tb_data($reference_number,$second);
+                Delete_test_details_tb_data($reference_number,$second);
                 Delete_tests_tb_data($reference_number,$second);
 
                 //値を変数に格納。
@@ -41,7 +41,7 @@
                     $array_type_text[$test_type[$tmp]] = $textareas[$tmp];                 
                 }
 
-                Insert_test_detalis_tb_data($reference_number,$second,$array_type_text);
+                Insert_test_details_tb_data($reference_number,$second,$array_type_text);
                 //タイムスタンプでデータを更新する処理
                 timestamp($reference_number); 
 

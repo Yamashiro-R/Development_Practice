@@ -623,6 +623,12 @@
                         
                 $stmt = $db->prepare("INSERT INTO test_details_tb VALUE (:reference_number,:td_status,:sp_number,:details)");
 
+                $Text = str_replace('"','”',$Text); 
+                $Text = str_replace("'","’",$Text); 
+                $Text = str_replace('&','＆',$Text);
+                $Text = str_replace('&','＆',$Text);
+                $Text = str_replace('%','％',$Text);
+
                 $stmt->bindParam(':reference_number',$reference_number, PDO::PARAM_INT);
                 $stmt->bindParam(':td_status',$interviewNo, PDO::PARAM_INT);
                 $stmt->bindParam(':sp_number',$Key, PDO::PARAM_INT);

@@ -6,7 +6,7 @@
 
     //一次試験格納用
     $once = 1;
-
+    echo $_SESSION['reference'];
     if( empty($_SESSION['reference_edit']) ){
         //空だった場合はなにもしない
         ;
@@ -17,7 +17,7 @@
 
             }else{
 
-                Delete_test_detalis_tb_data($reference_number,$once);
+                Delete_test_details_tb_data($reference_number,$once);
                 Delete_tests_tb_data($reference_number,$once);
 
                 //値を変数に格納。
@@ -39,7 +39,7 @@
                     $array_type_text[$test_type[$tmp]] = $textareas[$tmp];                 
                 }
 
-                Insert_test_detalis_tb_data($reference_number,$once,$array_type_text);
+                Insert_test_details_tb_data($reference_number,$once,$array_type_text);
                 //タイムスタンプでデータを更新する処理
                 timestamp($reference_number); 
 
@@ -148,7 +148,11 @@
             </div>
 
             <!-- JSで操作するために値渡し -->
-            <?php $test_json = json_encode($test_details_tb_data);?>
+            <?php 
+                $test_json = json_encode($test_details_tb_data);
+                // var_dump($test_json);
+            ?>
+
             
 
             <script type="text/javascript" src="\DEVELOPMENT_PRACTICE/JS_files/methot.js"></script>

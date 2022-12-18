@@ -2,13 +2,7 @@
     include '../includes/login.php';
     include '../includes/function.php';
 ?>
-<?php 
-    //前頁で入力して自動生成したリファレンスナンバー
-    $_SESSION['reference'] = 5;
-    $reference_number = $_SESSION['reference'];
-    //一次試験格納用
-    $second = 2;
-?>
+
 
 
 <?php 
@@ -16,6 +10,11 @@
         //空だった場合はなにもしない
         ;
     }else{
+        //前頁で入力して自動生成したリファレンスナンバー
+        $_SESSION['reference'];
+        $reference_number = $_SESSION['reference'];
+        //一次試験格納用
+        $second = 2;
         //設定されている場合はDBを探索しデータを表示したい。
 
         $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';
@@ -35,22 +34,24 @@
 
 <?php
     if($_POST){
-        
+        echo $reference_number;
         //ここでテキストエリアの文字が入力されているかチェックして
-        if( empty($_POST['textarea']) ){
+        if( empty($_POST['test_type']) ){
             //テキストのエリアが無い = 入力してない or 入力してある項目すべて削除した
             //なので消す動作を入れている 
             Delete_test_details_tb_data($reference_number,$second);
             //そして、tests_tbに入力するデータがあるかチェックする。
 
             //ポストされた値が入っているか其々チェック
-            if( empty($_POST['second_date']) && empty($_POST['start_time']) &&
-            empty($_POST['end_time']) ) {
-            //空の時何もしない
-            ;
+            if( empty($_POST['second_date']) && empty($_POST['start_time']) && empty($_POST['end_time']) ) {
+                //全てが空の時
+                $second_date = null;
+                $start_time = null;
+                $end_time = null;
             }else{
+
                 //値を変数に格納。
-                $second_date = $_POST['second_date'];
+                $second_date =  $_POST['second_date'];
                 $start_time = $_POST['start_time'];
                 $end_time = $_POST['end_time'];
 
@@ -60,63 +61,44 @@
             
                 //ポストされた値をINSERTする。
                 Insert_tests_tb_data($reference_number,$second,$second_date,$start_time,$end_time);
-
-                //タイムスタンプでデータを更新する処理
-                timestamp($reference_number); 
                 
             }
 
-           
-            
-            
         }else{
+             //値を変数に格納。
+             $second_date =  $_POST['second_date'];
+             $start_time = $_POST['start_time'];
+             $end_time = $_POST['end_time'];
+
             //どれかに値が入っていたら
-            $i=0;
+            //テキストエリアに文字が入っていない＝空白であるなら処理をしない用の判定が書いてあります。
+            //今回は、未入力でも処理されてDBにnullとして入力できるように外しています。
             
-            foreach($_POST['textarea'] as  $key => $value){
-                if( empty($value) ){
-                    continue;
-                }else{
-                    $i++;
-                } 
-            }
-
-            //チェックボタンと入力されているテキストエリアの数を照合
-            if( count($_POST['test_type']) != $i ){
-                //データとカウントが一致しないので何もやらない。
-            }else{
-                //数があっていたらDBの処理に移行する。
-                //ポストされたデータを配列に格納
-                $test_type = $_POST['test_type'];
-                $textareas = $_POST['textarea'];
-                $array_type_text;
-                for($tmp =0 ; $tmp < count($test_type) ; $tmp++){
-                    //チェックが入っている場所をkey値として、textを代入する予定。key値は1～10で指定されている。
-                    //key = textデータとして入力された分のみ其々を結びつけ連想配列化。
-                    //$array_type_text[$value] = $_POST['textarea_'.$value];
-                    $array_type_text[$test_type[$tmp]] = $textareas[$tmp];                 
-                }
-                    Delete_test_details_tb_data($reference_number,$second);
-            }
-            //ポストされた値が入っているか其々チェック
-            if( empty($_POST['second_date']) && empty($_POST['start_time']) &&
-            empty($_POST['end_time']) ) {
-            //date_dataと開始時間、終了時間の３つが空だったら何もしない。saveできるデータ無し。
-                ;
-            }else{
-                //値を変数に格納。
-                $second_date = $_POST['second_date'];
-                $start_time = $_POST['start_time'];
-                $end_time = $_POST['end_time'];
-
-                //値がある時
-                //tests_tbのデータをDeleteして
-                Delete_tests_tb_data($reference_number,$second);
+         
+            //数があっていたらDBの処理に移行する。
+            //ポストされたデータを配列に格納
+            $test_type = $_POST['test_type'];
             
-                //ポストされた値をINSERTする。
-                Insert_tests_tb_data($reference_number,$second,$second_date,$start_time,$end_time);
 
-                Insert_test_details_tb_data($reference_number,$second,$array_type_text);
+            $array_type_text;
+            for($tmp =0 ; $tmp < count($test_type) ; $tmp++){
+                //チェックが入っている場所をkey値として、textを代入する予定。key値は1～10で指定されている。
+                //key = textデータとして入力された分のみ其々を結びつけ連想配列化。
+                //$array_type_text[$value] = $_POST['textarea_'.$value];
+                 $array_type_text[$test_type[$tmp]] = $_POST[$test_type[$tmp]];                
+            }
+                Delete_test_details_tb_data($reference_number,$second);
+        
+           
+
+            //値がある時
+            //tests_tbのデータをDeleteして
+            Delete_tests_tb_data($reference_number,$second);
+        
+            //ポストされた値をINSERTする。
+            Insert_tests_tb_data($reference_number,$second,$second_date,$start_time,$end_time);
+
+            Insert_test_details_tb_data($reference_number,$second,$array_type_text);
 
             }
             
@@ -136,7 +118,7 @@
                 header('Location: Input_Form_3.php');
             
             }
-        }
+        
     }
 
 ?>
@@ -212,7 +194,9 @@
             </div>
 
             <!-- JSで操作するために値渡し -->
-            <?php $test_json = json_encode($test_details_tb_data);?>
+            <?php 
+                $test_json = json_encode($test_details_tb_data);
+            ?>
             
 
             <script type="text/javascript" src="\DEVELOPMENT_PRACTICE/JS_files/methot.js"></script>

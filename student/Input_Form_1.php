@@ -16,6 +16,9 @@
     $user = 'user';
     $password = 'test';
 
+   
+
+
     $number = 1;
 
     if(isset($_SESSION['reference'])){
@@ -32,6 +35,7 @@
                 $method = $_POST['application_method'];
                 $document_screening = $_POST['document_screening'];
                 $job = $_POST['occupation'];
+                $manager = $_POST['manager'];
                 //データベースに格納できる様に書式を変更
                 //checkboxに複数チェックがあるとき
                 //例 履歴書,修了見込み証明書 に加工し1行で纏める。
@@ -45,8 +49,9 @@
                     
                     
                     $stmt = $db->prepare("UPDATE ac_comp_data_tb SET comp_name = :comp_name,comp_address = :comp_address,no_appli = :no_appli,
-                                        how_to_apply = :how_to_apply,docmt_screening = :docmt_screening,job = :job,docmt_submit = :docmt_submit 
-                                        WHERE reference_number = $reference_number");
+                                        how_to_apply = :how_to_apply,docmt_screening = :docmt_screening,job = :job,docmt_submit = :docmt_submit,
+                                        person_charge_name = :manager
+                                        WHERE reference_number = $reference_number ");
                     
                     // modifiedのtimestampは
                     // 自動初期化されたカラムは、カラムに値を指定しない挿入行に対して現在のタイムスタンプに設定されます。
@@ -60,6 +65,7 @@
                     $stmt->bindParam(':docmt_screening',$document_screening,PDO::PARAM_STR);
                     $stmt->bindParam(':job',$job,PDO::PARAM_STR);               
                     $stmt->bindParam(':docmt_submit',$document_submitted,PDO::PARAM_STR);
+                    $stmt->bindParam(' :manager',$manager,PDO::PARAM_STR);    
 
                     //クエリの実行
                     $stmt->execute();
@@ -96,6 +102,7 @@
                     $method = $row['how_to_apply'];
                     $document_screening = $row['docmt_screening'];
                     $job = $row['job'];
+                    $manager = $row['person_charge_name'];
                     //データベースに格納できる様に書式を変更
                     //checkboxに複数チェックがあるとき
                     //例 履歴書,修了見込み証明書 に加工し1行で纏める。
@@ -118,6 +125,7 @@
                 $method = $_POST['application_method'];
                 $document_screening = $_POST['document_screening'];
                 $job = $_POST['occupation'];
+                $manager = $_POST['manager'];
                 //データベースに格納できる様に書式を変更
                 //checkboxに複数チェックがあるとき
                 //例 履歴書,修了見込み証明書 に加工し1行で纏める。
@@ -130,8 +138,8 @@
                     
                     
                     $stmt = $db->prepare("INSERT INTO ac_comp_data_tb(act_id,as_number,comp_name,comp_address,no_appli,
-                                        how_to_apply,docmt_screening,job,docmt_submit) VALUE (:ID,:as_number,:comp_name,:comp_address,:no_appli,
-                                        :how_to_apply,:docmt_screening,:job,:docmt_submit)");
+                                        how_to_apply,docmt_screening,job,docmt_submit,person_charge_name) VALUE (:ID,:as_number,:comp_name,:comp_address,:no_appli,
+                                        :how_to_apply,:docmt_screening,:job,:docmt_submit,:manager)");
                     
                     
                     $stmt->bindParam(':ID',$id, PDO::PARAM_INT);
@@ -146,6 +154,7 @@
                     $stmt->bindParam(':job',$job,PDO::PARAM_STR);
                     
                     $stmt->bindParam(':docmt_submit',$document_submitted,PDO::PARAM_STR);
+                    $stmt->bindParam(':manager',$manager,PDO::PARAM_STR);   
                     //クエリの実行
                     $stmt->execute();
                 }catch (PDOException $e) {
@@ -202,7 +211,7 @@
                         //checkboxに複数チェックがあるとき
                         //例 履歴書,修了見込み証明書 に加工し1行で纏める。
                         $document_submitted = $row['docmt_submit'];
-                        
+                        $manager = $row['person_charge_name'];
                 }catch (PDOException $e) {
                     exit('エラー：' . $e->getMessage());
                 }
@@ -221,6 +230,7 @@
             //checkboxに複数チェックがあるとき
             //例 履歴書,修了見込み証明書 に加工し1行で纏める。
             $document_submitted = null;
+            $manager = null;
         }
     }
     
@@ -266,6 +276,7 @@
                                 <!-- ここにエラー文を出力-->
                             </div>
                         </div>
+
                         
                         <div class="divdiv" >   
                             <p class="p-info"><label for="application_method">応募方法：</label></p>
@@ -310,6 +321,11 @@
                         <div class="divdiv Form_1">   
                             <p class="p-info"><label for="number_of_applications"> 応募件数：</label></p>
                             <div class="denger_field divsize"><input type="number" min="0" max="10" class="input-view" name="number_of_applications" id="number_of_applications" value="<?PHP echo $total_number ?>"></div>
+                        </div>
+
+                        <div class="divdiv Form_1">   
+                            <p class="p-info"><label for="manager">担当者名：</label></p>
+                            <div class="denger_field divsize"><input type="text" class="input-view" name="manager" id="manager" value="<?PHP echo $manager ?>"></label></div>
                         </div>
                         
                         <div class="divdiv_width_all" id="documents_checkbox">   
@@ -385,9 +401,9 @@
                     
 
                     if(bool){
-                        forms.elements[16].disabled = false;
+                        forms.elements[17].disabled = false;
                     }else{
-                        forms.elements[16].disabled = true;
+                        forms.elements[17].disabled = true;
                     }
 
 

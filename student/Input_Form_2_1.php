@@ -4,6 +4,7 @@
 ?>
     
 <?php 
+
     if( empty($_SESSION['reference']) ){
         //空だった場合はなにもしない
         ;
@@ -21,16 +22,15 @@
 
         $tests_tb_data = fetch_tests_tb($reference_number,$once);
         $test_details_tb_data = fetch_test_details_tb($reference_number,$once);
-    }
-
-        
+    }        
 ?>
 
 
 <?php
-    if($_POST){
+     if($_POST){
+        
         //ここでテキストエリアの文字が入力されているかチェックして
-        if( empty($_POST['textarea']) ){
+        if( empty($_POST['test_type']) ){
             //テキストのエリアが無い = 入力してない or 入力してある項目すべて削除した
             //なので消す動作を入れている 
             Delete_test_details_tb_data($reference_number,$once);
@@ -39,14 +39,18 @@
             //ポストされた値が入っているか其々チェック
             if( empty($_POST['once_date']) && empty($_POST['start_time']) &&
             empty($_POST['end_time']) ) {
-            //空の時何もしない
-            ;
+                var_dump($_POST);
+                echo "true反応";
+            //全てが空の時
+                $once_date = null;
+                $start_time = null;
+                $end_time = null;
             }else{
                 //値を変数に格納。
                 $once_date = $_POST['once_date'];
                 $start_time = $_POST['start_time'];
                 $end_time = $_POST['end_time'];
-
+                
                 //値がある時
                 //tests_tbのデータをDeleteして
                 Delete_tests_tb_data($reference_number,$once);
@@ -54,66 +58,53 @@
                 //ポストされた値をINSERTする。
                 Insert_tests_tb_data($reference_number,$once,$once_date,$start_time,$end_time);
 
-                //タイムスタンプでデータを更新する処理
-                timestamp($reference_number); 
-                
             }
 
             
         }else{
+            $once_date = $_POST['once_date'];
+            $start_time = $_POST['start_time'];
+            $end_time = $_POST['end_time'];
+            //テキストエリアに文字が入っていない＝空白であるなら処理をしない用の判定が書いてあります。
+            //今回は、未入力でも処理されてDBにnullとして入力できるように外しています。
             //どれかに値が入っていたら
-            $i=0;
+            //$i=0;
+           
+            //数があっていたらDBの処理に移行する。
+            //ポストされたデータを配列に格納
+            $test_type = $_POST['test_type'];
+          
             
-            foreach($_POST['textarea'] as  $key => $value){
-                if( empty($value) ){
-                    continue;
-                }else{
-                    $i++;
-                } 
-            }
 
-            //チェックボタンと入力されているテキストエリアの数を照合
-            if( count($_POST['test_type']) != $i ){
-                //データとカウントが一致しないので何もやらない。
-            }else{
-                //数があっていたらDBの処理に移行する。
-                //ポストされたデータを配列に格納
-                $test_type = $_POST['test_type'];
-                $textareas = $_POST['textarea'];
-                $array_type_text;
-                for($tmp =0 ; $tmp < count($test_type) ; $tmp++){
-                    //チェックが入っている場所をkey値として、textを代入する予定。key値は1～10で指定されている。
-                    //key = textデータとして入力された分のみ其々を結びつけ連想配列化。
-                    //$array_type_text[$value] = $_POST['textarea_'.$value];
-                    $array_type_text[$test_type[$tmp]] = $textareas[$tmp];                 
-                }
-                    Delete_test_details_tb_data($reference_number,$once);
-            }
-            //ポストされた値が入っているか其々チェック
-            if( empty($_POST['once_date']) && empty($_POST['start_time']) &&
-            empty($_POST['end_time']) ) {
-            echo "date_dataと開始時間、終了時間の３つが空だったら何もしない。"
-            ;
-            }else{
-                //値を変数に格納。
-                $once_date = $_POST['once_date'];
-                $start_time = $_POST['start_time'];
-                $end_time = $_POST['end_time'];
+            $array_type_text;
+            for($tmp =0 ; $tmp < count($test_type) ; $tmp++){
+                
+                //チェックが入っている場所をkey値として、textを代入する予定。key値は1～10で指定されている。
+                //key = textデータとして入力された分のみ其々を結びつけ連想配列化。
+                //$array_type_text[$value] = $_POST['textarea_'.$value];
+                $array_type_text[$test_type[$tmp]] = $_POST[$test_type[$tmp]];                 
+            }       
+          
 
-                //値がある時
-                //tests_tbのデータをDeleteして
-                Delete_tests_tb_data($reference_number,$once);
+            Delete_test_details_tb_data($reference_number,$once);
+        
+
+        
+
+            //値がある時
+            //tests_tbのデータをDeleteして
+            Delete_tests_tb_data($reference_number,$once);
+        
+            //ポストされた値をINSERTする。
+            Insert_tests_tb_data($reference_number,$once,$once_date,$start_time,$end_time);
+
+            Insert_test_details_tb_data($reference_number,$once,$array_type_text);
+
             
-                //ポストされた値をINSERTする。
-                Insert_tests_tb_data($reference_number,$once,$once_date,$start_time,$end_time);
+        }
 
-                Insert_test_details_tb_data($reference_number,$once,$array_type_text);
-
-            }
-            
             //タイムスタンプでデータを更新する処理
             timestamp($reference_number); 
-        
 
             $tests_tb_data = fetch_tests_tb($reference_number,$once);
             $test_details_tb_data = fetch_test_details_tb($reference_number,$once);
@@ -126,8 +117,8 @@
                 header('Location: Input_Form_3.php');
             
             }   
-        }
-    }
+        
+     }
     
 ?>
 
@@ -169,7 +160,7 @@
 
 
                         <div class="divdiv_width_all">
-                            <p class="p-info">一次試験内容：</p>
+                            <p class="p-info" >一次試験内容：</p>
                             
                             <div class="Input_Form_2_1_area_div">
                                 <div class="exam_test"><label><input type="checkbox" name="test_type[]" value="1">筆記(専門)</label></div>
@@ -182,7 +173,7 @@
                                 <div class="exam_test"><label><input type="checkbox" name="test_type[]" value="8">作文</label></div>
                                 <div class="exam_test"><label><input type="checkbox" name="test_type[]" value="9">実技</label></div>
                                 <div class="exam_test"><label><input type="checkbox" name="test_type[]" value="10">その他</label></div>
-                                <?php //fetch_sp_number($test_details_tb_data,10);?>
+                                
                             </div>
                         </div>
                         <div class="divdiv_width_all_ex" id="text_info">
