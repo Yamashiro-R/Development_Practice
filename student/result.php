@@ -21,7 +21,7 @@
         }
     }
 
-    if(isset($_SESSION['EDIT'])){
+    if(isset($_POST['EDIT'])){
         $_SESSION['reference_edit'] = $reference_number;
         $_SESSION['back_page'] = 'result';
         header('Location: edit_Form_1.php');
@@ -65,7 +65,7 @@
         $row_day = $stmt_day->fetchAll();
         $row_detalis = $stmt_detalis->fetchAll();
         //データの切り分け
-        //  print_r($row_detalis);
+        //  print_r($row_detalis); 
         $family_name = $row['family_name']; //科名
         $account_name = $_SESSION['name']; //アカウント名
         $attend_number = attend_number($row['act_id']); //出席番号
@@ -185,7 +185,7 @@
                 <p class="as_status">申請状況：<strong><span><?php check_null($as_name) ?></span></strong></p>
 
                 <div class="button_d">
-                    <form action="">
+                    <form action="" method="POST">
                         <input type="submit" name="EDIT" value="編集" id="edit">
                     </form>
                     <form method="POST" action="" onsubmit="request_btn();">

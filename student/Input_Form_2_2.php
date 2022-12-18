@@ -4,7 +4,7 @@
 ?>
 <?php 
     //前頁で入力して自動生成したリファレンスナンバー
-    $_SESSION['reference'] = 5;
+    $_SESSION['reference'];
     $reference_number = $_SESSION['reference'];
     //一次試験格納用
     $second = 2;
@@ -204,7 +204,7 @@
                     <div class="button">
                          <!-- cancel押されたらページを再度読み直して元の状態(編集前に戻す) -->
                         <input type="reset"  class="btn_item" value="キャンセル" alt="キャンセル" onclick="location.href='./Input_Form_2_2.php'">
-                        <input type="submit" class="btn_item" name="save" value="保存" alt="保存">
+                        <input type="submit" class="btn_item" name="save" value="保存" alt="保存" onclick="save_alert()">
                         <input type="submit" class="btn_item" name="next" value="三次→" alt="三次へ" disabled>
                         <input type="submit" class="btn_item" name="Input_3" value="step_3→" alt="step_3へ" disabled>
                     </div>

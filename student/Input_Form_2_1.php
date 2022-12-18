@@ -202,12 +202,13 @@
             </div>
 
             <!-- JSで操作するために値渡し -->
-            <?php $test_json = json_encode($test_details_tb_data);?>
             
             
 
             <script type="text/javascript" src="\DEVELOPMENT_PRACTICE/JS_files/methot.js"></script>
           
+            <?php $test_json = json_encode($test_details_tb_data);?>
+
             <script type="text/javascript">
 
                 let json_data = parseJson('<?php echo $test_json; ?>');
