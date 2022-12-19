@@ -44,10 +44,8 @@ function validation_check(){
     let job = formElements.elements[5];
     let number = formElements.elements[6]; 
     let manager = formElements.elements[7];
-    let documents_checkbox = document.querySelectorAll("label > input[type='checkbox']"); 
-    let savebtn = formElements.elements[16]; 
-    let submitbtn = formElements.elements[17]; 
-    console.log(submitbtn);
+    let documents_checkbox = document.querySelectorAll("label > input[type='checkbox']");  
+
   
     
     //エラー出力先を配列で取得
@@ -127,10 +125,6 @@ function validation_check(){
     let prefecture;
 
 
-    
-    //一次→ボタンをデフォルトで無効化
-    submitbtn.disabled = true;
-
 
     //保存ボタンと一次→ボタンの有効化条件
     
@@ -164,8 +158,6 @@ function validation_check(){
         }
         Input_Form_1_judeg_flag(activecompany,activeaddress,activemethot,activedocument_radio,
             activejob,activenumber,activemanager,activedocuments_checkbox);
-
-        hantei();
     });
     //企業の住所入力欄
     address.addEventListener("input",()=>{
@@ -214,7 +206,6 @@ function validation_check(){
         Input_Form_1_judeg_flag(activecompany,activeaddress,activemethot,activedocument_radio,
             activejob,activenumber,activemanager,activedocuments_checkbox);
         
-        hantei();
 
     });
     //応募方法入力欄
@@ -237,7 +228,6 @@ function validation_check(){
         }
         Input_Form_1_judeg_flag(activecompany,activeaddress,activemethot,activedocument_radio,
             activejob,activenumber,activemanager,activedocuments_checkbox);
-        hantei();
 
     });
     //書類選考の有無チェック欄
@@ -265,7 +255,6 @@ function validation_check(){
         }
         Input_Form_1_judeg_flag(activecompany,activeaddress,activemethot,activedocument_radio,
             activejob,activenumber,activemanager,activedocuments_checkbox);
-        hantei();
 
     });
     //応募件数入力欄
@@ -308,7 +297,6 @@ function validation_check(){
         }
         Input_Form_1_judeg_flag(activecompany,activeaddress,activemethot,activedocument_radio,
             activejob,activenumber,activemanager,activedocuments_checkbox);
-        hantei();
 
     });
 
@@ -351,7 +339,7 @@ function validation_check(){
                 for(let j=0;j<documents_checkbox.length;j++){
                     array_checkbox[j] = documents_checkbox[j].checked;
                 }
-                console.log(array_checkbox);
+                
                 //配列のどれかにチェックが入っていたらブレイクその位置を特定するためにcheckbox_cntでカウント
                 for(let tmp=0;tmp<array_checkbox.length;tmp++,checkbox_cnt++){
                     if(array_checkbox[tmp]){break;}
@@ -378,22 +366,11 @@ function validation_check(){
             }
             Input_Form_1_judeg_flag(activecompany,activeaddress,activemethot,activedocument_radio,
                 activejob,activenumber,activemanager,activedocuments_checkbox);
-            hantei();
 
         });
 
     
     }
-    //このfunction いる？
-    // function hantei(){
-    //     if(activecompany && activeaddress && activemethot  &&
-    //         activedocument_radio && activejob && activenumber  &&
-    //         activedocuments_checkbox){
-    //         submitbtn.disabled = false;
-    //     }else{
-    //         submitbtn.disabled = true;
-    //     }
-    // }
 
    
 }
@@ -404,11 +381,7 @@ function validation_check(){
 function Input_Form_1_judeg_flag(activecompany,activeaddress,activemethot,activedocument_radio,
         activejob,activenumber,activemanager,activedocuments_checkbox){
     let formElements = document.forms[0];
-
-    
-    let submitbtn = formElements.elements[17]; 
-    console.log(submitbtn);
-
+    let submitbtn = formElements.elements[17];
 
     if(activecompany && activeaddress && activemethot  &&
         activedocument_radio && activejob && activenumber  &&

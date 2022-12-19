@@ -353,7 +353,7 @@
                     </div>
                     <div class="button">
                         <input type="reset"  class="btn_item" name="cancel" value="キャンセル" alt="キャンセル">
-                        <input type="submit" class="btn_item" name="save" value="保存" alt="保存">
+                        <input type="submit" class="btn_item" name="save" value="保存" alt="保存" onclick="save_alert()">
                         <input type="submit" class="btn_item" name="commit" value="一次→" alt="一次→">
                     </div>
                 </form>

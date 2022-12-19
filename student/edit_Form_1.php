@@ -26,6 +26,7 @@
                 $method = $_POST['application_method'];
                 $document_screening = $_POST['document_screening'];
                 $job = $_POST['occupation'];
+                $manager = $_POST['manager'];
                 //データベースに格納できる様に書式を変更
                 //checkboxに複数チェックがあるとき
                 //例 履歴書,修了見込み証明書 に加工し1行で纏める。
@@ -46,7 +47,8 @@
                     
                     
                     $stmt = $db->prepare("UPDATE ac_comp_data_tb SET comp_name = :comp_name,comp_address = :comp_address,no_appli = :no_appli,
-                                        how_to_apply = :how_to_apply,docmt_screening = :docmt_screening,job = :job,docmt_submit = :docmt_submit 
+                                        how_to_apply = :how_to_apply,docmt_screening = :docmt_screening,job = :job,docmt_submit = :docmt_submit,
+                                        person_charge_name = :manager
                                         WHERE reference_number = $reference_edit");
                     
                     // modifiedのtimestampは
@@ -61,6 +63,7 @@
                     $stmt->bindParam(':docmt_screening',$document_screening,PDO::PARAM_STR);
                     $stmt->bindParam(':job',$job,PDO::PARAM_STR);               
                     $stmt->bindParam(':docmt_submit',$document_submitted,PDO::PARAM_STR);
+                    $stmt->bindParam(':manager',$manager,PDO::PARAM_STR);    
 
                     //クエリの実行
                     $stmt->execute();
@@ -105,6 +108,8 @@
             $document_screening = $row['docmt_screening'];
             $job = $row['job'];
             $document_submitted = $row['docmt_submit'];
+            $manager = $row['person_charge_name'];
+
              
     
             
@@ -206,6 +211,11 @@
                             <p class="p-info"><label for="number_of_applications"> 応募件数：</label></p>
                             <div class="denger_field divsize"><input type="number" min="0" max="10" class="input-view" name="number_of_applications" id="number_of_applications" value="<?PHP echo $total_number ?>"></div>
                         </div>
+
+                        <div class="divdiv Form_1">   
+                            <p class="p-info"><label for="manager">担当者名：</label></p>
+                            <div class="denger_field divsize"><input type="text" class="input-view" name="manager" id="manager" value="<?PHP echo $manager ?>"></label></div>
+                        </div>
                         
                         <div class="divdiv_width_all" id="documents_checkbox">   
                             <p class="p-info">提出書類：</p>
@@ -233,7 +243,7 @@
                     
                     </div>
                     <div class="button">
-                        <input type="button"  class="btn_item" name="cancel" value="キャンセル" alt="キャンセル">
+                        <input type="submit"  class="btn_item" name="cancel" value="キャンセル" alt="キャンセル">
                         <input type="submit" class="btn_item" name="save" value="保存" alt="保存" onclick="save_alert()">
                         <input type="submit" class="btn_item" name="commit" value="一次→" alt="一次→">
                     </div>
@@ -272,23 +282,28 @@
                         bool = false;
                     }
 
+                    if(forms.manager.value == null || forms.manager.value == ""){
+                        bool = false;
+                    }
+
                     var checkboxs = document.querySelectorAll("input[type='checkbox']");
-                    console.log(checkboxs[0].checked);
+                    
                     var chk;
                     for(chk = 0; chk < checkboxs.length; chk++){
                         if(checkboxs[chk].checked == true){
                             break;
                         }
                     }
+
                     if(chk >= checkboxs.length){
                         bool = false;
                     }
                     
 
                     if(bool){
-                        forms.elements[16].disabled = false;
+                        forms.elements[17].disabled = false;
                     }else{
-                        forms.elements[16].disabled = true;
+                        forms.elements[17].disabled = true;
                     }
             </script>
         </body>

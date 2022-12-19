@@ -31,13 +31,13 @@
 
                 if(isset($_POST['test_type'])){
                     $test_type = $_POST['test_type'];
-                    $textareas = $_POST['textarea'];
+
                     $array_type_text;
                     for($tmp =0 ; $tmp < count($test_type) ; $tmp++){
                         //チェックが入っている場所をkey値として、textを代入する予定。key値は1～10で指定されている。
                         //key = textデータとして入力された分のみ其々を結びつけ連想配列化。
                         //$array_type_text[$value] = $_POST['textarea_'.$value];
-                        $array_type_text[$test_type[$tmp]] = $textareas[$tmp];                 
+                        $array_type_text[$test_type[$tmp]] = $_POST[$test_type[$tmp]];                 
                     }
                     Insert_test_details_tb_data($reference_number,$second,$array_type_text);
                 }
@@ -136,7 +136,7 @@
                     </div>
                     
                     <div class="button">
-                       <input type="button"  class="btn_item" name="cancel" value="キャンセル" alt="キャンセル">
+                       <input type="submit"  class="btn_item" name="cancel" value="キャンセル" alt="キャンセル">
                         <input type="submit" class="btn_item" name="save" value="保存" alt="保存" onclick="save_alert()">
                         <input type="submit" class="btn_item" name="next" value="三次→" alt="三次へ" disabled>
                         <input type="submit" class="btn_item step3" name="Input_3" value="step_3→" alt="step_3へ" disabled>

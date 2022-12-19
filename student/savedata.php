@@ -252,7 +252,7 @@
             var hantei2 = document.getElementById('fut').textContent;
                 if(!(hantei1 == '無回答' || hantei2 == "無回答")){
                     document.getElementById('request').disabled = false;        
-                }
+             }
         </script>
         <script type="text/javascript" src="\DEVELOPMENT_PRACTICE/JS_files/methot.js"></script>
 
