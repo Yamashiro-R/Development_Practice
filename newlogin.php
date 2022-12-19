@@ -40,23 +40,23 @@ if (!empty( $_POST['pass']) && !empty($_POST['re-pass'])) {
         $re_p_test = hash("sha256",$re_pas);
         $family = intval($family) ;
 
-        if($p_test === $re_p_test){/*問題あり　　どちらもnullの時も成り立ってしまう？　javascriptで問題ない？*/
+        if($p_test === $re_p_test && $p_test != ""){
             if($_SESSION['password'] != $p_test){
                 try {
                     $db = new PDO($dsn, $user, $password);
                     $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
                     //プリペアドステートメントを作成
-                    $stmt = $db->prepare("UPDATE account_tb SET password  = :pass WHERE act_id = :act");
+                    $stmt = $db->prepare("UPDATE account_tb SET password = :pass WHERE act_id = :act");
                     //パラメータ割り当て
                     $stmt->bindParam(':pass',$p_test, PDO::PARAM_STR);
-                    $stmt->bindParam(':act', $_SESSION['ID'], PDO::PARAM_INT);
+                    $stmt->bindParam(':act', $_SESSION['newlogID'], PDO::PARAM_INT);
                     //クエリの実行
                     $stmt->execute();
 
 
                     $stmt = $db->prepare("UPDATE account_tb SET fn_number = :num WHERE act_id = :act");
                     $stmt->bindParam(':num', $family, PDO::PARAM_INT);
-                    $stmt->bindParam(':act', $_SESSION['ID'], PDO::PARAM_INT);
+                    $stmt->bindParam(':act', $_SESSION['newlogID'], PDO::PARAM_INT);
                     //クエリの実行
                     $stmt->execute();
 
@@ -90,11 +90,11 @@ if (!empty( $_POST['pass']) && !empty($_POST['re-pass'])) {
             <meta charset="UTF-8">
             <link rel="stylesheet" href="cssfiles/style.css">
             <link rel="stylesheet" href="cssfiles/style_newrog.css">
-            <title>新規会員登録</title>
+            <title>新規アカウント登録</title>
         </head>
         <body>
             <div id="main_title"> 
-                <h1>新規会員登録</h1>
+                <h1>新規アカウント登録</h1>
             </div>
                 <form action="newlogin.php" class="roginform" method="POST">
                     <div class="ID-From">
@@ -105,13 +105,13 @@ if (!empty( $_POST['pass']) && !empty($_POST['re-pass'])) {
                         <p class="info">※パスワードを設定してください。</p>
                     </div>
                     <div class="password">
-                        <p class="p-title">Pass</p>
-                            <input type="text" pattern="^[0-9]+$" maxlength="4" name="pass" placeholder="4桁英数字" class="pass rogin-input" value="<?php echo $pass ?>" autocomplete="off"
+                        <p class="p-title">New Pass</p>
+                            <input type="text" pattern="^[0-9a-zA-Z]+$" maxlength="8" minlength="4" name="pass" placeholder="4～8桁の英数字" class="pass rogin-input" value="<?php echo $pass ?>" autocomplete="off"
 >
                     </div>
                     <div class="re-password">
                         <p class="re-pw p-title">Pass<br class="br-sp">再入力</p>
-                            <input type="text" name="re-pass" maxlength="4" placeholder="4桁英数字" class="re-pass rogin-input" value="<?php echo $re_pas ?>" autocomplete="off"
+                            <input type="text" pattern="^[0-9a-zA-Z]+$" maxlength="8" minlength="4" name="re-pass" placeholder="4～8桁の英数字" class="re-pass rogin-input" value="<?php echo $re_pas ?>" autocomplete="off"
 >
                     </div>
                     <div class="class-name">

@@ -1,9 +1,14 @@
 
 function new_login_check() {
         let formElements = document.forms[0];
-        for (let con = 0; con < 4; con++) {
+            
+        if(formElements.elements[0].value.length < 4){
+            alert("4~8の英数字で入力してください。");
+        }
+    
+        for (let con = 0; con < 3; con++) {
             if (formElements.elements[con].value != "" )  {
-                if (con == 3) {
+                if (con == 2) {
                     if(formElements.elements[con].value == "8") {
                         alert("科名を入力してください。");
                     }
@@ -13,12 +18,14 @@ function new_login_check() {
                 break;
             }
         }
-        if (formElements.elements[1].value == formElements.elements[2].value) {
+
+
+        if (formElements.elements[0].value == formElements.elements[1].value) {
             ;
         } else {
             alert("パスワードが間違っています。");
+            formElements.elements[0].value = null;
             formElements.elements[1].value = null;
-            formElements.elements[2].value = null;
         }
 }
       
@@ -816,34 +823,6 @@ function array_boolean(array){
 
 
 
-/*teach_reqのグローバルメニュー↓*/
-
-let navToggle = document.querySelector(".nav__toggle");
-let navWrapper = document.querySelector(".nav__wrapper");
-
-navToggle.addEventListener("click", function () {
-if (navWrapper.classList.contains("active")) {
-    this.setAttribute("aria-expanded", "false");
-    this.setAttribute("aria-label", "menu");
-    navWrapper.classList.remove("active");
-} else {
-    navWrapper.classList.add("active");
-    this.setAttribute("aria-label", "close menu");
-    this.setAttribute("aria-expanded", "true");
-}
-});
-
-/*teach_reqのグローバルメニュー↑*/
-
-/*ハンバーガーメニューが押されたときの処理*/ 
-function hamb_mn() {
-    $checked = document.getElementById('menu-btn-check').checked
-
-    if($checked){
-    alert('true');
-        document.getElementsByClassName('req_form').style.pointerEvents.value = 'none';
-    }
-} 
 
 
 
