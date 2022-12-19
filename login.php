@@ -2,6 +2,8 @@
     session_start();    //セッション開始
     $_SESSION = array();
 
+    $error = "";
+
     if (isset($_SESSION['ID'])) {
         //セッションにユーザIDがある＝ログインしている
         //ログイン済みならトップページに遷移する
@@ -26,23 +28,24 @@
             $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
             //プリペアドステートメントを作成
             $stmt = $db->prepare("SELECT * FROM account_tb WHERE act_id =:ID and password =:pass");
-
+            
+            $hasg_pass = hash("sha256",$_POST['pass']);
             //パラメータ割り当て
             $stmt->bindParam(':ID', $_POST['ID'], PDO::PARAM_STR);
-            $stmt->bindParam(':pass', hash("sha256",$_POST['pass']), PDO::PARAM_STR);
+            $stmt->bindParam(':pass', $hasg_pass, PDO::PARAM_STR);
             //クエリの実行
             $stmt->execute();
 
             if ($row = $stmt->fetch()) {
-                // if($_POST['pass'] == strval($_POST['ID'])){
-                //     $_SESSION['newlogID'] = $_POST['ID'];
-                //     header('Location: newlogin.php');
-                //     exit();
-                // }
+                if($_POST['pass'] == strval($_POST['ID'])){
+                    $_SESSION['password'] = $_POST['pass'];
+                    $_SESSION['newlogID'] = $_POST['ID'];
+                    header('Location: newlogin.php');
+                    exit();
+                }
                 //ユーザが存在していたら、セッションにユーザIDセット
 
                 $_SESSION['ID'] = $row['act_id'];
-                $_SESSION['pass'] = $row['password'];
                 $_SESSION['name'] = $row['account_name'];
 
 
@@ -56,9 +59,7 @@
             }else {
                 //1レコードも取得できなかったとき
                 //ユーザ名・パスワードが間違っている可能性あり
-                //もう一度ログインフォームを表示
-                header('Location: login.php');
-                exit();
+                $error = "IDもしくはPassが間違っています。";
             }
         }catch (PDOException $e) {
             exit('エラー：' . $e->getMessage());
@@ -79,13 +80,14 @@
             <div id="main_title"> 
                 <h1>就職活動管理<br class="br-sp">WEBアプリ</h1>
             </div>
+            <p style="text-align: center; color: red; " ><?php echo $error ?></p>
             <form class="roginform" action="login.php" method="POST">
                 <div class="ID-From">
                     <p class="p-title">ID</p>
                         <input type="text" class="id rogin-input" name="ID" maxlength="4" placeholder="4桁数字" pattern="^[0-9]+$" autocomplete="off">
                 </div>
                 <div class="infomation">
-                    <p class="info">※パスワードを設定してください。</p>
+                    <p class="info">※パスワードを入力してください。</p>
                 </div>
                 <div class="password">
                     <p class="p-title">Pass</p>
