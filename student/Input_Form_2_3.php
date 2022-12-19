@@ -171,7 +171,7 @@
                     <div class="button">
                          <!-- cancel押されたらページを再度読み直して元の状態(編集前echoに戻す) -->
                         <input type="reset"  class="btn_item" value="キャンセル" alt="キャンセル" onclick="location.href='./Input_Form_2_3.php'">
-                        <input type="submit" class="btn_item" name="save" value="保存" alt="保存">
+                        <input type="submit" class="btn_item" name="save" value="保存" alt="保存" onclick="save_alert()">
                         <input type="submit" class="btn_item" name="next" value="次のステップ→" alt="次のステップへ" disabled>
                     </div>
                 </form>

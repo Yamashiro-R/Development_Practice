@@ -289,9 +289,7 @@
             $max = 0;
 
 
-
-
-            for($i=0;$i < count($day)  && $status == $data[$test_data_no]['td_status'] ;$i++){
+            for($i=0;$i < count($day)  && array_key_exists($test_data_no,$data) && $status == $data[$test_data_no]['td_status'] ;$i++){
                 $datalis .= 
                 '<div class="test">
                     <div>
@@ -299,42 +297,39 @@
                         date('m月d日',strtotime($youbi[$i])) .' ' .  date('H:i', strtotime($begin_time_data[$i]))  . '～' .  date('H:i',strtotime($end_time_data[$i])) .')</p></div>';
                         
                 if($data){
-                    /*$data*/
                     $test_data = array_column($data,'details');
-                }
+                    while(true){
+                            $datalis .= '<div><p class="p-info">試験内容＝＞';
+                            if($data) {
+                                $datalis .= check_null_re($data[$test_data_no]['select_process'] );
+                            }else{
+                                $datalis .= check_null_re("");
+                            } 
+                            $datalis .= '</p>';
+                            
 
-                while(true){
-                        $datalis .= '<div><p class="p-info">試験内容＝＞';
-                        if($data) {
-                            $datalis .= check_null_re($data[$sp_no]['select_process'] );
-                        }else{
-                            $datalis .= check_null_re("");
-                        } 
-                        $datalis .= '</p>';
+
+                            $datalis .= '<p class="p-view">';
+                            if($data) {
+                                $datalis .= check_null_re($test_data[$test_data_no]);
+                            }else{
+                                $datalis .= check_null_re("");
+                            } 
+                            $datalis .= '</p></div>';
                         
+                        
+                        if(array_key_exists($test_data_no+1,$data) && $status == $data[$test_data_no+1]['td_status']){
+                                $test_data_no++;
+                            }else{
+                                $test_data_no++;
+                                $status++;
+                                $datalis .= '</div>';
+                                break;
+                            }
 
-
-                        $datalis .= '<p class="p-view">';
-                        if($data) {
-                            $datalis .= check_null_re($test_data[$test_data_no]);
-                        }else{
-                            $datalis .= check_null_re("");
-                        } 
-                        $datalis .= '</p></div>';
-                    
-                    
-                 if($data && array_key_exists($test_data_no+1,$data) && $status == $data[$test_data_no+1]['td_status']){
-                        $test_data_no++;
-                        $sp_no++;
-                    }else{
-                        $test_data_no++;
-                        $sp_no++;
-                        $status++;
-                        $datalis .= '</div>';
-                        break;
                     }
-
                 }
+
                                 
             }
             echo $datalis;

@@ -36,11 +36,16 @@ line-height: 1;
 input,textarea,select {
 font-family: inherit;
 font-size: 16px;
+cursor: pointer;
 }
 input[type="button"],input[type="text"],input[type="submit"] {
 -webkit-appearance: none;
 border-radius: 0;
 }
+button {
+    cursor: pointer;
+}
+
 textarea {
 resize: none;
 -webkit-appearance: none;

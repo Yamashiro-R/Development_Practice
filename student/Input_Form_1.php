@@ -332,7 +332,7 @@
                             <p class="p-info">提出書類：</p>
                             <div class="docu_sele">
                                 <?PHP 
-                                    $docmt_submits = ["履歴書","職務経歴書","終了見込証明書","成績証明書","健康診断書","作品","その他"];
+                                    $docmt_submits = ["履歴書","職務経歴書","修了見込証明書","成績証明書","健康診断書","作品","その他"];
                                     $checked_sub = explode(",",$document_submitted);
                                     for($j = 0; $j < count($docmt_submits); $j++){
                                         echo '<div><label><input type="checkbox" name="Documents_submitted[]" value="' .$docmt_submits[$j] . '"';
