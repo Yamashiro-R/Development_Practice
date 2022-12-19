@@ -150,11 +150,11 @@
                 </div>
                 <div>
                     <form id="dv_search" action="dataView.php#table_erea" method="POST">
-                        <label><input  type="submit" name="ap_status" value="全データ" hidden><span id="dv_s_inp">全データ</span></label>
-                        <label><input  type="submit" name="ap_status" value="未申請" hidden><span id="dv_s_inp1">未申請</span></label>
-                        <label><input  type="submit" name="ap_status" value="申請中" hidden><span id="dv_s_inp2">申請中</span></label>
+                        <label><input  type="submit" name="ap_status" value="全データ" hidden><span class="input-hover" id="dv_s_inp">全データ</span></label>
+                        <label><input  type="submit" name="ap_status" value="未申請" hidden><span class="input-hover" id="dv_s_inp1">未申請</span></label>
+                        <label><input  type="submit" name="ap_status" value="申請中" hidden><span class="input-hover" id="dv_s_inp2">申請中</span></label>
                         <br class="br-sp">
-                        <label><input  type="submit" name="ap_status" value="承認済" hidden><span id="dv_s_inp3">承認済
+                        <label><input  type="submit" name="ap_status" value="承認済" hidden><span class="input-hover" id="dv_s_inp3">承認済
                             <?PHP 
                                 if($notice_shou > 0){
                                     echo '<span class="bic">!</span>';

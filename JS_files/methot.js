@@ -442,12 +442,18 @@ function Input_Form_2_monitoring(sp_no,text_data){
         //step_3→のボタンがあるなら要素入れて無ければnull値を入れる以後それを判定してボタンの数を合わせる。
 
         step_3_btn = btn[2] == null ? null : btn[2]; 
+    }else if(btn.length < 5){
+        next_btn = btn[1];//二次→のボタン
+
+        step_3_btn = btn[2] == null ? null : btn[2]; 
+
     }else{
         next_btn = btn[2];//二次→のボタン
         //step_3→のボタンがあるなら要素入れて無ければnull値を入れる以後それを判定してボタンの数を合わせる。
 
         step_3_btn = btn[3] == null ? null : btn[3]; 
     }
+    console.log(btn.length);
     
     
     fetch_sp_number(sp_no,text_data);

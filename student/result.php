@@ -65,7 +65,7 @@
         $row_day = $stmt_day->fetchAll();
         $row_detalis = $stmt_detalis->fetchAll();
         //データの切り分け
-        //  print_r($row_detalis);
+        //  print_r($row_detalis); 
         $family_name = $row['family_name']; //科名
         $account_name = $_SESSION['name']; //アカウント名
         $attend_number = attend_number($row['act_id']); //出席番号
