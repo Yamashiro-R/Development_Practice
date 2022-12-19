@@ -3,7 +3,9 @@
     require_once '../includes/function.php';
 
     $reference_number = $_SESSION['reference_edit'];
-    //一次試験格納用
+
+
+    //三次試験格納用
     $third = 3;
 
     if( empty($_SESSION['reference_edit']) ){
@@ -25,8 +27,9 @@
                 $third_date = $_POST['third_date'];
                 $start_time = $_POST['start_time'];
                 $end_time = $_POST['end_time'];
+                
                 Insert_tests_tb_data($reference_number,$third,$third_date,$start_time,$end_time);
-
+                
 
                 //数があっていたらDBの処理に移行する。
                 //ポストされたデータを配列に格納
@@ -42,8 +45,6 @@
                     }
                     Insert_test_details_tb_data($reference_number,$third,$array_type_text);
                 }
-
-                Insert_test_details_tb_data($reference_number,$third,$array_type_text);
                 //タイムスタンプでデータを更新する処理
                 timestamp($reference_number); 
 
@@ -136,7 +137,7 @@
                     </div>
                     
                     <div class="button">
-                        <input type="button"  class="btn_item" name="cancel" value="キャンセル" alt="キャンセル">
+                        <input type="submit"  class="btn_item" name="cancel" value="キャンセル" alt="キャンセル">
                         <input type="submit" class="btn_item" name="save" value="保存" alt="保存" onclick="save_alert()">
                         <input type="submit" class="btn_item next_step" name="next" value="次のステップ→" alt="次のステップへ" disabled>
                     </div>

@@ -243,7 +243,7 @@
                     
                     </div>
                     <div class="button">
-                        <input type="button"  class="btn_item" name="cancel" value="キャンセル" alt="キャンセル">
+                        <input type="submit"  class="btn_item" name="cancel" value="キャンセル" alt="キャンセル">
                         <input type="submit" class="btn_item" name="save" value="保存" alt="保存" onclick="save_alert()">
                         <input type="submit" class="btn_item" name="commit" value="一次→" alt="一次→">
                     </div>
@@ -287,7 +287,7 @@
                     }
 
                     var checkboxs = document.querySelectorAll("input[type='checkbox']");
-                    console.log(checkboxs[0].checked);
+                    
                     var chk;
                     for(chk = 0; chk < checkboxs.length; chk++){
                         if(checkboxs[chk].checked == true){

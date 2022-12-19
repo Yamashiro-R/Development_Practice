@@ -161,7 +161,7 @@ try{
                     <input type="hidden" value="" name="hantei">
                     <div class="button">
                         <input type="button" class="cancel" value="キャンセル" alt="キャンセル">
-                        <input type="submit" class="keep" value="保存" alt="保存" onclick="kep_btn()">
+                        <input type="submit" class="keep" value="保存" alt="保存" onclick="save_alert()">
                         <input id="conf" type="submit" name="conf" class="confirmation" value="確認画面 →" alt="確認画面 →">
                     </div>
                 </div>
@@ -194,9 +194,6 @@ try{
                     document.getElementById('conf').disabled  = false;
             }
 
-            function kep_btn(){
-                alert('データが保存されました。');
-            }
         </script>
         <script type="text/javascript" src="\DEVELOPMENT_PRACTICE/JS_files/methot.js"></script>
     </html>

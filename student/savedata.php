@@ -246,6 +246,11 @@
                 document.getElementById('edit').style.display = 'none';
                 document.getElementById('request').style.display = 'none';
             }
+            if(param_j == 2 || param_j == 3){
+                document.getElementById('delete').style.display = 'none';
+                document.getElementById('edit').style.display = 'none';
+                document.getElementById('request').style.display = 'none';
+            }
 
 
             var hantei1 = document.getElementById('imp').textContent;

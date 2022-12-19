@@ -136,7 +136,7 @@
                     </div>
                     
                     <div class="button">
-                       <input type="button"  class="btn_item" name="cancel" value="キャンセル" alt="キャンセル">
+                       <input type="submit"  class="btn_item" name="cancel" value="キャンセル" alt="キャンセル">
                         <input type="submit" class="btn_item" name="save" value="保存" alt="保存" onclick="save_alert()">
                         <input type="submit" class="btn_item" name="next" value="三次→" alt="三次へ" disabled>
                         <input type="submit" class="btn_item step3" name="Input_3" value="step_3→" alt="step_3へ" disabled>
