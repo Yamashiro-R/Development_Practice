@@ -21,7 +21,7 @@
         }
     }
 
-    if(isset($_SESSION['EDIT'])){
+    if(isset($_POST['EDIT'])){
         $_SESSION['reference_edit'] = $reference_number;
         $_SESSION['back_page'] = 'result';
         header('Location: edit_Form_1.php');
@@ -185,7 +185,7 @@
                 <p class="as_status">申請状況：<strong><span><?php check_null($as_name) ?></span></strong></p>
 
                 <div class="button_d">
-                    <form action="">
+                    <form action="" method="POST">
                         <input type="submit" name="EDIT" value="編集" id="edit">
                     </form>
                     <form method="POST" action="" onsubmit="request_btn();">
