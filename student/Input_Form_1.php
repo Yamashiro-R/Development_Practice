@@ -65,7 +65,7 @@
                     $stmt->bindParam(':docmt_screening',$document_screening,PDO::PARAM_STR);
                     $stmt->bindParam(':job',$job,PDO::PARAM_STR);               
                     $stmt->bindParam(':docmt_submit',$document_submitted,PDO::PARAM_STR);
-                    $stmt->bindParam(' :manager',$manager,PDO::PARAM_STR);    
+                    $stmt->bindParam(':manager',$manager,PDO::PARAM_STR);    
 
                     //クエリの実行
                     $stmt->execute();
