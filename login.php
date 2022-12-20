@@ -8,7 +8,7 @@
         //セッションにユーザIDがある＝ログインしている
         //ログイン済みならトップページに遷移する
         // if($_SESSION['ID'] / 100 >= 99) 
-        if($_SESSION['ID'] / 100 >= 99){
+        if(($_SESSION['ID'] / 10000) >= 99){
             header('Location: teacher/home_2.php'); /*管理者ユーザ*/
         }else{
             header('Location: student/home_2.php');/*生徒ユーザ*/
@@ -37,12 +37,12 @@
             $stmt->execute();
 
             if ($row = $stmt->fetch()) {
-                if($_POST['pass'] == strval($_POST['ID'])){
-                    $_SESSION['password'] = $_POST['pass'];
-                    $_SESSION['newlogID'] = $_POST['ID'];
-                    header('Location: newlogin.php');
-                    exit();
-                }
+                // if($_POST['pass'] == strval($_POST['ID'])){
+                //     $_SESSION['password'] = $_POST['pass'];
+                //     $_SESSION['newlogID'] = $_POST['ID'];
+                //     header('Location: newlogin.php');
+                //     exit();
+                // }
                 //ユーザが存在していたら、セッションにユーザIDセット
 
                 $_SESSION['ID'] = $row['act_id'];
@@ -50,7 +50,7 @@
 
 
                 // if($_SESSION['ID'] / 100 >= 99) 
-                if($_SESSION['ID'] / 100 >= 99) {
+                if(($_SESSION['ID'] / 10000) >= 99) {
                     header('Location: teacher/home_2.php');
                 }else{
                     header('Location: student/home_2.php');
@@ -84,7 +84,7 @@
             <form class="roginform" action="login.php" method="POST">
                 <div class="ID-From">
                     <p class="p-title">ID</p>
-                        <input type="text" class="id rogin-input" name="ID" maxlength="4" placeholder="4桁数字" pattern="^[0-9]+$" autocomplete="off">
+                        <input type="text" class="id rogin-input" name="ID" maxlength="6" placeholder="6桁の数字" pattern="^[0-9]+$" autocomplete="off">
                 </div>
                 <div class="infomation">
                     <p class="info">※パスワードを入力してください。</p>

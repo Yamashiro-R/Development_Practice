@@ -40,7 +40,7 @@
 
             <div class="prot_div">
                 <div class="new_title"> 
-                    <div class="title" onclick="TOP()">TOP</div>
+                    <div class="title" onclick="TOP()">報告書検索</div>
                     <div class="title" onclick="CreateReport()">報告書作成</div>
                 </div>
                 <div class="prot_body1">
