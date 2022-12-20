@@ -33,13 +33,13 @@
                 $company_address = $_POST['company_address'];
                 $total_number = intval($_POST['number_of_applications']);
                 $method = $_POST['application_method'];
-                $document_screening = $_POST['document_screening'];
+                $document_screening = array_key_exists('document_screening',$_POST) ? $_POST['document_screening'] : null;
                 $job = $_POST['occupation'];
                 $manager = $_POST['manager'];
                 //データベースに格納できる様に書式を変更
                 //checkboxに複数チェックがあるとき
                 //例 履歴書,修了見込み証明書 に加工し1行で纏める。
-                $document_submitted = implode(",",$_POST['Documents_submitted']);
+                $document_submitted = array_key_exists('Documents_submitted',$_POST) ? implode(",",$_POST['Documents_submitted']) : null;
                 
                 
                 try{
@@ -123,14 +123,16 @@
                 $company_address = $_POST['company_address'];
                 $total_number = intval($_POST['number_of_applications']);
                 $method = $_POST['application_method'];
-                $document_screening = $_POST['document_screening'];
+                $document_screening = array_key_exists('document_screening',$_POST) ? $_POST['document_screening'] : null;
+                
                 $job = $_POST['occupation'];
                 $manager = $_POST['manager'];
                 //データベースに格納できる様に書式を変更
                 //checkboxに複数チェックがあるとき
                 //例 履歴書,修了見込み証明書 に加工し1行で纏める。
-                $document_submitted = implode(",",$_POST['Documents_submitted']);
 
+                // $document_submitted = implode(",",$_POST['Documents_submitted']);
+                $document_submitted = array_key_exists('Documents_submitted',$_POST) ? implode(",",$_POST['Documents_submitted']) : null;
                 try{
                     $db = new PDO($dsn, $user, $password);
                     $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);

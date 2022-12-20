@@ -255,16 +255,17 @@
 
 
     /*how_to_applyの出力形式の変換*/
-    function change_format(string $hta){
+    function change_format($hta){
         $new_hta = "";
-        for($i = 0; $i < strlen($hta); $i++){
-           if($hta[$i] != ','){
-                $new_hta .= $hta[$i];
-           }else{
-                $new_hta .= "<br>";
-           }
+        if($hta != null){
+            for($i = 0; $i < strlen($hta); $i++){
+                if($hta[$i] != ','){
+                     $new_hta .= $hta[$i];
+                }else{
+                     $new_hta .= "<br>";
+                }
+            }
         }
-
         return $new_hta ;
     } 
 
@@ -617,10 +618,11 @@
             foreach($array_type_text as $Key => $Text){
                         
                 $stmt = $db->prepare("INSERT INTO test_details_tb VALUE (:reference_number,:td_status,:sp_number,:details)");
-
+                $Text = str_replace('\r\n','<br>',$Text);
+                $Text = str_replace('\r','<br>',$Text);
+                $Text = str_replace('\n','<br>',$Text);
                 $Text = str_replace('"','”',$Text); 
                 $Text = str_replace("'","’",$Text); 
-                $Text = str_replace('&','＆',$Text);
                 $Text = str_replace('&','＆',$Text);
                 $Text = str_replace('%','％',$Text);
 
