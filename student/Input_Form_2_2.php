@@ -189,7 +189,7 @@
                         <input type="reset"  class="btn_item" value="キャンセル" alt="キャンセル" onclick="location.href='./Input_Form_2_2.php'">
                         <input type="submit" class="btn_item" name="save" value="保存" alt="保存" onclick="save_alert()">
                         <input type="submit" class="btn_item" name="next" value="三次→" alt="三次へ" disabled>
-                        <input type="submit" class="btn_item" name="Input_3" value="step_3→" alt="step_3へ" disabled>
+                        <input type="submit" class="btn_item" name="Input_3" value="三次なし" alt="step_3へ" disabled>
                     </div>
                 </form>
             </div>
