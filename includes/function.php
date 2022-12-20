@@ -618,9 +618,6 @@
             foreach($array_type_text as $Key => $Text){
                         
                 $stmt = $db->prepare("INSERT INTO test_details_tb VALUE (:reference_number,:td_status,:sp_number,:details)");
-                $Text = str_replace('\r\n','<br>',$Text);
-                $Text = str_replace('\r','<br>',$Text);
-                $Text = str_replace('\n','<br>',$Text);
                 $Text = str_replace('"','”',$Text); 
                 $Text = str_replace("'","’",$Text); 
                 $Text = str_replace('&','＆',$Text);
