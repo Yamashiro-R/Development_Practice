@@ -119,7 +119,7 @@
 
     if($year){
         if($year != 'defa'){
-        $select .=  " and account_tb.act_id Like '". $year % 1000 ."__'"; 
+        $select .=  " and account_tb.act_id Like '__". $year % 1000 ."__'"; 
         }
     }
 
