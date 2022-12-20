@@ -118,13 +118,13 @@
             <meta charset="UTF-8">
             <link rel="stylesheet" href="../cssfiles/style.css">
             <link rel="stylesheet" href="cssfiles/style_result.css">
-            <title>保存データ</title>
+            <title>最終確認データ</title>
         </head>
         <?php include 'header.php' ?>
 
         <body>
             <div id="main_title">   <!-- 共通のタイトル部分 -->
-                <h1>就職活動<br class="br-sp">保存データ</h1>
+                <h1>最終確認画面</h1>
             </div>
             <div class="big-div">
                 <div class="div-info">

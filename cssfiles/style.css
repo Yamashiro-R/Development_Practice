@@ -90,6 +90,8 @@ h2{
     text-align: center;
 }
 /* Input欄サブタイトル用*/
+
+
 h3{
     font-size: 170%;   
     text-align: center;     
@@ -253,6 +255,7 @@ p {
 }
 .site-header {
     position: relative;
+    width: 100%;
     background-color: #def7ff; 
 }
 
