@@ -123,6 +123,7 @@
                 $company_address = $_POST['company_address'];
                 $total_number = intval($_POST['number_of_applications']);
                 $method = $_POST['application_method'];
+                //入力値が無い時にnull格納
                 $document_screening = array_key_exists('document_screening',$_POST) ? $_POST['document_screening'] : null;
                 
                 $job = $_POST['occupation'];
@@ -132,6 +133,7 @@
                 //例 履歴書,修了見込み証明書 に加工し1行で纏める。
 
                 // $document_submitted = implode(",",$_POST['Documents_submitted']);
+                //入力値が無い時にnull格納
                 $document_submitted = array_key_exists('Documents_submitted',$_POST) ? implode(",",$_POST['Documents_submitted']) : null;
                 try{
                     $db = new PDO($dsn, $user, $password);
