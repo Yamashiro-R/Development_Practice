@@ -66,6 +66,19 @@ function validation_check(){
     let activemanager = true;
 
     let denger = formElements.getElementsByClassName('denger_field');
+
+    //其々のパラグラフをcreate!!この中にエラー文の文章を格納する。
+    let companypara = document.createElement('p');
+    let addresspara = document.createElement('p');
+    let methotpara = document.createElement('p');
+    let jobpara = document.createElement('p');
+    let numberpara = document.createElement('p');
+    let managerpara = document.createElement('p');
+    let checkboxpara = document.createElement('p');
+
+
+
+    let first_cnt = 0; 
     
     
     //其々の入力が正常化判断する為の boolean値を格納する為の変数
@@ -73,10 +86,45 @@ function validation_check(){
     if(forms.company_name.value == null || forms.company_name.value == ""){
             activecompany = false;
     }
-   
-    if(forms.company_address.value == null || forms.company_address.value == ""){
+    console.log(address.value);
+    if(address.value === ""){
         activeaddress = false;
+        
+    }else if( address.value[2] == "県" || address.value[3] == "県" ||
+                address.value[2] == "都" || address.value[2] == "府" || address.value[2] == "道" ){
+        if( address.value.search("県") != -1 ){ //県が含まれている。
+            switch( address.value.search("県") ){
+                case 2: //3番目に県がくるる時(沖縄県等)
+                    prefecture = address.value.substr(0,3);
+                    break;
+                case 3: //4番目に県がくる時(神奈川県等)
+                    prefecture = address.value.substr(0,4);
+                }
+        }else{ prefecture = address.value.substr(0,3); } //"東京都、大阪府、北海道" 
+        
+        //一致する都道府県を探索＆安策する前に初期化
+         first_cnt = 0; 
+        console.log("反応確認");
+        for(let tmp in Allprefecture) {
+            if(prefecture != Allprefecture[tmp]){ 
+                cnt++;      
+            }else{
+                break;
+            }
+        }
+        
+        if(first_cnt < 47) {  //都道府県名で探索成功の時
+            ;
+        } 
+    }else{
+        activeaddress = false;
+        addresspara.textContent = "県名/市町村の順に入力してください。"
+        addresspara.id = "row_1_para";
+        denger[1].appendChild(addresspara);
+
     }
+
+    
 
     if(forms.application_method.value == null || forms.application_method.value == "" || forms.application_method.value == "未選択"){
         activemethot = false;
@@ -105,9 +153,10 @@ function validation_check(){
             break;
         }
     }
-    if(chk >= checkboxs.length){
-        activedocuments_checkbox = false;
-    }
+    
+    Input_Form_1_judeg_flag(activecompany,activeaddress,activemethot,activedocument_radio,
+        activejob,activenumber,activemanager,activedocuments_checkbox);
+
 
     
     //チェックボックス用の配列とカウント
@@ -115,15 +164,7 @@ function validation_check(){
     
     let checkbox_cnt = 0;
     
-    //其々のパラグラフをcreate!!この中にエラー文の文章を格納する。
-    let companypara = document.createElement('p');
-    let addresspara = document.createElement('p');
-    let methotpara = document.createElement('p');
-    let jobpara = document.createElement('p');
-    let numberpara = document.createElement('p');
-    let managerpara = document.createElement('p');
-    let checkboxpara = document.createElement('p');
-
+    
 
 
     //探索用のカウント
