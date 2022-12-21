@@ -11,6 +11,7 @@
 
         if($_SESSION['ID'] / 10000 >= 99){
 
+
             header('Location: teacher/home_2.php'); /*管理者ユーザ*/
         }else{
             header('Location: student/home_2.php');/*生徒ユーザ*/
@@ -39,6 +40,7 @@
             $stmt->execute();
 
 
+
             $row = $stmt->fetch();
 
             // if ($row = $stmt->fetch()) {
@@ -48,7 +50,7 @@
             //         header('Location: newlogin.php');
             //         exit();
             //     }
-
+            
                 //ユーザが存在していたら、セッションにユーザIDセット
 
                 $_SESSION['ID'] = $row['act_id'];
@@ -56,6 +58,7 @@
 
 
                 // if($_SESSION['ID'] / 100 >= 99) 
+
 
                 if($_SESSION['ID'] / 10000 >= 99) {
 
@@ -93,6 +96,7 @@
                 <div class="ID-From">
                     <p class="p-title">ID</p>
 
+
                         <input type="text" class="id rogin-input" name="ID" maxlength="6" placeholder="6桁の数字" pattern="^[0-9]+$" autocomplete="off">
 
                 </div>
@@ -101,7 +105,7 @@
                 </div>
                 <div class="password">
                     <p class="p-title">Pass</p>
-                        <input type="password" name="pass" maxlength="8" placeholder="4～8桁の英数字" pattern="^[0-9a-zA-Z]+$" class="pass rogin-input">
+                        <input type="password" name="pass" maxlength="8" placeholder="6～8桁の英数字" pattern="^[0-9a-zA-Z]+$" class="pass rogin-input">
                 </div>
                 <input type="submit" class="btn btn-border" value="ログイン">
             </form>
