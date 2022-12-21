@@ -30,7 +30,7 @@ include '../includes/function.php';
 
             <div class="prot_div">
                 <div class="new_title"> 
-                    <div class="title" onclick="TOP()">TOP</div>
+                    <div class="title" onclick="TOP()">報告書検索</div>
                     <div class="title title_t" onclick="CreateReport()">申請依頼
                         <p class="sinki">
                             <?PHP 
