@@ -139,7 +139,7 @@
                        <input type="submit"  class="btn_item" name="cancel" value="キャンセル" alt="キャンセル">
                         <input type="submit" class="btn_item" name="save" value="保存" alt="保存" onclick="save_alert()">
                         <input type="submit" class="btn_item" name="next" value="三次→" alt="三次へ" disabled>
-                        <input type="submit" class="btn_item step3" name="Input_3" value="三次なし" alt="step_3へ" disabled>
+                        <input type="submit" class="btn_item step3" name="Input_3" value="三次なし" alt="三次なし" disabled>
                     </div>
                     <div class="button">
                         <input type="submit"  class="btn_item fin_btn" name="fin" value="編集終了" alt="編集終了">

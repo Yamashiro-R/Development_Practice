@@ -695,6 +695,7 @@ function initial_value_Text(checkNo,text){
                 
                 //ここでformのイベントを発生させてフラグの判定を消した後に発生させている。
                 //タイミングを合せるため。
+                div.remove();
                 let e = new Event('input');
                 let formElements = document.forms[0];
                 formElements.dispatchEvent(e);
