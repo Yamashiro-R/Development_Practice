@@ -1,6 +1,7 @@
 
 function new_login_check() {
         let formElements = document.forms[0];
+        let newlogID = document.getElementById('newlogID').textContent;
             
         if(formElements.elements[0].value.length < 4){
             alert("4~8の英数字で入力してください。");
@@ -20,8 +21,12 @@ function new_login_check() {
         }
 
 
-        if (formElements.elements[0].value == formElements.elements[1].value) {
-            ;
+        if ((formElements.elements[0].value == formElements.elements[1].value)) {
+            if(formElements.elements[0].value == newlogID){
+                alert("パスワードとIDを同じ値に設定できません！");
+                formElements.elements[0].value = null;
+                formElements.elements[1].value = null;
+                }
         } else {
             alert("パスワードが間違っています。");
             formElements.elements[0].value = null;

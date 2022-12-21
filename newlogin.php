@@ -5,33 +5,17 @@ if(!isset($_SESSION['newlogID'])){
     header('Location: login.php');
     exit();
 }
-$select = "selected";
 $option = array(7);
 
-for ($i = 0; $i < 7; $i++) {
-    $option[$i] = "";
-}
 
 if (!empty( $_POST['pass']) && !empty($_POST['re-pass'])) {
     $pass = $_POST['pass'];
     $re_pas = $_POST['re-pass'];
-    $family = $_POST['department'];
+    $family = 
 
-    if($_POST['department'] != 8){
 
         // $param_pass = json_encode($pass);
         // $param_re_pass = json_encode($re_pas);
-
-
-
-        for ($i = 1; $i < 8; $i++) {
-            if ($_POST['department'] == $i) {
-                $option[$i-1] = "selected";
-                $select = null;
-                break;
-            }
-        }
-
         $dsn = 'mysql:host=192.168.1.171;dbname=job_hunt_manage;charset=utf8';
         $user = 'user';
         $password = 'test';
@@ -41,7 +25,7 @@ if (!empty( $_POST['pass']) && !empty($_POST['re-pass'])) {
         $family = intval($family) ;
 
         if($p_test === $re_p_test && $p_test != ""){
-            if($_SESSION['password'] != $p_test){
+            if($_SESSION['newlogID'] != $pass){
                 try {
                     $db = new PDO($dsn, $user, $password);
                     $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
@@ -49,13 +33,6 @@ if (!empty( $_POST['pass']) && !empty($_POST['re-pass'])) {
                     $stmt = $db->prepare("UPDATE account_tb SET password = :pass WHERE act_id = :act");
                     //パラメータ割り当て
                     $stmt->bindParam(':pass',$p_test, PDO::PARAM_STR);
-                    $stmt->bindParam(':act', $_SESSION['newlogID'], PDO::PARAM_INT);
-                    //クエリの実行
-                    $stmt->execute();
-
-
-                    $stmt = $db->prepare("UPDATE account_tb SET fn_number = :num WHERE act_id = :act");
-                    $stmt->bindParam(':num', $family, PDO::PARAM_INT);
                     $stmt->bindParam(':act', $_SESSION['newlogID'], PDO::PARAM_INT);
                     //クエリの実行
                     $stmt->execute();
@@ -73,7 +50,6 @@ if (!empty( $_POST['pass']) && !empty($_POST['re-pass'])) {
 
         }    
 
-    }
 }else{
     $id = null;
     $pass = null;
@@ -99,35 +75,33 @@ if (!empty( $_POST['pass']) && !empty($_POST['re-pass'])) {
                 <form action="newlogin.php" class="roginform" method="POST">
                     <div class="ID-From">
                         <p class="p-title">ID</p>
-                            <span class="rogin-input" style="font-size: 150%;"><?php echo $_SESSION['newlogID'] ?></span>
+                            <span id="newlogID" class="rogin-input" style="font-size: 150%;"><?php echo $_SESSION['newlogID'] ?></span>
                     </div>
+
+                    <div class="ID-From">
+                        <p class="p-title">氏名</p><p id="newlog_fn" class="rogin-input"><?PHP echo isset($_SESSION['name']) ? $_SESSION['name'] : '未所属'; ?></p>
+                    </div>
+
+                    <div class="ID-From">
+                        <p class="p-title">科名</p><p id="newlog_fn" class="rogin-input"><?PHP echo isset($_SESSION['family_name']) ? $_SESSION['family_name'] : '未所属'; ?></p>
+                    </div>
+
                     <div class="infomation">
                         <p class="info">※パスワードを設定してください。</p>
                     </div>
+
                     <div class="password">
                         <p class="p-title">New Pass</p>
                             <input type="text" pattern="^[0-9a-zA-Z]+$" maxlength="8" minlength="4" name="pass" placeholder="4～8桁の英数字" class="pass rogin-input" value="<?php echo $pass ?>" autocomplete="off"
 >
                     </div>
+
                     <div class="re-password">
                         <p class="re-pw p-title">Pass<br class="br-sp">再入力</p>
                             <input type="text" pattern="^[0-9a-zA-Z]+$" maxlength="8" minlength="4" name="re-pass" placeholder="4～8桁の英数字" class="re-pass rogin-input" value="<?php echo $re_pas ?>" autocomplete="off"
 >
                     </div>
-                    <div class="class-name">
-                        <p class="p-title">科名</p>
-                            <!-- <input type="text" name="department" class="class_name rogin-input"> -->
-                        <select name="department" class="rogselect">
-                            <option value="1"<?php echo $option[0] ?>>造園ガーデニング科</option>
-                            <option value="2"<?php echo $option[1] ?>>電気システム科</option>
-                            <option value="3"<?php echo $option[2] ?>>自動車整備科</option>
-                            <option value="4"<?php echo $option[3] ?>>オフィスビジネス科</option>
-                            <option value="5"<?php echo $option[4] ?>>メディア・アート科</option>
-                            <option value="6"<?php echo $option[5] ?>>情報システム科</option>
-                            <option value="7"<?php echo $option[6] ?>>総合実務科</option>
-                            <option value="8"<?php echo $select ?>>未選択</option>
-                        </select>
-                    </div>
+
                 <!-- <button class="btn btn-border">登録</button> -->
                 <input type="submit" class="btn btn-border" value="登録" onclick="new_login_check()">
                 </form>
