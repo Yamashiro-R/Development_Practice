@@ -249,7 +249,7 @@
             <meta charset="UTF-8">
             <link rel="stylesheet" href="../cssfiles/style.css">
             <link rel="stylesheet" href="cssfiles/style_Input_Form.css">
-            <script type="text/javascript" src="\DEVELOPMENT_PRACTICE/JS_files/methot.js"></script>
+            
             <title>就職活動報告書_ステップ１</title>
         </head>
         <?php include 'header.php' ?>
@@ -362,53 +362,10 @@
                     </div>
                 </form>
             </div>
-            
+            <script type="text/javascript" src="\DEVELOPMENT_PRACTICE/JS_files/methot.js"></script>
             <script>
-                window.onload = validation_check()
-                var bool = true;
-                var forms = document.forms[0];
-                    if(forms.company_name.value == null || forms.company_name.value == ""){
-                        bool = false;
-                    }
-                   
-                    if(forms.company_address.value == null || forms.company_address.value == ""){
-                        bool = false;
-                    }
-
-                    if(forms.application_method.value == null || forms.application_method.value == "" || forms.application_method.value == "未選択"){
-                        bool = false;
-                    }
-
-                    if(forms.document_screening.value == null || forms.document_screening.value == ""){
-                        bool = false;
-                    }
-
-                    if(forms.occupation.value == null || forms.occupation.value == ""){
-                        bool = false;
-                    }
-
-                    if(forms.number_of_applications.value == null || forms.number_of_applications.value == ""){
-                        bool = false;
-                    }
-
-                    var checkboxs = document.querySelectorAll("input[type='checkbox']");
-                    console.log(checkboxs[0].checked);
-                    var chk;
-                    for(chk = 0; chk < checkboxs.length; chk++){
-                        if(checkboxs[chk].checked == true){
-                            break;
-                        }
-                    }
-                    if(chk >= checkboxs.length){
-                        bool = false;
-                    }
-                    
-
-                    if(bool){
-                        forms.elements[17].disabled = false;
-                    }else{
-                        forms.elements[17].disabled = true;
-                    }
+                window.onload = validation_check();
+               
 
 
             </script>

@@ -29,7 +29,8 @@
             $db = new PDO($dsn, $user, $password);
             $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
             //プリペアドステートメントを作成
-            $stmt = $db->prepare("SELECT * FROM account_tb WHERE act_id =:ID and password =:pass");
+            $stmt = $db->prepare("SELECT * FROM account_tb,family_name_tb 
+                                    WHERE account_tb.fn_number = family_name_tb.fn_number and act_id =:ID and password =:pass");
             
             $hasg_pass = hash("sha256",$_POST['pass']);
             //パラメータ割り当て
@@ -41,9 +42,10 @@
 
 
                 if ($row = $stmt->fetch()) {
-
+                    
                     if($_POST['pass'] == strval($_POST['ID'])){
-                        $_SESSION['password'] = $_POST['pass'];
+                        $_SESSION['name'] = $row['account_name'];
+                        $_SESSION['family_name'] = $row['family_name'];
                         $_SESSION['newlogID'] = $_POST['ID'];
                         header('Location: newlogin.php');
                         exit();
@@ -54,13 +56,12 @@
                     $_SESSION['ID'] = $row['act_id'];
                     $_SESSION['name'] = $row['account_name'];
 
-                    if($_SESSION['ID'] / 10000 >= 99) {
-
-                            header('Location: teacher/home_2.php');
-                    }else{
-                        header('Location: student/home_2.php');
-                    }
-                    exit();
+                if($_SESSION['ID'] / 10000 >= 99) {
+                    header('Location: teacher/home_2.php');
+                }else{
+                    header('Location: student/home_2.php');
+                }
+                exit();
             }else {
                 //1レコードも取得できなかったとき
                 //ユーザ名・パスワードが間違っている可能性あり

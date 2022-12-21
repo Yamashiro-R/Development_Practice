@@ -258,55 +258,6 @@
             <script>
                 validation_check();
             
-                var bool = true;
-                var forms = document.forms[0];
-                    if(forms.company_name.value == null || forms.company_name.value == ""){
-                        bool = false;
-                    }
-                   
-                    if(forms.company_address.value == null || forms.company_address.value == ""){
-                        bool = false;
-                    }
-
-                    if(forms.application_method.value == null || forms.application_method.value == "" || forms.application_method.value == "未選択"){
-                        bool = false;
-                    }
-
-                    if(forms.document_screening.value == null || forms.document_screening.value == ""){
-                        bool = false;
-                    }
-
-                    if(forms.occupation.value == null || forms.occupation.value == ""){
-                        bool = false;
-                    }
-
-                    if(forms.number_of_applications.value == null || forms.number_of_applications.value == ""){
-                        bool = false;
-                    }
-
-                    if(forms.manager.value == null || forms.manager.value == ""){
-                        bool = false;
-                    }
-
-                    var checkboxs = document.querySelectorAll("input[type='checkbox']");
-                    
-                    var chk;
-                    for(chk = 0; chk < checkboxs.length; chk++){
-                        if(checkboxs[chk].checked == true){
-                            break;
-                        }
-                    }
-
-                    if(chk >= checkboxs.length){
-                        bool = false;
-                    }
-                    
-
-                    if(bool){
-                        forms.elements[17].disabled = false;
-                    }else{
-                        forms.elements[17].disabled = true;
-                    }
             </script>
         </body>
         
