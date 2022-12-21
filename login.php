@@ -7,9 +7,9 @@
     if (isset($_SESSION['ID'])) {
         //セッションにユーザIDがある＝ログインしている
         //ログイン済みならトップページに遷移する
-        // if($_SESSION['ID'] / 100 >= 99) 
 
         if($_SESSION['ID'] / 10000 >= 99){
+
 
             header('Location: teacher/home_2.php'); /*管理者ユーザ*/
         }else{
@@ -29,7 +29,8 @@
             $db = new PDO($dsn, $user, $password);
             $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
             //プリペアドステートメントを作成
-            $stmt = $db->prepare("SELECT * FROM account_tb WHERE act_id =:ID and password =:pass");
+            $stmt = $db->prepare("SELECT * FROM account_tb,family_name_tb 
+                                    WHERE account_tb.fn_number = family_name_tb.fn_number and act_id =:ID and password =:pass");
             
             $hasg_pass = hash("sha256",$_POST['pass']);
             //パラメータ割り当て
@@ -39,36 +40,33 @@
             $stmt->execute();
 
 
-            $row = $stmt->fetch();
 
-            // if ($row = $stmt->fetch()) {
-            //     if($_POST['pass'] == strval($_POST['ID'])){
-            //         $_SESSION['password'] = $_POST['pass'];
-            //         $_SESSION['newlogID'] = $_POST['ID'];
-            //         header('Location: newlogin.php');
-            //         exit();
-            //     }
+                if ($row = $stmt->fetch()) {
+                    
+                    if($_POST['pass'] == strval($_POST['ID'])){
+                        $_SESSION['name'] = $row['account_name'];
+                        $_SESSION['family_name'] = $row['family_name'];
+                        $_SESSION['newlogID'] = $_POST['ID'];
+                        header('Location: newlogin.php');
+                        exit();
+                    }
 
-                //ユーザが存在していたら、セッションにユーザIDセット
+                    //ユーザが存在していたら、セッションにユーザIDセット
 
-                $_SESSION['ID'] = $row['act_id'];
-                $_SESSION['name'] = $row['account_name'];
-
-
-                // if($_SESSION['ID'] / 100 >= 99) 
+                    $_SESSION['ID'] = $row['act_id'];
+                    $_SESSION['name'] = $row['account_name'];
 
                 if($_SESSION['ID'] / 10000 >= 99) {
-
                     header('Location: teacher/home_2.php');
                 }else{
                     header('Location: student/home_2.php');
                 }
                 exit();
-            // }else {
-            //     //1レコードも取得できなかったとき
-            //     //ユーザ名・パスワードが間違っている可能性あり
-            //     $error = "IDもしくはPassが間違っています。";
-            // }
+            }else {
+                //1レコードも取得できなかったとき
+                //ユーザ名・パスワードが間違っている可能性あり
+                $error = "IDもしくはPassが間違っています。";
+            }
         }catch (PDOException $e) {
             exit('エラー：' . $e->getMessage());
         }    
@@ -93,6 +91,7 @@
                 <div class="ID-From">
                     <p class="p-title">ID</p>
 
+
                         <input type="text" class="id rogin-input" name="ID" maxlength="6" placeholder="6桁の数字" pattern="^[0-9]+$" autocomplete="off">
 
                 </div>
@@ -101,7 +100,7 @@
                 </div>
                 <div class="password">
                     <p class="p-title">Pass</p>
-                        <input type="password" name="pass" maxlength="8" placeholder="4～8桁の英数字" pattern="^[0-9a-zA-Z]+$" class="pass rogin-input">
+                        <input type="password" name="pass" maxlength="8" placeholder="6～8桁の英数字" pattern="^[0-9a-zA-Z]+$" class="pass rogin-input">
                 </div>
                 <input type="submit" class="btn btn-border" value="ログイン">
             </form>

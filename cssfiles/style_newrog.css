@@ -11,11 +11,11 @@
 
 .roginform div {
     width: 565px;
-    margin-top: 25px;
     margin-left: auto;
     margin-right: auto;
     display: flex;
 }
+
 
 .rogin-input {
     margin-left: 50px;
@@ -26,9 +26,11 @@
     border-bottom: 2px solid #000;
 }
 
-.ID-From .rogin-input {
+.ID-From .rogin-input,
+#newlog_fn {
     border-bottom: none;
 }
+
 
 .ID-From span {
     display: block;
@@ -41,6 +43,10 @@
 /*パスワードここから*/
 .password {
     margin-top: 10px !important;
+}
+
+.re-password {
+    margin-top: 25px;
 }
 
 
@@ -70,16 +76,6 @@
     text-align: center; 
 }
 
-/*プルダウンメニュー*/
-.rogselect {
-    margin-left: 50px;
-    width: 350px;
-    border: none;
-    outline: none;
-    border-bottom: 2px solid #000;
-    text-align: center;
-    cursor: pointer;
-}
 
 
 /*ボタン*/
