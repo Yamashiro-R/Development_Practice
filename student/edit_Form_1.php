@@ -24,13 +24,15 @@
                 $company_address = $_POST['company_address'];
                 $total_number = intval($_POST['number_of_applications']);
                 $method = $_POST['application_method'];
-                $document_screening = $_POST['document_screening'];
+                //入力値が無い時にnull格納
+                $document_screening = array_key_exists('document_screening',$_POST) ? $_POST['document_screening'] : null;
                 $job = $_POST['occupation'];
                 $manager = $_POST['manager'];
                 //データベースに格納できる様に書式を変更
                 //checkboxに複数チェックがあるとき
                 //例 履歴書,修了見込み証明書 に加工し1行で纏める。
-                $document_submitted = implode(",",$_POST['Documents_submitted']);
+                //入力値が無い時にnull格納
+                $document_submitted = array_key_exists('Documents_submitted',$_POST) ? implode(",",$_POST['Documents_submitted']) : null;
                 
                 
                 //DBに接続
