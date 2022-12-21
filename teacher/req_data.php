@@ -136,7 +136,7 @@
                         <p class="p-info">応募先企業：</p><p class="p-view"><?php check_null( $comp_name )?></p>
                     </div>
                     <div class="divdiv">
-                        <p class="p-info">応募先住所：</p><p class="p-view"><?php address_check( $comp_address)  ?></p>
+                        <p class="p-info" title="<?php check_null($comp_address)?>">応募先住所：</p><p class="p-view" title="<?php check_null($comp_address)?>"><?php address_check( $comp_address) ?></p>
                     </div>
                     <div class="divdiv">
                         <p class="p-info">提出書類：</p><p class="p-view"><?php check_null(change_format($docmt_submit))?></p>
