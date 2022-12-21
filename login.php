@@ -40,7 +40,7 @@
 
 
                 if ($row = $stmt->fetch()) {
-                    
+
                     if($_POST['pass'] == strval($_POST['ID'])){
                         $_SESSION['password'] = $_POST['pass'];
                         $_SESSION['newlogID'] = $_POST['ID'];
@@ -55,11 +55,11 @@
 
                     if($_SESSION['ID'] / 10000 >= 99) {
 
-                        header('Location: teacher/home_2.php');
-                }else{
-                    header('Location: student/home_2.php');
-                }
-                exit();
+                            header('Location: teacher/home_2.php');
+                    }else{
+                        header('Location: student/home_2.php');
+                    }
+                    exit();
             }else {
                 //1レコードも取得できなかったとき
                 //ユーザ名・パスワードが間違っている可能性あり
