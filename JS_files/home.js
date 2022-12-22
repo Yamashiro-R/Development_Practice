@@ -4,7 +4,7 @@
         let TOP_body = document.querySelector(".prot_body1");
         let CreateReport_body = document.querySelector(".prot_body2");
         let TOP_title = document.querySelectorAll(".title");
-        console.log(TOP_title);
+        
         
         TOP_body.style.display = "block";
         CreateReport_body.style.display = "none";
@@ -20,7 +20,7 @@
         let CreateReport_body = document.querySelector(".prot_body2");
         let TOP_title = document.querySelectorAll(".title");
         
-        console.log(TOP_title);
+        
         
         TOP_body.style.display = "none";
         CreateReport_body.style.display = "block";

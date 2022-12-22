@@ -86,13 +86,13 @@ i{
     font-size: 20px; 
 }
 
-.prot_body2 button:first-child{
+
+.prot_body2 button:nth-of-type(1){
     margin-left: 100px;
 }
-.prot_body2 button:last-child{
+.prot_body2 button:nth-of-type(2){
     margin-left: 300px;
 }
-
 
 .sinki {
     font-size: 85%;
@@ -145,6 +145,9 @@ i{
         width: 450px;
         margin: 50px auto 0 auto;
         
+    }
+    .teacher_2{
+        margin-right: 100px;
     }
 
 }

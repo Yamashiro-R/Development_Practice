@@ -83,7 +83,12 @@ function validation_check(){
 
 
 
-    let first_cnt = 0; 
+
+       //探索用のカウント
+       let cnt = 0;
+       //入力値の県名を格納
+       let prefecture;
+   
     
     
     //其々の入力が正常化判断する為の boolean値を格納する為の変数
@@ -107,9 +112,7 @@ function validation_check(){
                 }
         }else{ prefecture = address.value.substr(0,3); } //"東京都、大阪府、北海道" 
         
-        //一致する都道府県を探索＆安策する前に初期化
-         first_cnt = 0; 
-        console.log("反応確認");
+      
         for(let tmp in Allprefecture) {
             if(prefecture != Allprefecture[tmp]){ 
                 cnt++;      
@@ -118,7 +121,7 @@ function validation_check(){
             }
         }
         
-        if(first_cnt < 47) {  //都道府県名で探索成功の時
+        if(cnt < 47) {  //都道府県名で探索成功の時
             ;
         } 
     }else{
@@ -172,11 +175,7 @@ function validation_check(){
     
 
 
-    //探索用のカウント
-    let cnt = 0;
-    //入力値の県名を格納
-    let prefecture;
-
+ 
 
 
     //保存ボタンと一次→ボタンの有効化条件
