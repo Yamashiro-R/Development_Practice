@@ -235,13 +235,13 @@
                         <div id="dvS_contentu" style="display: block;">
                             <div class="main_div">
                                 <p class="p_input">
-                                    <label>企業名<br><input type="search" name="comp_name" value="<?php echo $comp_name ?>"></label>
+                                    <label>企業名<br><input type="search" name="comp_name" maxlength="15" value="<?php echo $comp_name ?>"></label>
                                 </p>
                                 <p class="p_input">
-                                    <label>生徒名<br><input type="search" name="student_name" value="<?php echo $student_name ?>"> </label>
+                                    <label>生徒名<br><input type="search" name="student_name" maxlength="15" value="<?php echo $student_name ?>"> </label>
                                 </p>
                                 <p class="p_input">
-                                    <label>生徒ID<br><input type="search" name="student_id" value="<?php echo $student_id ?>"> </label>
+                                    <label>生徒ID<br><input type="search" name="student_id" maxlength="6" placeholder="6桁の数字で入力" pattern="^[0-9]+$" value="<?php echo $student_id ?>"> </label>
                                 </p>
                                 <p class="p_select">
                                     <label>学科名<br>
