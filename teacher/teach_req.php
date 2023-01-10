@@ -38,7 +38,7 @@
         <?php include 'header.php' ?>
 
         <div class="return">    <!-- 犬の画像用戻るボタン -->
-            <a href="home_2.php"><img src="../images/innu.jpeg"></a>
+            <a href="home.php"><img src="../images/innu.jpeg"></a>
         </div>
 
         <body class="body">

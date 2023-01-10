@@ -68,23 +68,23 @@
     $select = 'SELECT * FROM ac_comp_data_tb,apply_status_tb,account_tb
                 where ac_comp_data_tb.as_number = apply_status_tb.as_number
                 and ac_comp_data_tb.act_id = account_tb.act_id
-                and ac_comp_data_tb.as_number = 3 ';
+                and ac_comp_data_tb.as_number = 3';
 
     if($name){
-        $select .=  "and comp_name LIKE '%". $name . "%'" ; 
+        $select .=  " and comp_name LIKE :name" ; 
     }
 
     if($address){
-        $select .=  "and comp_address LIKE '%". $address . "%'" ; 
+        $select .=  " and comp_address LIKE :address" ; 
     }
 
     if($job){
-        $select .=  "and job LIKE '%". $job . "%'" ; 
+        $select .=  " and job LIKE :job" ; 
     }
 
     if($fn_number){
         if($fn_number != 'defa'){
-            $select .=  "and fn_number = ". $fn_number; 
+            $select .=  " and fn_number = :fnNumber"; 
         }else {
             $fn_number = false;
         }
@@ -109,6 +109,26 @@
 
         if($boole){
             $stmt = $db->prepare($select_limit);
+
+            if($name){
+                $name = "%".$name."%";
+                $stmt->bindParam(':name',$name,PDO::PARAM_STR);
+            }
+        
+            if($address){
+                $address = "%".$address."%";
+                $stmt->bindParam(':address',$address,PDO::PARAM_STR);
+            }
+        
+            if($job){
+                $job = "%".$job."%";
+                $stmt->bindParam(':job',$job,PDO::PARAM_STR);
+            }
+        
+            if($fn_number){
+                $stmt->bindParam(':fnNumber',$fn_number,PDO::PARAM_INT);
+            }
+        
         }
         
         
@@ -139,6 +159,23 @@
         
         if($boole){
             $stmt = $db->prepare($select);
+
+            if($name){
+                $stmt->bindParam(':name',$name,PDO::PARAM_STR);
+            }
+        
+            if($address){
+                $stmt->bindParam(':address',$address,PDO::PARAM_STR);
+            }
+        
+            if($job){
+                $stmt->bindParam(':job',$job,PDO::PARAM_STR);
+            }
+        
+            if($fn_number){
+                $stmt->bindParam(':fnNumber',$fn_number,PDO::PARAM_STR);
+            }
+
         }
 
     
@@ -166,7 +203,7 @@
         <body class="serch_back-color">
             <div>
                 <div class="return">
-                    <a href="home_2.php"><img src="../images/innu.jpeg"></a>
+                    <a href="home.php"><img src="../images/innu.jpeg"></a>
                 </div>
                 <div id="main_title"> 
                     <h1>報告書📄<br class="br-sp">全データ検索</h1>
@@ -178,10 +215,10 @@
                             <div class="dvSname"> -->
                         <div>
                              <p>
-                                <label>企業名で検索<br><input type="search" name="comp_name" value="<?php echo $name ?>"></label>
+                                <label>企業名で検索<br><input type="search" name="comp_name" value="<?php echo str_replace('%', '', $name); ?>"></label>
                             </p>
                             <p>
-                                <label>所在地<span class="small">※市町村で記入<br>(県外の場合は県名で記入)</span><br><input type="search" name="comp_address" value="<?php echo $address ?>"> </label>
+                                <label>所在地<span class="small"></span><br><input type="search" name="comp_address" value="<?php echo str_replace('%', '', $address); ?>"> </label>
                             </p>
                             <p class="p_select">
                                 <label>学科名<br>
@@ -201,7 +238,7 @@
                                 </label>
                             </p>
                             <p>
-                                <label>職種で検索<br><input type="search" name="job" value="<?php echo $job ?>"> </label>
+                                <label>職種で検索<br><input type="search" name="job" value="<?php echo str_replace('%', '', $job); ?>"> </label>
                                 <div class="button_d"><input type="submit" class="search" value="🔍検索"></div> 
                             </p>
                         </div>

@@ -122,7 +122,7 @@
 
 
     }else{
-        header('Location: home_2.php');
+        header('Location: home.php');
 
     }
     

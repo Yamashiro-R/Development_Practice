@@ -24,7 +24,7 @@
 <header class="site-header">
     <div class="wrapper site-header__wrapper">
         <div class="site-header__start">
-            <p class="brand"><a href="home_2.php">就職活動管理Webアプリ</a></p>
+            <p class="brand"><a href="home.php">就職活動管理Webアプリ</a></p>
         </div>
         <div class="site-header__middle">
             <nav class="nav">
@@ -46,7 +46,7 @@
                             </p>
                         </label>
                         <ul class="menu animation">
-                            <li><a class="item" href="home_2.php">ホーム</a></li>
+                            <li><a class="item" href="home.php">ホーム</a></li>
                             <li><a class="item" href="t_dvSearch.php">閲覧検索</a></li>
                             <li><a class="item" href="teach_req.php">新規申請依頼</a>
                                 <p class="sinki_kensu_hd">
@@ -72,7 +72,7 @@
             <div class="menu-content">
                 <ul>
                     <li>
-                        <a href="home_2.php">ホーム</a>
+                        <a href="home.php">ホーム</a>
                     </li>
                     <li>
                         <a href="t_dvSearch.php">閲覧検索</a>

@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if(!isset($_SESSION['newlogID'])){
+if(empty($_SESSION['newlogID'])){
     header('Location: login.php');
     exit();
 }
@@ -65,7 +65,7 @@ if (!empty( $_POST['pass']) && !empty($_POST['re-pass'])) {
         <head>
             <meta charset="UTF-8">
             <link rel="stylesheet" href="cssfiles/style.css">
-            <link rel="stylesheet" href="cssfiles/style_newrog.css">
+            <link rel="stylesheet" href="cssfiles/style_newlog.css">
             <title>新規アカウント登録</title>
         </head>
         <body>
@@ -85,11 +85,6 @@ if (!empty( $_POST['pass']) && !empty($_POST['re-pass'])) {
                     <div class="ID-From">
                         <p class="p-title">科名</p><p id="newlog_fn" class="rogin-input"><?PHP echo isset($_SESSION['family_name']) ? $_SESSION['family_name'] : '未所属'; ?></p>
                     </div>
-
-                    <div class="infomation">
-                        <p class="info">※パスワードを設定してください。</p>
-                    </div>
-
                     <div class="password">
                         <p class="p-title">New Pass</p>
                             <input type="text" pattern="^[0-9a-zA-Z]+$" maxlength="8" minlength="4" name="pass" placeholder="4～8桁の英数字" class="pass rogin-input" value="<?php echo $pass ?>" autocomplete="off"
@@ -101,8 +96,6 @@ if (!empty( $_POST['pass']) && !empty($_POST['re-pass'])) {
                             <input type="text" pattern="^[0-9a-zA-Z]+$" maxlength="8" minlength="4" name="re-pass" placeholder="4～8桁の英数字" class="re-pass rogin-input" value="<?php echo $re_pas ?>" autocomplete="off"
 >
                     </div>
-
-                <!-- <button class="btn btn-border">登録</button> -->
                 <input type="submit" class="btn btn-border" value="登録" onclick="new_login_check()">
                 </form>
 

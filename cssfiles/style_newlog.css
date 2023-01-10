@@ -1,7 +1,5 @@
 
-body {
-    background-color: #F5FFFA;
-}
+/*新規会員登録画面*/
 
 /*IDここから*/
 .ID-From {
@@ -10,29 +8,45 @@ body {
     display: flex;
 }
 
+
 .roginform div {
     width: 565px;
-    margin-top: 25px;
     margin-left: auto;
     margin-right: auto;
     display: flex;
 }
 
+
 .rogin-input {
     margin-left: 50px;
-    width: 70%;
+    width: 350px;
     border: none;
     outline: none;
     text-align: center;
-    background-color: #F5FFFA;
     border-bottom: 2px solid #000;
+}
+
+.ID-From .rogin-input,
+#newlog_fn {
+    border-bottom: none;
+}
+
+
+.ID-From span {
+    display: block;
+    vertical-align: middle;
+    padding-top: 12px;
 }
 
 /*ここまで↑*/
 
 /*パスワードここから*/
 .password {
-    margin-top: 25px !important;
+    margin-top: 30px !important;
+}
+
+.re-password {
+    margin-top: 50px;
 }
 
 
@@ -43,7 +57,7 @@ body {
 /*ここまで↑*/
 
 .p-title {
-    width: 30%;
+    width: 165px;
     margin-left: auto;
     margin-right: auto;
     font-size: 25px;
@@ -62,34 +76,20 @@ body {
     text-align: center; 
 }
 
-/*プルダウンメニュー*/
-.rogselect {
-    margin-left: 50px;
-    width: 350px;
-    border: none;
-    outline: none;
-    border-bottom: 2px solid #000;
-    text-align: center;
-}
 
 
 /*ボタン*/
 
 .btn-border {
     width: 250px;
-    height: 50px;
     font-size: 25px;
     font-weight: bold;
-    margin-top: 80px;
+    margin-top: 50px;
     letter-spacing: 0.5em;
     display: block;
     margin-left: auto;
     margin-right: auto;
     cursor: pointer;
-}
-
-.btn-border:active {
-    background-color: gray;
 }
 
 /*フレキシブル設定↓*/
@@ -105,8 +105,6 @@ body {
 }    
 
 /*フレキシブル設定↑*/
-
-
 
 
 

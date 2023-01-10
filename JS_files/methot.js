@@ -876,7 +876,7 @@ function array_boolean(array){
 function rog_out_js(){
     if(confirm('ログアウトしてもよろしいですか？')){
         xhr = new XMLHttpRequest();
-        xhr.open('POST', '../includes/rog_out.php', true);
+        xhr.open('POST', '../includes/log_out.php', true);
         xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
         xhr.send(1);
 

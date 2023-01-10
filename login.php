@@ -4,19 +4,17 @@
 
     $error = "";
 
-    if (isset($_SESSION['ID'])) {
+    if (!empty($_SESSION['ID'])) {
         //セッションにユーザIDがある＝ログインしている
         //ログイン済みならトップページに遷移する
 
         if($_SESSION['ID'] / 10000 >= 99){
-
-
-            header('Location: teacher/home_2.php'); /*管理者ユーザ*/
+            header('Location: teacher/home.php'); /*管理者ユーザ*/
         }else{
-            header('Location: student/home_2.php');/*生徒ユーザ*/
+            header('Location: student/home.php');/*生徒ユーザ*/
         }
         exit();
-    }else if (isset($_POST['ID']) && isset($_POST['pass'])) {
+    }else if (!empty($_POST['ID']) && !empty($_POST['pass'])) {
         //ログインしていないがユーザ名とパスワードが送信されたとき
 
         //比嘉さんのデータベースアクセス用
@@ -41,25 +39,25 @@
 
 
 
-                if ($row = $stmt->fetch()) {
-                    
-                    // if($_POST['pass'] == strval($_POST['ID'])){
-                    //     $_SESSION['name'] = $row['account_name'];
-                    //     $_SESSION['family_name'] = $row['family_name'];
-                    //     $_SESSION['newlogID'] = $_POST['ID'];
-                    //     header('Location: newlogin.php');
-                    //     exit();
-                    // }
-
-                    //ユーザが存在していたら、セッションにユーザIDセット
-
-                    $_SESSION['ID'] = $row['act_id'];
+            if ($row = $stmt->fetch()) {   
+                //IDとPassが一緒の場合　＝　新規ユーザページへ飛ばす
+                if($_POST['pass'] == strval($_POST['ID'])){
                     $_SESSION['name'] = $row['account_name'];
+                    $_SESSION['family_name'] = $row['family_name'];
+                    $_SESSION['newlogID'] = $_POST['ID'];
+                    header('Location: newlogin.php');
+                    exit();
+                }
+
+                //ユーザが存在していたら、セッションにユーザIDセット
+
+                $_SESSION['ID'] = $row['act_id'];
+                $_SESSION['name'] = $row['account_name'];
 
                 if($_SESSION['ID'] / 10000 >= 99) {
-                    header('Location: teacher/home_2.php');
+                    header('Location: teacher/home.php');
                 }else{
-                    header('Location: student/home_2.php');
+                    header('Location: student/home.php');
                 }
                 exit();
             }else {
@@ -70,8 +68,10 @@
         }catch (PDOException $e) {
             exit('エラー：' . $e->getMessage());
         }    
+    }else if(!empty($_POST)){
+        //ユーザ名・パスワードが間違っている可能性あり
+        $error = "IDもしくはPassが間違っています。";
     }
-    //ログインしていない場合は以降のログインフォームを表示する
 ?>
 
 <!DOCTYPE html>
@@ -79,7 +79,7 @@
         <head>
             <meta charset="UTF-8">
             <link rel="stylesheet" href="cssfiles/style.css">
-            <link rel="stylesheet" href="cssfiles/style_rog.css">
+            <link rel="stylesheet" href="cssfiles/style_log.css">
             <title>就職活動管理WEBアプリ</title>
         </head>
         <body>
@@ -90,13 +90,7 @@
             <form class="roginform" action="login.php" method="POST">
                 <div class="ID-From">
                     <p class="p-title">ID</p>
-
-
-                        <input type="text" class="id rogin-input" name="ID" maxlength="6" placeholder="6桁の数字" pattern="^[0-9]+$" autocomplete="off">
-
-                </div>
-                <div class="infomation">
-                    <p class="info">※パスワードを入力してください。</p>
+                    <input type="text" class="id rogin-input" name="ID" maxlength="6" placeholder="6桁の数字" pattern="^[0-9]+$" autocomplete="off">
                 </div>
                 <div class="password">
                     <p class="p-title">Pass</p>

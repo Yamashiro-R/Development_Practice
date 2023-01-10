@@ -1,7 +1,7 @@
 <header class="site-header">
     <div class="wrapper site-header__wrapper">
         <div class="site-header__start">
-            <p class="brand"><a href="home_2.php">就職活動管理Webアプリ</a></p>
+            <p class="brand"><a href="home.php">就職活動管理Webアプリ</a></p>
         </div>
         <div class="site-header__middle">
             <nav class="nav">
@@ -15,7 +15,7 @@
                         <input id="tg" class="dropInput" type="checkbox">
                         <label for="tg" class="dropLabel">PageList▼</label>
                         <ul class="menu animation">
-                            <li><a class="item" href="home_2.php">ホーム</a></li>
+                            <li><a class="item" href="home.php">ホーム</a></li>
                             <li><a class="item" href="dvSearch.php">閲覧検索</a></li>
                             <li><a class="item" href="Input_Form_1.php">報告書新規作成</a></li>
                             <li><a class="item" href="dataView.php">保存データ</a></li>
@@ -34,7 +34,7 @@
             <div class="menu-content">
                 <ul>
                     <li>
-                        <a href="home_2.php">ホーム</a>
+                        <a href="home.php">ホーム</a>
                     </li>
                     <li>
                         <a href="dvSearch.php">閲覧検索</a>
