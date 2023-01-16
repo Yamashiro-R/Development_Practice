@@ -689,7 +689,7 @@
             $stmt->bindParam(':DATEs', $day, PDO::PARAM_STR);
 
             $stmt->execute();
-            header('location: home_2.php');
+            header('location: home.php');
             
         } catch (PDOException $e) {
             exit('エラー：' . $e->getMessage());

@@ -32,7 +32,6 @@
             <meta charset="UTF-8">
             <link rel="stylesheet" href="../cssfiles/style.css">
             <link rel="stylesheet" href="cssfiles/teach_request.css">
-            <!-- <link rel="stylesheet" href="cssfiles/style_flexible.css"> -->
             <title>就職活動報告申請依頼</title>   
         </head>
         <?php include 'header.php' ?>

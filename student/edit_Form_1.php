@@ -235,8 +235,6 @@
                                         echo '>' . $docmt_submits[$j] . '</label></div>';
                                     }
                                 ?>
-                                    <!--<input type="text" name="Documents_submitted">
-                                    </label>-->
                                 
                                 <div class="denger_field"><!-- ここにエラー文を出力--></div>
                             </div>
