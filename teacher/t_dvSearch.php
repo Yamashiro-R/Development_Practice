@@ -91,40 +91,40 @@
                 ac_comp_data_tb.act_id = account_tb.act_id';
 
     if($comp_name){
-        $select .=  " and comp_name LIKE '%". $comp_name . "%'" ; 
+        $select .=  " and comp_name LIKE :comp_name" ; 
     }
 
     if($student_name){
-        $select .=  " and  account_name LIKE '%". $student_name . "%'" ; 
+        $select .=  " and  account_name LIKE :student_name" ; 
     }
 
     if($fn_number){
         if($fn_number != 'defa'){
-            $select .=  " and fn_number = ". $fn_number; 
+            $select .=  " and fn_number = :fn_number"; 
         }else {
             $fn_number = false;
         }
     }
 
     if($status){
-        if($status != 5){
-            $select .=  " and apply_status_tb.as_number = ". $status; 
+        if(is_int($status) && $status >= 0 && $status < 5){
+            $select .=  " and apply_status_tb.as_number = :status"; 
         }
     }
 
 
     if($student_id){
-        $select .=  " and account_tb.act_id = ". $student_id; 
+        $select .=  " and account_tb.act_id = :student_id"; 
     }
 
     if($year){
         if($year != 'defa'){
-        $select .=  " and account_tb.act_id Like '__". $year % 1000 ."__'"; 
+            $select .=  " and account_tb.act_id Like :year"; 
         }
     }
 
     if($docmt){
-        if($docmt != 6 ){
+        if(is_int($docmt) && $docmt >= 0 && $docmt < 6){
             $docmts = array("本校の紹介","職安の紹介","縁故者の紹介","求人情報誌","その他");
             $select .=  " and how_to_apply LIKE '%". $docmts[$docmt-1] . "%'" ; 
         }
@@ -147,6 +147,38 @@
 
         if($boole){
             $stmt = $db->prepare($select_limit);
+
+            if($comp_name){
+                $comp_name = "%".$comp_name."%";
+                $stmt->bindParam(':comp_name',$comp_name,PDO::PARAM_STR);
+            }
+        
+            if($student_name){
+                $student_name = "%".$student_name."%";
+                $stmt->bindParam(':student_name',$student_name,PDO::PARAM_STR);
+            }
+        
+            if($fn_number){
+                $stmt->bindParam(':fn_number',$fn_number,PDO::PARAM_INT);
+            }
+        
+            if($status){
+                if(is_int($status) && $status >= 0 && $status < 5){
+                    $stmt->bindParam(':status',$status,PDO::PARAM_INT);
+                }
+            }
+        
+        
+            if($student_id){
+                $stmt->bindParam(':student_id',$student_id,PDO::PARAM_INT);
+            }
+        
+            if($year){
+                if($year != 'defa'){
+                    $EntranceYear = "__".($year%1000)."__";
+                    $stmt->bindParam(':year',$EntranceYear,PDO::PARAM_STR);
+                }
+            }        
         }
         
         
@@ -178,6 +210,35 @@
         
         if($boole){
             $stmt = $db->prepare($select);
+
+            if($comp_name){
+                $stmt->bindParam(':comp_name',$comp_name,PDO::PARAM_STR);
+            }
+        
+            if($student_name){
+                $stmt->bindParam(':student_name',$student_name,PDO::PARAM_STR);
+            }
+        
+            if($fn_number){
+                $stmt->bindParam(':fn_number',$fn_number,PDO::PARAM_INT);
+            }
+        
+            if($status){
+                if(is_int($status) && $status >= 0 && $status < 5){
+                    $stmt->bindParam(':status',$status,PDO::PARAM_INT);
+                }
+            }
+        
+            if($student_id){
+                $stmt->bindParam(':student_id',$student_id,PDO::PARAM_INT);
+            }
+        
+            if($year){
+                if($year != 'defa'){
+                    $stmt->bindParam(':year',$EntranceYear,PDO::PARAM_STR);
+                }
+            }        
+
         }
 
     
@@ -194,13 +255,13 @@
 
 
     if($status){
-        if($status != 5){
+        if($status < 5 && $status >= 0 && intval($status)){
             $option_st[$status-1] = 'selected';
         }
     }
 
     if($docmt){
-        if($docmt != 6){
+        if($docmt < 6 && $docmt >= 0 && intval($docmt)){
             $option_docmt[$docmt-1] = 'selected';
         }
     }
@@ -235,10 +296,10 @@
                         <div id="dvS_contentu" style="display: block;">
                             <div class="main_div">
                                 <p class="p_input">
-                                    <label>企業名<br><input type="search" name="comp_name" maxlength="15" value="<?php echo $comp_name ?>"></label>
+                                    <label>企業名<br><input type="search" name="comp_name" maxlength="15" value="<?php  echo str_replace('%', '', $comp_name); ?>"></label>
                                 </p>
                                 <p class="p_input">
-                                    <label>生徒名<br><input type="search" name="student_name" maxlength="15" value="<?php echo $student_name ?>"> </label>
+                                    <label>生徒名<br><input type="search" name="student_name" maxlength="15" value="<?php  echo str_replace('%', '', $student_name); ?>"> </label>
                                 </p>
                                 <p class="p_input">
                                     <label>生徒ID<br><input type="search" name="student_id" maxlength="6" placeholder="6桁の数字で入力" pattern="^[0-9]+$" value="<?php echo $student_id ?>"> </label>

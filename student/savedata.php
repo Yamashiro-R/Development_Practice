@@ -211,6 +211,9 @@
                         <input type="hidden" name="REQUEST" value="" >
                     </form>
                 </div>
+                
+                <p id="attention">※ステップ３の「感想、反省点」と「今後の活動予定」まで入力を終えると申請が行えます。</p>
+
                 <div class="page-top">
                     <a href="#"><img class="pg-top" src="../images/pagetop 1.png" alt="page-top"></a>
                 </div>
@@ -242,22 +245,19 @@
             var  param_j = JSON.parse('<?php echo $param_p; ?>') ;
 
             if(param_j == 2 || param_j == 3){
-                // document.getElementById('delete').style.display = 'none';
-                // document.getElementById('edit').style.display = 'none';
+                document.getElementById('delete').style.display = 'none';
+                document.getElementById('edit').style.display = 'none';
                 document.getElementById('request').style.display = 'none';
-            }
-            if(param_j == 2 || param_j == 3){
-                // document.getElementById('delete').style.display = 'none';
-                // document.getElementById('edit').style.display = 'none';
-                document.getElementById('request').style.display = 'none';
+                document.getElementById('attention').style.display = 'none';
             }
 
 
             var hantei1 = document.getElementById('imp').textContent;
             var hantei2 = document.getElementById('fut').textContent;
-                if(!(hantei1 == '無回答' || hantei2 == "無回答")){
-                    // document.getElementById('request').disabled = false;        
-                }
+
+            if(!(hantei1 == '無回答' || hantei2 == "無回答")){
+                document.getElementById('request').disabled = false;        
+            }
         </script>
         <script type="text/javascript" src="\DEVELOPMENT_PRACTICE/JS_files/methot.js"></script>
 

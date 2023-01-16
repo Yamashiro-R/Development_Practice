@@ -211,8 +211,6 @@
 
                 <div>
                     <form class="dvSform" action=" dvSearch.php#table_erea" method="POST">
-                        <!-- <div class="dvStop">
-                            <div class="dvSname"> -->
                         <div>
                              <p>
                                 <label>企業名で検索<br><input type="search" name="comp_name" value="<?php echo str_replace('%', '', $name); ?>"></label>
