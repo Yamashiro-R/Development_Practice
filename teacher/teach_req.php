@@ -47,7 +47,17 @@
                 </div>
                 <div class="title_req">
                     <h3 id="newreq-title" style="color: red;">新規依頼</h3>
-                    <p id="now-req">現在<strong style="color: red;"><?php echo count($row) ?>件</strong>の依頼が来ています。</p>
+                    <p id="now-req">
+
+                        <?php  
+                            if(count($row) > 0) {
+                                echo '現在<strong style="color: red;">'.count($row).'件</strong>の依頼が来ています。';
+                            }else {
+                                echo '現在新規依頼はありません。';
+                            }
+                        ?>
+
+                    </p>
                 </div>
                 <div class="test">
                     <?php teach_func($row) ?>
