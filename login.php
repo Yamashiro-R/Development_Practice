@@ -41,13 +41,13 @@
 
             if ($row = $stmt->fetch()) {   
                 //IDとPassが一緒の場合　＝　新規ユーザページへ飛ばす
-                if($_POST['pass'] == strval($_POST['ID'])){
-                    $_SESSION['name'] = $row['account_name'];
-                    $_SESSION['family_name'] = $row['family_name'];
-                    $_SESSION['newlogID'] = $_POST['ID'];
-                    header('Location: newlogin.php');
-                    exit();
-                }
+                // if($_POST['pass'] == strval($_POST['ID'])){
+                //     $_SESSION['name'] = $row['account_name'];
+                //     $_SESSION['family_name'] = $row['family_name'];
+                //     $_SESSION['newlogID'] = $_POST['ID'];
+                //     header('Location: newlogin.php');
+                //     exit();
+                // }
 
                 //ユーザが存在していたら、セッションにユーザIDセット
 

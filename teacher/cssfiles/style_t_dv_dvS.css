@@ -1,9 +1,4 @@
 
-.view_back-color{
-    /* saveと統一 */
-    background-color: #99ffcc;
-}
-
 
 .br-sp{
     display: none;
@@ -70,10 +65,6 @@ td{
 }
 
 
-
-.dvfooter span {
-    font-size: 80%;
-}
 
 .btn_form{
     display: inline;
